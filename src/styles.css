@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body {
+    background-color: white;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: 'Raleway', sans-serif;
+   
+}
+
+hr{
+    width: 95%;
+}
+
+.no-border{
+    border: none;
+}
+
+.card-header{
+    background-color: lightskyblue;
+}
+
+.center{
+    margin:auto;
+}

@@ -1,0 +1,7 @@
+<p>retrieve-mail works!</p>
+<ul>
+    <li *ngFor="let email of emails | async">
+        <pre>{{ email | json }}</pre>
+    </li>
+</ul>
+<button (click)="addEmail()">Add an email!</button>
