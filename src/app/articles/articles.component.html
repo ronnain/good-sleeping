@@ -1,48 +1,16 @@
 <div class="container">
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <div class="container-fluid ">
+        <li class="list-group-item" *ngFor="let desArticle of descArticles">
+            <div class="container-fluid articleLink" [routerLink]="['/Article', desArticle.articleName]">
                 <div class="row d-flex flex-wrap align-items-center">
                     <div class="col-sm-4 align-middle">
-                        <img  src="assets/img/article1.jpg" style="max-width: 100%">
+                        <img  src={{desArticle.img}} style="max-width: 100%">
                     </div>
                     <div class="card no-border col-sm-8">      
                         <div class="card-body">
-                            <h5 class="card-title">Top 5 des choses qui nous gachent le sommeil</h5>                       
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <footer class="blockquote-footer">Le 10/11/2019 par <cite>Romain</cite></footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="container-fluid ">
-                <div class="row d-flex flex-wrap align-items-center">
-                    <div class="col-sm-4 align-middle">
-                        <img  src="assets/img/article2.jpg" style="max-width: 100%">
-                    </div>
-                    <div class="card no-border col-sm-8">      
-                        <div class="card-body">
-                            <h5 class="card-title">Top 5 des choses qui nous trompe le sommeil</h5>                       
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <footer class="blockquote-footer">Le 10/11/2019 par <cite>Romain</cite></footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="container-fluid ">
-                <div class="row d-flex flex-wrap align-items-center">
-                    <div class="col-sm-4 align-middle">
-                        <img  src="assets/img/article3.jpg" style="max-width: 100%">
-                    </div>
-                    <div class="card no-border col-sm-8">      
-                        <div class="card-body">
-                            <h5 class="card-title">Top 5 des choses qui aident pour le sommeil</h5>                       
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <footer class="blockquote-footer">Le 10/11/2019 par <cite>Romain</cite></footer>
+                            <h5 class="card-title">{{desArticle.title}}</h5>                       
+                            <p class="card-text">{{desArticle.description}}</p>
+                            <footer class="blockquote-footer">Le {{desArticle.date}} par <cite>Romain</cite></footer>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,16 @@
-<p>retrieve-mail works!</p>
-<ul>
-    <li *ngFor="let email of emails | async">
-        <pre>{{ email | json }}</pre>
-    </li>
-</ul>
-<button (click)="addEmail()">Add an email!</button>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div>
+                Pense à renseigner ton adresse mail, pour être au courant de la sortie de mes nouveaux articles. 
+            </div>
+            <form (ngSubmit)="onSubmit(mailAdress)" #mailAdress="ngForm">
+                <div class="form-group">
+                    <label for="mail">Adresse mail</label>
+                    <input type="text" id="mail" class="form-control mailInput" name="mail" ngModel required email>
+                </div>
+                <button  id="btnSaveMail" [class]="classBtn" type="submit" [disabled]="mailAdress.invalid">Valider</button>
+            </form>
+        </div>
+    </div>
+</div>

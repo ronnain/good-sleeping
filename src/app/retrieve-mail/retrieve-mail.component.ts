@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { Subject } from 'rxjs';
+import { MailService } from '../services/mail.service';
+import { Mail } from '../modeles/interfaces.type';
+import { NgForm, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-retrieve-mail',
@@ -9,19 +9,43 @@ import { Subject } from 'rxjs';
   styleUrls: ['./retrieve-mail.component.css']
 })
 export class RetrieveMailComponent implements OnInit {
-
-  public emails: Observable<any[]>;
-  constructor(db: AngularFireDatabase) {
-      this.emails = db.collection('/emails').valueChanges();
-  }
+  //TO DO: use material input
+  //mails: Mail[];
+  mail: Mail;
+  classBtn: string = "btn btn-primary";
+  constructor(private mailService: MailService) {}
 
   ngOnInit() {
+    /*this.mailService.getAllMails().subscribe(data =>{
+      this.mails = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          mail: e.payload.doc.data['mail'],
+          creationDate: e.payload.doc.data['creationDate']
+        } as Mail;        
+      })
+    });*/
   }
 
-  public addEmail(): void {
-    let newEmail:string = "romain.geffrault@laposte.net";
-    this.emails.push(newEmail);
-    this.emails.re
+  saveMail(mailAdress:string){
+    let mail:Mail ={
+      id : "",
+      mail : mailAdress,
+      creationDate: new Date()
+    }
+    this.mailService.saveMailInDB(mail);
   }
 
+  updateMail(mail:Mail){
+    this.mailService.updateMail(mail);
+  }
+  
+  deleteMail(id: string){
+    this.mailService.deleteMail(id);
+  }
+
+  onSubmit(form: NgForm) {
+    this.saveMail(form.value);
+    this.classBtn = "btn btn-success";
+  }
 }
