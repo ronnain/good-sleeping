@@ -1,16 +1,16 @@
 <div class="container">
     <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let desArticle of descArticles">
-            <div class="container-fluid articleLink" [routerLink]="['/Article', desArticle.articleName]">
+        <li class="list-group-item" *ngFor="let article of articles">
+            <div class="container-fluid articleLink" [routerLink]="['/Article', article.articleName]">
                 <div class="row d-flex flex-wrap align-items-center">
                     <div class="col-sm-4 align-middle">
-                        <img  src={{desArticle.img}} style="max-width: 100%">
+                        <img  src={{article.img}} style="max-width: 100%">
                     </div>
                     <div class="card no-border col-sm-8">      
                         <div class="card-body">
-                            <h5 class="card-title">{{desArticle.title}}</h5>                       
-                            <p class="card-text">{{desArticle.description}}</p>
-                            <footer class="blockquote-footer">Le {{desArticle.date}} par <cite>Romain</cite></footer>
+                            <h5 class="card-title">{{article.title}}</h5>                       
+                            <p class="card-text" *ngIf="!hideDescription">{{article.description}}</p>
+                            <footer class="blockquote-footer">Le {{article.date}} par <cite>Romain</cite></footer>
                         </div>
                     </div>
                 </div>

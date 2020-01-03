@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../interfaces';
 
 @Component({
   selector: 'app-article',
@@ -9,12 +8,6 @@ import { Product } from '../interfaces';
   encapsulation: ViewEncapsulation.None
 })
 export class ArticleComponent implements OnInit {
-  ebook: Product = {
-    title : "Ebook",
-    description : "Superbe livre pour réussir à dormir",
-    price : 12,
-    src : "assets/img/feather.svg"
-  }
 
   articleName: string;
   articleContent: string = "Article non trouvé";

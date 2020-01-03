@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container divMailRetrieve">
     <div class="row">
         <div class="col">
             <div>
-                Pense à renseigner ton adresse mail, pour être au courant de la sortie de mes nouveaux articles. 
+                <p>Pour être au courant de la sortie de mes nouveaux articles.<br/>N'oublie pas de renseigner ton mail ci-dessous.</p>
             </div>
             <form (ngSubmit)="onSubmit(mailAdress)" #mailAdress="ngForm">
                 <div class="form-group">
-                    <label for="mail">Adresse mail</label>
+                    <label for="mail">Adresse mail:</label>
                     <input type="text" id="mail" class="form-control mailInput" name="mail" ngModel required email>
                 </div>
                 <button  id="btnSaveMail" [class]="classBtn" type="submit" [disabled]="mailAdress.invalid">Valider</button>

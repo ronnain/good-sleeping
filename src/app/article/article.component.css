@@ -42,3 +42,21 @@
 .imgBook{
     max-width: 50%;
 }
+
+.divMailRetrieve{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin-bottom: 2rem;
+}
+
+footer{
+    margin-bottom: 1rem;
+}
+
+.article .titleReadMore{
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding-bottom: 0.5rem;
+}
+
+.articles{
+    margin-bottom: 2rem;
+}

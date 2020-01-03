@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DescArticle } from '../modeles/interfaces.type';
+import { ArticlesService } from '../services/articles.service';
+
 
 @Component({
   selector: 'app-articles',
@@ -8,33 +10,31 @@ import { DescArticle } from '../modeles/interfaces.type';
 })
 export class ArticlesComponent implements OnInit {
 
-  descArticles: DescArticle[] = [
-    {
-      title: "Top 5 des choses qui nous gachent le sommeil",
-      description: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      date: "10/11/2019",
-      img: "assets/img/article1.jpg",
-      articleName: "article1"
-    },
-    {
-      title: "Top 5 des choses qui nous trompe le sommeil",
-      description: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      date: "10/11/2019",
-      img: "assets/img/article2.jpg",
-      articleName: "article1"
-    },
-    {
-      title: "Top 5 des choses qui aident pour le sommeil",
-      description: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      date: "10/11/2019",
-      img: "assets/img/article3.jpg",
-      articleName: "article1"
-    }
-  ]
+  @Input() 
+  articlesName: string[];
 
-  constructor() { }
+  @Input() 
+  currentArticleName: string;
+
+  @Input() 
+  hideDescription: boolean = false;
+
+
+  articles: DescArticle[] = [];
+  
+  constructor(private articlesService: ArticlesService) { }
 
   ngOnInit() {
+    //Display other articles
+    if(this.currentArticleName){
+      this.articles = this.articlesService.getOtherArticles(this.currentArticleName);
+
+    } else if(this.articlesName){ //Display the list of articles
+      this.articles = this.articlesService.getArticlesByNames(this.articlesName);
+
+    } else { //display all articles
+      this.articles = this.articlesService.getAllArticles();
+    }
   }
 
 }
