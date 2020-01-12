@@ -5,12 +5,19 @@
                 <p>Pour être au courant de la sortie de mes nouveaux articles.<br/>N'oublie pas de renseigner ton mail ci-dessous.</p>
             </div>
             <form (ngSubmit)="onSubmit(mailAdress)" #mailAdress="ngForm">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="mail">Adresse mail:</label>
                     <input type="text" id="mail" class="form-control mailInput" name="mail" ngModel required email>
-                </div>
-                <button  id="btnSaveMail" [class]="classBtn" type="submit" [disabled]="mailAdress.invalid">Valider</button>
+                    <button  id="btnSaveMail" [class]="classBtn" type="submit" [disabled]="mailAdress.invalid">Valider</button>
+                </div> -->
+                <mat-form-field style="width:300px !important">
+                    <input matInput placeholder="Adresse mail" name="mail" ngModel required email>
+                </mat-form-field><br/> 
+                <button mat-raised-button class="btnSubmit" color="primary"  id="btnSaveMail" type="submit" [disabled]="mailAdress.invalid">Valider</button>
             </form>
+            <div *ngIf="showValidation" class="alert alert-success" role="alert">
+                <p>Votre mail à bien été envoyé. Vous receverez sous quelques minutes le bonus dans votre boîte mail.</p>
+            </div>
         </div>
     </div>
 </div>

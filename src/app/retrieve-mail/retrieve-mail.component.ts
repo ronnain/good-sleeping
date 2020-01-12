@@ -12,7 +12,8 @@ export class RetrieveMailComponent implements OnInit {
   //TO DO: use material input
   //mails: Mail[];
   mail: Mail;
-  classBtn: string = "btn btn-primary";
+  showValidation: boolean = false;
+  //classBtn: string = "btn btn-primary";
   constructor(private mailService: MailService) {}
 
   ngOnInit() {
@@ -33,7 +34,7 @@ export class RetrieveMailComponent implements OnInit {
       mail : mailAdress,
       creationDate: new Date()
     }
-    this.mailService.saveMailInDB(mail);
+    return this.mailService.saveMailInDB(mail);
   }
 
   updateMail(mail:Mail){
@@ -45,7 +46,7 @@ export class RetrieveMailComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.saveMail(form.value);
-    this.classBtn = "btn btn-success";
+    this.showValidation = this.saveMail(form.value) ? true : false ;
+    //this.classBtn = "btn btn-success";
   }
 }

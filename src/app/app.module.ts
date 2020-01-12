@@ -19,15 +19,24 @@ import { ProductComponent } from './product/product.component';
 import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
 import { FormsModule }   from '@angular/forms';
 import { ArticleComponent } from './article/article.component';
+import { MailOverviewComponent } from './mail-overview/mail-overview.component';
+import { LoginComponent } from './login/login.component';
+
+import { HttpClientModule } from '@angular/common/http';
+
+import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
+
 
 const appRoutes: Routes = [
   {path: 'Home', component: HomeComponent},
   {path: 'Articles', component: ArticlesComponent},
   {path: 'Products', component: ProductsComponent},
   {path: 'Article/:articleName', component: ArticleComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'mail', component: MailOverviewComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'Articles', pathMatch: 'full' },
   {path: '**', redirectTo: 'Articles', pathMatch: 'full'},
-  {path: 'not-found', redirectTo: 'Articles', pathMatch: 'full'},
+  {path: 'not-found', redirectTo: 'Articles', pathMatch: 'full'}  
 ];
 
 @NgModule({
@@ -40,14 +49,17 @@ const appRoutes: Routes = [
     FormationsComponent,
     ProductComponent,
     RetrieveMailComponent,
-    ArticleComponent
+    ArticleComponent,
+    MailOverviewComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes),    
     BrowserAnimationsModule,
     MaterialModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
