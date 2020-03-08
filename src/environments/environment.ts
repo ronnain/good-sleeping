@@ -13,6 +13,9 @@ export const environment = {
     messagingSenderId: "104196420280",
     appId: "1:104196420280:web:d089c8bd55a241f74bba4d",
     measurementId: "G-K8GHT19KPW"
+  },
+  serverConfig : {
+    serverURL : "http://localhost:80/test/handleRequest.php"
   }
 };
 /*

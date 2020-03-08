@@ -1,28 +1,76 @@
 import { Injectable } from '@angular/core';
-import { Mail } from '../modeles/interfaces.type';
+import { Contact } from '../modeles/interfaces.type';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { HttpClient, HttpResponse, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MailService {
 
-  constructor(private firestore: AngularFirestore) { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
 
-  getAllMails() {
+  // constructor(private firestore: AngularFirestore, private http: HttpClient) { } Firestore
+  constructor(private firestore: AngularFirestore, private http: HttpClient) { }
+
+  //Php server
+  getUser() {
+    //return this.http.get(`http://localhost:80/test/handleRequest.php?method=getContacts`);
+   return this.http.get(environment.serverConfig.serverURL + `?method=getContacts`);
+  }
+
+  createContact(firstName, mail) {
+    console.log("environment.serverConfig.serverURL", environment.serverConfig.serverURL);
+    const body = {
+      "method": "createContact",
+      "firstName" : firstName,
+      "mail": mail
+    }
+    console.log("environment.serverConfig.serverURL", environment.serverConfig.serverURL);
+    return this.http.post(environment.serverConfig.serverURL, body)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+  //*Firestore
+/*   getAllMails() {
     return this.firestore.collection('mails').snapshotChanges();
   }
 
-  saveMailInDB(mail: Mail){
+  saveMailInDB(mail: Contact){
     return this.firestore.collection('mails').add(mail);
   }
 
-  updateMail(mail: Mail){
+  updateMail(mail: Contact){
     delete mail.id;
     this.firestore.doc('mails/' + mail.id).update(mail);
   }
 
   deleteMail(mailId: string){
     this.firestore.doc('mails/' + mailId).delete();
-  }
+  } */
 }

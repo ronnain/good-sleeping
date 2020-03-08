@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MailService } from '../services/mail.service';
-import { Mail } from '../modeles/interfaces.type';
-import { NgForm, FormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-retrieve-mail',
@@ -11,42 +10,38 @@ import { NgForm, FormsModule } from '@angular/forms';
 export class RetrieveMailComponent implements OnInit {
   //TO DO: use material input
   //mails: Mail[];
-  mail: Mail;
+  firstName:string;
   showValidation: boolean = false;
-  //classBtn: string = "btn btn-primary";
   constructor(private mailService: MailService) {}
 
   ngOnInit() {
-    /*this.mailService.getAllMails().subscribe(data =>{
-      this.mails = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          mail: e.payload.doc.data['mail'],
-          creationDate: e.payload.doc.data['creationDate']
-        } as Mail;        
-      })
-    });*/
   }
 
-  saveMail(mailAdress:string){
-    let mail:Mail ={
+  //Firebase
+  /* saveMail(mailAdress:string){
+    let mail:Contact ={
       id : "",
       mail : mailAdress,
+      firstName: this.firstName,
       creationDate: new Date()
     }
     return this.mailService.saveMailInDB(mail);
   }
 
-  updateMail(mail:Mail){
+  updateMail(mail:Contact){
     this.mailService.updateMail(mail);
   }
-  
+
   deleteMail(id: string){
     this.mailService.deleteMail(id);
+  } */
+
+  createContact(mailAdress:string){
+    return this.mailService.createContact(this.firstName, mailAdress);
   }
 
   onSubmit(form: NgForm) {
-    this.showValidation = this.saveMail(form.value) ? true : false ;
-    //this.classBtn = "btn btn-success";
+    //this.showValidation = this.saveMail(form.value) ? true : false ;
+    console.log("createContact", this.createContact(form.value));
   }
 }

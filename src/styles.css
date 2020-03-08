@@ -35,3 +35,7 @@ hr{
 .mat-tab-group{
     font-family: 'Raleway', sans-serif;
 }
+
+.transparent{
+    background-color: transparent;
+}

@@ -25,6 +25,8 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { CommentairesComponent } from './commentaires/commentaires.component';
 
 
 const appRoutes: Routes = [
@@ -33,10 +35,11 @@ const appRoutes: Routes = [
   {path: 'Products', component: ProductsComponent},
   {path: 'Article/:articleName', component: ArticleComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'Bonus', component: LandingPageComponent},
   {path: 'mail', component: MailOverviewComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'Articles', pathMatch: 'full' },
   {path: '**', redirectTo: 'Articles', pathMatch: 'full'},
-  {path: 'not-found', redirectTo: 'Articles', pathMatch: 'full'}  
+  {path: 'not-found', redirectTo: 'Articles', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -51,12 +54,14 @@ const appRoutes: Routes = [
     RetrieveMailComponent,
     ArticleComponent,
     MailOverviewComponent,
-    LoginComponent
+    LoginComponent,
+    LandingPageComponent,
+    CommentairesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes),    
+    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,

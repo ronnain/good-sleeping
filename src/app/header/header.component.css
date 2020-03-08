@@ -1,12 +1,41 @@
+.fix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.textWhite a{
+    color: white;
+}
+
+.textWhite .active{
+    border: 2px solid;
+    border-color: white;
+}
+
+.textBlue a{
+    color: #181a38;
+}
+
+.textBlue .active{
+    border: 2px solid;
+    border-color: #181a38;
+}
+
+.notDisplay {
+    display: none;
+}
+
 a{
     color: black;
 }
 
 .active{
     border: 2px solid;
-    border-color: midnightblue;    
+    border-color: midnightblue;
 }
 
-nav{    
+nav{
     font-family: 'Roboto Mono', monospace;
 }

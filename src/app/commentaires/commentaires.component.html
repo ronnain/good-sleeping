@@ -1,0 +1,43 @@
+<h2 class="titleComment" matBadge="{{nbComment}}" matBadgeOverlap="false" matBadgePosition="above before" id="commentSpace">Commentaires</h2>
+
+<form (ngSubmit)="onSubmit(addCommentForm)" #addCommentForm="ngForm">
+    <ng-template [ngIf]="showReply">
+        <p>Répondre à <strong>{{responsToAuthor}}</strong></p>
+    </ng-template>
+    <mat-form-field>
+        <input matInput placeholder="Prénom" name="firstName" ngModel required>
+    </mat-form-field><br/>
+
+    <mat-form-field class="addComment">
+        <mat-label>Laisse un commentaire</mat-label>
+        <textarea matInput required name="newComment" ngModel placeholder="Ex. Bonjour, merci pour ton article. Il m'a beaucoup appris." class="textAddComment"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button class="btnSubmit" color="primary"  id="btnSaveComment" type="submit" [disabled]="addCommentForm.invalid">Valider</button>
+    <button mat-button class="btnSubmit" color="warn" id="btnCancelReply" (click)="cancelReply()" *ngIf="showReply">Annuler la Réponse</button>
+</form>
+
+<div class='commentsContainer'>
+    <ul class="mainComments">
+        <li *ngFor="let comment of comments" class="mainComment">
+            <i class="material-icons">person_pin_circle</i>
+            <p class="commentAuthor">{{comment.author}}</p>
+            <p class="commentDate">{{comment.date | date: 'dd/mm/yyyy'}}</p>
+            <p class="textComment">{{comment.comment}}</p>
+            <div class="divBtnReply">
+                <button mat-button class="replyBtn" (click)="reply(comment.id, comment.author)">Répondre</button>
+            </div>
+            <ul class="repliesComments">
+                <li *ngFor="let respons of comment.repliesComment" class="repliesComment">
+                    <i class="material-icons">person_pin_circle</i>
+                    <p class="commentAuthor"> {{respons.author}} </p>
+                    <p class="commentDate">{{respons.date | date: 'dd/mm/yyyy'}}</p>
+                    <p class="textComment">{{respons.comment}}</p>
+                    <div class="divBtnReply">
+                        <button mat-button class="replyBtn" (click)="reply(comment.id, respons.author)">Répondre</button>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

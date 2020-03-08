@@ -1,7 +1,8 @@
-export interface Mail {
-    id: string;
+export interface Contact {
+    id?: string;
     mail: string;
-    creationDate: Date;
+    firstName: string;
+    creationDate?: Date;
 }
 
 export interface DescArticle{
@@ -10,4 +11,12 @@ export interface DescArticle{
     date: string,
     img: string,
     articleName: string
+}
+
+export interface Comment{
+    id?: number,
+    author: string,
+    date: Date,
+    comment: string,
+    repliesComment?: Comment[]
 }

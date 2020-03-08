@@ -19,7 +19,7 @@
     font-size: 1.25rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-}   
+}
 
 .article .citation{
     text-align: center;
@@ -45,7 +45,6 @@
 
 .divMailRetrieve{
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin-bottom: 2rem;
 }
 
 footer{
@@ -53,10 +52,16 @@ footer{
 }
 
 .article .titleReadMore{
+    margin-top: 3rem;
     border-bottom: 1px solid rgba(0,0,0,.125);
     padding-bottom: 0.5rem;
 }
 
 .articles{
     margin-bottom: 2rem;
+}
+
+.horizontalLine {
+    width:  100%;
+    border-top: 1px solid black;
 }

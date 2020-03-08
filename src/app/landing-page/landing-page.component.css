@@ -1,0 +1,69 @@
+.whiteColor p, .whiteColor h1 {
+    color: white;
+}
+
+.center{
+    text-align: center;
+}
+
+.fullBackgroundImage {
+    background-image: url("src/assets/img/article3.jpg");
+    width: 100%;
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* top: 0px;
+    position: absolute; */
+}
+
+.firstChild {
+    padding-top: 60px;
+}
+
+.secondImage {
+    background-image: url("src/assets/img/article2.jpg");
+    width: 100%;
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* top: 0px;
+    position: absolute; */
+}
+
+.backgroundFeather {
+    background-image: url("src/assets/img/fond_plume.png");
+    width: 100%;
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.blueBtn{
+    color: white;
+    /* background-color: midnightblue; */
+    background-color: #181a38;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.toBottom {
+    left: 0;
+    right: 0;
+    bottom: 18%;
+    position: absolute;
+}
+
+.aBtn {
+    padding: 6px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+a:hover {
+   color: white;
+}

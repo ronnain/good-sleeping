@@ -2,21 +2,22 @@
     <div class="row">
         <div class="col">
             <div>
-                <p>Pour être au courant de la sortie de mes nouveaux articles.<br/>N'oublie pas de renseigner ton mail ci-dessous.</p>
+                <p>Pour télécharger gratuitement, mon bonus <strong>As tu ces 3 habitudes qui gâchent ton sommeil ?</strong>.<br/>
+                    N'oublie pas de renseigner ton prénom et ton mail ci-dessous.</p>
             </div>
             <form (ngSubmit)="onSubmit(mailAdress)" #mailAdress="ngForm">
-                <!-- <div class="form-group">
-                    <label for="mail">Adresse mail:</label>
-                    <input type="text" id="mail" class="form-control mailInput" name="mail" ngModel required email>
-                    <button  id="btnSaveMail" [class]="classBtn" type="submit" [disabled]="mailAdress.invalid">Valider</button>
-                </div> -->
+                <mat-form-field>
+                    <input matInput placeholder="Prénom" name="firstName" ngModel required>
+                </mat-form-field><br/>
+
                 <mat-form-field style="width:300px !important">
                     <input matInput placeholder="Adresse mail" name="mail" ngModel required email>
-                </mat-form-field><br/> 
+                </mat-form-field><br/>
                 <button mat-raised-button class="btnSubmit" color="primary"  id="btnSaveMail" type="submit" [disabled]="mailAdress.invalid">Valider</button>
             </form>
             <div *ngIf="showValidation" class="alert alert-success" role="alert">
-                <p>Votre mail à bien été envoyé. Vous receverez sous quelques minutes le bonus dans votre boîte mail.</p>
+                <p>Merci !</p>
+                <p>D'ici quelques minutes, tu recevra le bonus dans ta boîte mail.</p>
             </div>
         </div>
     </div>

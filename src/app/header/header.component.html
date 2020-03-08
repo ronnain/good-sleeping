@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-sm navbar-white bg-white justify-content-center">
-    <a class="navbar-brand" routerLink="Home" routerLinkActive="active"><img 
-      src="assets/img/feather.svg" 
+<nav class="navbar navbar-expand-sm navbar-white justify-content-center"
+  [ngClass]= "{'fix transparent': bonus.isActive, 'textWhite': bonus.isActive && !secondPage, 'textBlue': secondPage,'bg-white': !bonus.isActive}" >
+    <a class="navbar-brand" routerLink="Home" routerLinkActive="active"><img
+      src="assets/img/feather.svg"
       alt="Sleeping"
       height="40px"
       width="70px" /></a>
@@ -11,6 +12,9 @@
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="Products" class="nav-link">Produits</a>
       </li>
-    </ul>    
+      <li class="nav-item" routerLinkActive="active" #bonus="routerLinkActive">
+        <a routerLink="Bonus" class="nav-link">Bonus</a>
+      </li>
+    </ul>
 </nav>
-<hr style="margin-top:0px;">
+<hr style="margin-top:0px;" [ngClass]= "{'notDisplay': bonus.isActive}" >

@@ -1,0 +1,33 @@
+<div class="section fullBackgroundImage">
+    <div class="container transparent firstChild">
+        <div class="flex-wrap align-items-center">
+            <div class="card no-border transparent">
+                <div class="card-body center whiteColor">
+                    <h1 >Le site est en construction.</h1>
+                    <h1>Il sera bientôt disponible.</h1>
+                </div>
+            </div>
+        </div>
+        <div class="align-items-center transparent center toBottom whiteColor">
+            <h1>En attendant:</h1>
+            <!-- <button mat-raised-button class="blueBtn" onclick="window.location.href=='#secondElement'">VOIR BONUS GRATUIT</button> -->
+            <a class="aBtn blueBtn" (click)="onClickBtnBonus()">VOIR BONUS GRATUIT</a>
+        </div>
+    </div>
+</div>
+<div class="section backgroundFeather" id="secondElement">
+    <div class="container firstChild">
+        <div class="flex-wrap align-items-center block">
+            <div class="card no-border transparent">
+                <div class="card-body center">
+                    <h1>As tu ces 3 habitudes qui gâchent ton sommeil ?</h1>
+                </div>
+            </div>
+        </div>
+        <app-retrieve-mail></app-retrieve-mail>
+    </div>
+    <div>
+        <button (click)="loadUser()">Load profile</button>
+        {{ profile | json }}
+      </div>
+</div>
