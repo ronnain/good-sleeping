@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Comment } from '../modeles/interfaces.type';
 import { NgForm } from '@angular/forms';
 import { CommentService } from '../services/comment.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-commentaires',
@@ -15,7 +16,6 @@ export class CommentairesComponent implements OnInit {
 
   comments: Comment[];
 
-  nbComment: number = 0;
   mainCommentIdRelied: number; //use when the user click on the btn reply
   responsToAuthor: string;
   showReply = false;
@@ -23,17 +23,41 @@ export class CommentairesComponent implements OnInit {
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
-    this.comments = this.commentService.getCommentsByArticle(this.articleId)
+    this.getArticleComments();
   }
 
   onSubmit(form: NgForm) {
     console.log("addComment form value", form);
     const newComment: Comment = {
-      author: form.value.firstName,
-      date: new Date(),
-      comment: form.value.newComment
+      firstName: form.value.firstName,
+      date:  new Date(),
+      comment: form.value.newComment,
+      articleId: this.articleId
     };
-    this.commentService.addComment(this.articleId, newComment, this.mainCommentIdRelied);
+    if (this.mainCommentIdRelied) {
+      newComment.mainCommentId = this.mainCommentIdRelied;
+    }
+    this.commentService.addComment(newComment).subscribe(data => {
+      newComment.id = data;
+    });
+    this.addComment(newComment, this.mainCommentIdRelied);
+  }
+
+  addComment(newComment:Comment, mainCommentId: number) {
+    if(mainCommentId) {
+      const mainComment = this.comments.filter(comment =>
+        comment.id === mainCommentId)[0];
+        if (!mainComment.repliesComment) {
+          mainComment.repliesComment = [];
+        }
+        mainComment.repliesComment.push(newComment);
+    } else {
+      if (!this.comments) {
+        this.comments = [];
+      }
+      // add the comment to the comments
+      this.comments.push(newComment);
+    }
   }
 
   reply(mainCommentId: number, responsToAuthor) {
@@ -50,25 +74,10 @@ export class CommentairesComponent implements OnInit {
     this.showReply = false;
   }
 
-  /* addComment(mainCommentId?: number){
-    if(mainCommentId) {
-      this.addReplyComment(mainCommentId);
-    }
+  getArticleComments() {
+    this.commentService.getCommentsByArticle(1).subscribe(data => {
+      this.comments = data,
+      error => console.error('Une erreure est survenue à la récupération des commentaires !', error)
+    });
   }
-
-  addReplyComment(mainCommentId) {
-    const targetComment = this.comments.filter(comment =>
-      comment.id === mainCommentId);
-
-    if(!targetComment) {
-      console.log("une erreure est survenue")
-    }
-    const targetMainComment: Comment = targetComment[0];
-    if(!targetMainComment.repliesComment){
-      targetMainComment.repliesComment = []
-    }
-    console.log("Enregistrer en bdd");
-    //targetMainComment.repliesComment.push(addedComment);
-  } */
-
 }

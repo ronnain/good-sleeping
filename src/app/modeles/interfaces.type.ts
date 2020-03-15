@@ -15,8 +15,10 @@ export interface DescArticle{
 
 export interface Comment{
     id?: number,
-    author: string,
+    firstName: string,
     date: Date,
     comment: string,
-    repliesComment?: Comment[]
+    repliesComment?: Comment[],
+    articleId?: number,
+    mainCommentId?: number // use to add a response
 }

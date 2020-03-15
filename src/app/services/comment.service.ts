@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Comment } from '../modeles/interfaces.type';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -9,62 +10,25 @@ import { map } from 'rxjs/operators';
 })
 export class CommentService {
 
-  comment: Comment = {
-    id: 1,
-    author: 'MichMich',
-    date: new Date(),
-    comment: 'réponse edzfzejzekjfezkjezfk efzkijfezkjfezknnfeznfeznjefzjfeznjfejzef fezjiefzlezfklnklezfnkfez    rdrd fezkfnekzlfkelznfezlknezf'
-  }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
 
-  comments: Comment[] = [
-    {
-      id: 0,
-      author: 'Romain',
-      date: new Date(),
-      comment: 'Test de commentaires',
-      repliesComment: [
-        this.comment,
-        this.comment
-      ]
-    },
-    {
-      id: 0,
-      author: 'Romain',
-      date: new Date(),
-      comment: 'Test de commentaires',
-      repliesComment: [
-        this.comment,
-        this.comment
-      ]
-    }
-  ];
+  comments: Comment[] = [];
 
   constructor(private http: HttpClient) { }
 
-  addComment(articleId: number, newComment: Comment, mainCommentIdRelied?: number): boolean {
-    if (!articleId || !newComment) {
-      return false;
+  addComment(comment: Comment) {
+    if (!comment) {
+      return;
     }
-
-    // add to an existing article
-    if(typeof mainCommentIdRelied === 'number'){
-      for (const comment of this.comments) {
-        if (comment.id === mainCommentIdRelied) {
-          if (!comment.repliesComment) {
-            comment.repliesComment = [];
-          }
-          comment.repliesComment.push(newComment);
-          break;
-        }
-      }
-    } else {
-      // To do: the new main comment have no Id, if a the same user reply to his comment...
-      // retrieve the id generated
-      this.comments.push(newComment);
-    }
+    const urlAddComment = environment.serverConfig.serverURL + `?method=addComment`;
+    return this.http.post<number>(urlAddComment, { comment, method: 'addComment' });
   }
 
-  getCommentsByArticle(idArticle: number) {
-    return this.comments;
+  getCommentsByArticle(idArticle: number): Observable<Comment[]> {
+    return this.http.get<Array<Comment>>(environment.serverConfig.serverURL + `?method=getComments&articleId=`+idArticle);
   }
 }
