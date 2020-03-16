@@ -25,7 +25,7 @@
     </ul>
 </div>
 
-<form (ngSubmit)="onSubmit(addCommentForm)" #addCommentForm="ngForm">
+<form (ngSubmit)="onSubmit(addCommentForm)" #addCommentForm="ngForm" id="commentForm">
     <ng-template [ngIf]="showReply">
         <p>Répondre à <strong>{{responsToAuthor}}</strong></p>
     </ng-template>

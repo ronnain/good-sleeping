@@ -27,7 +27,6 @@ export class CommentairesComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log("addComment form value", form);
     const newComment: Comment = {
       firstName: form.value.firstName,
       date:  new Date(),
@@ -61,7 +60,7 @@ export class CommentairesComponent implements OnInit {
   }
 
   reply(mainCommentId: number, responsToAuthor) {
-    var elmnt = document.getElementById("commentSpace");
+    var elmnt = document.getElementById("commentForm");
     elmnt.scrollIntoView();
     this.responsToAuthor = responsToAuthor;
     this.mainCommentIdRelied = mainCommentId;
@@ -75,7 +74,7 @@ export class CommentairesComponent implements OnInit {
   }
 
   getArticleComments() {
-    this.commentService.getCommentsByArticle(1).subscribe(data => {
+    this.commentService.getCommentsByArticle(this.articleId).subscribe(data => {
       this.comments = data,
       error => console.error('Une erreure est survenue à la récupération des commentaires !', error)
     });
