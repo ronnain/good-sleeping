@@ -23,7 +23,7 @@ export class ArticleComponent implements OnInit {
   {
     let rawFile = new XMLHttpRequest();
     let self = this;
-    rawFile.open("GET", file, false);
+    rawFile.open("GET", file, true);
     rawFile.onreadystatechange = function ()
     {
         if(rawFile.readyState === 4)
