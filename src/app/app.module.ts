@@ -30,16 +30,16 @@ import { CommentairesComponent } from './commentaires/commentaires.component';
 
 
 const appRoutes: Routes = [
-  {path: 'Home', component: HomeComponent},
-  {path: 'Articles', component: ArticlesComponent},
-  {path: 'Products', component: ProductsComponent},
-  {path: 'Article/:articleName', component: ArticleComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'articles', component: ArticlesComponent},
+  {path: 'produits', component: ProductsComponent},
+  {path: 'articles/:articleName', component: ArticleComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'Bonus', component: LandingPageComponent},
+  {path: 'bonus', component: LandingPageComponent},
   {path: 'mail', component: MailOverviewComponent, canActivate: [AuthGuard]},
-  {path: '', redirectTo: 'Articles', pathMatch: 'full' },
-  {path: '**', redirectTo: 'Articles', pathMatch: 'full'},
-  {path: 'not-found', redirectTo: 'Articles', pathMatch: 'full'}
+  {path: '', redirectTo: 'articles', pathMatch: 'full' },
+  {path: '**', redirectTo: 'articles', pathMatch: 'full'},
+  {path: 'not-found', redirectTo: 'articles', pathMatch: 'full'}
 ];
 
 @NgModule({

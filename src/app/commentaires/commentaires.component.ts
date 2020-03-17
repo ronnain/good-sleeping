@@ -3,6 +3,7 @@ import { Comment } from '../modeles/interfaces.type';
 import { NgForm } from '@angular/forms';
 import { CommentService } from '../services/comment.service';
 import { HttpClient } from '@angular/common/http';
+import { ArticlesService } from '../services/articles.service';
 
 @Component({
   selector: 'app-commentaires',
@@ -12,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
 export class CommentairesComponent implements OnInit {
 
   @Input()
+  articleName: string;
+
   articleId: number;
 
   comments: Comment[];
@@ -20,9 +23,10 @@ export class CommentairesComponent implements OnInit {
   responsToAuthor: string;
   showReply = false;
 
-  constructor(private commentService: CommentService) { }
+  constructor(private commentService: CommentService, private articlesService: ArticlesService) { }
 
   ngOnInit() {
+    this.articleId = this.articlesService.getArticleIdByName(this.articleName);
     this.getArticleComments();
   }
 

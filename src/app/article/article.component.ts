@@ -15,7 +15,7 @@ export class ArticleComponent implements OnInit {
   constructor(private _Activatedroute:ActivatedRoute) { }
 
   ngOnInit() {
-    this.articleName=this._Activatedroute.snapshot.paramMap.get("articleName");
+    this.articleName = this._Activatedroute.snapshot.paramMap.get("articleName");
     this.readTextFile("assets/articles/"+this.articleName+".html");
   }
 

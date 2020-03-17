@@ -5,7 +5,8 @@ export interface Contact {
     creationDate?: Date;
 }
 
-export interface DescArticle{
+export interface Article{
+    id: number,
     title: string,
     description: string,
     date: string,

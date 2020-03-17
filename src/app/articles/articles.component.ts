@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DescArticle } from '../modeles/interfaces.type';
+import { Article } from '../modeles/interfaces.type';
 import { ArticlesService } from '../services/articles.service';
 
 
@@ -10,18 +10,18 @@ import { ArticlesService } from '../services/articles.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  @Input() 
+  @Input()
   articlesName: string[];
 
-  @Input() 
+  @Input()
   currentArticleName: string;
 
-  @Input() 
+  @Input()
   hideDescription: boolean = false;
 
 
-  articles: DescArticle[] = [];
-  
+  articles: Article[] = [];
+
   constructor(private articlesService: ArticlesService) { }
 
   ngOnInit() {

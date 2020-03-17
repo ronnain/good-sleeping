@@ -7,7 +7,7 @@
 <div class="container article">
     <div class="col- " id="articleContent" [innerHtml]="articleContent"></div>
     <app-retrieve-mail></app-retrieve-mail>
-    <app-commentaires [articleId]="1"></app-commentaires>
+    <app-commentaires [articleName]="articleName"></app-commentaires>
     <div class="articles">
         <h2 class="titleReadMore">A lire aussi  :</h2>
         <app-articles [currentArticleName]="articleName" [hideDescription]="true"></app-articles>
