@@ -36,12 +36,10 @@ export class RetrieveMailComponent implements OnInit {
     this.mailService.deleteMail(id);
   } */
 
-  createContact(mailAdress:string){
-    return this.mailService.createContact(this.firstName, mailAdress);
-  }
 
   onSubmit(form: NgForm) {
-    //this.showValidation = this.saveMail(form.value) ? true : false ;
-    console.log("createContact", this.createContact(form.value));
+    this.mailService.createContact(this.firstName, form.value).subscribe(data => {
+      this.showValidation = data.success === true ? true : false;
+    });
   }
 }

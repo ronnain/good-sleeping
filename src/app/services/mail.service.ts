@@ -20,21 +20,17 @@ export class MailService {
   // constructor(private firestore: AngularFirestore, private http: HttpClient) { } Firestore
   constructor(private firestore: AngularFirestore, private http: HttpClient) { }
 
-  //Php server
-  getUser() {
-    //return this.http.get(`http://localhost:80/test/handleRequest.php?method=getContacts`);
+  /* getUsers() {
    return this.http.get(environment.serverConfig.serverURL + `?method=getContacts`);
-  }
+  } */
 
   createContact(firstName, mail) {
-    console.log("environment.serverConfig.serverURL", environment.serverConfig.serverURL);
     const body = {
-      "method": "createContact",
       "firstName" : firstName,
       "mail": mail
-    }
-    console.log("environment.serverConfig.serverURL", environment.serverConfig.serverURL);
-    return this.http.post(environment.serverConfig.serverURL, body)
+    };
+    const url = environment.serverConfig.serverURL + '?method=createContact';
+    return this.http.post<any>(url, body, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );

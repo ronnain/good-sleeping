@@ -33,7 +33,7 @@ export class LandingPageComponent implements OnInit {
 
   profile = {};
 
-  loadUser() {
-    this.userService.getUser().subscribe(data => this.profile = data);
-  }
+  /* loadUser() {
+    this.userService.getUsers().subscribe(data => this.profile = data);
+  } */
 }
