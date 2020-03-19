@@ -39,3 +39,8 @@ hr{
 .transparent{
     background-color: transparent;
 }
+
+.verticalSpace {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}

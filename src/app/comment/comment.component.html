@@ -40,4 +40,13 @@
 
     <button mat-raised-button class="btnSubmit" color="primary"  id="btnSaveComment" type="submit" [disabled]="addCommentForm.invalid">Valider</button>
     <button mat-button class="btnSubmit" color="warn" id="btnCancelReply" (click)="cancelReply()" *ngIf="showReply">Annuler la Réponse</button>
+
+    <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
+    <div *ngIf="showValidation" class="alert alert-success verticalSpace" role="alert">
+        <p>Merci !</p>
+        <p>Votre commentaire à bien été ajouté.</p>
+    </div>
+    <div *ngIf="failSave" class="alert alert-danger verticalSpace" role="alert">
+        <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
+    </div>
 </form>

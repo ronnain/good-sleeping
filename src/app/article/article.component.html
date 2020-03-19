@@ -6,6 +6,10 @@
 -->
 <div class="container article">
     <div class="col- " id="articleContent" [innerHtml]="articleContent"></div>
+    <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
+    <div *ngIf="failSave" class="alert alert-danger verticalSpace" role="alert">
+        <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
+    </div>
     <app-retrieve-mail></app-retrieve-mail>
     <app-comment [articleName]="articleName"></app-comment>
     <div class="articles">

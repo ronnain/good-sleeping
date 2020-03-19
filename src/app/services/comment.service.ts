@@ -25,7 +25,7 @@ export class CommentService {
       return;
     }
     const urlAddComment = environment.serverConfig.serverURL + `?method=addComment`;
-    return this.http.post<number>(urlAddComment, comment, this.httpOptions)
+    return this.http.post<any>(urlAddComment, comment, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );

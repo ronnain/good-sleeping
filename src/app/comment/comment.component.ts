@@ -23,6 +23,10 @@ export class CommentComponent implements OnInit {
   responsToAuthor: string;
   showReply = false;
 
+  showValidation = false;
+  failSave = false;
+  loading = false;
+
   constructor(private commentService: CommentService, private articlesService: ArticlesService) { }
 
   ngOnInit() {
@@ -31,6 +35,11 @@ export class CommentComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    this.showValidation = false;
+    this.failSave = false;
+    this.loading = true;
+
+    // prepare the data send
     const newComment: Comment = {
       firstName: form.value.firstName,
       date:  new Date(),
@@ -40,10 +49,26 @@ export class CommentComponent implements OnInit {
     if (this.mainCommentIdRelied) {
       newComment.mainCommentId = this.mainCommentIdRelied;
     }
-    this.commentService.addComment(newComment).subscribe(data => {
-      newComment.id = data;
-    });
-    this.addComment(newComment, this.mainCommentIdRelied);
+
+    // call the web service
+    this.commentService.addComment(newComment).subscribe(
+      data => {
+        if (data.success) {
+          newComment.id = data.success;
+          this.showValidation = true;
+          this.addComment(newComment, this.mainCommentIdRelied);
+          // reset the form
+          form.reset();
+
+        } else {
+          this.failSave = true;
+        }
+        this.loading = false;
+      },
+      err => {
+        this.loading = false;
+        this.failSave = true;
+      });
   }
 
   addComment(newComment:Comment, mainCommentId: number) {
@@ -78,8 +103,9 @@ export class CommentComponent implements OnInit {
   }
 
   getArticleComments() {
-    this.commentService.getCommentsByArticle(this.articleId).subscribe(data => {
-      this.comments = data,
+    this.commentService.getCommentsByArticle(this.articleId).subscribe(
+      data => {
+        this.comments = data,
       error => console.error('Une erreure est survenue à la récupération des commentaires !', error)
     });
   }

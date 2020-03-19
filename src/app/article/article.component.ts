@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ArticlesService } from '../services/articles.service';
 
 @Component({
   selector: 'app-article',
@@ -10,9 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 export class ArticleComponent implements OnInit {
 
   articleName: string;
-  articleContent: string = "Article non trouvé";
+  articleContent: string = "Recherche en cours.";
+  showValidation: boolean = false;
+  failSave: boolean;
+  loading: boolean;
 
-  constructor(private _Activatedroute:ActivatedRoute) { }
+  constructor(private _Activatedroute:ActivatedRoute, private articlesService: ArticlesService) { }
 
   ngOnInit() {
     this.refreshArticle();
@@ -22,24 +26,23 @@ export class ArticleComponent implements OnInit {
     console.log('refresh');
     this.articleName = this._Activatedroute.snapshot.paramMap.get("articleName");
     console.log('articleName', this.articleName);
-    this.readTextFile("assets/articles/"+this.articleName+".html");
+    this.getArticle();
   }
 
-  readTextFile(file: any)
-  {
-    let rawFile = new XMLHttpRequest();
-    let self = this;
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-              self.articleContent = rawFile.responseText;
-            }
+  getArticle() {
+    this.loading = true;
+    this.articlesService.getArticleContent(this.articleName).subscribe(
+      data => {
+        if (data) {
+          this.articleContent = data;
+        } else {
+          this.failSave = true;
         }
-    }
-    rawFile.send(null);
+        this.loading = false;
+      },
+      err => {
+        this.loading = false;
+        this.failSave = true;
+      });;
   }
 }

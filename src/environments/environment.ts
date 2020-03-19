@@ -15,7 +15,8 @@ export const environment = {
     measurementId: "G-K8GHT19KPW"
   },
   serverConfig : {
-    serverURL : "http://localhost:80/sleeping-bs/handleRequest.php"
+    serverURL : "http://localhost:80/sleeping-bs/handleRequest.php",
+    articlesPath: "http://localhost:80/sleeping-bs/articles/"
   }
 };
 /*
