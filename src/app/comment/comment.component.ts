@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { ArticlesService } from '../services/articles.service';
 
 @Component({
-  selector: 'app-commentaires',
-  templateUrl: './commentaires.component.html',
-  styleUrls: ['./commentaires.component.css']
+  selector: 'app-comment',
+  templateUrl: './comment.component.html',
+  styleUrls: ['./comment.component.css']
 })
-export class CommentairesComponent implements OnInit {
+export class CommentComponent implements OnInit {
 
   @Input()
   articleName: string;

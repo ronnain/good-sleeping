@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Article } from '../modeles/interfaces.type';
 import { ArticlesService } from '../services/articles.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class ArticlesComponent implements OnInit {
 
   articles: Article[] = [];
 
-  constructor(private articlesService: ArticlesService) { }
+  constructor(private articlesService: ArticlesService, private router: Router) { }
 
   ngOnInit() {
     //Display other articles
@@ -36,5 +37,4 @@ export class ArticlesComponent implements OnInit {
       this.articles = this.articlesService.getAllArticles();
     }
   }
-
 }

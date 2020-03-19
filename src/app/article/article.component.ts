@@ -15,7 +15,13 @@ export class ArticleComponent implements OnInit {
   constructor(private _Activatedroute:ActivatedRoute) { }
 
   ngOnInit() {
+    this.refreshArticle();
+  }
+
+  refreshArticle() {
+    console.log('refresh');
     this.articleName = this._Activatedroute.snapshot.paramMap.get("articleName");
+    console.log('articleName', this.articleName);
     this.readTextFile("assets/articles/"+this.articleName+".html");
   }
 
