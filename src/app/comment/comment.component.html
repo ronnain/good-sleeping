@@ -5,7 +5,7 @@
         <li *ngFor="let comment of comments" class="mainComment">
             <i class="material-icons">person_pin_circle</i>
             <p class="commentAuthor">{{comment.firstName}}</p>
-            <p class="commentDate">{{comment.date | date: 'dd/mm/yyyy'}}</p>
+            <p class="commentDate">{{comment.date | date: 'dd/MM/yyyy'}}</p>
             <p class="textComment">{{comment.comment}}</p>
             <div class="divBtnReply">
                 <button mat-button class="replyBtn" (click)="reply(comment.id, comment.firstName)">Répondre</button>
@@ -14,7 +14,7 @@
                 <li *ngFor="let respons of comment.repliesComment" class="repliesComment">
                     <i class="material-icons">person_pin_circle</i>
                     <p class="commentAuthor"> {{respons.firstName}} </p>
-                    <p class="commentDate">{{respons.date | date: 'dd/mm/yyyy'}}</p>
+                    <p class="commentDate">{{respons.date | date: 'dd/MM/yyyy'}}</p>
                     <p class="textComment">{{respons.comment}}</p>
                     <div class="divBtnReply">
                         <button mat-button class="replyBtn" (click)="reply(comment.id, respons.firstName)">Répondre</button>
