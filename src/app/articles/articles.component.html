@@ -1,7 +1,7 @@
 <div class="container">
     <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let article of articles">
-            <div class="container-fluid articleLink" [routerLink]="['/articles', article.articleName]">
+            <div class="container-fluid articleLink" [routerLink]="['/articles', article.articleName]" (click)="loadArticle(article.articleName)">
                 <div class="row d-flex flex-wrap align-items-center">
                     <div class="col-sm-4 align-middle">
                         <img  src={{article.img}} style="max-width: 100%">

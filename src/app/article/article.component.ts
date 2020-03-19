@@ -19,18 +19,18 @@ export class ArticleComponent implements OnInit {
   constructor(private _Activatedroute:ActivatedRoute, private articlesService: ArticlesService) { }
 
   ngOnInit() {
-    this.refreshArticle();
+    this.loadArticle();
   }
 
-  refreshArticle() {
-    console.log('refresh');
-    this.articleName = this._Activatedroute.snapshot.paramMap.get("articleName");
-    console.log('articleName', this.articleName);
+  loadArticle(articleName?: any) {
+    this.articleName = articleName? articleName : this._Activatedroute.snapshot.paramMap.get("articleName");
     this.getArticle();
   }
 
   getArticle() {
     this.loading = true;
+    this.failSave = false;
+
     this.articlesService.getArticleContent(this.articleName).subscribe(
       data => {
         if (data) {
@@ -41,8 +41,17 @@ export class ArticleComponent implements OnInit {
         this.loading = false;
       },
       err => {
+        this.articleContent = null;
         this.loading = false;
         this.failSave = true;
-      });;
+        this.scrollToTop();
+      },
+      () => {
+        this.scrollToTop();
+      });
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
 }

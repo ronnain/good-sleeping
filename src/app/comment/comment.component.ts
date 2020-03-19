@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Comment } from '../modeles/interfaces.type';
 import { NgForm } from '@angular/forms';
 import { CommentService } from '../services/comment.service';
@@ -30,6 +30,10 @@ export class CommentComponent implements OnInit {
   constructor(private commentService: CommentService, private articlesService: ArticlesService) { }
 
   ngOnInit() {
+    this.loadComments();
+  }
+
+  loadComments() {
     this.articleId = this.articlesService.getArticleIdByName(this.articleName);
     this.getArticleComments();
   }
@@ -89,7 +93,7 @@ export class CommentComponent implements OnInit {
   }
 
   reply(mainCommentId: number, responsToAuthor) {
-    var elmnt = document.getElementById("commentForm");
+    const elmnt = document.getElementById("commentForm");
     elmnt.scrollIntoView();
     this.responsToAuthor = responsToAuthor;
     this.mainCommentIdRelied = mainCommentId;
@@ -108,5 +112,10 @@ export class CommentComponent implements OnInit {
         this.comments = data,
       error => console.error('Une erreure est survenue à la récupération des commentaires !', error)
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // call when the user select another article
+    this.loadComments();
   }
 }

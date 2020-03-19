@@ -14,7 +14,7 @@
     <app-comment [articleName]="articleName"></app-comment>
     <div class="articles">
         <h2 class="titleReadMore">A lire aussi  :</h2>
-        <app-articles [currentArticleName]="articleName" [hideDescription]="true"></app-articles>
+        <app-articles [currentArticleName]="articleName" [hideDescription]="true" (loadArticleEvent)="loadArticle($event)"></app-articles>
     </div>
 </div>
 <button (click)="refreshArticle()">Refresh</button>

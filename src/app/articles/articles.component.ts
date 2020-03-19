@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Article } from '../modeles/interfaces.type';
 import { ArticlesService } from '../services/articles.service';
 import { Router } from '@angular/router';
@@ -20,12 +20,18 @@ export class ArticlesComponent implements OnInit {
   @Input()
   hideDescription: boolean = false;
 
+  @Output()
+  loadArticleEvent = new EventEmitter<string>();
 
   articles: Article[] = [];
 
   constructor(private articlesService: ArticlesService, private router: Router) { }
 
   ngOnInit() {
+    this.getArticles();
+  }
+
+  getArticles() {
     //Display other articles
     if(this.currentArticleName){
       this.articles = this.articlesService.getOtherArticles(this.currentArticleName);
@@ -36,5 +42,14 @@ export class ArticlesComponent implements OnInit {
     } else { //display all articles
       this.articles = this.articlesService.getAllArticles();
     }
+  }
+
+  loadArticle(articleName: string) {
+    this.loadArticleEvent.emit(articleName);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // call when the user select another article
+    this.getArticles();
   }
 }
