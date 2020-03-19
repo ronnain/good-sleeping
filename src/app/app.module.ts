@@ -19,14 +19,13 @@ import { ProductComponent } from './product/product.component';
 import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
 import { FormsModule }   from '@angular/forms';
 import { ArticleComponent } from './article/article.component';
-import { MailOverviewComponent } from './mail-overview/mail-overview.component';
 import { LoginComponent } from './login/login.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
 import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { CommentairesComponent } from './commentaires/commentaires.component';
+import { CommentComponent } from './comment/comment.component';
 
 
 const appRoutes: Routes = [
@@ -36,7 +35,6 @@ const appRoutes: Routes = [
   {path: 'articles/:articleName', component: ArticleComponent},
   {path: 'login', component: LoginComponent},
   {path: 'bonus', component: LandingPageComponent},
-  {path: 'mail', component: MailOverviewComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'articles', pathMatch: 'full' },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},
   {path: 'not-found', redirectTo: 'articles', pathMatch: 'full'}
@@ -53,10 +51,9 @@ const appRoutes: Routes = [
     ProductComponent,
     RetrieveMailComponent,
     ArticleComponent,
-    MailOverviewComponent,
     LoginComponent,
     LandingPageComponent,
-    CommentairesComponent
+    CommentComponent
   ],
   imports: [
     BrowserModule,
