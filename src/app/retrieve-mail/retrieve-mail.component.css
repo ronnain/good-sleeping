@@ -20,3 +20,7 @@ label {
 .alert-success {
     margin-bottom: 1rem;
 }
+
+.verticalSpace {
+    margin: 2rem 0;
+}

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Contact } from '../modeles/interfaces.type';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { HttpClient, HttpResponse, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +15,7 @@ export class MailService {
     })
   };
 
-  // constructor(private firestore: AngularFirestore, private http: HttpClient) { } Firestore
-  constructor(private firestore: AngularFirestore, private http: HttpClient) { }
-
-  /* getUsers() {
-   return this.http.get(environment.serverConfig.serverURL + `?method=getContacts`);
-  } */
+  constructor(private http: HttpClient) { }
 
   createContact(firstName, mail) {
     const body = {
@@ -52,21 +45,4 @@ export class MailService {
     return throwError(
       'Something bad happened; please try again later.');
   };
-  //*Firestore
-/*   getAllMails() {
-    return this.firestore.collection('mails').snapshotChanges();
-  }
-
-  saveMailInDB(mail: Contact){
-    return this.firestore.collection('mails').add(mail);
-  }
-
-  updateMail(mail: Contact){
-    delete mail.id;
-    this.firestore.doc('mails/' + mail.id).update(mail);
-  }
-
-  deleteMail(mailId: string){
-    this.firestore.doc('mails/' + mailId).delete();
-  } */
 }
