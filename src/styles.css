@@ -89,3 +89,9 @@ hr{
     margin-bottom: 1rem;
     max-width: 100%;
 }
+
+.titleBottomLine{
+    margin-top: 3rem;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding-bottom: 0.5rem;
+}

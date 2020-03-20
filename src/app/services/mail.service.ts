@@ -29,6 +29,17 @@ export class MailService {
     );
   }
 
+  unsubscribe(unsubscribeKey) {
+    const body = {
+      "key" : unsubscribeKey
+    };
+    const url = environment.serverConfig.serverURL + '?method=unsubscribe';
+    return this.http.post<any>(url, body, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { CommentComponent } from './comment/comment.component';
+import { UnsubcribeComponent } from './unsubcribe/unsubcribe.component';
 
 
 const appRoutes: Routes = [
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   {path: 'articles/:articleName', component: ArticleComponent},
   // {path: 'login', component: LoginComponent},
   {path: 'bonus', component: LandingPageComponent},
+  {path: 'desabonnement/:key', component: UnsubcribeComponent},
   {path: '', redirectTo: 'articles', pathMatch: 'full' },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},
   {path: 'not-found', redirectTo: 'articles', pathMatch: 'full'}
@@ -53,7 +55,8 @@ const appRoutes: Routes = [
     ArticleComponent,
     LoginComponent,
     LandingPageComponent,
-    CommentComponent
+    CommentComponent,
+    UnsubcribeComponent
   ],
   imports: [
     BrowserModule,
