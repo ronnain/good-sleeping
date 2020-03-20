@@ -8,10 +8,13 @@ import { Component, OnInit, HostListener } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   secondPage:boolean = false;
+  bigScreen;
+  bigScreenLimit = 700;
 
   constructor() { }
 
   ngOnInit() {
+    this.bigScreen = screen.width >= this.bigScreenLimit;
   }
 
 
@@ -21,6 +24,11 @@ export class HeaderComponent implements OnInit {
         const rect = document.getElementById("secondElement").getBoundingClientRect();
         this.secondPage = rect.top === 0 ? true : false;
       }
+  }
+
+  @HostListener('window:resize', ['$event'])
+    displaySize(event) {
+     this.bigScreen = screen.width > this.bigScreenLimit;
   }
 
 }

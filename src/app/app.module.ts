@@ -29,11 +29,11 @@ import { CommentComponent } from './comment/comment.component';
 
 
 const appRoutes: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: 'accueil', component: HomeComponent},
   {path: 'articles', component: ArticlesComponent},
-  {path: 'produits', component: ProductsComponent},
+  // {path: 'produits', component: ProductsComponent},
   {path: 'articles/:articleName', component: ArticleComponent},
-  {path: 'login', component: LoginComponent},
+  // {path: 'login', component: LoginComponent},
   {path: 'bonus', component: LandingPageComponent},
   {path: '', redirectTo: 'articles', pathMatch: 'full' },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},

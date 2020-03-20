@@ -1,10 +1,23 @@
-<nav class="navbar navbar-expand-sm navbar-white justify-content-center"
-  [ngClass]= "{'fix transparent': bonus.isActive, 'textWhite': bonus.isActive && !secondPage, 'textBlue': secondPage,'bg-white': !bonus.isActive}" >
-    <a class="navbar-brand" routerLink="Home" routerLinkActive="active"><img
-      src="assets/img/feather.svg"
-      alt="Sleeping"
-      height="40px"
-      width="70px" /></a>
+ <nav class="navbar navbar-expand-sm navbar-white justify-content-center bg-white">
+
+  <a class="navbar-brand" routerLink="accueil">
+    Sommeil <span class="blueColor">Profond</span>
+  </a>
+  <a class="navbar-brand" routerLink="accueil">
+    <img src="assets/img/sleepingLogo.png" alt="Logo sommeil." width="80px" />
+  </a>
+
+  <!-- Display only on small size -->
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="!bigScreen">
+    <span class="material-icons">menu</span>
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before">
+    <a routerLink="articles" class="nav-link">Articles</a>
+    <a routerLink="produits" class="nav-link">Produits</a>
+    <a routerLink="bonus" class="nav-link">Bonus</a>
+  </mat-menu>
+
+  <div id="bigScreenMenu" *ngIf="bigScreen">
     <ul class="nav">
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="articles" class="nav-link">Articles</a>
@@ -15,6 +28,10 @@
       <li class="nav-item" routerLinkActive="active" #bonus="routerLinkActive">
         <a routerLink="bonus" class="nav-link">Bonus</a>
       </li>
+      <li class="nav-item" routerLinkActive="active" #bonus="routerLinkActive">
+        <a routerLink="bonus" class="nav-link">Bonus</a>
+      </li>
     </ul>
+  </div>
 </nav>
-<hr style="margin-top:0px;" [ngClass]= "{'notDisplay': bonus.isActive}" >
+<hr style="margin-top:0px;">
