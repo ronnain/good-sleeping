@@ -9,21 +9,12 @@ export class HeaderComponent implements OnInit {
 
   secondPage:boolean = false;
   bigScreen;
-  bigScreenLimit = 700;
+  bigScreenLimit = 709;
 
   constructor() { }
 
   ngOnInit() {
     this.bigScreen = screen.width >= this.bigScreenLimit;
-  }
-
-
-  @HostListener('window:scroll', ['$event'])
-    scrollHandler(event) {
-      if(document.getElementById("secondElement")){
-        const rect = document.getElementById("secondElement").getBoundingClientRect();
-        this.secondPage = rect.top === 0 ? true : false;
-      }
   }
 
   @HostListener('window:resize', ['$event'])
