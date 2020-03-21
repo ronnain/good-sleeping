@@ -27,6 +27,7 @@ import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { CommentComponent } from './comment/comment.component';
 import { UnsubcribeComponent } from './unsubcribe/unsubcribe.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 const appRoutes: Routes = [
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     LoginComponent,
     LandingPageComponent,
     CommentComponent,
-    UnsubcribeComponent
+    UnsubcribeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
