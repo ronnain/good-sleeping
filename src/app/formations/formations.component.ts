@@ -12,7 +12,7 @@ export class FormationsComponent implements OnInit {
     title : "Ebook",
     description : "Superbe livre pour réussir à dormir",
     price : 12,
-    src : "assets/img/feather.svg"
+    src : "assets/logo/zzzLogo.png"
   }
 
   constructor() {}

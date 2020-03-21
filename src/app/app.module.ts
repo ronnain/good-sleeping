@@ -41,6 +41,7 @@ const appRoutes: Routes = [
   {path: 'bonus', component: LandingPageComponent},
   {path: 'desabonnement/:key', component: UnsubcribeComponent},
   {path: 'mentions', component: LegalNoticesComponent},
+  {path: 'contact', component: ContactComponent},
   {path: '', redirectTo: 'articles', pathMatch: 'full' },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},
   {path: 'not-found', redirectTo: 'articles', pathMatch: 'full'}
