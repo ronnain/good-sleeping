@@ -28,6 +28,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { CommentComponent } from './comment/comment.component';
 import { UnsubcribeComponent } from './unsubcribe/unsubcribe.component';
 import { FooterComponent } from './footer/footer.component';
+import { LegalNoticesComponent } from './legal-notices/legal-notices.component';
 
 
 const appRoutes: Routes = [
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
   // {path: 'login', component: LoginComponent},
   {path: 'bonus', component: LandingPageComponent},
   {path: 'desabonnement/:key', component: UnsubcribeComponent},
+  {path: 'mentions', component: LegalNoticesComponent},
   {path: '', redirectTo: 'articles', pathMatch: 'full' },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},
   {path: 'not-found', redirectTo: 'articles', pathMatch: 'full'}
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
     LandingPageComponent,
     CommentComponent,
     UnsubcribeComponent,
-    FooterComponent
+    FooterComponent,
+    LegalNoticesComponent
   ],
   imports: [
     BrowserModule,

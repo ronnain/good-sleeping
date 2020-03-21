@@ -1,0 +1,15 @@
+.whiteSmoke {
+    background-color: whitesmoke;
+}
+
+.whiteSmokeBold {
+    background-color: #e6e5e5;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.noMarginBottom {
+    margin-bottom: 0;
+}
