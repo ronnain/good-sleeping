@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class RetrieveMailComponent implements OnInit {
   firstName:string;
+  agreement: boolean = false;
   showValidation: boolean = false;
   failSave: boolean = false;
   loading: boolean = false;

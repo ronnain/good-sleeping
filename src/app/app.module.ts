@@ -29,6 +29,7 @@ import { CommentComponent } from './comment/comment.component';
 import { UnsubcribeComponent } from './unsubcribe/unsubcribe.component';
 import { FooterComponent } from './footer/footer.component';
 import { LegalNoticesComponent } from './legal-notices/legal-notices.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 const appRoutes: Routes = [
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     CommentComponent,
     UnsubcribeComponent,
     FooterComponent,
-    LegalNoticesComponent
+    LegalNoticesComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

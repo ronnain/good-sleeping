@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col">
             <div>
-                <p class="marginTop">Bonus gratuit:</p>
+                <p class="marginTop">Bonus <strong>gratuit</strong>:</p>
                 <p class="bigSize"><strong>As tu ces 3 habitudes qui gâchent ton sommeil ?</strong></p>
                 <p>Pour le télécharger gratuitement, renseigne ton prénom et ton mail ci-dessous.</p>
             </div>
@@ -14,7 +14,11 @@
                 <mat-form-field style="width:300px !important">
                     <input matInput placeholder="Adresse mail" name="mail" ngModel required email>
                 </mat-form-field><br/>
-                <button mat-raised-button class="btnSubmit" color="primary"  id="btnSaveMail" type="submit" [disabled]="mailAdress.invalid">Valider</button>
+
+                <mat-checkbox name="agreement" [(ngModel)]="agreement">J'ai pris connaissance des conditions d'utilisation de mes informations:</mat-checkbox><br/>
+                <p class="smallText">Votre email est collecté pour vous faire parvenir le bonus, les nouveaux articles ainsi que les offres commerciales, dans le strict respect de la réglementation européenne sur la collecte des données. Un lien de désabonnement sera dispponible dans chaque mail envoyé. La politique de confidentialité est accessible depuis un lien situé en bas de cette page.</p>
+
+                <button mat-raised-button class="btnSubmit" color="primary" id="btnSaveMail" type="submit" [disabled]="mailAdress.invalid || !agreement">Valider</button>
             </form>
             <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
             <div *ngIf="showValidation" class="alert alert-success" role="alert">

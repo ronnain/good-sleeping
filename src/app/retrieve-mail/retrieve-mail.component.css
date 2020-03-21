@@ -28,3 +28,7 @@ label {
 .marginTop {
     margin-top: 1rem;
 }
+
+.smallText {
+    font-size: 0.75rem;
+}
