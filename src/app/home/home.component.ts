@@ -9,7 +9,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit, Page {
 
-  metaDesc = "Page d'accueil site Sommeil Profond";
+  metaDesc = "Page d'accueil du site Sommeil Profond.";
 
   constructor(private titleService:Title, private metaService:Meta) { }
 

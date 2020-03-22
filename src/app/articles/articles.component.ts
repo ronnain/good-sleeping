@@ -11,7 +11,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class ArticlesComponent implements OnInit, Page {
 
-  metaDesc = "Vous trouverez ici tous articles sur le sommeil.";
+  metaDesc = "Vous trouverez ici tous articles avec les meilleurs conseils sur le sommeil.";
 
   @Input()
   articlesName: string[];
@@ -61,7 +61,7 @@ export class ArticlesComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Sommeil Profond - Articles");
+    this.titleService.setTitle("Articles - Sommeil Profond");
   }
 
   handleMeta() {

@@ -12,7 +12,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class UnsubcribeComponent implements OnInit, Page {
 
-  metaDesc = "Page de désabonnement";
+  metaDesc = "Page de désabonnement à la newsletter.";
 
   unsubscribeKey;
 
@@ -48,7 +48,7 @@ export class UnsubcribeComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Sommeil Profond - Désabonnement");
+    this.titleService.setTitle("Désabonnement - Sommeil Profond");
   }
 
   handleMeta() {

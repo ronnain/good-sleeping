@@ -11,7 +11,7 @@ import { Page } from '../modeles/interfaces.type';
 export class LandingPageComponent implements OnInit, Page {
 
   bonusTitle = "As tu ces 3 habitudes qui gâchent ton sommeil ?";
-  metaDesc = 'Récupérer le bonus: ' + this.bonusTitle;
+  metaDesc = 'Récupérer le bonus gratuit: ' + this.bonusTitle;
 
   constructor(private titleService:Title, private metaService:Meta) { }
 
@@ -21,7 +21,7 @@ export class LandingPageComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Sommeil Profond - Bonus");
+    this.titleService.setTitle("Bonus - Sommeil Profond");
   }
 
   handleMeta() {

@@ -62,7 +62,7 @@ export class ArticleComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Sommeil Profond - " + this.title);
+    this.titleService.setTitle(this.title + " - Sommeil Profond");
   }
 
   handleMeta() {

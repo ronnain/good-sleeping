@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Sommeil Profond - Services et Produits");
+    this.titleService.setTitle("Services et Produits - Sommeil Profond");
   }
 
   handleMeta() {

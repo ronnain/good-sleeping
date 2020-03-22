@@ -9,7 +9,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class LegalNoticesComponent implements OnInit, Page {
 
-  metaDesc = "Vous trouverez ici toutes les mentions légales du site Sommeil Profond";
+  metaDesc = "Vous trouverez ici toutes les mentions légales du site Sommeil Profond.";
 
   constructor(private titleService:Title, private metaService:Meta) { }
 
@@ -19,7 +19,7 @@ export class LegalNoticesComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Sommeil Profond - Mentions légals");
+    this.titleService.setTitle("Mentions légals - Sommeil Profond");
   }
 
   handleMeta() {

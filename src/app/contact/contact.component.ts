@@ -9,7 +9,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class ContactComponent implements OnInit, Page {
 
-  metaDesc = "Page pour me contacter - Sommeil Profond";
+  metaDesc = "Mail pour me contacter - Sommeil Profond.";
 
   constructor(private titleService:Title, private metaService:Meta) { }
 
@@ -19,7 +19,7 @@ export class ContactComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Sommeil Profond - Contact");
+    this.titleService.setTitle("Contact - Sommeil Profond");
   }
 
   handleMeta() {
