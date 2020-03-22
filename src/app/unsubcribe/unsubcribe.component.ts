@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MailService } from '../services/mail.service';
 import { ActivatedRoute } from '@angular/router';
+import { Page } from '../modeles/interfaces.type';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-unsubcribe',
   templateUrl: './unsubcribe.component.html',
   styleUrls: ['./unsubcribe.component.css']
 })
-export class UnsubcribeComponent implements OnInit {
+export class UnsubcribeComponent implements OnInit, Page {
+
+  metaDesc = "Page de désabonnement";
 
   unsubscribeKey;
 
@@ -16,9 +20,11 @@ export class UnsubcribeComponent implements OnInit {
   failSave = false;
   loading = false;
 
-  constructor(private _Activatedroute:ActivatedRoute, private mailService: MailService) { }
+  constructor(private _Activatedroute:ActivatedRoute, private mailService: MailService, private titleService:Title, private metaService:Meta) { }
 
   ngOnInit() {
+    this.setTitle();
+    this.handleMeta();
     this.unsubscribeKey = this._Activatedroute.snapshot.paramMap.get("key");
   }
 
@@ -39,6 +45,18 @@ export class UnsubcribeComponent implements OnInit {
         this.loading = false;
         this.failSave = true;
       });
+  }
+
+  setTitle() {
+    this.titleService.setTitle("Sommeil Profond - Désabonnement");
+  }
+
+  handleMeta() {
+    if (this.metaService.getTag('name=description')) {
+      this.metaService.updateTag({ name: 'description', content: this.metaDesc }, `name='description'`);
+    } else {
+      this.metaService.addTag({ name:'description', content: this.metaDesc });
+    }
   }
 
 }

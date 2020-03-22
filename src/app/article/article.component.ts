@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from '../services/articles.service';
+import { Page } from '../modeles/interfaces.type';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article',
@@ -8,7 +10,10 @@ import { ArticlesService } from '../services/articles.service';
   styleUrls: ['./article.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit, Page {
+
+  metaDesc;
+  title;
 
   articleName: string;
   articleContent: string = "Recherche en cours.";
@@ -16,7 +21,7 @@ export class ArticleComponent implements OnInit {
   failSave: boolean;
   loading: boolean;
 
-  constructor(private _Activatedroute:ActivatedRoute, private articlesService: ArticlesService) { }
+  constructor(private _Activatedroute:ActivatedRoute, private articlesService: ArticlesService, private titleService:Title, private metaService:Meta) { }
 
   ngOnInit() {
     this.loadArticle();
@@ -24,6 +29,7 @@ export class ArticleComponent implements OnInit {
 
   loadArticle(articleName?: any) {
     this.articleName = articleName? articleName : this._Activatedroute.snapshot.paramMap.get("articleName");
+    this.setHead();
     this.getArticle();
   }
 
@@ -53,5 +59,26 @@ export class ArticleComponent implements OnInit {
 
   scrollToTop() {
     window.scrollTo(0, 0);
+  }
+
+  setTitle() {
+    this.titleService.setTitle("Sommeil Profond - " + this.title);
+  }
+
+  handleMeta() {
+    if (this.metaService.getTag('name=description')) {
+      this.metaService.updateTag({ name: 'description', content: this.metaDesc }, `name='description'`);
+    } else {
+      this.metaService.addTag({ name:'description', content: this.metaDesc });
+    }
+  }
+
+  setHead() {
+    const article = this.articlesService.getArticleByName(this.articleName);
+    this.title = article.title;
+    this.metaDesc = article.metaDesc;
+
+    this.setTitle();
+    this.handleMeta();
   }
 }

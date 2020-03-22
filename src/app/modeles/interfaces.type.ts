@@ -11,6 +11,7 @@ export interface Article{
     description: string,
     date: string,
     img: string,
+    metaDesc: string, // use to set the meta balise
     articleName: string
 }
 
@@ -22,4 +23,9 @@ export interface Comment{
     repliesComment?: Comment[],
     articleId?: number,
     mainCommentId?: number // use to add a response
+}
+
+export interface Page {
+    setTitle(); // Set the title page
+    handleMeta();
 }

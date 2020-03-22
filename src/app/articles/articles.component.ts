@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { Article } from '../modeles/interfaces.type';
+import { Article, Page } from '../modeles/interfaces.type';
 import { ArticlesService } from '../services/articles.service';
-import { Router } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 
 
 @Component({
@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.css']
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesComponent implements OnInit, Page {
+
+  metaDesc = "Vous trouverez ici tous articles sur le sommeil.";
 
   @Input()
   articlesName: string[];
@@ -25,9 +27,14 @@ export class ArticlesComponent implements OnInit {
 
   articles: Article[] = [];
 
-  constructor(private articlesService: ArticlesService, private router: Router) { }
+  constructor(private articlesService: ArticlesService, private titleService:Title, private metaService:Meta) { }
 
   ngOnInit() {
+    // Main page, otherwise it is called inside article component
+    if(!this.currentArticleName) {
+      this.setTitle();
+      this.handleMeta();
+    }
     this.getArticles();
   }
 
@@ -51,5 +58,17 @@ export class ArticlesComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     // call when the user select another article
     this.getArticles();
+  }
+
+  setTitle() {
+    this.titleService.setTitle("Sommeil Profond - Articles");
+  }
+
+  handleMeta() {
+    if (this.metaService.getTag('name=description')) {
+      this.metaService.updateTag({ name: 'description', content: this.metaDesc }, `name='description'`);
+    } else {
+      this.metaService.addTag({ name:'description', content: this.metaDesc });
+    }
   }
 }
