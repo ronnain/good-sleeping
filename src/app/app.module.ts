@@ -30,6 +30,7 @@ import { UnsubcribeComponent } from './unsubcribe/unsubcribe.component';
 import { FooterComponent } from './footer/footer.component';
 import { LegalNoticesComponent } from './legal-notices/legal-notices.component';
 import { ContactComponent } from './contact/contact.component';
+import { MeComponent } from './me/me.component';
 
 
 const appRoutes: Routes = [
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
   {path: 'produits', component: ProductsComponent},
   {path: 'articles/:articleName', component: ArticleComponent},
   // {path: 'login', component: LoginComponent},
+  {path: 'a-propos', component: MeComponent},
   {path: 'bonus', component: LandingPageComponent},
   {path: 'desabonnement/:key', component: UnsubcribeComponent},
   {path: 'mentions', component: LegalNoticesComponent},
@@ -64,7 +66,8 @@ const appRoutes: Routes = [
     UnsubcribeComponent,
     FooterComponent,
     LegalNoticesComponent,
-    ContactComponent
+    ContactComponent,
+    MeComponent
   ],
   imports: [
     BrowserModule,
