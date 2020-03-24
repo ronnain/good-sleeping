@@ -1,4 +1,5 @@
 <!-- Footer -->
+<button mat-button color="primary" class="topSpace" (click)="scrollToTop()">Retour en haut de la page</button>
 <footer class="page-footer whiteSmoke pt-4 noMarginBottom">
 
     <div class="container-fluid text-center text-md-left">
@@ -16,16 +17,16 @@
             <h5 class="text-uppercase">Liens</h5>
             <ul class="list-unstyled">
               <li>
-                <a routerLink="articles">Revenir à la liste des articles</a>
+                <a routerLink="articles" (click)="scrollToTop()">Revenir à la liste des articles</a>
               </li>
               <li>
-                <a routerLink="bonus">Découvrir le bonus gratuit</a>
+                <a routerLink="bonus" (click)="scrollToTop()">Découvrir le bonus gratuit</a>
               </li>
               <li>
-                <a routerLink="contact">Contact</a>
+                <a routerLink="contact" (click)="scrollToTop()">Contact</a>
               </li>
               <li>
-                <a routerLink="mentions">Mentions légales</a>
+                <a routerLink="mentions" (click)="scrollToTop()">Mentions légales</a>
               </li>
             </ul>
           </div>
