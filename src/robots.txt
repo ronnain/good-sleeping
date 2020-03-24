@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /assets/
 Disallow: /sleeping-bs/
 
-Sitemap: http://www.sommeilpronfond.fr/sitemap.xml
+Sitemap: https://www.sommeilpronfond.fr/sitemap.xml
