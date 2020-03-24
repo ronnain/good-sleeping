@@ -2,10 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -76,9 +72,6 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
-    AngularFirestoreModule,
     FormsModule
   ],
   providers: [],
