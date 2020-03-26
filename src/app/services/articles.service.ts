@@ -37,12 +37,12 @@ export class ArticlesService {
     },
     {
       id: 3,
-      title: "Top 5 des choses qui aident pour le sommeil",
-      description: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      metaDesc: "Test.",
-      date: "10/11/2019",
-      img: "assets/img/article3.jpg",
-      articleName: "article1"
+      title: "Comment avoir un sommeil réparateur ?",
+      description: "Je vous explique comment faire pour avoir un sommeil réparateur et les mécanismes qui se cachent derrières.",
+      metaDesc: "Méthode pour avoir un sommeil réparateur et explications d'un sommeil réparateur.",
+      date: "26/03/2020",
+      img: "assets/img/sommeil-reparateur.jpg",
+      articleName: "comment-avoir-un-sommeil-reparateur"
     }
   ];
 
