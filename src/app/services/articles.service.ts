@@ -19,24 +19,6 @@ export class ArticlesService {
   articles: Article[] = [
     {
       id: 1,
-      title: "Comment en finir avec les insomnies et retrouver toute sa forme grâce au livre Quand?",
-      description: "Pensez vous avoir de bonnes habitudes de sommeil après avoir lu les conseilles du livre Quand? Vous buvez plusieurs tasses de café par jour ? Vous rattrapez le sommeil en retard le weekend ? Vous avez du mal à vous endormir le dimanche soir ? Le livre Quand? est là pour vous.",
-      metaDesc: "Revue du livre Quand, du Dr Breus.",
-      date: "01/01/2020",
-      img: "assets/img/quand.jpg",
-      articleName: "revue-quand"
-    },
-    {
-      id: 2,
-      title: "Comment devenir la personne que l'on souhaite avec le livre Miracle Morning?",
-      description: "Vous avez dèjà lu des conseilles en développement personnel mais vous ne parvenez pas à les mettre en pratique par manque de temps ?  Dans le livre, Miracle Morning de Hal Elrod, une méthode propose de se lever plus tôt afin de mettre en place des habithudes pour réussir dans tous les domaines de la vie. Je propose dans cet article une revue de son livre.",
-      metaDesc: "Revue du livre Miracle Morning.",
-      date: "03/01/2020",
-      img: "assets/img/miracleMorning.jpg",
-      articleName: "revue-miracle-morning"
-    },
-    {
-      id: 3,
       title: "Comment avoir un sommeil réparateur ?",
       description: "Je vous explique comment faire pour avoir un sommeil réparateur et les mécanismes qui se cachent derrières.",
       metaDesc: "Méthode pour avoir un sommeil réparateur et explications d'un sommeil réparateur.",
@@ -45,7 +27,7 @@ export class ArticlesService {
       articleName: "comment-avoir-un-sommeil-réparateur"
     },
     {
-      id: 4,
+      id: 2,
       title: "Changement d'heure été - 7 Astuces faciles pour ne pas la subir 1h de sommeil perdu",
       description: "7 Astuces faciles pour ne pas subir le changement d'heure d'été.",
       metaDesc: "7 Astuces faciles pour ne pas subir le changement d'heure d'été.",
