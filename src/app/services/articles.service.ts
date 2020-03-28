@@ -42,7 +42,16 @@ export class ArticlesService {
       metaDesc: "Méthode pour avoir un sommeil réparateur et explications d'un sommeil réparateur.",
       date: "26/03/2020",
       img: "assets/img/sommeil-reparateur.jpg",
-      articleName: "comment-avoir-un-sommeil-reparateur"
+      articleName: "comment-avoir-un-sommeil-réparateur"
+    },
+    {
+      id: 4,
+      title: "Changement d'heure été - 7 Astuces faciles pour ne pas la subir 1h de sommeil perdu",
+      description: "7 Astuces faciles pour ne pas subir le changement d'heure d'été.",
+      metaDesc: "7 Astuces faciles pour ne pas subir le changement d'heure d'été.",
+      date: "28/03/2020",
+      img: "assets/img/time-changed.jpg",
+      articleName: "changement-heure-été-7-astuces"
     }
   ];
 
