@@ -10,7 +10,7 @@ import { Page } from '../modeles/interfaces.type';
 })
 export class LandingPageComponent implements OnInit, Page {
 
-  bonusTitle = "As tu ces 3 habitudes qui gâchent ton sommeil ?";
+  bonusTitle = "Retrouve un sommeil profond grâce à ces 10 astuces";
   metaDesc = 'Récupérer le bonus gratuit: ' + this.bonusTitle;
 
   constructor(private titleService:Title, private metaService:Meta) { }
