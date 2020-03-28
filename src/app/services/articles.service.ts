@@ -28,12 +28,12 @@ export class ArticlesService {
     },
     {
       id: 2,
-      title: "Changement d'heure été - 7 Astuces faciles pour ne pas la subir 1h de sommeil perdu",
-      description: "7 Astuces faciles pour ne pas subir le changement d'heure d'été.",
-      metaDesc: "7 Astuces faciles pour ne pas subir le changement d'heure d'été.",
+      title: "Passage à l'heure d'été - 7 Astuces faciles pour ne pas subir 1h de sommeil en moins",
+      description: "7 Astuces faciles pour ne pas subir le passage à l'heure d'été.",
+      metaDesc: "7 Astuces faciles pour ne pas subir le passage à l'heure d'été.",
       date: "28/03/2020",
       img: "assets/img/time-changed.jpg",
-      articleName: "changement-heure-été-7-astuces"
+      articleName: "passage-heure-été-7-astuces"
     }
   ];
 
