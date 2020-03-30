@@ -20,11 +20,11 @@ export class ArticlesService {
     {
       id: 1,
       title: "Comment avoir un sommeil réparateur ?",
-      description: "Je vous explique comment faire pour avoir un sommeil réparateur et les mécanismes qui se cachent derrières.",
+      description: "Je vous explique comment faire pour avoir un sommeil réparateur et les mécanismes qui se cachent derrière.",
       metaDesc: "Méthode pour avoir un sommeil réparateur et explications d'un sommeil réparateur.",
       date: "26/03/2020",
       img: "assets/img/sommeil-reparateur.jpg",
-      articleName: "comment-avoir-un-sommeil-réparateur"
+      articleName: "comment-avoir-un-sommeil-reparateur"
     },
     {
       id: 2,
@@ -33,7 +33,7 @@ export class ArticlesService {
       metaDesc: "7 Astuces faciles pour ne pas subir le passage à l'heure d'été.",
       date: "28/03/2020",
       img: "assets/img/time-changed.jpg",
-      articleName: "passage-heure-été-7-astuces"
+      articleName: "passage-heure-ete-7-astuces"
     }
   ];
 
