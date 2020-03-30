@@ -10,6 +10,10 @@ hr{
     width: 95%;
 }
 
+a {
+    color: midnightblue;
+}
+
 .no-border{
     border: none;
 }
@@ -47,6 +51,10 @@ hr{
 
 .blueColor {
     color: midnightblue;
+}
+
+.article {
+    text-align: justify;
 }
 
 .article h1, h2, h3{

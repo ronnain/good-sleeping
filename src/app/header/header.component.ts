@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
 
   secondPage:boolean = false;
   bigScreen;
-  bigScreenLimit = 764;
+  bigScreenLimit = 768;
 
   constructor() { }
 
