@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Page } from '../modeles/interfaces.type';
 import { Title, Meta } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { Title, Meta } from '@angular/platform-browser';
 export class HomeComponent implements OnInit, Page {
 
   metaDesc = "Page d'accueil du site Sommeil Profond.";
+  imgFeatherPath = environment.serverConfig.imgPath+"fond_plume.png";
 
   constructor(private titleService:Title, private metaService:Meta) { }
 

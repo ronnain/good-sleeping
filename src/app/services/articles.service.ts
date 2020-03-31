@@ -16,57 +16,35 @@ export class ArticlesService {
     })
   };
 
-  articles: Article[] = [
-    {
-      id: 1,
-      title: "Comment avoir un sommeil réparateur ?",
-      description: "Je vous explique comment faire pour avoir un sommeil réparateur et les mécanismes qui se cachent derrière.",
-      metaDesc: "Méthode pour avoir un sommeil réparateur et explications d'un sommeil réparateur.",
-      date: "26/03/2020",
-      img: "assets/img/sommeil-reparateur.jpg",
-      articleName: "comment-avoir-un-sommeil-reparateur"
-    },
-    {
-      id: 2,
-      title: "Passage à l'heure d'été - 7 Astuces faciles pour ne pas subir 1h de sommeil en moins",
-      description: "7 Astuces faciles pour ne pas subir le passage à l'heure d'été.",
-      metaDesc: "7 Astuces faciles pour ne pas subir le passage à l'heure d'été.",
-      date: "28/03/2020",
-      img: "assets/img/time-changed.jpg",
-      articleName: "passage-heure-ete-7-astuces"
-    }
-  ];
-
   constructor(private http: HttpClient) { }
 
 
   getArticleContent(articleName: string) {
-    return this.http.get(environment.serverConfig.articlesPath + articleName + '.php', {responseType: 'text'})
+    return this.http.get(environment.serverConfig.articlesPath + articleName + '.html', {responseType: 'text'})
     .pipe(
       catchError(this.handleError)
     );
   }
 
-  getAllArticles(): Article[]{
-    return this.articles;
+  getAllArticles() {
+    return this.http.get<Array<Article>>(environment.serverConfig.serverURL + `?method=getArticles`)
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
-  getArticlesByNames(articlesName: string[]): Article[]{
-    return this.articles.filter(article => articlesName.indexOf(article.articleName) === -1);
+  getOtherArticles(articleName: string){
+    return this.http.get<Array<Article>>(environment.serverConfig.serverURL + `?method=getOtherArticles&articleName=` + articleName)
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
-  getOtherArticles(articleName: string): Article[]{
-    return this.articles.filter(article => articleName.indexOf(article.articleName) === -1);
-  }
-
-  getArticleIdByName(articleName: string): number {
-    return this.articles.filter(artcile =>
-      artcile.articleName === articleName)[0].id;
-  }
-
-  getArticleByName(articleName: string): Article {
-    return this.articles.filter(artcile =>
-      artcile.articleName === articleName)[0];
+  getArticleByName(articleName: string) {
+    return this.http.get<Article>(environment.serverConfig.serverURL + `?method=getArticleByName&articleName=` + articleName)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -16,6 +16,7 @@ export class ArticleComponent implements OnInit, Page {
   title;
 
   articleName: string;
+  articleId: number;
   articleContent: string = "Recherche en cours.";
   showValidation: boolean = false;
   failSave: boolean;
@@ -74,11 +75,14 @@ export class ArticleComponent implements OnInit, Page {
   }
 
   setHead() {
-    const article = this.articlesService.getArticleByName(this.articleName);
-    this.title = article.title;
-    this.metaDesc = article.metaDesc;
-
-    this.setTitle();
-    this.handleMeta();
+    this.articlesService.getArticleByName(this.articleName).subscribe(
+      data => {
+        this.title = data.title,
+        this.metaDesc = data.metaDesc,
+        this.articleId = data.id,
+        this.setTitle(),
+        this.handleMeta(),
+        error => console.error('Une erreure est survenue à la récupération des artciles !', error)
+      });
   }
 }

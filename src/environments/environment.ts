@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   serverConfig : {
     serverURL : "http://localhost:80/sleeping-bs/handleRequest.php",
-    articlesPath: "http://localhost:80/sleeping-bs/articles/"
+    articlesPath: "http://localhost:80/sleeping-bs/articles/",
+    imgPath: "http://localhost:80/sleeping-bs/img/"
   }
 };
 /*

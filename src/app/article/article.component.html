@@ -11,7 +11,7 @@
         <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
     </div>
     <app-retrieve-mail></app-retrieve-mail>
-    <app-comment [articleName]="articleName"></app-comment>
+    <app-comment [articleId]="articleId"></app-comment>
     <div class="articles">
         <h2 class="titleBottomLine">A lire aussi  :</h2>
         <app-articles [currentArticleName]="articleName" [hideDescription]="true" (loadArticleEvent)="loadArticle($event)"></app-articles>

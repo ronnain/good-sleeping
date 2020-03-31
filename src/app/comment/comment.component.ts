@@ -13,8 +13,6 @@ import { ArticlesService } from '../services/articles.service';
 export class CommentComponent implements OnInit {
 
   @Input()
-  articleName: string;
-
   articleId: number;
 
   comments: Comment[];
@@ -30,11 +28,12 @@ export class CommentComponent implements OnInit {
   constructor(private commentService: CommentService, private articlesService: ArticlesService) { }
 
   ngOnInit() {
-    this.loadComments();
+    if (this.articleId && this.articleId !== 0) {
+      this.loadComments();
+    }
   }
 
   loadComments() {
-    this.articleId = this.articlesService.getArticleIdByName(this.articleName);
     this.getArticleComments();
   }
 
@@ -116,6 +115,8 @@ export class CommentComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     // call when the user select another article
-    this.loadComments();
+    if (changes.articleId && changes.articleId.currentValue && changes.articleId.currentValue !== 0) {
+      this.loadComments();
+    }
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { MailService } from '../services/mail.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { Page } from '../modeles/interfaces.type';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,6 +13,8 @@ export class LandingPageComponent implements OnInit, Page {
 
   bonusTitle = "Retrouve un sommeil profond grâce à ces 10 astuces";
   metaDesc = 'Récupérer le bonus gratuit: ' + this.bonusTitle;
+
+  imgFeatherPath = environment.serverConfig.imgPath+"fond_plume.png";
 
   constructor(private titleService:Title, private metaService:Meta) { }
 

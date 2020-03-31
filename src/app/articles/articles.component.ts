@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@
 import { Article, Page } from '../modeles/interfaces.type';
 import { ArticlesService } from '../services/articles.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -41,13 +42,17 @@ export class ArticlesComponent implements OnInit, Page {
   getArticles() {
     //Display other articles
     if(this.currentArticleName){
-      this.articles = this.articlesService.getOtherArticles(this.currentArticleName);
-
-    } else if(this.articlesName){ //Display the list of articles
-      this.articles = this.articlesService.getArticlesByNames(this.articlesName);
-
+      this.articlesService.getOtherArticles(this.currentArticleName).subscribe(
+        data => {
+          this.articles = data,
+        error => console.error('Une erreure est survenue à la récupération des articles !', error)
+      });
     } else { //display all articles
-      this.articles = this.articlesService.getAllArticles();
+      this.articlesService.getAllArticles().subscribe(
+        data => {
+          this.articles = data,
+        error => console.error('Une erreure est survenue à la récupération des articles !', error)
+      });
     }
   }
 
@@ -56,8 +61,11 @@ export class ArticlesComponent implements OnInit, Page {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // call when the user select another article
-    this.getArticles();
+    // call from article component
+    if (changes.currentArticleName && changes.currentArticleName.previousValue) {
+      // call only when the user click on antoher article in artcile component
+      this.getArticles();
+    }
   }
 
   setTitle() {
@@ -70,5 +78,9 @@ export class ArticlesComponent implements OnInit, Page {
     } else {
       this.metaService.addTag({ name:'description', content: this.metaDesc });
     }
+  }
+
+  getPathImg(imgName: string) {
+    return environment.serverConfig.imgPath + imgName;
   }
 }
