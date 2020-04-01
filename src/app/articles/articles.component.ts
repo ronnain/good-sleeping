@@ -13,6 +13,8 @@ import { environment } from 'src/environments/environment';
 export class ArticlesComponent implements OnInit, Page {
 
   metaDesc = "Vous trouverez ici tous articles avec les meilleurs conseils sur le sommeil.";
+  failSave: boolean = false;
+  loading: boolean = false;
 
   @Input()
   articlesName: string[];
@@ -40,19 +42,29 @@ export class ArticlesComponent implements OnInit, Page {
   }
 
   getArticles() {
+    this.failSave = false;
+    this.loading = true;
     //Display other articles
     if(this.currentArticleName){
       this.articlesService.getOtherArticles(this.currentArticleName).subscribe(
         data => {
-          this.articles = data,
-        error => console.error('Une erreure est survenue à la récupération des articles !', error)
-      });
+          this.articles = data;
+          this.loading = false;
+        },
+        err => {
+          this.loading = false;
+          this.failSave = true;
+        });
     } else { //display all articles
       this.articlesService.getAllArticles().subscribe(
         data => {
-          this.articles = data,
-        error => console.error('Une erreure est survenue à la récupération des articles !', error)
-      });
+          this.articles = data;
+          this.loading = false;
+        },
+        err => {
+          this.loading = false;
+          this.failSave = true;
+        });
     }
   }
 

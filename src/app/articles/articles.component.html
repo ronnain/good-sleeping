@@ -17,5 +17,12 @@
             </div>
         </li>
     </ul>
+    <div *ngIf="loading">
+        <p>Chargement des articles...</p>
+        <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
+    </div>
+    <div *ngIf="failSave" class="alert alert-danger" role="alert">
+        <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
+    </div>
 </div>
 
