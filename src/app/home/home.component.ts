@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit, Page {
 
-  metaDesc = "Page d'accueil du site Sommeil Profond.";
+  metaDesc = "Accueil Sommeil Profond. Site spécialisé sur les problèmes sommeil.";
   imgFeatherPath = environment.serverConfig.imgPath+"fond_plume.png";
 
   constructor(private titleService:Title, private metaService:Meta) { }

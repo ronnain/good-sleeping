@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LandingPageComponent implements OnInit, Page {
 
-  bonusTitle = "Retrouve un sommeil profond grâce à ces 10 astuces";
+  bonusTitle = "4 points fondamentaux à respecter pour mieux dormir";
   metaDesc = 'Récupérer le bonus gratuit: ' + this.bonusTitle;
 
   imgFeatherPath = environment.serverConfig.imgPath+"fond_plume.png";
@@ -34,5 +34,4 @@ export class LandingPageComponent implements OnInit, Page {
       this.metaService.addTag({ name:'description', content: this.metaDesc });
     }
   }
-
 }

@@ -18,9 +18,10 @@ export class ArticleComponent implements OnInit, Page {
   articleName: string;
   articleId: number;
   articleContent: string = "Recherche en cours.";
-  showValidation: boolean = false;
+  articleRetrieve: boolean = false;
   failSave: boolean;
   loading: boolean;
+  date: string;
 
   constructor(private _Activatedroute:ActivatedRoute, private articlesService: ArticlesService, private titleService:Title, private metaService:Meta) { }
 
@@ -37,11 +38,13 @@ export class ArticleComponent implements OnInit, Page {
   getArticle() {
     this.loading = true;
     this.failSave = false;
+    this.articleRetrieve = false;
 
     this.articlesService.getArticleContent(this.articleName).subscribe(
       data => {
         if (data) {
           this.articleContent = data;
+          this.articleRetrieve = true;
         } else {
           this.failSave = true;
         }
@@ -80,6 +83,7 @@ export class ArticleComponent implements OnInit, Page {
         this.title = data.title,
         this.metaDesc = data.metaDesc,
         this.articleId = data.id,
+        this.date = data.date,
         this.setTitle(),
         this.handleMeta(),
         error => console.error('Une erreure est survenue à la récupération des artciles !', error)

@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{article.title}}</h5>
                             <p class="card-text" *ngIf="!hideDescription">{{article.description}}</p>
-                            <footer class="blockquote-footer">Le {{article.date}} par <cite>Romain</cite></footer>
+                            <footer class="blockquote-footer">Le {{article.date | date: 'dd/MM/yyyy'}} par <cite>Romain</cite></footer>
                         </div>
                     </div>
                 </div>
