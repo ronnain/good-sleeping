@@ -1,0 +1,28 @@
+<div class="container article">
+    <div class="row">
+        <div class="col-12 " id="fullWitdh">
+            <h1>Convertisseur html généré par google doc en html simplifié</h1>
+            <h2>Sur le Google doc:</h2>
+            <ul>
+                <li><p>Ajouter les images par URL</p></li>
+                <li><p>Ajouter les liens vers URL</p></li>
+            </ul>
+            <h2>A faire ici :</h2>
+            <ul>
+                <li><p>Images :<strong>Modifier les sources, title et alt</strong> & vérifier les liens de redirection (nofollow)</p></li>
+                <li><p>Liens à ne pas suivre, ajouter : target="_blank" rel="nofollow"</p></li>
+            </ul>
+
+            <mat-form-field class="articleInput">
+                <mat-label>Article - Coller l'article à traiter</mat-label>
+                <textarea matInput [(ngModel)]="article" placeholder="Ex. Coller article avec le balisage HTML" class="textareaInput" id="articleInput"></textarea>
+            </mat-form-field>
+            <div class="btnSpace">
+                <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="!article" (click)="handleTag()">Valider</button>
+                <button mat-raised-button class="btnSubmit" color="primary" [disabled]="!article" (click)="copyToClipBoard()">Copier</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -27,6 +27,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LegalNoticesComponent } from './legal-notices/legal-notices.component';
 import { ContactComponent } from './contact/contact.component';
 import { MeComponent } from './me/me.component';
+import { ArticleTagComponent } from './admin/article-tag/article-tag.component';
 
 
 const appRoutes: Routes = [
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
   {path: 'desabonnement/:key', component: UnsubcribeComponent},
   {path: 'mentions', component: LegalNoticesComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'admin/handleArticleTag', component: ArticleTagComponent},
   {path: '',  component: HomeComponent },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},
   {path: 'not-found', redirectTo: 'articles', pathMatch: 'full'}
@@ -63,7 +65,8 @@ const appRoutes: Routes = [
     FooterComponent,
     LegalNoticesComponent,
     ContactComponent,
-    MeComponent
+    MeComponent,
+    ArticleTagComponent
   ],
   imports: [
     BrowserModule,

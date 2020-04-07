@@ -1,0 +1,15 @@
+.fullWitdh {
+    width: 100%;
+}
+
+.textareaInput {
+    height: 20rem;
+}
+
+.articleInput {
+    display: block;
+}
+
+.btnSpace button{
+    margin: 0 0.5rem;
+}
