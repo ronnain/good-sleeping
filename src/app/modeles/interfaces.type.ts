@@ -8,10 +8,11 @@ export interface Contact {
 export interface Article{
     id: number,
     title: string,
+    metaDesc: string, // use to set the meta balise
     description: string,
     date: string,
     img: string,
-    metaDesc: string, // use to set the meta balise
+    imgTitle: string,
     articleName: string
 }
 

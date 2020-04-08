@@ -28,6 +28,7 @@ import { LegalNoticesComponent } from './legal-notices/legal-notices.component';
 import { ContactComponent } from './contact/contact.component';
 import { MeComponent } from './me/me.component';
 import { ArticleTagComponent } from './admin/article-tag/article-tag.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 const appRoutes: Routes = [
@@ -75,7 +76,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

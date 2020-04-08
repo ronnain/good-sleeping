@@ -4,7 +4,15 @@
             <div class="container-fluid articleLink" [routerLink]="['/articles', article.articleName]" (click)="loadArticle(article.articleName)">
                 <div class="row d-flex flex-wrap align-items-center">
                     <div class="col-sm-4 align-middle">
-                        <img  src={{getPathImg(article.img)}} style="max-width: 100%">
+                        <!-- <img  src={{getPathImg(article.img)}} style="max-width: 100%"> -->
+                        <picture>
+                            <source  media="(min-width: 1200px)" srcset="{{imgPath}}/{{article.img}}/articles/xl.jpg">
+                            <source  media="(min-width: 992px)" srcset="{{imgPath}}/{{article.img}}/articles/l.jpg">
+                            <source  media="(min-width: 768px)" srcset="{{imgPath}}/{{article.img}}/articles/xm.jpg">
+                            <source  media="(min-width: 576px)" srcset="{{imgPath}}/{{article.img}}/articles/m.jpg">
+                            <source  media="(min-width: 380px)" srcset="{{imgPath}}/{{article.img}}/articles/s.jpg">
+                            <img src="{{imgPath}}{{article.img}}/articles/xs.jpg" alt="{{article.imgTitle}}" title="{{article.imgTitle}}" style="max-width: 100%">
+                        </picture>
                     </div>
                     <div class="card no-border col-sm-8">
                         <div class="card-body">

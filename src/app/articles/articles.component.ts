@@ -16,6 +16,8 @@ export class ArticlesComponent implements OnInit, Page {
   failSave: boolean = false;
   loading: boolean = false;
 
+  imgPath = environment.serverConfig.imgPath;
+
   @Input()
   articlesName: string[];
 
@@ -90,9 +92,5 @@ export class ArticlesComponent implements OnInit, Page {
     } else {
       this.metaService.addTag({ name:'description', content: this.metaDesc });
     }
-  }
-
-  getPathImg(imgName: string) {
-    return environment.serverConfig.imgPath + imgName;
   }
 }
