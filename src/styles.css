@@ -127,27 +127,27 @@ a {
 
 @media screen and (max-width: 575px) {
     .backgroundFeather {
-        background-image: url('http://localhost:80/sleeping-bs/img/white_feather/m.jpg');
+        background-image: url('./sleeping-bs/img/white_feather/m.jpg');
         margin-bottom: 50rem;
     }
 }
 @media screen and (min-width: 576px) and (max-width: 767px) {
     .backgroundFeather {
-        background-image: url('http://localhost:80/sleeping-bs/img/white_feather/xm.jpg');
+        background-image: url('./sleeping-bs/img/white_feather/xm.jpg');
         margin-bottom: 35rem;
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .backgroundFeather {
-        background-image: url('http://localhost:80/sleeping-bs/img/white_feather/l.jpg');
+        background-image: url('./sleeping-bs/img/white_feather/l.jpg');
         margin-bottom: 25rem;
     }
 }
 
 @media screen and (min-width: 992px) {
     .backgroundFeather {
-        background-image: url('http://localhost:80/sleeping-bs/img/white_feather/xl.jpg');
+        background-image: url('./sleeping-bs/img/white_feather/xl.jpg');
         margin-bottom: 15rem;
     }
 }
