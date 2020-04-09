@@ -32,7 +32,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 
 const appRoutes: Routes = [
-  {path: 'accueil', component: HomeComponent},
   {path: 'articles', component: ArticlesComponent},
   {path: 'produits', component: ProductsComponent},
   {path: 'articles/:articleName', component: ArticleComponent},
