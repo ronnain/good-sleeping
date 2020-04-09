@@ -118,11 +118,38 @@ a {
 
 
 .backgroundFeather {
-    width: 100%;
+    max-height: 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+@media screen and (max-width: 575px) {
+    .backgroundFeather {
+        background-image: url('http://localhost:80/sleeping-bs/img/white_feather/m.jpg');
+        margin-bottom: 50rem;
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .backgroundFeather {
+        background-image: url('http://localhost:80/sleeping-bs/img/white_feather/xm.jpg');
+        margin-bottom: 35rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .backgroundFeather {
+        background-image: url('http://localhost:80/sleeping-bs/img/white_feather/l.jpg');
+        margin-bottom: 25rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .backgroundFeather {
+        background-image: url('http://localhost:80/sleeping-bs/img/white_feather/xl.jpg');
+        margin-bottom: 15rem;
+    }
 }
 
 .divMailRetrieve{
