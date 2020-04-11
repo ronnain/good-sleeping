@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-article-tag',
@@ -8,7 +10,12 @@ import { NgForm } from '@angular/forms';
 })
 export class ArticleTagComponent implements OnInit {
 
-  article;
+  article: string;
+  imgPath = environment.serverConfig.imgPath;
+
+  articlePath: string;
+  articleTitle: string;
+  linkImgCreator:string;
 
   constructor() { }
 
@@ -27,6 +34,47 @@ export class ArticleTagComponent implements OnInit {
     this.article = this.article.replace(/<(html|\/html|body|\/body)>/g, '');
     this.article = this.article.replace(/\s*href="https:\/\/www\.google\.com\/url\?q=/g, ' href="');
     this.article = this.article.replace(/&[a-zA-Z0-9_= .:;()\-#&]*"/g, '"');
+    //Clean img tag
+    this.article = this.article.replace(/<p><img\s*(alt="[a-zA-Z0-9_= .]*"|src="[a-zA-Z0-9_= ./]*"|title="[a-zA-Z0-9_= .]*"|\s*)*><\/p>/g, '<img/>');
+
+    this.addPictureTag();
+  }
+
+  addPictureTag() {
+    /* <picture>
+        <source  media="(min-width: 1200px)" srcset="http://localhost:80/sleeping-bs/img/sommeil-reparateur/article/xl.jpg">
+        <source  media="(min-width: 992px)" srcset="http://localhost:80/sleeping-bs/img/sommeil-reparateur/article/l.jpg">
+        <source  media="(min-width: 768px)" srcset="http://localhost:80/sleeping-bs/img/sommeil-reparateur/article/xm.jpg">
+        <source  media="(min-width: 576px)" srcset="http://localhost:80/sleeping-bs/img/sommeil-reparateur/article/m.jpg">
+        <img src="http://localhost:80/sleeping-bs/img/sommeil-reparateur/article/xs.jpg" alt="Mer calme et réparatrice" title="Mer calme et réparatrice" class="noMarginBottom fullWidth">
+      </picture>
+      <div class="creditImgDiv"><a class="creditImg" href="https://photostockeditor.com/" target="_blank" rel="nofollow">Lien Créateur Image</a></div>
+ */
+    const imgSrc = this.imgPath+this.articlePath+'/article/';
+    const picture = document.createElement("PICTURE");
+    const imgSizes = {
+      "xl" : "1200",
+      "l" : "992",
+      "xm" : "768",
+      "m" : "576"
+    };
+
+    for(let size in imgSizes) {
+      const source = document.createElement("source");
+      source.setAttribute("media", "(min-width: "+imgSizes[size]+"px)");
+      source.setAttribute("srcset", imgSrc+size+'.jpg');
+      picture.appendChild(source);
+    }
+
+    const img = document.createElement("img");
+    img.setAttribute("src", imgSrc+'xs.jpg');
+    img.setAttribute("alt", this.articleTitle);
+    img.setAttribute("title", this.articleTitle);
+    img.setAttribute("class", "noMarginBottom fullWidth");
+    picture.appendChild(img);
+
+    const splitArticle = this.article.split('<img/>');
+    this.article = splitArticle[0]+ picture.outerHTML + splitArticle[1];
   }
 
   copyToClipBoard() {

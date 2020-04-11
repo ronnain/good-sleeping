@@ -14,8 +14,6 @@ export class LandingPageComponent implements OnInit, Page {
   bonusTitle = "4 points fondamentaux à respecter pour mieux dormir";
   metaDesc = 'Récupérer le bonus gratuit: ' + this.bonusTitle;
 
-  imgFeatherPath = environment.serverConfig.imgPath+"fond_plume.png";
-
   constructor(private titleService:Title, private metaService:Meta) { }
 
   ngOnInit() {

@@ -13,3 +13,7 @@
 .btnSpace button{
     margin: 0 0.5rem;
 }
+
+.inputText {
+    width: 50%;
+}

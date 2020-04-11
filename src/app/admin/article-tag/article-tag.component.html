@@ -13,16 +13,23 @@
                 <li><p>Liens à ne pas suivre, ajouter : target="_blank" rel="nofollow"</p></li>
             </ul>
 
+            <mat-form-field class="inputText">
+                <input matInput placeholder="Chemin du dossier de l'image. Exemple: sommeil-reparateur" name="articlePath" [(ngModel)]="articlePath" required>
+            </mat-form-field><br/>
+            <mat-form-field class="inputText">
+                <input matInput placeholder="Titre de l'image" name="articleTitle" [(ngModel)]="articleTitle" required>
+            </mat-form-field><br/>
+            <mat-form-field class="inputText">
+                <input matInput placeholder="Lien créateur image" name="linkImgCreator" [(ngModel)]="linkImgCreator" required>
+            </mat-form-field><br/>
             <mat-form-field class="articleInput">
                 <mat-label>Article - Coller l'article à traiter</mat-label>
                 <textarea matInput [(ngModel)]="article" placeholder="Ex. Coller article avec le balisage HTML" class="textareaInput" id="articleInput"></textarea>
             </mat-form-field>
             <div class="btnSpace">
-                <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="!article" (click)="handleTag()">Valider</button>
-                <button mat-raised-button class="btnSubmit" color="primary" [disabled]="!article" (click)="copyToClipBoard()">Copier</button>
+                <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="!article || !articlePath || !articleTitle" (click)="handleTag()">Valider</button>
+                <button mat-raised-button class="btnSubmit" color="primary" [disabled]="!article || !articlePath || !articleTitle" (click)="copyToClipBoard()">Copier</button>
             </div>
         </div>
     </div>
-
-
 </div>
