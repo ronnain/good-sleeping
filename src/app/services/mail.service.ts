@@ -29,6 +29,19 @@ export class MailService {
     );
   }
 
+  sendMailToAll(objectMail, bodyMail, password) {
+    const body = {
+      "object" : objectMail,
+      "body": bodyMail,
+      "password": password
+    };
+    const url = environment.serverConfig.serverURL + '?method=mailToAll';
+    return this.http.post<any>(url, body, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
   unsubscribe(unsubscribeKey) {
     const body = {
       "key" : unsubscribeKey

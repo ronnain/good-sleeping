@@ -29,6 +29,7 @@ import { ContactComponent } from './contact/contact.component';
 import { MeComponent } from './me/me.component';
 import { ArticleTagComponent } from './admin/article-tag/article-tag.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MailHandlerComponent } from './admin/mail-handler/mail-handler.component';
 
 
 const appRoutes: Routes = [
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
   {path: 'mentions', component: LegalNoticesComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'admin/handleArticleTag', component: ArticleTagComponent},
+  {path: 'admin/mail', component: MailHandlerComponent},
   {path: '',  component: HomeComponent },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},
   {path: 'not-found', redirectTo: 'articles', pathMatch: 'full'}
@@ -66,7 +68,8 @@ const appRoutes: Routes = [
     LegalNoticesComponent,
     ContactComponent,
     MeComponent,
-    ArticleTagComponent
+    ArticleTagComponent,
+    MailHandlerComponent
   ],
   imports: [
     BrowserModule,
