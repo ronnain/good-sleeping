@@ -24,7 +24,11 @@ export class RetrieveMailComponent implements OnInit {
     this.loading = true;
     this.mailService.createContact(this.firstName, form.value).subscribe(
       data => {
-        this.showValidation = (data.success === true) ? true : this.failSave = true;
+        if(data.success === true) {
+          this.showValidation = true;
+        } else {
+          this.failSave = true;
+        }
         this.loading = false;
       },
       err => {

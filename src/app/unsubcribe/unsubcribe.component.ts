@@ -38,7 +38,11 @@ export class UnsubcribeComponent implements OnInit, Page {
     this.mailService.unsubscribe(this.unsubscribeKey).subscribe(
       data => {
         this.unsubscribeKey = undefined;
-        this.showValidation = (data.success === true) ? true : this.failSave = true;
+        if(data.success === true) {
+          this.showValidation = true;
+        } else {
+          this.failSave = true;
+        }
         this.loading = false;
       },
       err => {
