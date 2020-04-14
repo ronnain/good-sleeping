@@ -1,0 +1,29 @@
+<div class="container article">
+    <div class="row">
+        <div class="col-12 ">
+            <h1>Envoyer mail à tous</h1>
+
+            <!-- Handle with password until a user session creation-->
+            <mat-form-field class="inputText">
+                <input matInput type="password" placeholder="Mot de passe" name="password" [(ngModel)]="password" required>
+            </mat-form-field><br/>
+            <mat-form-field class="inputText">
+                <input matInput placeholder="Objet : " name="mailObject" [(ngModel)]="mailObject" required>
+            </mat-form-field><br/>
+            <mat-form-field class="articleInput">
+                <mat-label>Corps du mail à envoyer</mat-label>
+                <textarea matInput [(ngModel)]="mailBody" placeholder="Ex. Bonjour, vous êtes géniaux" class="textareaInput" id="mailBody"></textarea>
+            </mat-form-field>
+            <div class="btnSpace">
+                <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="!password || !mailObject || !mailBody" (click)="sendMailToAll()">Envoyer</button>
+            </div>
+            <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
+            <div *ngIf="showValidation" class="alert alert-success" role="alert">
+                <p>Les mails vont être reçu d'ici quelquels minutes.</p>
+            </div>
+            <div *ngIf="failSave" class="alert alert-danger" role="alert">
+                <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
+            </div>
+        </div>
+    </div>
+</div>

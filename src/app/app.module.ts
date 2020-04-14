@@ -30,6 +30,7 @@ import { MeComponent } from './me/me.component';
 import { ArticleTagComponent } from './admin/article-tag/article-tag.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MailHandlerComponent } from './admin/mail-handler/mail-handler.component';
+import { StructuredDataComponent } from './admin/structured-data/structured-data.component';
 
 
 const appRoutes: Routes = [
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'admin/handleArticleTag', component: ArticleTagComponent},
   {path: 'admin/mail', component: MailHandlerComponent},
+  {path: 'admin/structuredData', component: StructuredDataComponent},
   {path: '',  component: HomeComponent },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},
   {path: 'not-found', redirectTo: 'articles', pathMatch: 'full'}
@@ -69,7 +71,8 @@ const appRoutes: Routes = [
     ContactComponent,
     MeComponent,
     ArticleTagComponent,
-    MailHandlerComponent
+    MailHandlerComponent,
+    StructuredDataComponent
   ],
   imports: [
     BrowserModule,
