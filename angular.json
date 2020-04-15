@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "sleeping"
+  "defaultProject": "sleeping",
+  "cli": {
+    "analytics": false
+  }
 }
