@@ -93,9 +93,8 @@ export class ArticleComponent implements OnInit, Page {
     }
   }
 
-  // To remove from other pages
   createStructuredData() {
-    // Use of litral expression
+    // Use of literal expression
     const structuredData = `{
       "@context": "https://schema.org",
       "@type": "NewsArticle",
@@ -105,9 +104,9 @@ export class ArticleComponent implements OnInit, Page {
       },
       "headline": "${this.article.title}",
       "image": [
-        "https://example.com/photos/1x1/photo.jpg",
-        "https://example.com/photos/4x3/photo.jpg",
-        "https://example.com/photos/16x9/photo.jpg"
+        "https://sommeilprofond.fr/sleeping-bs/img/${this.article.img}/structuredData/11.jpg",
+        "https://sommeilprofond.fr/sleeping-bs/img/${this.article.img}/structuredData/43.jpg",
+        "https://sommeilprofond.fr/sleeping-bs/img/${this.article.img}/structuredData/169.jpg"
        ],
       "datePublished": "${this.article.datePublished.replace(' ', 'T')}",
       "dateModified": "${this.article.dateModified.replace(' ', 'T')}",
