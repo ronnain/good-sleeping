@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, Page {
   ngOnInit() {
     this.setTitle();
     this.handleMeta();
+    this.removeStructuredData();
   }
 
   setTitle() {
@@ -29,6 +30,13 @@ export class HomeComponent implements OnInit, Page {
       this.metaService.updateTag({ name: 'description', content: this.metaDesc }, `name='description'`);
     } else {
       this.metaService.addTag({ name:'description', content: this.metaDesc });
+    }
+  }
+
+  removeStructuredData() {
+    const structuredData = document.getElementById("structuredData");
+    if(structuredData) {
+      structuredData.remove();
     }
   }
 

@@ -80,7 +80,57 @@ export class ArticleComponent implements OnInit, Page {
         this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName),
         this.setTitle(),
         this.handleMeta(),
+        this.removeStructuredData(),
+        this.createStructuredData(),
         error => console.error('Une erreure est survenue à la récupération des artciles !', error)
       });
+  }
+
+  removeStructuredData() {
+    const structuredData = document.getElementById("structuredData");
+    if(structuredData) {
+      structuredData.remove();
+    }
+  }
+
+  // To remove from other pages
+  createStructuredData() {
+    // Use of litral expression
+    const structuredData = `{
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://sommeilprofond.fr/articles/${this.article.articleName}"
+      },
+      "headline": "${this.article.title}",
+      "image": [
+        "https://example.com/photos/1x1/photo.jpg",
+        "https://example.com/photos/4x3/photo.jpg",
+        "https://example.com/photos/16x9/photo.jpg"
+       ],
+      "datePublished": "${this.article.datePublished.replace(' ', 'T')}",
+      "dateModified": "${this.article.dateModified.replace(' ', 'T')}",
+      "author": {
+        "@type": "Person",
+        "name": "Romain"
+      },
+       "publisher": {
+        "@type": "Organization",
+        "name": "Sommeil Profond",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sommeilprofond.fr/assets/logo/favicon.png"
+        }
+      },
+      "description": "${this.article.description}"
+    }`;
+    const scriptStructuredData = document.createElement('script');
+    scriptStructuredData.id = "structuredData";
+    scriptStructuredData.type = "application/ld+json";
+    scriptStructuredData.innerHTML = structuredData;
+
+    const head = document.getElementsByTagName('head')[0];
+    head.append(scriptStructuredData);
   }
 }

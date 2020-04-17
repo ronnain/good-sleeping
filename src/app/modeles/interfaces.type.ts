@@ -54,4 +54,5 @@ export interface Comment{
 export interface Page {
     setTitle(); // Set the title page
     handleMeta();
+    removeStructuredData();
 }
