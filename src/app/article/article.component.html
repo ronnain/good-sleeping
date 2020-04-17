@@ -10,13 +10,13 @@
     <div *ngIf="failSave" class="alert alert-danger verticalSpace" role="alert">
         <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
     </div>
-    <div *ngIf="date && articleRetrieve">
-        <footer class="blockquote-footer">Ecrit le {{ date | date: 'dd/MM/yyyy'}} par <cite>Romain</cite></footer>
+    <div *ngIf="article && article.dateModified && articleRetrieve">
+        <footer class="blockquote-footer">Ecrit le {{ article.dateModified | date: 'dd/MM/yyyy'}} par <cite>Romain</cite></footer>
     </div>
     <app-retrieve-mail></app-retrieve-mail>
-    <app-comment [articleId]="articleId"></app-comment>
+    <app-comment *ngIf="article && article.id" [articleId]="article.id"></app-comment>
     <div class="articles">
         <h2 class="titleBottomLine">A lire aussi  :</h2>
-        <app-articles [currentArticleName]="articleName" [hideDescription]="true" (loadArticleEvent)="loadArticle($event)"></app-articles>
+        <app-articles *ngIf="article" [currentArticleName]="article.articleName" [hideDescription]="true" (loadArticleEvent)="loadArticle($event)"></app-articles>
     </div>
 </div>

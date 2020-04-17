@@ -23,7 +23,7 @@ export class StructuredDataComponent implements OnInit {
   getArticleParam() {
     this.articlesService.getArticleByName(this.articleName).subscribe(
       data => {
-        this.creationDate = data.date,
+        this.creationDate = data.datePublished,
         this.title = data.title,
         this.imgName = data.img
 

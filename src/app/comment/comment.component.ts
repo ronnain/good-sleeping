@@ -28,9 +28,6 @@ export class CommentComponent implements OnInit {
   constructor(private commentService: CommentService, private articlesService: ArticlesService) { }
 
   ngOnInit() {
-    if (this.articleId && this.articleId !== 0) {
-      this.loadComments();
-    }
   }
 
   loadComments() {
@@ -105,7 +102,7 @@ export class CommentComponent implements OnInit {
     this.showReply = false;
   }
 
-  getArticleComments() {
+  getArticleComments() {    
     this.commentService.getCommentsByArticle(this.articleId).subscribe(
       data => {
         this.comments = data,

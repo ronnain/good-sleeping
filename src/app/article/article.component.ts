@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from '../services/articles.service';
-import { Page } from '../modeles/interfaces.type';
+import { Page, MyArticle, Article } from '../modeles/interfaces.type';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
@@ -12,16 +12,13 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class ArticleComponent implements OnInit, Page {
 
-  metaDesc;
-  title;
+  article: Article;
 
   articleName: string;
-  articleId: number;
   articleContent: string = "Recherche en cours.";
   articleRetrieve: boolean = false;
   failSave: boolean;
   loading: boolean;
-  date: string;
 
   constructor(private _Activatedroute:ActivatedRoute, private articlesService: ArticlesService, private titleService:Title, private metaService:Meta) { }
 
@@ -66,24 +63,21 @@ export class ArticleComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle(this.title + " - Sommeil Profond");
+    this.titleService.setTitle(this.article.title + " - Sommeil Profond");
   }
 
   handleMeta() {
     if (this.metaService.getTag('name=description')) {
-      this.metaService.updateTag({ name: 'description', content: this.metaDesc }, `name='description'`);
+      this.metaService.updateTag({ name: 'description', content: this.article.metaDesc }, `name='description'`);
     } else {
-      this.metaService.addTag({ name:'description', content: this.metaDesc });
+      this.metaService.addTag({ name:'description', content: this.article.metaDesc });
     }
   }
 
   setHead() {
     this.articlesService.getArticleByName(this.articleName).subscribe(
       data => {
-        this.title = data.title,
-        this.metaDesc = data.metaDesc,
-        this.articleId = data.id,
-        this.date = data.date,
+        this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName),
         this.setTitle(),
         this.handleMeta(),
         error => console.error('Une erreure est survenue à la récupération des artciles !', error)
