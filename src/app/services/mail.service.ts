@@ -42,6 +42,13 @@ export class MailService {
     );
   }
 
+  getAllContacts(password) {
+    return this.http.get<any>(environment.serverConfig.serverURL + `?method=getAllMails&password=` + password)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
   unsubscribe(unsubscribeKey) {
     const body = {
       "key" : unsubscribeKey
