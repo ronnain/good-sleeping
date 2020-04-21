@@ -12,6 +12,10 @@ export class MailHandlerComponent implements OnInit {
   mailObject;
   mailBody;
 
+  passwordGetMails;
+  allMails;
+  nbMails;
+
   showValidation: boolean = false;
   failSave: boolean = false;
   loading: boolean = false;
@@ -40,4 +44,30 @@ export class MailHandlerComponent implements OnInit {
         this.failSave = true;
       });
   }
+
+  getAllMails() {
+    this.showValidation = false;
+    this.failSave = false;
+    this.loading = true;
+    this.mailService.getAllContacts(this.passwordGetMails).subscribe(
+      data => {
+        this.allMails = data;
+        this.getMailsFromContacts(data);
+        this.loading = false;
+      },
+      err => {
+        this.loading = false;
+        this.failSave = true;
+      });
+  }
+
+  getMailsFromContacts(contacts) {
+    const arrayAllMails = [];
+    for (let contact of contacts) {
+      arrayAllMails.push(contact.mail);
+    }
+    this.nbMails = arrayAllMails.length;
+    this.allMails = arrayAllMails.join("; ");
+  }
+
 }

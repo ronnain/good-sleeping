@@ -42,7 +42,7 @@ const appRoutes: Routes = [
   {path: 'desabonnement/:key', component: UnsubcribeComponent},
   {path: 'mentions', component: LegalNoticesComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'admin/handleArticleTag', component: ArticleTagComponent},
+  {path: 'admin/newArticle', component: ArticleTagComponent},
   {path: 'admin/mail', component: MailHandlerComponent},
   {path: '',  component: HomeComponent },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},

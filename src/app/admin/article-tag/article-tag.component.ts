@@ -73,8 +73,20 @@ export class ArticleTagComponent implements OnInit {
     img.setAttribute("class", "noMarginBottom fullWidth");
     picture.appendChild(img);
 
+    // Link to the img creator
+    const aLink = document.createElement("a");
+    aLink.setAttribute("class", "creditImgDiv");
+    aLink.setAttribute("href", this.linkImgCreator);
+    aLink.setAttribute("target", "_blank");
+    aLink.setAttribute("rel", "nofollow");
+    aLink.innerHTML = "Lien Créateur Image";
+
+    const divLink = document.createElement("div");
+    divLink.setAttribute("class", "creditImg");
+    divLink.appendChild(aLink);
+
     const splitArticle = this.article.split('<img/>');
-    this.article = splitArticle[0]+ picture.outerHTML + splitArticle[1];
+    this.article = splitArticle[0]+ picture.outerHTML + divLink.outerHTML + splitArticle[1];
   }
 
   copyToClipBoard() {
