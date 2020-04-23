@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { AdminPage } from 'src/app/modeles/interfaces.type';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -8,7 +10,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './article-tag.component.html',
   styleUrls: ['./article-tag.component.css']
 })
-export class ArticleTagComponent implements OnInit {
+export class ArticleTagComponent implements OnInit, AdminPage {
 
   article: string;
   imgPath = environment.serverConfig.imgPath;
@@ -17,7 +19,7 @@ export class ArticleTagComponent implements OnInit {
   articleTitle: string;
   linkImgCreator:string;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -96,6 +98,10 @@ export class ArticleTagComponent implements OnInit {
     articleInput.select();
     document.execCommand('copy');
     articleInput.setSelectionRange(0, 0);
+  }
+
+  logout() {
+    this.authService.userLogout();
   }
 
 }

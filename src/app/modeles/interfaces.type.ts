@@ -56,3 +56,7 @@ export interface Page {
     handleMeta();
     removeStructuredData();
 }
+
+export interface AdminPage {
+    logout();
+}

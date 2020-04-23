@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MailService } from 'src/app/services/mail.service';
+import { AdminPage } from 'src/app/modeles/interfaces.type';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-mail-handler',
   templateUrl: './mail-handler.component.html',
   styleUrls: ['./mail-handler.component.css']
 })
-export class MailHandlerComponent implements OnInit {
+export class MailHandlerComponent implements OnInit, AdminPage {
 
   password;
   mailObject;
@@ -21,7 +23,7 @@ export class MailHandlerComponent implements OnInit {
   loading: boolean = false;
 
 
-  constructor(private mailService: MailService) { }
+  constructor(private mailService: MailService, private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -68,6 +70,10 @@ export class MailHandlerComponent implements OnInit {
     }
     this.nbMails = arrayAllMails.length;
     this.allMails = arrayAllMails.join("; ");
+  }
+
+  logout() {
+    this.authService.userLogout();
   }
 
 }

@@ -1,0 +1,24 @@
+<div class="container article">
+    <div class="row">
+        <div class="col-12 alignCenter">
+            <img src="assets/logo/zzzLogo.png" alt="Logo ZZZ Sommeil Profond" width="50px" />
+            <h1>Se connecter</h1>
+            <mat-form-field>
+                <input matInput placeholder="Pseudo" name="pseudo" [(ngModel)]="pseudo" required>
+            </mat-form-field><br/>
+            <mat-form-field >
+                <input matInput placeholder="Mot de passe" name="password" [(ngModel)]="password" required type="password">
+            </mat-form-field><br/>
+            <div class="verticalSpace">
+                <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="!pseudo || !password" (click)="login()">Se connecter</button>
+            </div>
+            <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
+            <div *ngIf="showValidation" class="alert alert-success" role="alert">
+                <p>Vous êtes connecté.</p>
+            </div>
+            <div *ngIf="failSave" class="alert alert-danger" role="alert">
+                <p>Identifiant ou mot de passe incorrect.</p>
+            </div>
+        </div>
+    </div>
+</div>
