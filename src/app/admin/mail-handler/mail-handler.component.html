@@ -1,6 +1,4 @@
-<div class="deconnexion">
-    <button mat-button color="warn" (click)="logout()">Déconnexion</button>
-</div>
+<app-admin></app-admin>
 <div class="container article">
     <div class="row">
         <div class="col-12 ">
@@ -9,10 +7,6 @@
 
                     <h1 class="verticalSpace">Envoyer mail à tous</h1>
 
-                    <!-- Handle with password until a user session creation-->
-                    <mat-form-field class="inputText">
-                        <input matInput type="password" placeholder="Mot de passe" name="password" [(ngModel)]="password" required>
-                    </mat-form-field><br/>
                     <mat-form-field class="inputText">
                         <input matInput placeholder="Objet : " name="mailObject" [(ngModel)]="mailObject" required>
                     </mat-form-field><br/>
@@ -24,7 +18,7 @@
                         <p>Penser à mettre les liens: &lt;a href="" target="_blank" rel="nofollow"&gt;Ici&lt;/a&gt;</p>
                     </div>
                     <div class="btnSpace">
-                        <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="!password || !mailObject || !mailBody" (click)="sendMailToAll()">Envoyer</button>
+                        <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="!mailObject || !mailBody" (click)="sendMailToAll()">Envoyer</button>
                     </div>
                     <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
                     <div *ngIf="showValidation" class="alert alert-success" role="alert">
@@ -37,14 +31,11 @@
 
                 <!-- Retrieve all mails -->
                 <mat-tab label="Récupérer Mails">
-                    <mat-form-field class="inputText">
-                        <input matInput type="password" placeholder="Mot de passe" name="password" [(ngModel)]="passwordGetMails" required>
-                    </mat-form-field><br/>
                     <h1 class="verticalSpace">Récupérer tous les mails</h1>
                     <div ><p>Nombre d'adresses mails : <strong>{{nbMails}}</strong></p></div>
                     {{allMails}}
                     <div class="btnSpace">
-                        <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" (click)="getAllMails()" [disabled]="!passwordGetMails">Récupérer</button>
+                        <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" (click)="getAllMails()">Récupérer</button>
                     </div>
                     <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
                     <div *ngIf="showValidation" class="alert alert-success" role="alert">

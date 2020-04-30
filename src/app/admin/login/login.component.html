@@ -4,10 +4,10 @@
             <img src="assets/logo/zzzLogo.png" alt="Logo ZZZ Sommeil Profond" width="50px" />
             <h1>Se connecter</h1>
             <mat-form-field>
-                <input matInput placeholder="Pseudo" name="pseudo" [(ngModel)]="pseudo" required>
+                <input matInput placeholder="Pseudo" name="pseudo" [(ngModel)]="pseudo" required (keyup.enter)="login()">
             </mat-form-field><br/>
             <mat-form-field >
-                <input matInput placeholder="Mot de passe" name="password" [(ngModel)]="password" required type="password">
+                <input matInput placeholder="Mot de passe" name="password" [(ngModel)]="password" required type="password" (keyup.enter)="login()">
             </mat-form-field><br/>
             <div class="verticalSpace">
                 <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="!pseudo || !password" (click)="login()">Se connecter</button>

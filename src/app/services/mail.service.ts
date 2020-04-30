@@ -3,11 +3,16 @@ import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/htt
 import { environment } from '../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MailService {
+
+  pseudo;
+  token;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -15,7 +20,7 @@ export class MailService {
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   createContact(firstName, mail) {
     const body = {
@@ -29,11 +34,13 @@ export class MailService {
     );
   }
 
-  sendMailToAll(objectMail, bodyMail, password) {
+  sendMailToAll(objectMail, bodyMail) {
+    this.getIndentifiants();
     const body = {
       "object" : objectMail,
       "body": bodyMail,
-      "password": password
+      "pseudo": this.pseudo,
+      "token": this.token
     };
     const url = environment.serverConfig.serverURL + '?method=mailToAll';
     return this.http.post<any>(url, body, this.httpOptions)
@@ -42,8 +49,9 @@ export class MailService {
     );
   }
 
-  getAllContacts(password) {
-    return this.http.get<any>(environment.serverConfig.serverURL + `?method=getAllMails&password=` + password)
+  getAllContacts() {
+    this.getIndentifiants();
+    return this.http.get<any>(environment.serverConfig.serverURL + `?method=getAllMails&pseudo=${this.pseudo}&token=${this.token}`)
     .pipe(
       catchError(this.handleError)
     );
@@ -58,6 +66,11 @@ export class MailService {
     .pipe(
       catchError(this.handleError)
     );
+  }
+
+  getIndentifiants () {
+    this.pseudo = this.authService.getPseudo();
+    this.token = this.authService.getToken();
   }
 
 

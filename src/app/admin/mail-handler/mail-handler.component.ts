@@ -1,20 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MailService } from 'src/app/services/mail.service';
-import { AdminPage } from 'src/app/modeles/interfaces.type';
-import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mail-handler',
   templateUrl: './mail-handler.component.html',
   styleUrls: ['./mail-handler.component.css']
 })
-export class MailHandlerComponent implements OnInit, AdminPage {
+export class MailHandlerComponent implements OnInit {
 
-  password;
   mailObject;
   mailBody;
 
-  passwordGetMails;
   allMails;
   nbMails;
 
@@ -23,7 +20,7 @@ export class MailHandlerComponent implements OnInit, AdminPage {
   loading: boolean = false;
 
 
-  constructor(private mailService: MailService, private authService: AuthService) { }
+  constructor(private mailService: MailService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -32,9 +29,12 @@ export class MailHandlerComponent implements OnInit, AdminPage {
     this.showValidation = false;
     this.failSave = false;
     this.loading = true;
-    this.mailService.sendMailToAll(this.mailObject, JSON.stringify(this.mailBody), this.password).subscribe(
+    this.mailService.sendMailToAll(this.mailObject, JSON.stringify(this.mailBody)).subscribe(
       data => {
         if(data.success === true) {
+          if(data === "Token expiry") {
+            this.router.navigate(['/login']);
+          }
           this.showValidation = true;
         } else {
           this.failSave = true;
@@ -51,8 +51,11 @@ export class MailHandlerComponent implements OnInit, AdminPage {
     this.showValidation = false;
     this.failSave = false;
     this.loading = true;
-    this.mailService.getAllContacts(this.passwordGetMails).subscribe(
+    this.mailService.getAllContacts().subscribe(
       data => {
+        if(data === "Token expiry") {
+          this.router.navigate(['/login']);
+        }
         this.allMails = data;
         this.getMailsFromContacts(data);
         this.loading = false;
@@ -71,9 +74,4 @@ export class MailHandlerComponent implements OnInit, AdminPage {
     this.nbMails = arrayAllMails.length;
     this.allMails = arrayAllMails.join("; ");
   }
-
-  logout() {
-    this.authService.userLogout();
-  }
-
 }

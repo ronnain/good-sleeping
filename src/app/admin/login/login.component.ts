@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,15 @@ export class LoginComponent implements OnInit {
   failSave: boolean = false;
   loading: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   login(){
+    if(!this.pseudo || !this.password) {
+      return;
+    }
     this.showValidation = false;
     this.failSave = false;
     this.loading = true;
@@ -30,8 +34,11 @@ export class LoginComponent implements OnInit {
           this.failSave = true;
         } else {
           console.log(data);
-          this.authService.authentificationSuccess(data);
+          this.authService.authentificationSuccess(this.pseudo, data);
           this.showValidation = true;
+          const self = this;
+          setTimeout(function(){ self.router.navigate(['/admin/mail']); }, 1000);
+
         }
         this.loading = false;
       },
@@ -40,5 +47,4 @@ export class LoginComponent implements OnInit {
         this.failSave = true;
       });
   }
-
 }

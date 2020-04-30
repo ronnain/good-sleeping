@@ -25,18 +25,20 @@ export class AuthService {
   }
 
   userLogout() {
+    localStorage.removeItem("pseudoSP");
     localStorage.removeItem("tokenSP");
     localStorage.removeItem("tokenSPExpires");
     this.router.navigate(['/login']);
   }
 
-  authentificationSuccess(token) {
+  authentificationSuccess(pseudo, token) {
+    // the cookie expire 2h after login
     const now = new Date();
     const time = now.getTime();
-
-    // the cookie expire 2h after login
     const expireTime = time + (1000 * 7200);
     now.setTime(expireTime);
+
+    localStorage.setItem("pseudoSP", pseudo);
     localStorage.setItem("tokenSP", token);
     localStorage.setItem("tokenSPExpires", now.toUTCString());
   }
@@ -47,6 +49,14 @@ export class AuthService {
       return false;
     }
     return true;
+  }
+
+  getPseudo() {
+    return localStorage.getItem("pseudoSP");
+  }
+
+  getToken() {
+    return localStorage.getItem("tokenSP");
   }
 
 

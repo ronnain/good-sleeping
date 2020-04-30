@@ -28,18 +28,20 @@ import { ArticleTagComponent } from './admin/article-tag/article-tag.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MailHandlerComponent } from './admin/mail-handler/mail-handler.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { AdminComponent } from './admin/admin.component';
 
 
 const appRoutes: Routes = [
   {path: 'articles', component: ArticlesComponent},
   {path: 'produits', component: ProductsComponent},
   {path: 'articles/:articleName', component: ArticleComponent},
-  {path: 'login', component: LoginComponent},
   {path: 'a-propos', component: MeComponent},
   {path: 'bonus', component: LandingPageComponent},
   {path: 'desabonnement/:key', component: UnsubcribeComponent},
   {path: 'mentions', component: LegalNoticesComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'admin', redirectTo: 'login', pathMatch: 'full'},
   {path: 'admin/newArticle', canActivate: [AuthGuard], component: ArticleTagComponent},
   {path: 'admin/mail', canActivate: [AuthGuard], component: MailHandlerComponent},
   {path: '',  component: HomeComponent },
@@ -67,7 +69,8 @@ const appRoutes: Routes = [
     ContactComponent,
     MeComponent,
     ArticleTagComponent,
-    MailHandlerComponent
+    MailHandlerComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

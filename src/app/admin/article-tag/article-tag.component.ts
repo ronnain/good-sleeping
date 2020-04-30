@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { AdminPage } from 'src/app/modeles/interfaces.type';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -10,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './article-tag.component.html',
   styleUrls: ['./article-tag.component.css']
 })
-export class ArticleTagComponent implements OnInit, AdminPage {
+export class ArticleTagComponent implements OnInit {
 
   article: string;
   imgPath = environment.serverConfig.imgPath;
@@ -19,7 +18,7 @@ export class ArticleTagComponent implements OnInit, AdminPage {
   articleTitle: string;
   linkImgCreator:string;
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -77,14 +76,14 @@ export class ArticleTagComponent implements OnInit, AdminPage {
 
     // Link to the img creator
     const aLink = document.createElement("a");
-    aLink.setAttribute("class", "creditImgDiv");
+    aLink.setAttribute("class", "creditImg");
     aLink.setAttribute("href", this.linkImgCreator);
     aLink.setAttribute("target", "_blank");
     aLink.setAttribute("rel", "nofollow");
     aLink.innerHTML = "Lien Créateur Image";
 
     const divLink = document.createElement("div");
-    divLink.setAttribute("class", "creditImg");
+    divLink.setAttribute("class", "creditImgDiv");
     divLink.appendChild(aLink);
 
     const splitArticle = this.article.split('<img/>');
@@ -99,9 +98,4 @@ export class ArticleTagComponent implements OnInit, AdminPage {
     document.execCommand('copy');
     articleInput.setSelectionRange(0, 0);
   }
-
-  logout() {
-    this.authService.userLogout();
-  }
-
 }
