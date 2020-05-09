@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit, Page {
 
-  metaDesc = "Accueil Sommeil Profond. Site spécialisé sur les problèmes sommeil.";
+  metaDesc = "Accueil Sommeil Profond. Site spécialisé dans les problèmes de sommeil. Tu trouveras ici ce qui cause tes problèmes de sommeil ou de fatigue et je te donne les meilleurs conseils pour les résoudre !";
   imgFeatherPath = environment.serverConfig.imgPath+"fond_plume.png";
 
   constructor(private titleService:Title, private metaService:Meta) { }
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Sommeil Profond - Accueil");
+    this.titleService.setTitle("Sommeil Profond - Site spécialisé dans les problèmes de sommeil");
   }
 
   handleMeta() {
