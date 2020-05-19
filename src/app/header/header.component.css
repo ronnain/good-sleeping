@@ -39,3 +39,7 @@ a{
 nav{
     font-family: 'Roboto Mono', monospace;
 }
+
+.smallMenu, .smallMenu button {
+    outline: none;
+}

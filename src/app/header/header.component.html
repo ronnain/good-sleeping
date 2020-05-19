@@ -7,10 +7,10 @@
   </a>
 
   <!-- Display only on small size -->
-  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isBrowser && !bigScreen">
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isBrowser && !bigScreen" class="smallMenu">
     <span class="material-icons">menu</span>
   </button>
-  <mat-menu #menu="matMenu" xPosition="before">
+  <mat-menu #menu="matMenu" xPosition="before" class="smallMenu">
     <a routerLink="" class="nav-link">Accueil</a>
     <a routerLink="articles" class="nav-link">Articles</a>
     <a routerLink="bonus" class="nav-link">Bonus</a>
