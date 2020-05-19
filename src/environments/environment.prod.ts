@@ -6,7 +6,7 @@ export const environment = {
     imgPath: "https://sommeilprofond.fr/sleeping-bs/img/"
   },
   serverRenderingPath : {
-    localIndex : "dist/sleeping/browser/",
-    browserFiles : "./browser/"
+    localIndex : "../browser/index.html",
+    browserFiles : "/home/gero8821/dist/sleeping/browser/"
   }
 };

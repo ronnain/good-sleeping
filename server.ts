@@ -10,16 +10,11 @@ import { existsSync } from 'fs';
 
 import { environment } from 'src/environments/environment';
 
-console.log("init path",  process.cwd());
 // ssr DOM
 const domino = require('domino');
 const fs = require('fs');
-const path = require('path');
 // index from browser build!
-console.log("search index path ",  process.cwd());
-//const template = fs.readFileSync(path.join(environment.serverRenderingPath.localIndex, 'index.html')).toString();
-const template = fs.readFileSync('../browser/index.html').toString();
-console.log("index path find");
+const template = fs.readFileSync(environment.serverRenderingPath.localIndex).toString();
 // for mock global window by domino
 const win = domino.createWindow(template);
 // mock
@@ -45,13 +40,10 @@ global['Prism'] = null;
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
   const server = express();
-  console.log("app current path", process.cwd());
 
   //const distFolder = join(process.cwd(), environment.serverRenderingPath.browserFiles);
-  const distFolder = "/home/gero8821/dist/sleeping/browser/";
-  console.log("distFolder", distFolder);
+  const distFolder = environment.serverRenderingPath.browserFiles;
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-  console.log("indexHtml",indexHtml);
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
@@ -67,7 +59,6 @@ export function app() {
 /*   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   })); */
-  console.log("All regular routes");
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
@@ -78,7 +69,6 @@ export function app() {
 
 function run() {
   const port = "passenger" || 4000;
-  console.log("run current path:",process.cwd());
   // Start up the Node server
   const server = app();
   server.listen(port, () => {
@@ -86,19 +76,14 @@ function run() {
   });
 }
 
-console.log("Before run");
-
 // Webpack will replace 'require' with '__webpack_require__'
 // '__non_webpack_require__' is a proxy to Node 'require'
 // The below code is to ensure that the server is run only when not requiring the bundle.
 declare const __non_webpack_require__: NodeRequire;
 const mainModule = __non_webpack_require__.main;
 const moduleFilename = mainModule && mainModule.filename || '';
-console.log("moduleFilename", moduleFilename);
-console.log("moduleFilename", __filename);
 
 if (moduleFilename === __filename || moduleFilename.includes('node')) {
-  console.log("run start",  process.cwd());
   run();
 }
 

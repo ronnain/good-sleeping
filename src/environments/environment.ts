@@ -10,7 +10,7 @@ export const environment = {
     imgPath: "http://localhost:80/sleeping-bs/img/"
   },
   serverRenderingPath : {
-    localIndex : "../browser/",
+    localIndex : "../browser/index.html",
     browserFiles : "../browser/"
   }
 };

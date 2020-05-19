@@ -1,0 +1,9 @@
+How to deploy:
+
+run npm run build:ssr
+
+copier le répertorie dist pour remplacer le répertorie dist du server à la racine.
+
+Puis copier tout le contenu du dossier browser sauf index.html dans public_html
+
+relancer l'application node?
