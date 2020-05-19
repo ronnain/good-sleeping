@@ -1,5 +1,4 @@
  <nav class="navbar navbar-expand-sm navbar-white justify-content-center bg-white">
-
   <a class="navbar-brand" routerLink="">
     Sommeil <span class="blueColor">Profond</span>
   </a>
@@ -8,7 +7,7 @@
   </a>
 
   <!-- Display only on small size -->
-  <button mat-button [matMenuTriggerFor]="menu" *ngIf="!bigScreen">
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isBrowser && !bigScreen">
     <span class="material-icons">menu</span>
   </button>
   <mat-menu #menu="matMenu" xPosition="before">
@@ -19,7 +18,7 @@
     <a routerLink="contact" class="nav-link">Contact</a>
   </mat-menu>
 
-  <div id="bigScreenMenu" *ngIf="bigScreen">
+  <div id="bigScreenMenu" *ngIf="bigScreen || !isBrowser">
     <ul class="nav">
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="articles" class="nav-link">Articles</a>

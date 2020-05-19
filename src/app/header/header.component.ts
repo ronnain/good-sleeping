@@ -1,4 +1,5 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -6,14 +7,19 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isBrowser: boolean;
 
-  bigScreen;
+  bigScreen: boolean;
   bigScreenLimit = 768;
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+   }
 
   ngOnInit() {
-    this.bigScreen = screen.width >= this.bigScreenLimit;
+    if(this.isBrowser){
+      this.bigScreen = screen.width >= this.bigScreenLimit;
+    }
   }
 
   @HostListener('window:resize', ['$event'])

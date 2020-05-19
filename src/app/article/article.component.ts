@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from '../services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
 import { Title, Meta } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-article',
@@ -11,7 +12,7 @@ import { Title, Meta } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None
 })
 export class ArticleComponent implements OnInit, Page {
-
+  isBrowser: boolean;
   article: Article;
 
   articleName: string;
@@ -20,7 +21,9 @@ export class ArticleComponent implements OnInit, Page {
   failSave: boolean;
   loading: boolean;
 
-  constructor(private _Activatedroute:ActivatedRoute, private articlesService: ArticlesService, private titleService:Title, private metaService:Meta) { }
+  constructor(@Inject(PLATFORM_ID) platformId: Object, private _Activatedroute:ActivatedRoute, private articlesService: ArticlesService, private titleService:Title, private metaService:Meta) {
+    this.isBrowser = isPlatformBrowser(platformId);
+   }
 
   ngOnInit() {
     this.loadArticle();
@@ -59,7 +62,9 @@ export class ArticleComponent implements OnInit, Page {
   }
 
   scrollToTop() {
-    window.scrollTo(0, 0);
+    if(this.isBrowser) {
+      window.scrollTo(0, 0);
+    }
   }
 
   setTitle() {
@@ -130,6 +135,6 @@ export class ArticleComponent implements OnInit, Page {
     scriptStructuredData.innerHTML = structuredData;
 
     const head = document.getElementsByTagName('head')[0];
-    head.append(scriptStructuredData);
+    head.appendChild(scriptStructuredData);
   }
 }

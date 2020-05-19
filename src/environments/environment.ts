@@ -8,6 +8,10 @@ export const environment = {
     serverURL : "http://localhost:80/sleeping-bs/handleRequest.php",
     articlesPath: "http://localhost:80/sleeping-bs/articles/",
     imgPath: "http://localhost:80/sleeping-bs/img/"
+  },
+  serverRenderingPath : {
+    localIndex : "../browser/",
+    browserFiles : "../browser/"
   }
 };
 /*

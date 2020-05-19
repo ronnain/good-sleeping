@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { MailService } from '../services/mail.service';
 import { NgForm } from '@angular/forms';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-retrieve-mail',
@@ -8,12 +9,16 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./retrieve-mail.component.css']
 })
 export class RetrieveMailComponent implements OnInit {
-  firstName:string;
+  isBrowser: boolean;
+
+  email: string;
   agreement: boolean = false;
   showValidation: boolean = false;
   failSave: boolean = false;
   loading: boolean = false;
-  constructor(private mailService: MailService) {}
+  constructor(@Inject(PLATFORM_ID) platformId: Object, private mailService: MailService) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit() {
   }
@@ -22,7 +27,8 @@ export class RetrieveMailComponent implements OnInit {
     this.showValidation = false;
     this.failSave = false;
     this.loading = true;
-    this.mailService.createContact(this.firstName, form.value).subscribe(
+
+    this.mailService.createContact(form.value.firstName, form.value.email).subscribe(
       data => {
         if(data.success === true) {
           this.showValidation = true;

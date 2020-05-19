@@ -4,5 +4,9 @@ export const environment = {
     serverURL : "https://sommeilprofond.fr/sleeping-bs/handleRequest.php",
     articlesPath: "https://sommeilprofond.fr/sleeping-bs/articles/",
     imgPath: "https://sommeilprofond.fr/sleeping-bs/img/"
+  },
+  serverRenderingPath : {
+    localIndex : "dist/sleeping/browser/",
+    browserFiles : "./browser/"
   }
 };
