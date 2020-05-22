@@ -14,9 +14,11 @@ export class ArticleTagComponent implements OnInit {
   article: string;
   imgPath = environment.serverConfig.imgPath;
 
-  articlePath: string;
+  articleName: string;
   articleTitle: string;
   linkImgCreator:string;
+
+  listImg : any[];
 
   constructor() { }
 
@@ -51,8 +53,9 @@ export class ArticleTagComponent implements OnInit {
       </picture>
       <div class="creditImgDiv"><a class="creditImg" href="https://photostockeditor.com/" target="_blank" rel="nofollow">Lien Créateur Image</a></div>
  */
-    const imgSrc = this.imgPath+this.articlePath+'/article/';
+    const imgSrc = this.imgPath+this.articleName+'/article/';
     const picture = document.createElement("PICTURE");
+    // the xs size is added in the img balise and no s size for article image
     const imgSizes = {
       "xl" : "1200",
       "l" : "992",
@@ -97,5 +100,19 @@ export class ArticleTagComponent implements OnInit {
     articleInput.select();
     document.execCommand('copy');
     articleInput.setSelectionRange(0, 0);
+  }
+
+  addImg(){
+    if(!this.listImg) {
+      this.listImg = [];
+    }
+    this.listImg.push({});
+  }
+
+  delImg(index: number) {
+    if(!this.listImg) {
+      return;
+    }
+   this.listImg.splice(index, 1);
   }
 }
