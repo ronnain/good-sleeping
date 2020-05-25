@@ -21,11 +21,11 @@ import { FooterComponent } from './footer/footer.component';
 import { LegalNoticesComponent } from './legal-notices/legal-notices.component';
 import { ContactComponent } from './contact/contact.component';
 import { MeComponent } from './me/me.component';
-import { ArticleTagComponent } from './admin/article-tag/article-tag.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MailHandlerComponent } from './admin/mail-handler/mail-handler.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { AdminComponent } from './admin/admin.component';
+import { AddArticleComponent } from './admin/add-article/add-article.component';
 
 
 const appRoutes: Routes = [
@@ -36,9 +36,8 @@ const appRoutes: Routes = [
   {path: 'desabonnement/:key', component: UnsubcribeComponent},
   {path: 'mentions', component: LegalNoticesComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'admin', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'admin/newArticle', canActivate: [AuthGuard], component: ArticleTagComponent},
+  {path: 'admin', component: LoginComponent},
+  {path: 'admin/newArticle', canActivate: [AuthGuard], component: AddArticleComponent},
   {path: 'admin/mail', canActivate: [AuthGuard], component: MailHandlerComponent},
   {path: '',  component: HomeComponent },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},
@@ -61,9 +60,9 @@ const appRoutes: Routes = [
     LegalNoticesComponent,
     ContactComponent,
     MeComponent,
-    ArticleTagComponent,
     MailHandlerComponent,
-    AdminComponent
+    AdminComponent,
+    AddArticleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

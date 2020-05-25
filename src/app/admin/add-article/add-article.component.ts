@@ -1,46 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { AuthService } from 'src/app/services/auth.service';
-
+import { Article, MyArticle } from 'src/app/modeles/interfaces.type';
+import { ArticlesService } from 'src/app/services/articles.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-article-tag',
-  templateUrl: './article-tag.component.html',
-  styleUrls: ['./article-tag.component.css']
+  selector: 'app-add-article',
+  templateUrl: './add-article.component.html',
+  styleUrls: ['./add-article.component.css']
 })
-export class ArticleTagComponent implements OnInit {
+export class AddArticleComponent implements OnInit {
 
-  article: string;
+  article: MyArticle = new MyArticle(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+  articleText: string;
   imgPath = environment.serverConfig.imgPath;
-
-  articleName: string;
-  articleTitle: string;
-  linkImgCreator:string;
-
   listImg : any[];
   imgDetected: number = 0;
   picturesAdded: number = 0;
+  showValidation: boolean = false;
+  failSave: boolean = false;
+  loading: boolean = false;
 
-  constructor() { }
+  constructor(private articlesService: ArticlesService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  /**
+   * Clean all the style and tag added by the google doc.
+   * Then, replace the img tag by picture tag.
+   */
   handleTag() {
-    this.article = this.article.replace(/<head>.*<\/head>/g, '');
-    this.article = this.article.replace(/id="[a-zA-Z0-9_= .]*"/g, '');
-    this.article = this.article.replace(/class="[a-zA-Z0-9_= .]*"/g, '');
-    this.article = this.article.replace(/style="[a-zA-Z0-9_= .:;()\-#]*"/g, '');
-    this.article = this.article.replace(/<span\s*>/gi, '');
-    this.article = this.article.replace(/<\/span>/gi, '');
-    this.article = this.article.replace(/\s+>/gi, '>');
-    this.article = this.article.replace(/<p><\/p>/gi, '');
-    this.article = this.article.replace(/<(html|\/html|body|\/body)>/g, '');
-    this.article = this.article.replace(/\s*href="https:\/\/www\.google\.com\/url\?q=/g, ' href="');
-    this.article = this.article.replace(/&[a-zA-Z0-9_= .:;()\-#&]*"/g, '"');
+    this.articleText = this.articleText.replace(/<head>.*<\/head>/g, '');
+    this.articleText = this.articleText.replace(/id="[a-zA-Z0-9_= .]*"/g, '');
+    this.articleText = this.articleText.replace(/class="[a-zA-Z0-9_= .]*"/g, '');
+    this.articleText = this.articleText.replace(/style="[a-zA-Z0-9_= .:;()\-#]*"/g, '');
+    this.articleText = this.articleText.replace(/<span\s*>/gi, '');
+    this.articleText = this.articleText.replace(/<\/span>/gi, '');
+    this.articleText = this.articleText.replace(/\s+>/gi, '>');
+    this.articleText = this.articleText.replace(/<p><\/p>/gi, '');
+    this.articleText = this.articleText.replace(/<(html|\/html|body|\/body)>/g, '');
+    this.articleText = this.articleText.replace(/\s*href="https:\/\/www\.google\.com\/url\?q=/g, ' href="');
+    this.articleText = this.articleText.replace(/&[a-zA-Z0-9_= .:;()\-#&]*"/g, '"');
     //Clean img tag
-    this.article = this.article.replace(/<p><img\s*(alt="[a-zA-Z0-9_= .]*"|src="[a-zA-Z0-9_= ./]*"|title="[a-zA-Z0-9_= .]*"|\s*)*><\/p>/g, '<img/>');
+    this.articleText = this.articleText.replace(/<p><img\s*(alt="[a-zA-Z0-9_= .]*"|src="[a-zA-Z0-9_= ./]*"|title="[a-zA-Z0-9_= .]*"|\s*)*><\/p>/g, '<img/>');
     this.countImg();
     this.picturesAdded = 0;
     if(this.listImg && this.listImg.length){
@@ -98,7 +101,7 @@ export class ArticleTagComponent implements OnInit {
         divLink.appendChild(aLink);
         picture.append(divLink);
       }
-      this.article = this.article.replace(/<img\/>/i, picture.outerHTML);
+      this.articleText = this.articleText.replace(/<img\/>/i, picture.outerHTML);
     }
   }
 
@@ -126,7 +129,7 @@ export class ArticleTagComponent implements OnInit {
   }
 
   isDesabled() {
-    if(!this.article) {
+    if(!this.articleText) {
       return true;
     }
     if(this.listImg) {
@@ -141,6 +144,40 @@ export class ArticleTagComponent implements OnInit {
 
   countImg(){
     this.imgDetected = 0;
-    this.imgDetected = (this.article.match(/<img\/>/g) || []).length;
+    this.imgDetected = (this.articleText.match(/<img\/>/g) || []).length;
+  }
+
+  copyDescToMetaDeasc() {
+    this.article.metaDesc = this.article.description;
+  }
+
+  sendAuthorized(){
+    if(this.article && this.article.title && this.article.img && this.article.imgTitle && this.article.articleName
+      && this.article.description && this.article.metaDesc && this.articleText){
+        return true;
+    }
+    return false;
+  }
+
+  sendNewArticle(){
+    this.showValidation = false;
+    this.failSave = false;
+    this.loading = true;
+    this.articlesService.addNewArticle(this.article, this.articleText).subscribe(
+      data => {
+        if(data === "Token expiry") {
+          this.router.navigate(['/login']);
+        }
+        if(data.success === true) {
+          this.showValidation = true;
+        } else {
+          this.failSave = true;
+        }
+        this.loading = false;
+      },
+      err => {
+        this.loading = false;
+        this.failSave = true;
+      });
   }
 }

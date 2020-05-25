@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,10 @@ export class ArticlesService {
       'Content-Type':  'application/json'
     })
   };
+  pseudo: any;
+  token: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
 
   getArticleContent(articleName: string) {
@@ -45,6 +48,26 @@ export class ArticlesService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  addNewArticle(article: Article, articleText: string) {
+    this.getIndentifiants();
+    const body = {
+      article,
+      articleText,
+      "pseudo": this.pseudo,
+      "token": this.token
+    };
+    const url = environment.serverConfig.serverURL + '?method=addNewArticle';
+    return this.http.post<any>(url, body, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getIndentifiants () {
+    this.pseudo = this.authService.getPseudo();
+    this.token = this.authService.getToken();
   }
 
   private handleError(error: HttpErrorResponse) {

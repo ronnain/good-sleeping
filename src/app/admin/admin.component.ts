@@ -8,9 +8,12 @@ import { AuthService } from '../services/auth.service';
 })
 export class AdminComponent implements OnInit {
 
+  isAuth: boolean =false;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isAuth = this.authService.isAuth();
   }
 
   logout() {
