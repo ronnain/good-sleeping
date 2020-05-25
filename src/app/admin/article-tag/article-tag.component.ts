@@ -19,6 +19,8 @@ export class ArticleTagComponent implements OnInit {
   linkImgCreator:string;
 
   listImg : any[];
+  imgDetected: number = 0;
+  picturesAdded: number = 0;
 
   constructor() { }
 
@@ -39,8 +41,12 @@ export class ArticleTagComponent implements OnInit {
     this.article = this.article.replace(/&[a-zA-Z0-9_= .:;()\-#&]*"/g, '"');
     //Clean img tag
     this.article = this.article.replace(/<p><img\s*(alt="[a-zA-Z0-9_= .]*"|src="[a-zA-Z0-9_= ./]*"|title="[a-zA-Z0-9_= .]*"|\s*)*><\/p>/g, '<img/>');
-
-    this.addPictureTag();
+    this.countImg();
+    this.picturesAdded = 0;
+    if(this.listImg && this.listImg.length){
+      this.picturesAdded = this.listImg.length;
+      this.addPictureTag();
+    }
   }
 
   addPictureTag() {
@@ -53,44 +59,47 @@ export class ArticleTagComponent implements OnInit {
       </picture>
       <div class="creditImgDiv"><a class="creditImg" href="https://photostockeditor.com/" target="_blank" rel="nofollow">Lien Créateur Image</a></div>
  */
-    const imgSrc = this.imgPath+this.articleName+'/article/';
-    const picture = document.createElement("PICTURE");
-    // the xs size is added in the img balise and no s size for article image
-    const imgSizes = {
-      "xl" : "1200",
-      "l" : "992",
-      "xm" : "768",
-      "m" : "576"
-    };
+    for (let img of this.listImg){
+      const imgSrc = this.imgPath+ img.articleName +'/article/';
+      const picture = document.createElement("PICTURE");
+      // the xs size is added in the img balise and no s size for article image
+      const imgSizes = {
+        "xl" : "1200",
+        "l" : "992",
+        "xm" : "768",
+        "m" : "576"
+      };
 
-    for(let size in imgSizes) {
-      const source = document.createElement("source");
-      source.setAttribute("media", "(min-width: "+imgSizes[size]+"px)");
-      source.setAttribute("srcset", imgSrc+size+'.jpg');
-      picture.appendChild(source);
+      for(let size in imgSizes) {
+        const source = document.createElement("source");
+        source.setAttribute("media", "(min-width: "+imgSizes[size]+"px)");
+        source.setAttribute("srcset", imgSrc+size+'.jpg');
+        picture.appendChild(source);
+      }
+
+      const imgElem = document.createElement("img");
+      imgElem.setAttribute("src", imgSrc + 'xs.jpg');
+      imgElem.setAttribute("alt", img.articleTitle);
+      imgElem.setAttribute("title", img.articleTitle);
+      imgElem.setAttribute("class", "noMarginBottom fullWidth");
+      picture.appendChild(imgElem);
+
+      // add the link to the img creator
+      if(img.linkImgCreator) {
+        const aLink = document.createElement("a");
+        aLink.setAttribute("class", "creditImg");
+        aLink.setAttribute("href", img.linkImgCreator);
+        aLink.setAttribute("target", "_blank");
+        aLink.setAttribute("rel", "nofollow");
+        aLink.innerHTML = "Lien Créateur Image";
+
+        const divLink = document.createElement("div");
+        divLink.setAttribute("class", "creditImgDiv");
+        divLink.appendChild(aLink);
+        picture.append(divLink);
+      }
+      this.article = this.article.replace(/<img\/>/i, picture.outerHTML);
     }
-
-    const img = document.createElement("img");
-    img.setAttribute("src", imgSrc+'xs.jpg');
-    img.setAttribute("alt", this.articleTitle);
-    img.setAttribute("title", this.articleTitle);
-    img.setAttribute("class", "noMarginBottom fullWidth");
-    picture.appendChild(img);
-
-    // Link to the img creator
-    const aLink = document.createElement("a");
-    aLink.setAttribute("class", "creditImg");
-    aLink.setAttribute("href", this.linkImgCreator);
-    aLink.setAttribute("target", "_blank");
-    aLink.setAttribute("rel", "nofollow");
-    aLink.innerHTML = "Lien Créateur Image";
-
-    const divLink = document.createElement("div");
-    divLink.setAttribute("class", "creditImgDiv");
-    divLink.appendChild(aLink);
-
-    const splitArticle = this.article.split('<img/>');
-    this.article = splitArticle[0]+ picture.outerHTML + divLink.outerHTML + splitArticle[1];
   }
 
   copyToClipBoard() {
@@ -114,5 +123,24 @@ export class ArticleTagComponent implements OnInit {
       return;
     }
    this.listImg.splice(index, 1);
+  }
+
+  isDesabled() {
+    if(!this.article) {
+      return true;
+    }
+    if(this.listImg) {
+      for(let img of this.listImg){
+        if(!img.articleName ||  !img.articleTitle) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  countImg(){
+    this.imgDetected = 0;
+    this.imgDetected = (this.article.match(/<img\/>/g) || []).length;
   }
 }
