@@ -1,0 +1,29 @@
+.textareaArticleInput {
+    height: 20rem;
+}
+
+.textareaInput {
+    height: 4rem;
+}
+
+.articleInput {
+    display: block;
+}
+
+.btnSpace button{
+    margin: 0 0.5rem;
+}
+
+.inputText {
+    width: 50%;
+}
+
+.imgBlock {
+    border: solid 1px rgba(0,0,0,0.19);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+#sendOnlineBTN{
+    width: 100%;
+}

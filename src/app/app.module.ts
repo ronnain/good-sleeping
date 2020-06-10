@@ -26,6 +26,8 @@ import { MailHandlerComponent } from './admin/mail-handler/mail-handler.componen
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { AdminComponent } from './admin/admin.component';
 import { AddArticleComponent } from './admin/add-article/add-article.component';
+import { DriveOverviewComponent } from './admin/drive-overview/drive-overview.component';
+import { DriveArticleComponent } from './admin/drive-article/drive-article.component';
 
 
 const appRoutes: Routes = [
@@ -38,6 +40,8 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'admin', component: LoginComponent},
   {path: 'admin/newArticle', canActivate: [AuthGuard], component: AddArticleComponent},
+  {path: 'admin/driveOverview', canActivate: [AuthGuard], component: DriveOverviewComponent},
+  {path: 'admin/driveOverview/:articleName', canActivate: [AuthGuard], component: DriveArticleComponent},
   {path: 'admin/mail', canActivate: [AuthGuard], component: MailHandlerComponent},
   {path: '',  component: HomeComponent },
   {path: '**', redirectTo: 'articles', pathMatch: 'full'},
@@ -62,7 +66,9 @@ const appRoutes: Routes = [
     MeComponent,
     MailHandlerComponent,
     AdminComponent,
-    AddArticleComponent
+    AddArticleComponent,
+    DriveOverviewComponent,
+    DriveArticleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

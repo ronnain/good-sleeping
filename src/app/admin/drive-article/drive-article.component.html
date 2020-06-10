@@ -2,7 +2,7 @@
 <div class="container article">
     <div class="row">
         <div class="col-12 ">
-            <h1>Ajouter un article en ligne</h1>
+            <h1>Ajouter/Mettre à jour un article en ligne</h1>
             <div class="alert alert-info" role="alert">
                 <p>Cet outils ne permet pas de mettre en ligne les images.</p>
                 <p>Il faut directement les ajouter sur le serveur.</p>
@@ -21,10 +21,6 @@
                 <mat-label>Titre de l'image</mat-label>
                 <input matInput placeholder="Ex. Nuage blanc" name="imgTitle" [(ngModel)]="article.imgTitle" required>
             </mat-form-field><br/>
-            <mat-form-field class="inputText">
-                <mat-label>Nom de l'article dans l'URL</mat-label>
-                <input matInput placeholder="Ex. 4-choses-a-savoir-sommeil-leger" name="articleURLName" [(ngModel)]="article.articleName" required>
-            </mat-form-field>
             <mat-form-field class="articleInput">
                 <mat-label>Description</mat-label>
                 <textarea matInput [(ngModel)]="article.description" name="articleDesc" placeholder="Ex. Article sur les problèmes de sommeil." class="textareaInput" required></textarea>
@@ -36,24 +32,22 @@
             <div class="btnSpace">
                 <button mat-button class="btnSubmit" color="primary" [disabled]="!article.description" (click)="copyDescToMetaDeasc()">Copier Description to Meta-Description</button>
             </div>
+            <mat-form-field *ngIf="articleCreation">
+                <mat-label>Date de publication</mat-label>
+                <input matInput type="datetime-local" [(ngModel)]="article.datePublished" placeholder="Choisir date de publication">
+            </mat-form-field>
 
-            <h2>Formater HTML Google Doc</h2>
             <div class="alert alert-info" role="alert">
+                <p>{{nbImg}} image(s) détectée(s) dans l'article</p>
                 <p>Sur le Google Doc:</p>
                 <ul>
                     <li><p>Ajouter les images depuis l'ordinateur.</p></li>
                     <li><p>Ajouter les liens vers les URL.</p></li>
                 </ul>
             </div>
-            <h2>A faire ici :</h2>
-            <ul>
-                <li><p>Images :<strong>Modifier les sources, title et alt</strong> & vérifier les liens de redirection (nofollow)</p></li>
-                <li><p>Liens à ne pas suivre, ajouter : target="_blank" rel="nofollow"</p></li>
-            </ul>
-
-            <div *ngFor="let img of listImg; let index = index;" class="imgBlock">
+            <div *ngFor="let img of articleConfig.img; let index = index;" class="imgBlock">
                 <mat-form-field class="inputText">
-                    <input matInput placeholder="Nom du dossier de l'image. Exemple: sommeil-reparateur" name="articleName" [(ngModel)]="img.articleName" required>
+                    <input matInput placeholder="Nom du dossier de l'image. Exemple: sommeil-reparateur" name="articleName" [(ngModel)]="img.imgPath" required>
                 </mat-form-field><br/>
                 <mat-form-field class="inputText">
                     <input matInput placeholder="Titre de l'image" name="articleTitle" [(ngModel)]="img.articleTitle" required>
@@ -64,27 +58,14 @@
                 <button mat-raised-button color="warn" (click)="delImg(index)">- IMG</button>
             </div>
             <div class="verticalSpace">
-                <button mat-raised-button color="primary" (click)="addImg()">+ IMG</button>
-                {{listImg && listImg.length ? "Nb img :"+ listImg.length : ""}}
-            </div>
-
-            <mat-form-field class="articleInput">
-                <mat-label>Article - Coller l'article à traiter</mat-label>
-                <textarea matInput [(ngModel)]="articleText" placeholder="Ex. Coller article avec le balisage HTML" class="textareaArticleInput" id="articleInput"></textarea>
-            </mat-form-field>
-            <div class="btnSpace">
-                <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="isDesabled()" (click)="handleTag()">Valider</button>
-                <button mat-raised-button class="btnSubmit" color="primary" [disabled]="isDesabled()" (click)="copyToClipBoard()">Copier</button>
-            </div>
-            <div class="alert alert-warning verticalSpace" role="alert" *ngIf="imgDetected !== picturesAdded">
-                Nombre d'images détectées : {{imgDetected}} / Nombre de pictures ajoutée : {{picturesAdded}}
+                <button mat-raised-button color="primary" *ngIf="nbImg && articleConfig.img.length < nbImg" (click)="addImg()">+ IMG</button>
             </div>
             <div class="verticalSpace">
-                <button mat-raised-button class="btnSubmit" color="primary" id="sendOnlineBTN" [disabled]="!sendAuthorized()" (click)="sendNewArticle()">Mettre en ligne</button>
+                <button mat-raised-button class="btnSubmit" color="primary" id="sendOnlineBTN" [disabled]="!sendAuthorized()" (click)="sendArticle()">Mettre en ligne</button>
             </div>
             <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
             <div *ngIf="showValidation" class="alert alert-success" role="alert">
-                <p>L'article à bien été mis en ligne.</p>
+                <p>Mise en ligne.</p>
             </div>
             <div *ngIf="failSave" class="alert alert-danger" role="alert">
                 <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>

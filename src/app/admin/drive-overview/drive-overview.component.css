@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+}
+
+.oldArticle td{
+    color: orange;
+    font-weight: bold;
+}
+
+.noArticle td{
+    color: red;
+    font-weight: bold;
+}

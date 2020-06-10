@@ -166,7 +166,7 @@ export class AddArticleComponent implements OnInit {
     this.articlesService.addNewArticle(this.article, this.articleText).subscribe(
       data => {
         if(data === "Token expiry") {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/admin']);
         }
         if(data.success === true) {
           this.showValidation = true;

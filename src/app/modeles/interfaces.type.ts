@@ -41,6 +41,18 @@ export class MyArticle implements Article{
     }
 }
 
+export interface ArticleConfig{
+    id: number,
+    idArticle: number,
+    img: imgConfig[];
+}
+
+export interface imgConfig{
+    imgPath: string,
+    title: string,
+    linkCreator: string
+}
+
 export interface Comment{
     id?: number,
     firstName: string,

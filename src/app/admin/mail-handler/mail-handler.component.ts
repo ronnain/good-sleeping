@@ -33,7 +33,7 @@ export class MailHandlerComponent implements OnInit {
       data => {
         if(data.success === true) {
           if(data === "Token expiry") {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/admin']);
           }
           this.showValidation = true;
         } else {
@@ -54,7 +54,7 @@ export class MailHandlerComponent implements OnInit {
     this.mailService.getAllContacts().subscribe(
       data => {
         if(data === "Token expiry") {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/admin']);
         }
         this.allMails = data;
         this.getMailsFromContacts(data);
