@@ -17,3 +17,9 @@
 .topSpace {
     margin-top: 5rem;
 }
+
+.linkText li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
