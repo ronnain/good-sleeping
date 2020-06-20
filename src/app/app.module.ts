@@ -28,6 +28,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AddArticleComponent } from './admin/add-article/add-article.component';
 import { DriveOverviewComponent } from './admin/drive-overview/drive-overview.component';
 import { DriveArticleComponent } from './admin/drive-article/drive-article.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 const appRoutes: Routes = [
@@ -78,7 +80,8 @@ const appRoutes: Routes = [
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    LayoutModule
+    LayoutModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
