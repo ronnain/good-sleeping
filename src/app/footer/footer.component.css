@@ -23,3 +23,9 @@
     padding-bottom: 5px;
     cursor: pointer;
 }
+
+.smallTitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
