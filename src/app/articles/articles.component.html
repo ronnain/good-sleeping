@@ -16,7 +16,7 @@
                     </div>
                     <div class="card no-border col-sm-8">
                         <div class="card-body">
-                            <h5 class="card-title">{{article.title}}</h5>
+                            <p class="card-title articles-title">{{article.title}}</p>
                             <p class="card-text" *ngIf="!hideDescription">{{article.description}}</p>
                             <footer class="blockquote-footer">Le {{article.date | date: 'dd/MM/yyyy'}} par <cite>Romain</cite></footer>
                         </div>
