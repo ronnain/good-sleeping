@@ -10,7 +10,7 @@
             </div>
             <h2>Informations nouvel article</h2>
             <mat-form-field class="inputText">
-                <mat-label>Titre</mat-label>
+                <mat-label>Titre / Entre 40 et 70 caract : {{article.title ? article.title  .length : ''}}</mat-label>
                 <input matInput placeholder="Ex. Comment avoir un sommeil réparateur ?" name="title" [(ngModel)]="article.title" required>
             </mat-form-field><br/>
             <mat-form-field class="inputText">
@@ -26,7 +26,7 @@
                 <textarea matInput [(ngModel)]="article.description" name="articleDesc" placeholder="Ex. Article sur les problèmes de sommeil." class="textareaInput" required></textarea>
             </mat-form-field>
             <mat-form-field class="articleInput">
-                <mat-label>Meta-Description</mat-label>
+                <mat-label>Meta-Description / Entre 70 et 160 caract : {{article.metaDesc ? article.metaDesc.length : ''}}</mat-label>
                 <textarea matInput [(ngModel)]="article.metaDesc" name="articleMetaDesc" placeholder="Ex. Article sur les problèmes de sommeil." class="textareaInput" required></textarea>
             </mat-form-field>
             <div class="btnSpace">
