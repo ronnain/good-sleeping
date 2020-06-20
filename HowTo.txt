@@ -1,6 +1,7 @@
 How to deploy:
 
-run npm run build:ssr
+run in cmd:
+npm run build:ssr
 
 copier le répertorie dist pour remplacer le répertorie dist du server à la racine.
 

@@ -10,7 +10,7 @@
             </div>
             <h2>Informations nouvel article</h2>
             <mat-form-field class="inputText">
-                <mat-label>Titre / Entre 40 et 70 caract : {{article.title ? article.title  .length : ''}}</mat-label>
+                <mat-label>Titre / Entre 40 et 70 caract : {{article.title ? article.title.length : ''}}</mat-label>
                 <input matInput placeholder="Ex. Comment avoir un sommeil réparateur ?" name="title" [(ngModel)]="article.title" required>
             </mat-form-field><br/>
             <mat-form-field class="inputText">
