@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LandingPageComponent implements OnInit, Page {
 
-  bonusTitle = "4 points fondamentaux à respecter pour mieux dormir";
+  bonusTitle = "Guide du Bon Dormeur : Programme pour retrouver un sommeil de qualité";
   metaDesc = 'Récupérer le bonus gratuit: ' + this.bonusTitle;
 
   constructor(private titleService:Title, private metaService:Meta) { }
