@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 const domino = require('domino');
 const fs = require('fs');
 // index from browser build!
-const template = fs.readFileSync(environment.serverRenderingConf.localIndex).toString();
+const template = fs.readFileSync(environment.serverRenderingPath.localIndex).toString();
 // for mock global window by domino
 const win = domino.createWindow(template);
 // mock
@@ -42,7 +42,7 @@ export function app() {
   const server = express();
 
   //const distFolder = join(process.cwd(), environment.serverRenderingPath.browserFiles);
-  const distFolder = environment.serverRenderingConf.browserFiles;
+  const distFolder = environment.serverRenderingPath.browserFiles;
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
@@ -68,7 +68,7 @@ export function app() {
 }
 
 function run() {
-  const port = environment.serverRenderingConf.port;
+  const port = "passenger" || 4000;
   console.log("port", port);
   // Start up the Node server
   const server = app();

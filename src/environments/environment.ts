@@ -9,9 +9,9 @@ export const environment = {
     articlesPath: "http://localhost:80/sleeping-bs/articles/",
     imgPath: "http://localhost:80/sleeping-bs/img/"
   },
-  serverRenderingConf : {
-    localIndex : "./dist/sleeping/browser/index.html",
-    browserFiles : "./dist/sleeping/browser/",
+  serverRenderingPath : {
+    localIndex : "../browser/index.html",
+    browserFiles : "../browser/",
     port : 4000
   }
 };

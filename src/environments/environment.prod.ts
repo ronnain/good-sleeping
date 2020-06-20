@@ -5,7 +5,7 @@ export const environment = {
     articlesPath: "https://sommeilprofond.fr/sleeping-bs/articles/",
     imgPath: "https://sommeilprofond.fr/sleeping-bs/img/"
   },
-  serverRenderingConf : {
+  serverRenderingPath : {
     localIndex : "../browser/index.html",
     browserFiles : "/home/gero8821/dist/sleeping/browser/",
     port : "passenger"
