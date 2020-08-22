@@ -20,7 +20,7 @@ export class ContactComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Contact - Sommeil Profond");
+    this.titleService.setTitle("Contact");
   }
 
   handleMeta() {

@@ -23,7 +23,7 @@ export class LandingPageComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Bonus - Sommeil Profond");
+    this.titleService.setTitle("Bonus - Guide du Bon Dormeur");
   }
 
   handleMeta() {

@@ -20,7 +20,7 @@ export class MeComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Qui suis-je? - Sommeil Profond");
+    this.titleService.setTitle("Qui suis-je?");
   }
 
   handleMeta() {

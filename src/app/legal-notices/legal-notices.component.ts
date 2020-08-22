@@ -20,7 +20,7 @@ export class LegalNoticesComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Mentions légals - Sommeil Profond");
+    this.titleService.setTitle("Mentions légals");
   }
 
   handleMeta() {

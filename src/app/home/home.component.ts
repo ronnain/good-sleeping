@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Sommeil Profond - Site spécialisé dans les problèmes de sommeil");
+    this.titleService.setTitle("Site spécialisé dans les problèmes de sommeil");
   }
 
   handleMeta() {

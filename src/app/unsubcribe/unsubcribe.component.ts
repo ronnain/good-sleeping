@@ -53,7 +53,7 @@ export class UnsubcribeComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Désabonnement - Sommeil Profond");
+    this.titleService.setTitle("Désabonnement");
   }
 
   handleMeta() {

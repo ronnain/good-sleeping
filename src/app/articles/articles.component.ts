@@ -84,7 +84,7 @@ export class ArticlesComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Articles - Sommeil Profond");
+    this.titleService.setTitle("Tous les articles spécialisés sur le sommeil");
   }
 
   handleMeta() {
