@@ -18,8 +18,13 @@ export class DriveArticleComponent implements OnInit {
   subActivatedroute: Subscription;
   subDriveService: Subscription;
 
+  defaultTitle: string;
+  defaultMetaDescription: string;
   showValidation: boolean = false;
+  imgListFail = [];
+
   failSave: boolean = false;
+  failMsg: string;
   loading: boolean = false;
 
   constructor(private _Activatedroute:ActivatedRoute, private driveService: DriveService, private router: Router) { }
@@ -37,19 +42,23 @@ export class DriveArticleComponent implements OnInit {
 
   getArticleInformation(){
     this.showValidation = false;
+    this.imgListFail = [];
     this.failSave = false;
     this.loading = true;
     this.subDriveService = this.driveService.getArticleData(this.articleName).subscribe(
       data => {
-        if(data === "Token expiry") {
+        if (data === "Token expiry") {
           this.router.navigate(['/admin']);
         }
-        if(data.article){
+        if (data.article) {
           this.article = data.article;
+          this.defaultTitle = this.article.title;
+          this.defaultMetaDescription = this.article.metaDesc;
         }
         this.article.articleName = this.articleName;
-        if(data.articleConfig){
+        if (data.articleConfig) {
           this.articleConfig = data.articleConfig;
+          this.imgListFail = data.articleConfig.img.filter(img=> !img.uploaded);
         }
         this.nbImg = data.nbImg;
         this.articleCreation = !this.article.title;
@@ -61,54 +70,64 @@ export class DriveArticleComponent implements OnInit {
       });
   }
 
-  copyDescToMetaDeasc() {
-    this.article.metaDesc = this.article.description;
-  }
-
-  addImg(){
-    if(!this.articleConfig.img) {
-      this.articleConfig.img = [];
-    }
-    this.articleConfig.img.push({imgPath: undefined, title: undefined, linkCreator: undefined});
-  }
-
-  delImg(index: number) {
-    if(!this.articleConfig.img) {
-      return;
-    }
-    !this.articleConfig.img.splice(index, 1);
-  }
-
-  sendAuthorized(){
-    if(this.article && this.article.title && this.article.img && this.article.imgTitle && this.articleName
-      && this.article.description && this.article.metaDesc
-      && this.articleConfig.img && this.articleConfig.img.length === this.nbImg){
-        return true;
-    }
-    return false;
-  }
-
   sendArticle(){
     this.showValidation = false;
+    this.imgListFail = [];
     this.failSave = false;
     this.loading = true;
-    this.driveService.updateArticle(this.article, this.articleConfig, this.articleCreation).subscribe(
+    const metaDesc = this.article.metaDesc != this.defaultMetaDescription ? this.article.metaDesc : null;
+    const title = this.article.title != this.defaultTitle ? this.article.title : null;
+
+    this.driveService.updateArticle(this.article, this.articleConfig, this.articleCreation, title, metaDesc).subscribe(
       data => {
-        if(data === "Token expiry") {
+        if (data === "Token expiry") {
           this.router.navigate(['/admin']);
         }
-        if(data.success === true) {
+        if (data === "fail to retrieve meta-description") {
+          this.failMsg = "fail to retrieve meta-description";
+        }
+        if (data.fileCreation === true) {
           this.showValidation = true;
         } else {
           this.failSave = true;
+        }
+        if (!data.allImgUploaded) {
+          this.imgListFail = data.imgList.filter(img=> !img.uploaded);
         }
         this.loading = false;
       },
       err => {
         this.loading = false;
         this.failSave = true;
+        this.failMsg = err;
       });
   }
+
+  retryUploadImg() {
+    this.showValidation = false;
+    this.imgListFail = [];
+    this.failSave = false;
+    this.loading = true;
+    this.driveService.retryUploadImg(this.articleName).subscribe(
+      data => {
+        if(data === "Token expiry") {
+          this.router.navigate(['/admin']);
+        }
+        if (data.imgList) {
+          this.imgListFail = data.imgList.filter(img=> !img.uploaded);
+        }
+        if (!this.imgListFail.length) {
+          this.showValidation;
+        }
+        this.loading = false;
+      },
+      err => {
+        this.loading = false;
+        this.failSave = true;
+        this.failMsg = err;
+      });
+  }
+
   ngOnDestroy() {
     this.subActivatedroute.unsubscribe();
   }

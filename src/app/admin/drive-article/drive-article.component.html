@@ -4,72 +4,52 @@
         <div class="col-12 ">
             <h1>Ajouter/Mettre à jour un article en ligne</h1>
             <div class="alert alert-info" role="alert">
-                <p>Cet outils ne permet pas de mettre en ligne les images.</p>
-                <p>Il faut directement les ajouter sur le serveur.</p>
-                <p><a href="https://docs.google.com/document/d/1MjXVge50LNW0aXJEvOZM9n4RsNnyIyVmZpVL3k9z0iE/edit?usp=sharing" target="_blank" rel="nofollow">Ce lien explique tous les formats d'image à ajouter.</a></p>
+                <p>Dans le Google Doc, ajouter le title et le alt sur chaque image.</p>
+                <p>Le titre et la meta-description sont optionnelles.</p>
+                <p>Si le titre n'est pas remplie, on récupère la balise h1.</p>
+                <p>Si la meta-description n'est pas remplie, on récupère la balise "## meta : ...##"</p>
             </div>
             <h2>Informations nouvel article</h2>
             <mat-form-field class="inputText">
                 <mat-label>Titre / Entre 40 et 70 caract : {{article.title ? article.title.length : ''}}</mat-label>
-                <input matInput placeholder="Ex. Comment avoir un sommeil réparateur ?" name="title" [(ngModel)]="article.title" required>
+                <input matInput placeholder="Ex. Comment avoir un sommeil réparateur ?" name="title" [(ngModel)]="article.title">
             </mat-form-field><br/>
-            <mat-form-field class="inputText">
-                <mat-label>Image / Page Articles</mat-label>
-                <input matInput placeholder="Ex. sommeil-reparateur" [(ngModel)]="article.img" name="image-name" required>
-            </mat-form-field><br/>
-            <mat-form-field class="inputText">
-                <mat-label>Titre de l'image</mat-label>
-                <input matInput placeholder="Ex. Nuage blanc" name="imgTitle" [(ngModel)]="article.imgTitle" required>
-            </mat-form-field><br/>
-            <mat-form-field class="articleInput">
-                <mat-label>Description</mat-label>
-                <textarea matInput [(ngModel)]="article.description" name="articleDesc" placeholder="Ex. Article sur les problèmes de sommeil." class="textareaInput" required></textarea>
-            </mat-form-field>
+
             <mat-form-field class="articleInput">
                 <mat-label>Meta-Description / Entre 70 et 160 caract : {{article.metaDesc ? article.metaDesc.length : ''}}</mat-label>
-                <textarea matInput [(ngModel)]="article.metaDesc" name="articleMetaDesc" placeholder="Ex. Article sur les problèmes de sommeil." class="textareaInput" required></textarea>
-            </mat-form-field>
-            <div class="btnSpace">
-                <button mat-button class="btnSubmit" color="primary" [disabled]="!article.description" (click)="copyDescToMetaDeasc()">Copier Description to Meta-Description</button>
-            </div>
-            <mat-form-field *ngIf="articleCreation">
-                <mat-label>Date de publication</mat-label>
-                <input matInput type="datetime-local" [(ngModel)]="article.datePublished" placeholder="Choisir date de publication">
+                <textarea matInput [(ngModel)]="article.metaDesc" name="articleMetaDesc" placeholder="Ex. Article sur les problèmes de sommeil." class="textareaInput"></textarea>
             </mat-form-field>
 
-            <div class="alert alert-info" role="alert">
-                <p>{{nbImg}} image(s) détectée(s) dans l'article</p>
-                <p>Sur le Google Doc:</p>
-                <ul>
-                    <li><p>Ajouter les images depuis l'ordinateur.</p></li>
-                    <li><p>Ajouter les liens vers les URL.</p></li>
-                </ul>
-            </div>
-            <div *ngFor="let img of articleConfig.img; let index = index;" class="imgBlock">
-                <mat-form-field class="inputText">
-                    <input matInput placeholder="Nom du dossier de l'image. Exemple: sommeil-reparateur" name="articleName" [(ngModel)]="img.imgPath" required>
-                </mat-form-field><br/>
-                <mat-form-field class="inputText">
-                    <input matInput placeholder="Titre de l'image" name="articleTitle" [(ngModel)]="img.articleTitle" required>
-                </mat-form-field><br/>
-                <mat-form-field class="inputText">
-                    <input matInput placeholder="Lien créateur image" name="linkImgCreator" [(ngModel)]="img.linkImgCreator">
-                </mat-form-field><br/>
-                <button mat-raised-button color="warn" (click)="delImg(index)">- IMG</button>
-            </div>
+            <!-- <mat-form-field *ngIf="articleCreation">
+                <mat-label>Date de publication</mat-label>
+                <input matInput type="datetime-local" [(ngModel)]="article.datePublished" placeholder="Choisir date de publication">
+            </mat-form-field> -->
+
+
             <div class="verticalSpace">
-                <button mat-raised-button color="primary" *ngIf="nbImg && articleConfig.img.length < nbImg" (click)="addImg()">+ IMG</button>
+                <button mat-raised-button class="btnSubmit sendOnlineBTN" color="primary" (click)="sendArticle()">Mettre en ligne</button>
             </div>
-            <div class="verticalSpace">
-                <button mat-raised-button class="btnSubmit" color="primary" id="sendOnlineBTN" [disabled]="!sendAuthorized()" (click)="sendArticle()">Mettre en ligne</button>
+            <div *ngIf="imgListFail.length" class="alert alert-danger" role="alert">
+                <p>Toutes les images n'ont pas été créées.</p>
+                <ng-container *ngFor="let img of imgListFail;">
+                    <p>L'image <strong>{{img.title}}</strong> n'a pas été créée.</p>
+                </ng-container>
+                <div class="verticalSpace">
+                    <button mat-raised-button class="btnSubmit sendOnlineBTN" color="primary" (click)="retryUploadImg()">Mettre les images en lignes</button>
+                </div>
             </div>
+
             <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
+
             <div *ngIf="showValidation" class="alert alert-success" role="alert">
-                <p>Mise en ligne.</p>
+                <p >Article créé et mis en ligne.</p>
+                <p ngIf="!imgListFail.length">Images mises en ligne.</p>
             </div>
             <div *ngIf="failSave" class="alert alert-danger" role="alert">
                 <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
+                <p>{{failMsg | json}}</p>
             </div>
+
         </div>
     </div>
 </div>

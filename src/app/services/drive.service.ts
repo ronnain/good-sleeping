@@ -22,18 +22,12 @@ export class DriveService {
 
   getAllFilesFromDrive() {
     this.getIndentifiants();
-    return this.http.get<any>(environment.serverConfig.serverURL + `?method=getAllFilesFromDrive&pseudo=${this.pseudo}&token=${this.token}`)
-    .pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<any>(environment.serverConfig.serverURL + `?method=getAllFilesFromDrive&pseudo=${this.pseudo}&token=${this.token}`);
   }
 
   getArticleData(articleName:string) {
     this.getIndentifiants();
-    return this.http.get<any>(environment.serverConfig.serverURL + `?method=getArticleDriveData&articleName=${articleName}&pseudo=${this.pseudo}&token=${this.token}`)
-    .pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<any>(environment.serverConfig.serverURL + `?method=getArticleDriveData&articleName=${articleName}&pseudo=${this.pseudo}&token=${this.token}`);
   }
 
   /**
@@ -42,7 +36,7 @@ export class DriveService {
    * @param articleConfig
    * @param articleCreation
    */
-  updateArticle(article, articleConfig, articleCreation) {
+  updateArticle(article, articleConfig, articleCreation, title, metaDesc) {
     this.getIndentifiants();
     const body = {
       article,
@@ -51,32 +45,23 @@ export class DriveService {
       "pseudo": this.pseudo,
       "token": this.token
     };
+    if (title) {
+      body['title'] = title;
+    }
+    if (metaDesc) {
+      body['metaDesc'] = metaDesc;
+    }
     const url = environment.serverConfig.serverURL + '?method=updateArticle';
-    return this.http.post<any>(url, body, this.httpOptions)
-    .pipe(
-      catchError(this.handleError)
-    );
+    return this.http.post<any>(url, body, this.httpOptions);
   }
 
+  retryUploadImg(articleName:string) {
+    this.getIndentifiants();
+    return this.http.get<any>(environment.serverConfig.serverURL + `?method=retryImgUpload&articleName=${articleName}&pseudo=${this.pseudo}&token=${this.token}`);
+  }
 
   getIndentifiants () {
     this.pseudo = this.authService.getPseudo();
     this.token = this.authService.getToken();
   }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
-  };
 }

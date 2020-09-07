@@ -48,9 +48,11 @@ export interface ArticleConfig{
 }
 
 export interface imgConfig{
-    imgPath: string,
+    src: string,
+    alt: string,
     title: string,
-    linkCreator: string
+    linkImgCreator: string,
+    uploaded: boolean
 }
 
 export interface Comment{
