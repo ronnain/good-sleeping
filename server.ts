@@ -44,7 +44,6 @@ export function app() {
   //const distFolder = join(process.cwd(), environment.serverRenderingPath.browserFiles);
   const distFolder = environment.serverRenderingPath.browserFiles;
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
@@ -68,7 +67,7 @@ export function app() {
 }
 
 function run() {
-  const port = "passenger" || 4000;
+  const port = 4000;
   console.log("port", port);
   // Start up the Node server
   const server = app();
