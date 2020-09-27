@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID, Renderer2  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from '../services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
 import { Title, Meta } from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-article',
@@ -21,7 +21,15 @@ export class ArticleComponent implements OnInit, Page {
   failSave: boolean;
   loading: boolean;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object, private _Activatedroute:ActivatedRoute, private articlesService: ArticlesService, private titleService:Title, private metaService:Meta) {
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
+    private _Activatedroute:ActivatedRoute,
+    private articlesService: ArticlesService,
+    private renderer2: Renderer2,
+    @Inject(DOCUMENT) private _document,
+    private titleService:Title,
+    private metaService:Meta
+    ) {
     this.isBrowser = isPlatformBrowser(platformId);
    }
 
@@ -129,12 +137,11 @@ export class ArticleComponent implements OnInit, Page {
       },
       "description": "${this.article.description}"
     }`;
-    const scriptStructuredData = document.createElement('script');
+    const scriptStructuredData = this.renderer2.createElement('script');
     scriptStructuredData.id = "structuredData";
     scriptStructuredData.type = "application/ld+json";
     scriptStructuredData.innerHTML = structuredData;
 
-    const head = document.getElementsByTagName('head')[0];
-    head.appendChild(scriptStructuredData);
+    this.renderer2.appendChild(this._document.head, scriptStructuredData);
   }
 }
