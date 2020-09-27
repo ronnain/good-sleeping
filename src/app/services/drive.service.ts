@@ -36,7 +36,7 @@ export class DriveService {
    * @param articleConfig
    * @param articleCreation
    */
-  updateArticle(article, articleConfig, articleCreation, title, metaDesc) {
+  updateArticle(article, articleConfig, articleCreation, title, metaDesc, updateTextOnly) {
     this.getIndentifiants();
     const body = {
       article,
@@ -50,6 +50,9 @@ export class DriveService {
     }
     if (metaDesc) {
       body['metaDesc'] = metaDesc;
+    }
+    if (updateTextOnly) {
+      body['updateTextOnly'] = true;
     }
     const url = environment.serverConfig.serverURL + '?method=updateArticle';
     return this.http.post<any>(url, body, this.httpOptions);

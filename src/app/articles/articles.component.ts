@@ -12,7 +12,8 @@ import { environment } from 'src/environments/environment';
 })
 export class ArticlesComponent implements OnInit, Page {
 
-  metaDesc = "Vous trouverez ici tous articles avec les meilleurs conseils sur le sommeil.";
+  title: string = "Les meilleurs articles et conseils pour retrouver le sommeil.";
+  metaDesc = "Liste des meilleurs articles, guides et conseils pour retrouver le sommeil.";
   failSave: boolean = false;
   loading: boolean = false;
 
@@ -84,7 +85,7 @@ export class ArticlesComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Tous les articles spécialisés sur le sommeil");
+    this.titleService.setTitle(this.title);
   }
 
   handleMeta() {

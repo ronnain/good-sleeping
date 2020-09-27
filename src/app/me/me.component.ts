@@ -9,7 +9,8 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class MeComponent implements OnInit, Page {
 
-  metaDesc = 'Je te présent qui je suis, pourquoi j\'ai monté ce blog sur le sommeil.';
+  title = "Qui suis-je ? Romain 20 ans d'insomnie & Pourquoi je peux t'aider";
+  metaDesc = 'Je te présent qui je suis, mon expérience avec l\'insomnie et pourquoi j\'ai monté ce blog sur le sommeil.';
 
   constructor(private titleService:Title, private metaService:Meta) { }
 
@@ -20,7 +21,7 @@ export class MeComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Qui suis-je?");
+    this.titleService.setTitle(this.title);
   }
 
   handleMeta() {

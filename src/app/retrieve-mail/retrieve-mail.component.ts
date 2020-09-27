@@ -28,7 +28,7 @@ export class RetrieveMailComponent implements OnInit {
     this.failSave = false;
     this.loading = true;
 
-    this.mailService.createContact(form.value.firstName, form.value.email).subscribe(
+    this.mailService.createContact(form.value.firstName, form.value.email.toLowerCase()).subscribe(
       data => {
         if(data.success === true) {
           this.showValidation = true;

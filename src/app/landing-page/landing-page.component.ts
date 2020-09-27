@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class LandingPageComponent implements OnInit, Page {
 
   bonusTitle = "Guide du Bon Dormeur : Programme pour retrouver un sommeil de qualité";
-  metaDesc = 'Récupérer le bonus gratuit: ' + this.bonusTitle;
+  metaDesc = 'Récupérer le bonus gratuit : ' + this.bonusTitle;
 
   constructor(private titleService:Title, private metaService:Meta) { }
 
@@ -23,7 +23,7 @@ export class LandingPageComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Bonus - Guide du Bon Dormeur");
+    this.titleService.setTitle(this.bonusTitle);
   }
 
   handleMeta() {
