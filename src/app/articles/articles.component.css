@@ -25,6 +25,10 @@
     background-color: whitesmoke;
 }
 
+.noOutline {
+    outline: none;
+}
+
 .footerLink {
     color: #6c757d;
     font-style: italic;
