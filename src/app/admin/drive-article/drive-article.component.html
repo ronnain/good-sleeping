@@ -29,6 +29,9 @@
             <div class="verticalSpace">
                 <button mat-raised-button class="btnSubmit sendOnlineBTN" color="primary" (click)="sendArticle()">Mettre en ligne</button>
             </div>
+            <div class="verticalSpace" *ngIf="!articleCreation">
+                <button mat-raised-button class="btnSubmit sendOnlineBTN" color="accent" (click)="sendArticle(true)">Mettre à jour uniquement le texte</button>
+            </div>
             <div *ngIf="imgListFail.length" class="alert alert-danger" role="alert">
                 <p>Toutes les images n'ont pas été créées.</p>
                 <ng-container *ngFor="let img of imgListFail;">
@@ -43,7 +46,7 @@
 
             <div *ngIf="showValidation" class="alert alert-success" role="alert">
                 <p >Article créé et mis en ligne.</p>
-                <p ngIf="!imgListFail.length">Images mises en ligne.</p>
+                <p *ngIf="!imgListFail || (imgListFail && !imgListFail.length)">Images mises en ligne.</p>
             </div>
             <div *ngIf="failSave" class="alert alert-danger" role="alert">
                 <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>

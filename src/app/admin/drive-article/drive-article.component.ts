@@ -11,7 +11,7 @@ import { Article, ArticleConfig, MyArticle } from 'src/app/modeles/interfaces.ty
 })
 export class DriveArticleComponent implements OnInit {
   articleName:string;
-  article: MyArticle = new MyArticle(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, this.articleName);
+  article: MyArticle = new MyArticle(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
   articleConfig: ArticleConfig = {id: undefined, idArticle: undefined, img: []};
   nbImg: number;
   articleCreation: boolean = true; // use for published a new article at a specific time
@@ -31,6 +31,7 @@ export class DriveArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getArticleName();
+    this.article.articleName = this.articleName;
     this.getArticleInformation();
   }
 
@@ -70,7 +71,7 @@ export class DriveArticleComponent implements OnInit {
       });
   }
 
-  sendArticle(){
+  sendArticle(updateTextOnly?: boolean){
     this.showValidation = false;
     this.imgListFail = [];
     this.failSave = false;
@@ -78,7 +79,7 @@ export class DriveArticleComponent implements OnInit {
     const metaDesc = this.article.metaDesc != this.defaultMetaDescription ? this.article.metaDesc : null;
     const title = this.article.title != this.defaultTitle ? this.article.title : null;
 
-    this.driveService.updateArticle(this.article, this.articleConfig, this.articleCreation, title, metaDesc).subscribe(
+    this.driveService.updateArticle(this.article, this.articleConfig, this.articleCreation, title, metaDesc, updateTextOnly).subscribe(
       data => {
         if (data === "Token expiry") {
           this.router.navigate(['/admin']);
@@ -91,7 +92,7 @@ export class DriveArticleComponent implements OnInit {
         } else {
           this.failSave = true;
         }
-        if (!data.allImgUploaded) {
+        if (!data.allImgUploaded && data.imgList) {
           this.imgListFail = data.imgList.filter(img=> !img.uploaded);
         }
         this.loading = false;
