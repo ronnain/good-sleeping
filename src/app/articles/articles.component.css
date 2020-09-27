@@ -2,8 +2,30 @@
     cursor: pointer;
 }
 
-.articles-title {
+.articlesList .articles-title {
     font-size: 1.25rem;
     font-weight: 500;
     line-height: 1.2;
+    color: #212529;
+}
+
+.articlesList .articles-title:hover {
+    text-decoration: none;
+}
+
+.articles-title, .articles-desc {
+    display: block;
+    margin-bottom: .75rem;
+}
+.articlesList li{
+    border-radius: 3px;
+}
+
+.articlesList li:hover, .articlesList li:hover .card{
+    background-color: whitesmoke;
+}
+
+.footerLink {
+    color: #6c757d;
+    font-style: italic;
 }

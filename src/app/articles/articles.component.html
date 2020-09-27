@@ -1,4 +1,4 @@
-<div class="container article">
+<div class="container article articlesList">
     <h1 *ngIf="!this.currentArticleName">Découvre les articles qui t'aider à bien dormir</h1>
     <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let article of articles">
@@ -16,9 +16,9 @@
                     </div>
                     <div class="card no-border col-sm-8">
                         <div class="card-body">
-                            <p class="card-title articles-title">{{article.title}}</p>
-                            <p class="card-text" *ngIf="!hideDescription">{{article.description}}</p>
-                            <footer class="blockquote-footer">Le {{article.dateModified | date: 'dd/MM/yyyy'}} par <cite>Romain</cite></footer>
+                            <a class="card-title articles-title" routerLink="/articles/{{article.articleName}}">{{article.title}}</a>
+                            <a class="card-text articles-desc" *ngIf="!hideDescription">{{article.description}}</a>
+                            <footer class="blockquote-footer">Le {{article.dateModified | date: 'dd/MM/yyyy'}} par <cite>Romain</cite>.</footer>
                         </div>
                     </div>
                 </div>
