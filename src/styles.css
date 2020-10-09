@@ -117,7 +117,6 @@ hr{
 
 
 .backgroundFeather {
-    max-height: 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -128,27 +127,23 @@ hr{
 @media screen and (max-width: 575px) and (orientation : portrait) {
     .backgroundFeather {
         background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/m.jpg');
-        margin-bottom: 105rem;
     }
 }
 @media screen and (min-width: 576px) and (max-width: 767px) and (orientation : portrait) {
     .backgroundFeather {
         background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/xm.jpg');
-        margin-bottom: 65rem;
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) and (orientation : portrait) {
     .backgroundFeather {
         background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/l.jpg');
-        margin-bottom: 35rem;
     }
 }
 
 @media screen and (min-width: 992px) and (orientation : portrait) {
     .backgroundFeather {
         background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/xl.jpg');
-        margin-bottom: 25rem;
     }
 }
 
@@ -157,27 +152,23 @@ hr{
 @media screen and (max-width: 575px) and (orientation : landscape) {
     .backgroundFeather {
         background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/m.jpg');
-        margin-bottom: 85rem;
     }
 }
 @media screen and (min-width: 576px) and (max-width: 767px) and (orientation : landscape) {
     .backgroundFeather {
         background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/xm.jpg');
-        margin-bottom: 80rem;
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) and (orientation : landscape) {
     .backgroundFeather {
         background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/l.jpg');
-        margin-bottom: 65rem;
     }
 }
 
 @media screen and (min-width: 992px) and (orientation : landscape) {
     .backgroundFeather {
         background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/xl.jpg');
-        margin-bottom: 60rem;
     }
 }
 

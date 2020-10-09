@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit, Page {
 
-  metaDesc = "Site spécialisé dans les problèmes de sommeil. Les meilleurs conseils, astuces, erreurs à éviter pour retrouver un sommeil de qualité et être en pleine forme.";
+  title = "Le blog pour retrouver un sommeil réparateur et être en pleine forme"
+  metaDesc = "Ton guide du sommeil pour être en pleine forme. Dans chaque publication, je t'apprends à bien dormir et je réponds à toutes tes questions.";
   imgFeatherPath = environment.serverConfig.imgPath+"fond_plume.png";
 
   constructor(private titleService:Title, private metaService:Meta) { }
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit, Page {
   }
 
   setTitle() {
-    this.titleService.setTitle("Site spécialisé dans les problèmes de sommeil");
+    this.titleService.setTitle(this.title);
   }
 
   handleMeta() {
