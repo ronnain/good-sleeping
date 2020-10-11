@@ -15,7 +15,7 @@
                         <textarea matInput [(ngModel)]="mailBody" placeholder="Ex. Bonjour, vous êtes géniaux" class="textareaInput" id="mailBody"></textarea>
                     </mat-form-field>
                     <div class="btnSpace">
-                        <p>Penser à mettre les liens: &lt;a href="" target="_blank" rel="nofollow"&gt;Ici&lt;/a&gt;</p>
+                        <p>&lt;a href="" &gt;Ici&lt;/a&gt;</p>
                     </div>
                     <div class="btnSpace">
                         <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" [disabled]="!mailObject || !mailBody" (click)="sendMailToAll()">Envoyer</button>
