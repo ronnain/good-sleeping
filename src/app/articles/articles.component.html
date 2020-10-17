@@ -1,5 +1,5 @@
 <div class="container article articlesList">
-    <h1 *ngIf="!this.currentArticleName">Découvre les articles qui t'aider à bien dormir</h1>
+    <h1 *ngIf="!this.currentArticleName">Découvre les articles qui t'aident à mieux dormir</h1>
     <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let article of articles">
             <div class="container-fluid articleLink noOutline" routerLink="/articles/{{article.articleName}}" (click)="loadArticle(article.articleName)">
