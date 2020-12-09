@@ -10,7 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { ArticleComponent } from './article/article.component';
 import { LoginComponent } from './admin/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,10 +30,13 @@ import { DriveOverviewComponent } from './admin/drive-overview/drive-overview.co
 import { DriveArticleComponent } from './admin/drive-article/drive-article.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/insomnia-severity-index.component';
+import { MailStepperComponent } from './quizz/shared/mail-stepper/mail-stepper.component';
 
 
 const appRoutes: Routes = [
   {path: 'articles', component: ArticlesComponent},
+  {path: 'articles/test-severite-insomnie', component: InsomniaSeverityIndexComponent},
   {path: 'articles/:articleName', component: ArticleComponent},
   {path: 'a-propos', component: MeComponent},
   {path: 'bonus', component: LandingPageComponent},
@@ -70,17 +73,20 @@ const appRoutes: Routes = [
     AdminComponent,
     AddArticleComponent,
     DriveOverviewComponent,
-    DriveArticleComponent
+    DriveArticleComponent,
+    InsomniaSeverityIndexComponent,
+    MailStepperComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes, {scrollPositionRestoration: 'enabled'}),
+    RouterModule.forRoot(appRoutes, {scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled'}),
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
     FormsModule,
     LayoutModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

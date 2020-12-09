@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID, Renderer2  } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from '../services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
 import { Title, Meta } from '@angular/platform-browser';
@@ -28,7 +28,8 @@ export class ArticleComponent implements OnInit, Page {
     private renderer2: Renderer2,
     @Inject(DOCUMENT) private _document,
     private titleService:Title,
-    private metaService:Meta
+    private metaService:Meta,
+    private _router: Router
     ) {
     this.isBrowser = isPlatformBrowser(platformId);
    }
@@ -90,13 +91,18 @@ export class ArticleComponent implements OnInit, Page {
   setHead() {
     this.articlesService.getArticleByName(this.articleName).subscribe(
       data => {
-        this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName),
-        this.setTitle(),
-        this.handleMeta(),
-        this.removeStructuredData(),
-        this.createStructuredData(),
-        error => console.error('Une erreure est survenue à la récupération des artciles !', error)
-      });
+        if (!data) {
+          this._router.navigate(['articles']);
+          return;
+        }
+        this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName);
+        this.setTitle();
+        this.handleMeta();
+        this.removeStructuredData();
+        this.createStructuredData();
+      },
+      error => console.error('Une erreure est survenue à la récupération des articles !', error)
+      );
   }
 
   removeStructuredData() {

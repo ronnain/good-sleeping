@@ -1,0 +1,19 @@
+.text {
+    font-size: 0.8rem;
+    white-space: normal;
+}
+
+.smallText {
+    font-size: 0.75rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.smallText:hover, .smallText:active{
+    white-space: normal;
+}
+
+.mat-checkbox {
+    display: block;
+}

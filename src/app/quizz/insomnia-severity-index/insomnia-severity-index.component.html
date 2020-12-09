@@ -1,0 +1,116 @@
+<div class="container article articlesList">
+
+    <h1>Test de s&eacute;v&eacute;rit&eacute; des troubles de l&rsquo;insomnie gratuit en ligne</h1>
+
+    <picture>
+      <source  media="(min-width: 1200px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-severite-insomnie/img1/article/xl.jpg">
+      <source  media="(min-width: 992px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-severite-insomnie/img1/article/l.jpg">
+      <source  media="(min-width: 768px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-severite-insomnie/img1/article/xm.jpg">
+      <source  media="(min-width: 576px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-severite-insomnie/img1/article/m.jpg">
+      <img src="https://sommeilprofond.fr/sleeping-bs/img/test-severite-insomnie/img1/article/m.jpg" alt="Passer un test" title="Passer un test" class="noMarginBottom fullWidth">
+    </picture>
+    <div class="creditImgDiv"><a class="creditImg" href="https://www.pexels.com/fr-fr/photo/homme-femme-bureau-ordinateur-portable-5668858/" target="_blank" rel="nofollow noreferrer">Lien Créateur Image</a></div>
+
+    <p>Ce test d&rsquo;insomnie est aussi appel&eacute;, &eacute;chelle de s&eacute;v&eacute;rit&eacute; de l&rsquo;insomnie (Insomnia Severity Indy - ISI, en anglais).</p>
+    <p>C&rsquo;est le test le plus fiable et le plus utilis&eacute; par les m&eacute;decins du sommeil pour mesurer la s&eacute;v&eacute;rit&eacute; de l&rsquo;insomnie.</p>
+    <p>Il est compos&eacute; de 7 questions.</p>
+    <p>Dans un premier temps, les questions permettent de mesurer l&rsquo;intensit&eacute; des plaintes de l&rsquo;insomnie.</p>
+    <p>Elles &eacute;valuent tes difficult&eacute;s d&rsquo;endormissement, &agrave; rester endormi tout au long de la nuit et savoir si tu te r&eacute;veilles trop t&ocirc;t.</p>
+    <p>D&rsquo;autres questions &eacute;valuent ta satisfaction globale de ton sommeil et les r&eacute;percussions sur ton quotidien.</p>
+
+
+    <h2>Passe le test des troubles de l'insomnie</h2>
+    <!-- Questions -->
+    <div *ngFor="let step of quizz" class="stepQuizz">
+      <p>{{step.title}}</p>
+      <mat-form-field *ngFor="let question of step.questions" appearance="fill">
+        <mat-label>{{question.label}}</mat-label>
+        <mat-select [(ngModel)]="question.answer">
+          <mat-option *ngFor="let scale of question.scale" [value]="scale.value">
+            {{scale.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <h2>Obtiens ton résultat</h2>
+    <!-- Stepper -->
+    <quizz-mail-stepper (onShowResult)="getScore()">
+      <ng-container *ngIf="score <= 7">
+        <p>Tu ne souffres d'aucune insomnie significative.</p>
+        <p>Tu as obtenu un score de <strong>{{score}}.</strong></p>
+        <p>Pour plus de détails sur ton résultat et les recommandations à suivre, <span class="anchorLink" (click)="gotoAnchor('noInsomnie')" >clique ici.</span></p>
+      </ng-container>
+
+      <ng-container *ngIf="score > 7 && score <= 14">
+        <p>Tu souffres d'insomnie légère.</p>
+        <p>Tu as obtenu un score de <strong>{{score}}.</strong></p>
+        <p>La mauvaise qualité de ton sommeil, peut te mettre en danger et est <strong>nuisible sur ta santé sur le long terme</strong>.</p>
+        <p>Pour plus de détails sur ton résultat et les recommandations à suivre, <span class="anchorLink" (click)="gotoAnchor('insomnie')" >clique ici.</span></p>
+      </ng-container>
+
+      <ng-container *ngIf="score > 14 && score <= 21">
+        <p>Tu souffres d'insomnie significative.</p>
+        <p>Tu as obtenu un score de <strong>{{score}}.</strong></p>
+        <p>La mauvaise qualité de ton sommeil, t'expose à un <strong>risque d'accidents élevé</strong> et est <strong>nuisible</strong> pour ta <strong>santé</strong>.</p>
+        <p>Pour plus de détails sur ton résultat et les recommandations à suivre, <span class="anchorLink" (click)="gotoAnchor('largeInsomnie')" >clique ici.</span></p>
+      </ng-container>
+
+      <ng-container *ngIf="score > 21">
+        <p>Tu souffres d'insomnie sévère.</p>
+        <p>Tu as obtenu un score de <strong>{{score}}.</strong></p>
+        <p>La très mauvaise qualité de ton sommeil, t'expose à un <strong>risque d'accidents très élevé</strong>, ton espérance de vie diminue chaque jour.</p>
+        <p>Il est très important de mettre rapidement en place les recommandations de cet article.</p>
+        <p>Pour plus de détails sur ton résultat et les recommandations à suivre, <span class="anchorLink" (click)="gotoAnchor('dramaticInsomnie')" >clique ici.</span></p>
+      </ng-container>
+    </quizz-mail-stepper>
+
+    <!-- Interpréter les résultats -->
+    <h2>Interpr&eacute;ter ses r&eacute;sultats du test de l&rsquo;insomnie</h2>
+
+    <h3 id="noInsomnie" >Score entre 0 et 7 : Aucune insomnie d&eacute;tect&eacute;e </h3>
+    <p>Ce test n&rsquo;a r&eacute;v&eacute;l&eacute; aucun signe d&rsquo;insomnie, on dit qu&rsquo;il y a une absence de plainte d&rsquo;insomnie cliniquement significative.</p>
+    <p>Toutefois, cela n&rsquo;emp&ecirc;che pas que tu puisses souffrir d&#39;autres troubles du sommeil comme l&rsquo;hypersomnie.</p>
+    <p>N&rsquo;h&eacute;site pas &agrave; t&rsquo;int&eacute;resser aux bonnes pratiques pour bien dormir, cela pourrait t&rsquo;aider &agrave; am&eacute;liorer davantage ta qualit&eacute; de sommeil.</p>
+
+    <h3 id="insomnie">Score entre 8 et 14 : Insomnie l&eacute;g&egrave;re</h3>
+    <p>Obtenir un score entre 8 et 14 montrent que tu souffres d&rsquo;insomnie sub-clinique (l&eacute;g&egrave;re).</p>
+    <p>Ton mauvais sommeil impacte l&eacute;g&egrave;rement ta qualit&eacute; de vie et la fatigue qui en r&eacute;sulte t&rsquo;expose &agrave; un risque mod&eacute;r&eacute; d&rsquo;accident du quotidien et routier.</p>
+    <p>Fait tr&egrave;s attention lorsque tu prends la voiture et que tu te sens fatigu&eacute;(e).</p>
+    <p>Vivre avec une insomnie l&eacute;g&egrave;re, va en plus d&rsquo;impacter ta qualit&eacute; de vie, ab&icirc;mer ta sant&eacute; sur le long terme et favoriser le d&eacute;veloppement de maladies graves.</p>
+    <p>La bonne nouvelle, c&rsquo;est que tu peux facilement y rem&eacute;dier.</p>
+    <p>Pour retrouver un sommeil de qualit&eacute; et en finir avec les insomnies, je te recommande de mettre en place les bonnes habitudes pour bien dormir.</p>
+    <p>Cela devrait grandement t&rsquo;aider &agrave; passer cette &eacute;tape.</p>
+    <p>Tu trouveras ces informations &agrave; travers les diff&eacute;rents articles de mon blog ainsi que dans le bonus que je t&rsquo;ai envoy&eacute; par mail.</p>
+    <p><a href="https://sommeilprofond.fr/articles/se-soigner-insomnie">J&rsquo;ai aussi &eacute;crit un article sur comment se soigner de l&rsquo;insomnie o&ugrave; tu y trouveras d&rsquo;autres informations tr&egrave;s int&eacute;ressantes &agrave; ce sujet.</a></p>
+
+    <h3 id="largeInsomnie">Score entre 15 et 21 : Insomnie mod&eacute;r&eacute;</h3>
+    <p>Ce palier correspond &agrave; un trouble de l&rsquo;insomnie significatif.</p>
+    <p>Ton sommeil est de mauvaise qualit&eacute;, et cela perturbe plus ou moins ton quotidien.</p>
+    <p>Une chose est s&ucirc;re, tu n&rsquo;exploites pas tout ton potentiel et toute ton &eacute;nergie &agrave; cause de tes probl&egrave;mes de sommeil.</p>
+    <p>Tu es expos&eacute; &agrave; un risque &eacute;lev&eacute; d&rsquo;accident du quotidien et surtout, aux accidents routiers qui peuvent &ecirc;tre tr&egrave;s graves, voire mortels.</p>
+    <p>Avec ce type d&rsquo;insomniem ta sant&eacute; est mise &agrave; rude &eacute;preuve, tu t&rsquo;exposes &agrave; un plus grand risque d&rsquo;attraper des maladies.</p>
+    <p>Sur le long terme, des maladies graves comme l&#39;alzheimer peuvent appara&icirc;tre.</p>
+    <p>Si ton corps n&rsquo;obtient pas son quota de sommeil, il s&rsquo;ab&icirc;me pour le pire &agrave; petit feu.</p>
+    <p>Il faut que tu agisses rapidement.</p>
+    <p>D&rsquo;apr&egrave;s les &eacute;tudes, les meilleurs traitements pour lutter contre les insomnies sont de mettre en place les bonnes habitudes pour bien dormir et une bonne hygi&egrave;ne du sommeil.</p>
+    <p>Tu peux d&egrave;s maintenant, suivre les conseils du bonus que tu as re&ccedil;u par mail.</p>
+    <p>Aussi, je te recommande vivement de suivre <a href="https://sommeilprofond.fr/articles/se-soigner-insomnie">la m&eacute;thode pour gu&eacute;rir de l&rsquo;insomnie</a>.</p>
+    <p>N&rsquo;h&eacute;site pas &agrave; m&rsquo;envoyer tes questions et lire les diff&eacute;rents articles que je propose, o&ugrave; je pr&eacute;sente les meilleurs conseils.</p>
+
+    <h3 id="dramaticInsomnie">Score entre 22 et 28 : Insomnie s&eacute;v&egrave;re</h3>
+    <p>C&rsquo;est le palier le plus &eacute;lev&eacute; de ce test.</p>
+    <p>Ton sommeil est de tr&egrave;s mauvaise qualit&eacute;.</p>
+    <p>Ta sant&eacute; et ta qualit&eacute; de vie sont en jeu.</p>
+    <p>Il faut agir rapidement, pour &eacute;viter d&rsquo;ab&icirc;mer plus ton corps et diminuer le risque d&rsquo;accident.</p>
+    <p>Souffrir de ce type d&rsquo;insomnie, sugg&egrave;re d&rsquo;&ecirc;tre tr&egrave;s fatigu&eacute; en journ&eacute;e, et donc avoir son attention et sa concentration r&eacute;duite.</p>
+    <p>Le risque d&rsquo;accident est alors tr&egrave;s &eacute;lev&eacute; pour toi et tes proches qui t&rsquo;entourent, en particulier si tu conduis.</p>
+    <p>Avec cette fatigue, tu ne peux pas profiter pleinement de ton potentiel et tes qualit&eacute;s, car tu es trop fatigu&eacute;.</p>
+    <p>Cela peut g&acirc;cher tes relations avec les autres et tu es souvent de mauvaise humeur ou maussade.</p>
+    <p>Ton esp&eacute;rance de vie r&eacute;duit de jour en jour, notamment &agrave; cause de la fatigue qui t&rsquo;expose aux risques d&rsquo;accidents.</p>
+    <p>Sur le moyen et long terme, le corps peut d&eacute;velopper de graves maladies mortelles, car il n&rsquo;a pas la quantit&eacute; de sommeil dont il a besoin.</p>
+    <p>Il est alors urgent de mettre en place de bonnes habitudes pour bien dormir et de suivre une hygi&egrave;ne du sommeil de fa&ccedil;on stricte.</p>
+    <p>Pour cela, tu peux commencer par suivre le guide que je t&rsquo;ai envoy&eacute; par mail, ainsi que <a href="https://sommeilprofond.fr/articles/se-soigner-insomnie">suivre les conseils de cet article d&eacute;di&eacute; &agrave; la m&eacute;thode pour gu&eacute;rir des insomnies.</a></p>
+    <p>Je te recommande aussi de contacter ton m&eacute;decin du travail pour en parler, en particulier si tu fais un m&eacute;tier manuel.</p>
+</div>
+
