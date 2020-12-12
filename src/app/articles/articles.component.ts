@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Article, Page } from '../modeles/interfaces.type';
 import { ArticlesService } from '../services/articles.service';
-import { Title, Meta } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { HeaderService } from '../services/header.service';
 
 
 @Component({
@@ -33,14 +33,15 @@ export class ArticlesComponent implements OnInit, Page {
 
   articles: Article[] = [];
 
-  constructor(private articlesService: ArticlesService, private titleService:Title, private metaService:Meta) { }
+  constructor(
+    private articlesService: ArticlesService,
+    public headerService: HeaderService
+    ) { }
 
   ngOnInit() {
     // Main page, otherwise it is called inside article component
     if(!this.currentArticleName) {
-      this.setTitle();
-      this.handleMeta();
-      this.removeStructuredData();
+      this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
     }
     this.getArticles();
   }
@@ -81,25 +82,6 @@ export class ArticlesComponent implements OnInit, Page {
     if (changes.currentArticleName && changes.currentArticleName.previousValue) {
       // call only when the user click on antoher article in artcile component
       this.getArticles();
-    }
-  }
-
-  setTitle() {
-    this.titleService.setTitle(this.title);
-  }
-
-  handleMeta() {
-    if (this.metaService.getTag('name=description')) {
-      this.metaService.updateTag({ name: 'description', content: this.metaDesc }, `name='description'`);
-    } else {
-      this.metaService.addTag({ name:'description', content: this.metaDesc });
-    }
-  }
-
-  removeStructuredData() {
-    const structuredData = document.getElementById("structuredData");
-    if(structuredData) {
-      structuredData.remove();
     }
   }
 }

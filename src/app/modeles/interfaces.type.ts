@@ -1,3 +1,5 @@
+import { HeaderService } from '../services/header.service';
+
 export interface Contact {
     id?: string;
     mail: string;
@@ -66,7 +68,5 @@ export interface Comment{
 }
 
 export interface Page {
-    setTitle(); // Set the title page
-    handleMeta();
-    removeStructuredData();
+    headerService: HeaderService;
 }

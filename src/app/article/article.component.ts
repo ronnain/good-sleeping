@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID, Renderer2  }
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from '../services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
-import { Title, Meta } from '@angular/platform-browser';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { HeaderService } from '../services/header.service';
 
 @Component({
   selector: 'app-article',
@@ -27,9 +27,8 @@ export class ArticleComponent implements OnInit, Page {
     private articlesService: ArticlesService,
     private renderer2: Renderer2,
     @Inject(DOCUMENT) private _document,
-    private titleService:Title,
-    private metaService:Meta,
-    private _router: Router
+    private _router: Router,
+    public headerService: HeaderService
     ) {
     this.isBrowser = isPlatformBrowser(platformId);
    }
@@ -76,18 +75,6 @@ export class ArticleComponent implements OnInit, Page {
     }
   }
 
-  setTitle() {
-    this.titleService.setTitle(this.article.title);
-  }
-
-  handleMeta() {
-    if (this.metaService.getTag('name=description')) {
-      this.metaService.updateTag({ name: 'description', content: this.article.metaDesc }, `name='description'`);
-    } else {
-      this.metaService.addTag({ name:'description', content: this.article.metaDesc });
-    }
-  }
-
   setHead() {
     this.articlesService.getArticleByName(this.articleName).subscribe(
       data => {
@@ -96,20 +83,11 @@ export class ArticleComponent implements OnInit, Page {
           return;
         }
         this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName);
-        this.setTitle();
-        this.handleMeta();
-        this.removeStructuredData();
+        this.headerService.handleTitleAndMeta(this.article.title, this.article.metaDesc);
         this.createStructuredData();
       },
       error => console.error('Une erreure est survenue à la récupération des articles !', error)
       );
-  }
-
-  removeStructuredData() {
-    const structuredData = document.getElementById("structuredData");
-    if(structuredData) {
-      structuredData.remove();
-    }
   }
 
   createStructuredData() {

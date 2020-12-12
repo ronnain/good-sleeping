@@ -1,34 +1,24 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Page } from 'src/app/modeles/interfaces.type';
+import { HeaderService } from 'src/app/services/header.service';
 
 @Component({
   selector: 'app-insomnia-severity-index',
   templateUrl: './insomnia-severity-index.component.html',
   styleUrls: ['./insomnia-severity-index.component.css']
 })
-export class InsomniaSeverityIndexComponent implements OnInit {
+export class InsomniaSeverityIndexComponent implements OnInit, Page {
 
   title = "Test de sévérité des troubles de l’insomnie gratuit en ligne";
   metaDesc = "Découvre si tu es insomniaque grâce à ce test rapide et gratuit, en ligne. Si tu es insomniaque, je te donne les meilleurs conseils pour t'en sortir.";
 
   score: number = 0;
 
-  constructor(private viewportScroller: ViewportScroller, private titleService:Title, private metaService:Meta) { }
+  constructor(private viewportScroller: ViewportScroller, public headerService: HeaderService) { }
 
   ngOnInit(): void {
-  }
-
-  setTitle() {
-    this.titleService.setTitle(this.title);
-  }
-
-  handleMeta() {
-    if (this.metaService.getTag('name=description')) {
-      this.metaService.updateTag({ name: 'description', content: this.metaDesc }, `name='description'`);
-    } else {
-      this.metaService.addTag({ name:'description', content: this.metaDesc });
-    }
+    this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
   }
 
   scale1: any[] = [

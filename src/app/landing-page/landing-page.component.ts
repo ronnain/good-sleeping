@@ -1,8 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { MailService } from '../services/mail.service';
-import { Title, Meta } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 import { Page } from '../modeles/interfaces.type';
-import { environment } from 'src/environments/environment';
+import { HeaderService } from '../services/header.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -14,30 +12,11 @@ export class LandingPageComponent implements OnInit, Page {
   bonusTitle = "Guide du Bon Dormeur : Programme pour retrouver un sommeil de qualité";
   metaDesc = 'Récupérer le bonus gratuit : ' + this.bonusTitle;
 
-  constructor(private titleService:Title, private metaService:Meta) { }
+  constructor(
+    public headerService: HeaderService
+  ) { }
 
   ngOnInit() {
-    this.setTitle();
-    this.handleMeta();
-    this.removeStructuredData();
-  }
-
-  setTitle() {
-    this.titleService.setTitle(this.bonusTitle);
-  }
-
-  handleMeta() {
-    if (this.metaService.getTag('name=description')) {
-      this.metaService.updateTag({ name: 'description', content: this.metaDesc }, `name='description'`);
-    } else {
-      this.metaService.addTag({ name:'description', content: this.metaDesc });
-    }
-  }
-
-  removeStructuredData() {
-    const structuredData = document.getElementById("structuredData");
-    if(structuredData) {
-      structuredData.remove();
-    }
+    this.headerService.handleTitleAndMeta(this.bonusTitle, this.metaDesc);
   }
 }

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MailService } from '../services/mail.service';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from '../modeles/interfaces.type';
-import { Title, Meta } from '@angular/platform-browser';
+import { HeaderService } from '../services/header.service';
 
 @Component({
   selector: 'app-unsubcribe',
@@ -12,6 +12,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class UnsubcribeComponent implements OnInit, Page {
 
+  title = "Désabonnement";
   metaDesc = "Page de désabonnement à la newsletter.";
 
   unsubscribeKey;
@@ -20,12 +21,13 @@ export class UnsubcribeComponent implements OnInit, Page {
   failSave = false;
   loading = false;
 
-  constructor(private _Activatedroute:ActivatedRoute, private mailService: MailService, private titleService:Title, private metaService:Meta) { }
+  constructor(
+    private _Activatedroute:ActivatedRoute,
+    private mailService: MailService,
+    public headerService: HeaderService) { }
 
   ngOnInit() {
-    this.setTitle();
-    this.handleMeta();
-    this.removeStructuredData();
+    this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
     this.unsubscribeKey = this._Activatedroute.snapshot.paramMap.get("key");
   }
 
@@ -51,24 +53,4 @@ export class UnsubcribeComponent implements OnInit, Page {
         this.failSave = true;
       });
   }
-
-  setTitle() {
-    this.titleService.setTitle("Désabonnement");
-  }
-
-  handleMeta() {
-    if (this.metaService.getTag('name=description')) {
-      this.metaService.updateTag({ name: 'description', content: this.metaDesc }, `name='description'`);
-    } else {
-      this.metaService.addTag({ name:'description', content: this.metaDesc });
-    }
-  }
-
-  removeStructuredData() {
-    const structuredData = document.getElementById("structuredData");
-    if(structuredData) {
-      structuredData.remove();
-    }
-  }
-
 }
