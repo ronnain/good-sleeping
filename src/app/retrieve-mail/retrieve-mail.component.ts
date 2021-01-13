@@ -16,6 +16,7 @@ export class RetrieveMailComponent implements OnInit {
   showValidation: boolean = false;
   failSave: boolean = false;
   loading: boolean = false;
+
   constructor(@Inject(PLATFORM_ID) platformId: Object, private mailService: MailService) {
     this.isBrowser = isPlatformBrowser(platformId);
   }

@@ -3,6 +3,56 @@
     <div class="row">
         <div class="col-12 ">
             <mat-tab-group mat-align-tabs="center">
+
+                <!-- Retrieve all mails -->
+                <mat-tab label="Récupérer Mails">
+                    <h1 class="verticalSpace">Récupérer tous les mails</h1>
+                    <div ><p>Nombre d'adresses mails : <strong>{{allMails.length}}</strong></p></div>
+
+                    <table mat-table [dataSource]="allMails" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="id">
+                          <th mat-header-cell *matHeaderCellDef> Id </th>
+                          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="firstName">
+                          <th mat-header-cell *matHeaderCellDef> Prénom </th>
+                          <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="mail">
+                          <th mat-header-cell *matHeaderCellDef> Mail </th>
+                          <td mat-cell *matCellDef="let element"> {{element.mail}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="creationDate">
+                          <th mat-header-cell *matHeaderCellDef> Date </th>
+                          <td mat-cell *matCellDef="let element"> {{element.creationDate}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="source">
+                            <th mat-header-cell *matHeaderCellDef> Source </th>
+                            <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+
+
+                    <div class="btnSpace">
+                        <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" (click)="getAllMails()">Récupérer</button>
+                    </div>
+                    <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
+                    <div *ngIf="showValidation" class="alert alert-success" role="alert">
+                        <p>Les mails vont être reçu d'ici quelquels minutes.</p>
+                    </div>
+                    <div *ngIf="failSave" class="alert alert-danger" role="alert">
+                        <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
+                    </div>
+                </mat-tab>
+
                 <mat-tab label="Envoyer Mails">
 
                     <h1 class="verticalSpace">Envoyer mail à tous</h1>
@@ -29,22 +79,6 @@
                     </div>
                 </mat-tab>
 
-                <!-- Retrieve all mails -->
-                <mat-tab label="Récupérer Mails">
-                    <h1 class="verticalSpace">Récupérer tous les mails</h1>
-                    <div ><p>Nombre d'adresses mails : <strong>{{nbMails}}</strong></p></div>
-                    {{allMails}}
-                    <div class="btnSpace">
-                        <button mat-raised-button class="btnSubmit" color="primary"  id="btnValid" (click)="getAllMails()">Récupérer</button>
-                    </div>
-                    <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
-                    <div *ngIf="showValidation" class="alert alert-success" role="alert">
-                        <p>Les mails vont être reçu d'ici quelquels minutes.</p>
-                    </div>
-                    <div *ngIf="failSave" class="alert alert-danger" role="alert">
-                        <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
-                    </div>
-                </mat-tab>
             </mat-tab-group>
         </div>
     </div>

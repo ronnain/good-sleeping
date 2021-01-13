@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
 })
 export class MailHandlerComponent implements OnInit {
 
+  displayedColumns: string[] = ['id', 'firstName', 'mail', 'creationDate', 'source'];
+
   mailObject;
   mailBody;
 
-  allMails;
-  nbMails;
+  allMails = [];
 
   showValidation: boolean = false;
   failSave: boolean = false;
@@ -23,6 +24,7 @@ export class MailHandlerComponent implements OnInit {
   constructor(private mailService: MailService, private router: Router) { }
 
   ngOnInit() {
+    this.getAllMails();
   }
 
   sendMailToAll() {
@@ -57,21 +59,16 @@ export class MailHandlerComponent implements OnInit {
           this.router.navigate(['/admin']);
         }
         this.allMails = data;
-        this.getMailsFromContacts(data);
+        this.allMails.forEach(element => {
+          if (element.source){
+            element.source = element.source.split('/').pop();
+          }
+        });
         this.loading = false;
       },
       err => {
         this.loading = false;
         this.failSave = true;
       });
-  }
-
-  getMailsFromContacts(contacts) {
-    const arrayAllMails = [];
-    for (let contact of contacts) {
-      arrayAllMails.push(contact.mail);
-    }
-    this.nbMails = arrayAllMails.length;
-    this.allMails = arrayAllMails.join("; ");
   }
 }
