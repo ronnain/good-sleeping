@@ -80,7 +80,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes, {scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled'}),
+    RouterModule.forRoot(appRoutes, { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
