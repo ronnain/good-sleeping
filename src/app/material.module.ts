@@ -78,6 +78,7 @@ import {MatRippleModule} from '@angular/material/core';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    MatFormFieldModule
   ],
   exports: [
     A11yModule,
@@ -120,6 +121,7 @@ import {MatRippleModule} from '@angular/material/core';
     MatTooltipModule,
     MatTreeModule,
     ScrollingModule,
+    MatFormFieldModule
   ]
 })
 export class MaterialModule  {}

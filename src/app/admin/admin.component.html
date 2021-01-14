@@ -1,4 +1,4 @@
-<div class="container article" *ngIf="isAuth">
+<div class="container article adminHeader" *ngIf="isAuth">
     <div class="row">
         <div class="col-12 ">
             <button mat-button [matMenuTriggerFor]="adminMenu">
@@ -13,3 +13,4 @@
         </div>
     </div>
 </div>
+<router-outlet></router-outlet>
