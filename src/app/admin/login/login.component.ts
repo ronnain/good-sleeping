@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
           this.authService.authentificationSuccess(this.pseudo, data);
           this.showValidation = true;
           const self = this;
-          setTimeout(function(){ self.router.navigate(['/admin/mail']); }, 1000);
+          setTimeout(function(){ self.router.navigate(['/admin/mail']); }, 500);
 
         }
         this.loading = false;

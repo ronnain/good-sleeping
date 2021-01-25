@@ -24,6 +24,9 @@
                 <input matInput type="datetime-local" [(ngModel)]="article.datePublished" placeholder="Choisir date de publication">
             </mat-form-field> -->
 
+            <div class="verticalSpace" *ngIf="!articleCreation && (article.metaDesc !== defaultMetaDescription || article.title !== defaultTitle)">
+                <button mat-raised-button class="btnSubmit" color="primary" (click)="refreshTitleAndMetaDesc()">Refresh</button>
+            </div>
 
             <div class="verticalSpace">
                 <button mat-raised-button class="btnSubmit sendOnlineBTN" color="primary" (click)="sendArticle()">Mettre en ligne</button>

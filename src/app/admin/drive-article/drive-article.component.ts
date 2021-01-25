@@ -76,8 +76,8 @@ export class DriveArticleComponent implements OnInit {
     this.imgListFail = [];
     this.failSave = false;
     this.loading = true;
-    const metaDesc = this.article.metaDesc != this.defaultMetaDescription ? this.article.metaDesc : null;
-    const title = this.article.title != this.defaultTitle ? this.article.title : null;
+    const metaDesc = this.article.metaDesc;
+    const title = this.article.title;
 
     this.driveService.updateArticle(this.article, this.articleConfig, this.articleCreation, title, metaDesc, updateTextOnly).subscribe(
       data => {
@@ -127,6 +127,11 @@ export class DriveArticleComponent implements OnInit {
         this.failSave = true;
         this.failMsg = err;
       });
+  }
+
+  refreshTitleAndMetaDesc() {
+    this.article.title = this.defaultTitle;
+    this.article.metaDesc = this.defaultMetaDescription;
   }
 
   ngOnDestroy() {

@@ -24,7 +24,7 @@ export class MailService {
 
   createContact(firstName, mail) {
     const body = {
-      "firstName" : firstName,
+      "firstName" : this.capitalizeFirstLetter(firstName),
       "mail": mail
     };
     const url = environment.serverConfig.serverURL + '?method=createContact';
@@ -73,6 +73,9 @@ export class MailService {
     this.token = this.authService.getToken();
   }
 
+  private capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
