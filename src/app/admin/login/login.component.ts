@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
         if(data === "User not found") {
           this.failSave = true;
         } else {
-          console.log(data);
           this.authService.authentificationSuccess(this.pseudo, data);
           this.showValidation = true;
           const self = this;

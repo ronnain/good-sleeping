@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  httpOptions = {
+
+  private isAuthSub: Subject<boolean> = new Subject();
+
+  private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
     })
@@ -38,6 +41,8 @@ export class AuthService {
     const expireTime = time + (1000 * 7200);
     now.setTime(expireTime);
 
+    this.isAuthSub.next(true);
+
     localStorage.setItem("pseudoSP", pseudo);
     localStorage.setItem("tokenSP", token);
     localStorage.setItem("tokenSPExpires", now.toUTCString());
@@ -46,8 +51,10 @@ export class AuthService {
   isAuth():boolean {
     const tokenExpiresDate = localStorage.getItem("tokenSPExpires");
     if (!tokenExpiresDate || new Date().getTime() >= new Date(tokenExpiresDate).getTime()) {
+      this.isAuthSub.next(false);
       return false;
     }
+    this.isAuthSub.next(true);
     return true;
   }
 
@@ -57,6 +64,10 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem("tokenSP");
+  }
+
+  getAuthSub() {
+    return this.isAuthSub;
   }
 
 

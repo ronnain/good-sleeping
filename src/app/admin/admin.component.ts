@@ -13,6 +13,9 @@ export class AdminComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.getAuthSub().subscribe(isAuth => {
+      this.isAuth = isAuth;
+    });
     this.isAuth = this.authService.isAuth();
   }
 
