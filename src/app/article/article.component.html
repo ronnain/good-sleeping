@@ -11,7 +11,7 @@
           <li class="breadcrumb-item active breadcrumb-articleTitle" aria-current="page">{{article ? article.title : ''}}</li>
         </ol>
     </nav>
-    <div class="col- " id="articleContent" [innerHtml]="articleContent"></div>
+    <div class="col- " id="articleContent" [innerHtml]="articleContent | safeHtml"></div>
     <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
     <div *ngIf="failSave" class="alert alert-danger verticalSpace" role="alert">
         <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>

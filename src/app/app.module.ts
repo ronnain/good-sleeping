@@ -24,6 +24,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/insomnia-severity-index.component';
 import { MailStepperComponent } from './quizz/shared/mail-stepper/mail-stepper.component';
+import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { MailStepperComponent } from './quizz/shared/mail-stepper/mail-stepper.c
     ContactComponent,
     MeComponent,
     InsomniaSeverityIndexComponent,
-    MailStepperComponent
+    MailStepperComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
