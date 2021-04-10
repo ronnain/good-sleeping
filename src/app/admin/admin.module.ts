@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { MailHandlerComponent } from './mail-handler/mail-handler.component';
 import { MaterialModule } from '../material.module';
 import { FormsModule } from '@angular/forms';
-
+import { ReplaceLineBreaks } from './pipes/replaceLinesBreaks';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     DriveOverviewComponent,
     LoginComponent,
     MailHandlerComponent,
+    ReplaceLineBreaks
   ],
   imports: [
     CommonModule,

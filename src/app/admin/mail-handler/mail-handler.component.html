@@ -76,6 +76,11 @@
                     <div *ngIf="failSave" class="alert alert-danger" role="alert">
                         <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
                     </div>
+                    <div class="alert alert-info" role="alert">
+                        <p>Preview :</p>
+                        <div [innerHTML]="mailBody | replaceLineBreaks">
+                        </div>
+                    </div>
                 </mat-tab>
 
             </mat-tab-group>
