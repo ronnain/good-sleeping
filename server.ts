@@ -55,9 +55,21 @@ export function app() {
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-/*   server.get('*.*', express.static(distFolder, {
+
+  // all the following paths works
+/*   const staticFolder2 =  __dirname + '/../../../public_html/';
+  const staticFolder4 =  __dirname + '/../browser/';
+  const staticFolder3 =  '/home/gero8821/public_html/';
+
+  console.info("staticFolder2 ", staticFolder3, '//// file css exist ? ////', fs.existsSync(staticFolder3+'styles.22a7db0f6abba665215b.css'), '//// js ///', fs.existsSync(staticFolder3+'main-es2015.3ebd9a83e0edfea265b4.js'), '/// img ///', fs.existsSync(staticFolder3+'sleeping-bs/img/guide-chambre-ideale-10-conseils/img1/article/m.jpg'));
+  console.info("staticFolder3 ", staticFolder3, '//// file css exist ? ////', fs.existsSync(staticFolder3+'styles.22a7db0f6abba665215b.css'), '//// js ///', fs.existsSync(staticFolder3+'main-es2015.3ebd9a83e0edfea265b4.js'), '/// img ///', fs.existsSync(staticFolder3+'sleeping-bs/img/guide-chambre-ideale-10-conseils/img1/article/m.jpg'));
+  console.error("staticFolder4 ", staticFolder4, '//// file css exist ? ////', fs.existsSync(staticFolder4+'styles.22a7db0f6abba665215b.css'), '//// js ///', fs.existsSync(staticFolder3+'main-es2015.3ebd9a83e0edfea265b4.js'), '/// img ///', fs.existsSync(staticFolder3+'sleeping-bs/img/guide-chambre-ideale-10-conseils/img1/article/m.jpg'));
+ */
+  const abolsutePathPublicHtml =  '/home/gero8821/public_html/';
+   server.get('*.*', express.static(abolsutePathPublicHtml, {
     maxAge: '1y'
-  })); */
+  }));
+
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
@@ -72,7 +84,7 @@ function run() {
   // Start up the Node server
   const server = app();
   server.listen(port, () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
+    console.error(`Node Express server listening on http://localhost:${port}`);
   });
 }
 
