@@ -10,13 +10,15 @@ export const environment = {
     imgPath: "http://localhost:80/sleeping-bs/img/"
   },
   serverRenderingPath : {
-    localIndex : "./dist/sleeping/browser/index.html",
-    browserFiles : "./dist/sleeping/browser/",
+    localIndex : "..\\browser\\index-dev.html",
+    browserFiles : "..\\browser\\",
+    indexHtmlFile : "index-dev.html",
+    abolsutePathPublicHtml: "..\\browser\\",
     port : 4000
   }
 };
 /*
- * For easier debugging in development mode, you can import the following file
+ * For easier debugging in development mode, you can import the folPlowing file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *
  * This import should be commented out in production mode because it will have a negative impact

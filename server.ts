@@ -42,15 +42,17 @@ export function app() {
   const server = express();
 
   //const distFolder = join(process.cwd(), environment.serverRenderingPath.browserFiles);
-  const distFolder = environment.serverRenderingPath.browserFiles;
-  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+
+  const browserFolder = environment.serverRenderingPath.browserFiles;
+  const indexHtml = environment.serverRenderingPath.localIndex;
+
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
   }));
 
   server.set('view engine', 'html');
-  server.set('views', distFolder);
+  server.set('views', browserFolder);
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
@@ -65,7 +67,7 @@ export function app() {
   console.info("staticFolder3 ", staticFolder3, '//// file css exist ? ////', fs.existsSync(staticFolder3+'styles.22a7db0f6abba665215b.css'), '//// js ///', fs.existsSync(staticFolder3+'main-es2015.3ebd9a83e0edfea265b4.js'), '/// img ///', fs.existsSync(staticFolder3+'sleeping-bs/img/guide-chambre-ideale-10-conseils/img1/article/m.jpg'));
   console.error("staticFolder4 ", staticFolder4, '//// file css exist ? ////', fs.existsSync(staticFolder4+'styles.22a7db0f6abba665215b.css'), '//// js ///', fs.existsSync(staticFolder3+'main-es2015.3ebd9a83e0edfea265b4.js'), '/// img ///', fs.existsSync(staticFolder3+'sleeping-bs/img/guide-chambre-ideale-10-conseils/img1/article/m.jpg'));
  */
-  const abolsutePathPublicHtml =  '/home/gero8821/public_html/';
+  const abolsutePathPublicHtml =  environment.serverRenderingPath.abolsutePathPublicHtml;
    server.get('*.*', express.static(abolsutePathPublicHtml, {
     maxAge: '1y'
   }));
