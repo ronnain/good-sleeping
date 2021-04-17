@@ -9,9 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run sleeping:serve-ssr",
+    "build:dev:ssr": "ng run sleeping:serve-ssr",
     "serve:ssr": "cd ./dist/sleeping/server/ && node main.js",
-    "build:ssr": "ng build --prod && ng run sleeping:server:production",
+    "build:prod:ssr": "ng build --prod && ng run sleeping:server:production",
     "prerender": "ng run sleeping:prerender"
   },
   "private": true,

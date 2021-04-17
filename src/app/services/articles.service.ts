@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { TransferStateService } from './transferState.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,35 +20,48 @@ export class ArticlesService {
   pseudo: any;
   token: any;
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService, private transferStateService: TransferStateService) { }
 
 
   getArticleContent(articleName: string) {
-    return this.http.get(environment.serverConfig.articlesPath + articleName + '.html', {responseType: 'text'})
-    .pipe(
-      catchError(this.handleError)
-    );
+    const url = environment.serverConfig.articlesPath + articleName + '.html';
+    const options =  {responseType: 'text'};
+    return this.transferStateService.getData(url, options, () => {
+      return this.http.get(url, {responseType: 'text'})
+        .pipe(
+          catchError(this.handleError)
+        );
+    });
   }
 
   getAllArticles() {
-    return this.http.get<Array<Article>>(environment.serverConfig.serverURL + `?method=getArticles`)
-    .pipe(
-      catchError(this.handleError)
-    );
+    const url = environment.serverConfig.serverURL + `?method=getArticles`;
+    return this.transferStateService.getData(url, null, () => {
+      return this.http.get<Array<Article>>(url)
+        .pipe(
+          catchError(this.handleError)
+        );
+    });
   }
 
   getOtherArticles(articleName: string){
-    return this.http.get<Array<Article>>(environment.serverConfig.serverURL + `?method=getOtherArticles&articleName=` + articleName)
-    .pipe(
-      catchError(this.handleError)
-    );
+    const url = environment.serverConfig.serverURL + `?method=getOtherArticles&articleName=` + articleName;
+    return this.transferStateService.getData(url, null, () => {
+      return this.http.get<Array<Article>>(url)
+        .pipe(
+          catchError(this.handleError)
+        );
+    });
   }
 
   getArticleByName(articleName: string) {
-    return this.http.get<Article>(environment.serverConfig.serverURL + `?method=getArticleByName&articleName=` + articleName)
-      .pipe(
-        catchError(this.handleError)
-      );
+    const url = environment.serverConfig.serverURL + `?method=getArticleByName&articleName=` + articleName;
+    return this.transferStateService.getData(url, null, () => {
+      return this.http.get<Array<Article>>(url)
+        .pipe(
+          catchError(this.handleError)
+        );
+    });
   }
 
   addNewArticle(article: Article, articleText: string) {

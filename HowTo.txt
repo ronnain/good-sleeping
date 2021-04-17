@@ -1,7 +1,7 @@
 How to deploy:
 
 run in cmd:
-npm run build:ssr
+build:prod:ssr
 
 copier le répertorie dist pour remplacer le répertorie dist du server à la racine.
 
@@ -11,7 +11,7 @@ relancer l'application node (obligatoire), rechercher Node.js dans CPANEL
 
 
 // Test in SSR in local :
-npm run dev:ssr
+npm run build:dev:ssr
 
 there is an error, but just exit and run the next command :
 
