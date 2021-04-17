@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  private isBrowser: boolean;
   private isAuthSub: Subject<boolean> = new Subject();
 
   private httpOptions = {
@@ -18,7 +19,12 @@ export class AuthService {
     })
   };
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
+    private http: HttpClient,
+    private router: Router) {
+      this.isBrowser = isPlatformBrowser(platformId);
+    }
 
   checkUserLogin(pseudo: string, password: string) {
     return this.http.get<any>(environment.serverConfig.serverURL + `?method=login&pseudo=` + pseudo + `&password=` + password)
@@ -49,6 +55,9 @@ export class AuthService {
   }
 
   isAuth():boolean {
+    if (!this.isBrowser) {
+      return false;
+    }
     const tokenExpiresDate = localStorage.getItem("tokenSPExpires");
     if (!tokenExpiresDate || new Date().getTime() >= new Date(tokenExpiresDate).getTime()) {
       this.isAuthSub.next(false);
