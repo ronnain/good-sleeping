@@ -16,7 +16,6 @@ export class TransferStateService {
     try {
       return this.resolveData(key);
     } catch (e) {
-      console.log('In catch');
       return callback()
         .pipe(tap((data) => {
           this.setCache(key, data);
@@ -28,10 +27,7 @@ export class TransferStateService {
     let resultData: any;
     if (this.hasKey(key)) {
       resultData = this.getFromCache(key);
-      console.info("from cache !!!", key);
-
     } else {
-      console.info('No cache, set cache')
       throw new Error()
     }
     return from(Promise.resolve(resultData))

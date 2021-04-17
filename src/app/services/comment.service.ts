@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { TransferStateService } from './transferState.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ export class CommentService {
 
   comments: Comment[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private transferStateService: TransferStateService) { }
 
   addComment(comment: Comment) {
     if (!comment) {
@@ -32,10 +35,13 @@ export class CommentService {
   }
 
   getCommentsByArticle(idArticle: number): Observable<Comment[]> {
-    return this.http.get<Array<Comment>>(environment.serverConfig.serverURL + `?method=getComments&articleId=`+idArticle)
-    .pipe(
-      catchError(this.handleError)
-    );
+    const url = environment.serverConfig.serverURL + `?method=getComments&articleId=`+idArticle;
+    return this.transferStateService.getData(url, null, () => {
+      return this.http.get<Array<Comment>>(url)
+        .pipe(
+          catchError(this.handleError)
+        );
+    });
   }
 
   private handleError(error: HttpErrorResponse) {

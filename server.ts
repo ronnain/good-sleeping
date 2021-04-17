@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 // ssr DOM
 const domino = require('domino');
 const fs = require('fs');
+const mcache = require('memory-cache');
 // index from browser build!
 const template = fs.readFileSync(environment.serverRenderingPath.localIndex).toString();
 // for mock global window by domino
@@ -54,6 +55,33 @@ export function app() {
   server.set('view engine', 'html');
   server.set('views', browserFolder);
 
+  /**
+   * Cache page handler
+   * @param duration secondes
+   * @returns
+   */
+  var cache = (duration: number) => {
+    return (req, res, next) => {
+      let key = '__express__' + req.originalUrl || req.url;
+      if (/\?deleteCache=true/i.test(key)) {
+        key = key.replace(/\?deleteCache=true/i, '');
+        mcache.del(key);
+      }
+      let cachedBody = mcache.get(key);
+      if (cachedBody) {
+        res.send(cachedBody);
+        return;
+      } else {
+        res.sendResponse = res.send;
+        res.send = (body) => {
+          mcache.put(key, body, duration * 1000);
+          res.sendResponse(body);
+        }
+        next();
+      }
+    }
+  }
+
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
@@ -73,7 +101,8 @@ export function app() {
   }));
 
   // All regular routes use the Universal engine
-  server.get('*', (req, res) => {
+  // Add cache for 1 week
+  server.get('*', cache(604800), (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
