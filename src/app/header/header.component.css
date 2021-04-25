@@ -1,45 +1,88 @@
 .fix {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 2;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 }
 
-.textWhite a{
-    color: white;
+.textWhite a {
+  color: white;
 }
 
-.textWhite .active{
-    border: 2px solid;
-    border-color: white;
+.textWhite .active {
+  border: 2px solid;
+  border-color: white;
 }
 
-.textBlue a{
-    color: #181a38;
+.textBlue a {
+  color: #181a38;
 }
 
-.textBlue .active{
-    border: 2px solid;
-    border-color: #181a38;
+.textBlue .active {
+  border: 2px solid;
+  border-color: #181a38;
 }
 
 .notDisplay {
-    display: none;
+  display: none;
 }
 
-a{
-    color: black;
+a {
+  color: black;
+  border: 2px solid rgba(0, 0, 0, 0);
+  transition: transform 0.2s linear;
+}
+/* Taget brand items */
+nav > a:hover {
+  transform: scale(1.05);
 }
 
-.active{
-    border: 2px solid;
-    border-color: midnightblue;
+nav > a {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-nav{
-    font-family: 'Roboto Mono', monospace;
+/* Taget menu items */
+/* TO DO: Small glitch on the position on transition out. Due to the height that change */
+li > a:hover {
+  transform: scale(1.1);
 }
 
-.smallMenu, .smallMenu button {
-    outline: none;
+@keyframes enterFromNoWhere {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(10);
+  }
+}
+
+nav > a > img {
+  /* background-color: royalblue; */
+  transition: enterFromNoWhere 2s linear;
+}
+
+.active {
+  border: 2px solid;
+  border-color: midnightblue;
+}
+
+nav {
+  font-family: "Roboto Mono", monospace;
+}
+
+.smallMenu,
+.smallMenu button {
+  outline: none;
+}
+
+nav {
+  /* justify-content: space-around; */
+}
+
+.navbar {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
