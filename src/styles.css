@@ -1,177 +1,178 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
+
 body {
-    background-color: white;
-    font-family: 'Raleway', sans-serif;
+  background-color: white;
+  font-family: "Raleway", sans-serif;
+  margin-top: 80px;
 }
 
-hr{
-    width: 95%;
+hr {
+  width: 95%;
 }
 
-.no-border{
-    border: none;
+.no-border {
+  border: none;
 }
 
-.card-header{
-    color: white;
-    background-color: midnightblue;
-    margin-bottom: 1em;
+.card-header {
+  color: white;
+  background-color: midnightblue;
+  margin-bottom: 1em;
 }
 
-.center{
-    margin:auto;
+.center {
+  margin: auto;
 }
 
 .alignCenter {
-    text-align: center;
+  text-align: center;
 }
 
 .midnightblue {
-    color: white;
-    background-color: midnightblue;
+  color: white;
+  background-color: midnightblue;
 }
 
-.btn:disabled{
-    cursor: not-allowed;
+.btn:disabled {
+  cursor: not-allowed;
 }
-.mat-tab-group{
-    font-family: 'Raleway', sans-serif;
+.mat-tab-group {
+  font-family: "Raleway", sans-serif;
 }
 
-.transparent{
-    background-color: transparent;
+.transparent {
+  background-color: transparent;
 }
 
 .verticalSpace {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .blueColor {
-    color: midnightblue;
+  color: midnightblue;
 }
 
 .article {
-    text-align: justify;
+  text-align: justify;
 }
 
-.article h1, h2, h3{
-    font-weight: 600;
-    line-height: 1em;
-    color: #383838;
+.article h1,
+h2,
+h3 {
+  font-weight: 600;
+  line-height: 1em;
+  color: #383838;
 }
 
-.article h1{
-    font-size: 2rem;
-    margin-bottom: 2rem;
+.article h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
-.article h2{
-    font-size: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+.article h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.article h3{
-    font-size: 1.25rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.article h3 {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-.article .citation{
-    text-align: center;
-    font-style: italic;
-    font-weight: 550;
+.article .citation {
+  text-align: center;
+  font-style: italic;
+  font-weight: 550;
 }
 
-.article p{
-    white-space: pre-wrap;
+.article p {
+  white-space: pre-wrap;
 }
 
-.article img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    max-width: 100%;
+.article img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  max-width: 100%;
 }
 
 .article .fullWidth {
-    width: 100%;
+  width: 100%;
 }
 
 .article .noMarginBottom {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
-.titleBottomLine{
-    margin-top: 3rem;
-    border-bottom: 1px solid rgba(0,0,0,.125);
-    padding-bottom: 0.5rem;
+.titleBottomLine {
+  margin-top: 3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding-bottom: 0.5rem;
 }
 
 .noMarginBottom {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
-
 
 .backgroundFeather {
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-
-@media screen and (max-width: 575px) and (orientation : portrait) {
-    .backgroundFeather {
-        background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/m.jpg');
-    }
+@media screen and (max-width: 575px) and (orientation: portrait) {
+  .backgroundFeather {
+    background-image: url("https://sommeilprofond.fr/sleeping-bs/img/white_feather/m.jpg");
+  }
 }
-@media screen and (min-width: 576px) and (max-width: 767px) and (orientation : portrait) {
-    .backgroundFeather {
-        background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/xm.jpg');
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) and (orientation : portrait) {
-    .backgroundFeather {
-        background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/l.jpg');
-    }
+@media screen and (min-width: 576px) and (max-width: 767px) and (orientation: portrait) {
+  .backgroundFeather {
+    background-image: url("https://sommeilprofond.fr/sleeping-bs/img/white_feather/xm.jpg");
+  }
 }
 
-@media screen and (min-width: 992px) and (orientation : portrait) {
-    .backgroundFeather {
-        background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/xl.jpg');
-    }
+@media screen and (min-width: 768px) and (max-width: 991px) and (orientation: portrait) {
+  .backgroundFeather {
+    background-image: url("https://sommeilprofond.fr/sleeping-bs/img/white_feather/l.jpg");
+  }
+}
+
+@media screen and (min-width: 992px) and (orientation: portrait) {
+  .backgroundFeather {
+    background-image: url("https://sommeilprofond.fr/sleeping-bs/img/white_feather/xl.jpg");
+  }
 }
 
 /* Landscape */
 
-@media screen and (max-width: 575px) and (orientation : landscape) {
-    .backgroundFeather {
-        background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/m.jpg');
-    }
+@media screen and (max-width: 575px) and (orientation: landscape) {
+  .backgroundFeather {
+    background-image: url("https://sommeilprofond.fr/sleeping-bs/img/white_feather/m.jpg");
+  }
 }
-@media screen and (min-width: 576px) and (max-width: 767px) and (orientation : landscape) {
-    .backgroundFeather {
-        background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/xm.jpg');
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) and (orientation : landscape) {
-    .backgroundFeather {
-        background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/l.jpg');
-    }
+@media screen and (min-width: 576px) and (max-width: 767px) and (orientation: landscape) {
+  .backgroundFeather {
+    background-image: url("https://sommeilprofond.fr/sleeping-bs/img/white_feather/xm.jpg");
+  }
 }
 
-@media screen and (min-width: 992px) and (orientation : landscape) {
-    .backgroundFeather {
-        background-image: url('https://sommeilprofond.fr/sleeping-bs/img/white_feather/xl.jpg');
-    }
+@media screen and (min-width: 768px) and (max-width: 991px) and (orientation: landscape) {
+  .backgroundFeather {
+    background-image: url("https://sommeilprofond.fr/sleeping-bs/img/white_feather/l.jpg");
+  }
 }
 
-.divMailRetrieve{
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+@media screen and (min-width: 992px) and (orientation: landscape) {
+  .backgroundFeather {
+    background-image: url("https://sommeilprofond.fr/sleeping-bs/img/white_feather/xl.jpg");
+  }
+}
+
+.divMailRetrieve {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
