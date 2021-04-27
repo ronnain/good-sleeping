@@ -38,7 +38,6 @@ nav > a:hover {
 }
 
 nav > a {
-  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,15 +70,15 @@ nav > a > img {
 
 nav {
   font-family: "Roboto Mono", monospace;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
 }
 
 .smallMenu,
 .smallMenu button {
   outline: none;
-}
-
-nav {
-  /* justify-content: space-around; */
 }
 
 .navbar {
