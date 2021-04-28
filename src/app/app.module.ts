@@ -25,6 +25,7 @@ import { environment } from '../environments/environment';
 import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/insomnia-severity-index.component';
 import { MailStepperComponent } from './quizz/shared/mail-stepper/mail-stepper.component';
 import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
+import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
     MeComponent,
     InsomniaSeverityIndexComponent,
     MailStepperComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    CookiesHandlerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
