@@ -7,10 +7,29 @@
   display: block;
   padding: 20px;
   margin: 10px;
-  box-shadow: #000;
   border: black 2px;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 1);
+}
+
+svg {
+  margin-right: 16px;
 }
 
 p {
   display: inline;
+}
+
+.GoDown {
+  animation: goDown 0.3s linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes goDown {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(100px);
+    visibility: hidden;
+  }
 }

@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CookiesHandlerComponent implements OnInit {
 
+  actionClicked: boolean = false;
+  cookiesValidated: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.checkCookies()
+  }
+
+  checkCookies(){
+    // To do fetch cookies
+    this.cookiesValidated = false;
+  }
+
+  clickCookies(value: boolean){
+    console.log("clickCookies ", value)
+    // To do save data
+
+    this.actionClicked = true;
   }
 
 }
