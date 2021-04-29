@@ -32,11 +32,8 @@ a {
   border: 2px solid rgba(0, 0, 0, 0);
   transition: transform 0.2s linear;
 }
-/* Taget brand items */
-nav > a:hover {
-  transform: scale(1.05);
-}
 
+/* Taget brand items */
 nav > a {
   display: flex;
   justify-content: center;
