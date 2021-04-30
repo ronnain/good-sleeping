@@ -62,7 +62,7 @@ nav > a > img {
 
 .active {
   border: 2px solid;
-  border-color: midnightblue;
+  border-color: var(--primary-main);
 }
 
 nav {

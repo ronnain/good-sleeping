@@ -1,39 +1,41 @@
-.home h1{
-    font-size: 3rem;
+.home h1 {
+  font-size: 3rem;
 }
 
-.home h2{
-    font-size: 2rem;
+.home h2 {
+  font-size: 2rem;
 }
 
-.home h3{
-    font-size: 1.5rem;
+.home h3 {
+  font-size: 1.5rem;
 }
 
-.home h1, .home h2, .home h3{
-    margin: 3rem 0;
+.home h1,
+.home h2,
+.home h3 {
+  margin: 3rem 0;
 }
 
 .light {
-    font-weight: lighter;
+  font-weight: lighter;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .leftAlign {
-    text-align: left;
+  text-align: left;
 }
 
 .home p {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .home .btnBonus {
-    background-color: midnightblue;
-    color: white;
+  background-color: var(--primary-main);
+  color: white;
 
-    font-size: 1.5rem;
-    padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  padding: 1.5rem 3rem;
 }
