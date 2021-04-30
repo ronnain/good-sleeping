@@ -1,4 +1,4 @@
-<div *ngIf="true" class="popup" [ngClass]="{'GoDown': actionClicked}" >
+<div *ngIf="!cookiesStored" class="popup" [ngClass]="{'GoDown': actionClicked}" >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x="0"
@@ -72,4 +72,8 @@
     <button mat-button color="secondary" (click)="clickCookies(false)" >
         Refuser
     </button>
+</div>
+<div *ngIf="cookiesValidated" style="visibility: hidden;">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7E5RVJDW4"></script>
 </div>
