@@ -67,10 +67,16 @@
         Le site utilises des cookies pour analyser le trafic de notre site et améliorer la qualité des services.
     </p>
     <button mat-button color="primary" (click)="clickCookies(true)" >
+      <span *ngIf="!(actionClicked && cookiesValidated)">
         Accepter
+      </span>
+      <mat-icon *ngIf="(actionClicked && cookiesValidated)">check_circle</mat-icon>
     </button>
     <button mat-button color="secondary" (click)="clickCookies(false)" >
+      <span *ngIf="!(actionClicked && !cookiesValidated)">
         Refuser
+      </span>
+      <mat-icon *ngIf="(actionClicked && !cookiesValidated)">check_circle</mat-icon>
     </button>
 </div>
 <div *ngIf="cookiesValidated" style="visibility: hidden;">

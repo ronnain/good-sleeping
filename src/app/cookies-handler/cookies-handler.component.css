@@ -1,3 +1,22 @@
+@keyframes goDown {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(100px);
+    visibility: hidden;
+  }
+}
+
+@keyframes goUp {
+  from {
+    transform: translateY(100px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 .popup {
   position: fixed;
   background-color: white;
@@ -9,6 +28,7 @@
   margin: 10px;
   border: black 2px;
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 1);
+  animation: goUp 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
 }
 
 svg {
@@ -20,16 +40,14 @@ p {
 }
 
 .GoDown {
-  animation: goDown 0.3s linear;
-  animation-fill-mode: forwards;
+  animation: goDown 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  animation-delay: 200ms;
 }
 
-@keyframes goDown {
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(100px);
-    visibility: hidden;
-  }
+button {
+  min-width: 90px;
+}
+
+button:focus {
+  outline: none;
 }
