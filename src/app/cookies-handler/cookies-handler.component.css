@@ -51,3 +51,11 @@ button {
 button:focus {
   outline: none;
 }
+
+.primarySvg {
+  fill: var(--primary-main);
+}
+
+.secondarySvg {
+  fill: var(--secondary-main);
+}
