@@ -26,6 +26,7 @@ import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/
 import { MailStepperComponent } from './quizz/shared/mail-stepper/mail-stepper.component';
 import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
 import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.component';
+import { EbookPopupComponent } from './retrieve-mail/ebook-popup/ebook-popup.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.compo
     InsomniaSeverityIndexComponent,
     MailStepperComponent,
     SafeHtmlPipe,
-    CookiesHandlerComponent
+    CookiesHandlerComponent,
+    EbookPopupComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
