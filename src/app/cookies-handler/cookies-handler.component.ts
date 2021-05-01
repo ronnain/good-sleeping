@@ -1,6 +1,7 @@
-import { trigger, transition, style, animate, state } from '@angular/animations';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { ScriptLoaderService, ScriptModel } from '../services/script.service';
 
 @Component({
@@ -85,7 +86,9 @@ export class CookiesHandlerComponent implements OnInit {
   }
 
   insertGoogleAnalystics() {
-
+    if(!environment.production) { // dont insert script in dev mode
+      return;
+    }
      const googleAnalyticsHeaderTag =  this.renderer2.createElement('script');
      googleAnalyticsHeaderTag.innerHTML = this.googleAnalyticsScript;
      this.renderer2.appendChild(document.head, googleAnalyticsHeaderTag);
