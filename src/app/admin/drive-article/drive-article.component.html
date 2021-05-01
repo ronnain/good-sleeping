@@ -19,11 +19,6 @@
                 <textarea matInput [(ngModel)]="article.metaDesc" name="articleMetaDesc" placeholder="Ex. Article sur les problèmes de sommeil." class="textareaInput"></textarea>
             </mat-form-field>
 
-            <!-- <mat-form-field *ngIf="articleCreation">
-                <mat-label>Date de publication</mat-label>
-                <input matInput type="datetime-local" [(ngModel)]="article.datePublished" placeholder="Choisir date de publication">
-            </mat-form-field> -->
-
             <div class="verticalSpace" *ngIf="!articleCreation && (article.metaDesc !== defaultMetaDescription || article.title !== defaultTitle)">
                 <button mat-raised-button class="btnSubmit" color="primary" (click)="refreshTitleAndMetaDesc()">Refresh</button>
             </div>
@@ -42,6 +37,10 @@
                 <div class="verticalSpace">
                     <button mat-raised-button class="btnSubmit sendOnlineBTN" color="primary" (click)="retryUploadImg()">Mettre les images en lignes</button>
                 </div>
+            </div>
+
+            <div class="verticalSpace" *ngIf="!articleCreation">
+                <button mat-raised-button class="btnSubmit sendOnlineBTN" color="primary" ><a [href]="'https://sommeilprofond.fr/articles/' + article.articleName + '?deleteCache=true'" target="_blank" class="emptyCacheBtn">Vider le cache de la page</a></button>
             </div>
 
             <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>

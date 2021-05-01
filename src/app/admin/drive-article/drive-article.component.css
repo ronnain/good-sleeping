@@ -27,3 +27,7 @@
 .sendOnlineBTN{
     width: 100%;
 }
+
+.emptyCacheBtn {
+    color: white;
+}
