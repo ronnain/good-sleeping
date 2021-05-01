@@ -1,60 +1,96 @@
-import { Component, OnInit } from '@angular/core';
+import { trigger, transition, style, animate, state } from '@angular/animations';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { ScriptLoaderService, ScriptModel } from '../services/script.service';
 
-const CookiesValidatedKey = "CookiesValidated"
 @Component({
   selector: 'app-cookies-handler',
   templateUrl: './cookies-handler.component.html',
-  styleUrls: ['./cookies-handler.component.css']
+  styleUrls: ['./cookies-handler.component.css'],
+  animations: [
+    trigger('up-down', [
+      transition(':enter', [
+        style({ transform: 'translateY(100px)'}),
+        animate('300ms ease-in-out', style({  transform: 'translateY(0)' })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in-out', style({transform: ' translateY(100px)' }))
+      ])
+    ]),
+  ]
 })
 export class CookiesHandlerComponent implements OnInit {
-
+  isBrowser: boolean;
   actionClicked: boolean = false;
-  cookiesValidated: boolean = false;
-  cookiesStored: boolean = true;
+  isCookiesAuthorized = true; // true: avoid the popup display at the initialisation
+  cookiesAuthorizedKey = 'userAcceptAllCookies';
 
-  constructor() { }
+  googleAnalyticsScript = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z7E5RVJDW4');
+  `;
+
+  googleAnalyticsScriptSrc: ScriptModel = {
+    name: 'Google Analytics',
+    src: "https://www.googletagmanager.com/gtag/js?id=G-Z7E5RVJDW4",
+    loaded: false
+  }
+
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
+    private renderer2: Renderer2,
+    @Inject(DOCUMENT) private _document,
+    private scriptLoaderService: ScriptLoaderService
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+   }
 
   ngOnInit(): void {
+    if (!this.isBrowser) { // not run on ssr
+      return;
+    }
     this.checkCookies()
   }
 
   checkCookies(){
-    this.cookiesValidated = false;
-    const cookies= window.localStorage.getItem(CookiesValidatedKey);
-    if(cookies === null) {
-      this.cookiesStored = false;
+
+    const regexCookieAuthorisation = new RegExp(this.cookiesAuthorizedKey);
+    this.isCookiesAuthorized = regexCookieAuthorisation.test(document.cookie);
+
+    if (this.isCookiesAuthorized) {
+      this.insertGoogleAnalystics();
     }
-    else {
-      const [cookiesValue, creationDate] = cookies.split(" ")
-      const today = new Date();
-      const todayFormatted = `${today.getMonth()}/${today.getFullYear()}`;
-
-      if(this.areDatesValid(creationDate, todayFormatted)){
-        this.cookiesStored = true;
-        this.cookiesValidated = Boolean(cookiesValue);
-      }
-      else {
-        window.localStorage.removeItem(CookiesValidatedKey);
-        this.cookiesStored = false;
-      }
-    }
-  }
-
-  areDatesValid(date1: string, date2: string): boolean{
-    const [month1 , year1] = date1.split("/").map(d => Number(d));
-    const [month2 , year2] = date2.split("/").map(d => Number(d));
-    const totalMonths1 = year1 * 12 + month1;
-    const totalMonths2 = year2 * 12 + month2;
-
-    return Math.abs(totalMonths2 - totalMonths1) < 6;
+    // The cookie will be removed at the expiracy date
   }
 
   clickCookies(value: boolean){
-    const today = new Date();
-
-    window.localStorage.setItem(CookiesValidatedKey, `${value} ${today.getMonth()}/${today.getFullYear()}`);
-    this.cookiesValidated = value;
     this.actionClicked = true;
+
+    if (!value) { // User refuses to store cookies
+      // balek, ask cookie authorization at the next visite
+      return;
+    }
+
+    // User Authorized the cookies
+    const expiracyDate = new Date();
+    expiracyDate.setDate(expiracyDate.getDate() + 365); // Expire after one year
+
+    // Save user authorization
+    document.cookie = `${this.cookiesAuthorizedKey}=true;expires=${expiracyDate.toUTCString()};path=/`;
+
+    this.insertGoogleAnalystics();
   }
+
+  insertGoogleAnalystics() {
+
+     const googleAnalyticsHeaderTag =  this.renderer2.createElement('script');
+     googleAnalyticsHeaderTag.innerHTML = this.googleAnalyticsScript;
+     this.renderer2.appendChild(document.head, googleAnalyticsHeaderTag);
+
+     this.scriptLoaderService.load(this.googleAnalyticsScriptSrc).subscribe();
+ }
 
 }
