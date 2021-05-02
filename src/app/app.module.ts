@@ -27,6 +27,7 @@ import { MailStepperComponent } from './quizz/shared/mail-stepper/mail-stepper.c
 import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
 import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.component';
 import { EbookPopupComponent } from './retrieve-mail/ebook-popup/ebook-popup.component';
+import { Carousel3dComponent } from './retrieve-mail/ebook-popup/carousel3d/carousel3d.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { EbookPopupComponent } from './retrieve-mail/ebook-popup/ebook-popup.com
     MailStepperComponent,
     SafeHtmlPipe,
     CookiesHandlerComponent,
-    EbookPopupComponent
+    EbookPopupComponent,
+    Carousel3dComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
