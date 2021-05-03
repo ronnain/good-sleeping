@@ -11,11 +11,11 @@ export class Carousel3dComponent implements OnInit {
 
   cellCount = 3;
   selectedIndex = 0;
-
   cell1Rotation = 0
   cell2Rotation = 1;
   cell3Rotation = -1;
   rotationOrder = [1, 2, 3];
+  displayedIndex = 1;
 
 
   constructor() { }
@@ -39,11 +39,11 @@ export class Carousel3dComponent implements OnInit {
   }
 
   rotateTo(indexToRotate: number) {
+    this.displayedIndex = indexToRotate;
     const index = this.rotationOrder.indexOf(indexToRotate);
     if (index === 1) { // Rotate to the right
       this.selectedIndex ++;
       this.rotationOrder.push(this.rotationOrder.shift());
-
     } else if (index === 2) { // Rotate to the left
       this.selectedIndex --;
       this.rotationOrder.unshift(this.rotationOrder.pop());

@@ -5,11 +5,9 @@
 body { font-family: sans-serif; }
 
 .scene {
-  margin: 40px 0;
-  position: relative;
   width: 210px;
-  height: auto;
-  margin: 40px auto;
+  height: 300px;
+  margin: 30px auto;
   perspective: 1000px;
 }
 
@@ -33,6 +31,7 @@ body { font-family: sans-serif; }
   border-radius: 5px;
   padding-bottom: 1.5rem;
   padding-top: 1.5rem;
+  cursor: pointer;
 }
 
 /* translateZ value : (cell width / 2) / tan( (360 /nb cell) / 2))  -> tangente */
