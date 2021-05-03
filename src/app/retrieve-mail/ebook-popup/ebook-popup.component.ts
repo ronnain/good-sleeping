@@ -7,11 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EbookPopupComponent implements OnInit {
 
+  hasUserAcceptsBonus = false;
+  hasUserRefusedBonus = false;
+
   constructor() { }
 
   ngOnInit(): void {
     console.log("display");
 
+  }
+
+  userAcceptBonus() {
+    this.hasUserAcceptsBonus = true;
   }
 
 }

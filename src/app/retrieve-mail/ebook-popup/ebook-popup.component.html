@@ -1,5 +1,6 @@
 <div class="overlay">
     <div class="popup" >
+      <!-- Front card -->
         <div class="header">
             <p>Gratuit : Programme du bon dormeur</p>
         </div>
@@ -21,10 +22,12 @@
             <p>Travailler trop tard peut provoquer des réveils nocturnes. De la même façon...<a href="https://sommeilprofond.fr">Lire la suite</a></p>
           </blockquote>
 
-          <button class="userChoice"><p>Je veux télécharger gratuitement cet ebook !</p></button>
-          <button class="userChoice userRefused"><p>Tant pis, ça sera pour une prochaine fois.</p></button>
+          <button class="userChoice" (click)="hasUserAcceptsBonus = true"><p>Je veux télécharger gratuitement cet ebook !</p></button>
+          <button class="userChoice userRefused" (click)="hasUserAcceptsBonus = false"><p>Tant pis, ça sera pour une prochaine fois.</p></button>
 
         </div>
+
+      <!-- Back card -->
     </div>
 
 </div>
