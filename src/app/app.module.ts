@@ -26,7 +26,9 @@ import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/
 import { MailStepperComponent } from './quizz/shared/mail-stepper/mail-stepper.component';
 import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
 import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.component';
-
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { SocialNetworkShareButtonsComponent } from './social-network-share-buttons/social-network-share-buttons.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.compo
     InsomniaSeverityIndexComponent,
     MailStepperComponent,
     SafeHtmlPipe,
-    CookiesHandlerComponent
+    CookiesHandlerComponent,
+    SocialNetworkShareButtonsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -58,7 +61,9 @@ import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.compo
     LayoutModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserTransferStateModule
+    BrowserTransferStateModule,
+    ShareButtonsModule,
+    ShareIconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

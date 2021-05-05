@@ -1,31 +1,31 @@
 .whiteSmoke {
-    background-color: whitesmoke;
+  background-color: whitesmoke;
 }
 
 .whiteSmokeBold {
-    background-color: #e6e5e5;
+  background-color: #e6e5e5;
 }
 
 .inline {
-    display: inline-block;
+  display: inline-block;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .topSpace {
-    margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .linkText li {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
 }
 
 .smallTitle {
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.2;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
