@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ebook-popup',
-  templateUrl: './ebook-popup.component.html',
-  styleUrls: ['./ebook-popup.component.css']
+  selector: 'ebook-adds',
+  templateUrl: './ebook-adds.component.html',
+  styleUrls: ['./ebook-adds.component.css']
 })
-export class EbookPopupComponent implements OnInit {
-  
+export class EbookAddsComponent implements OnInit {
+
   hasUserAcceptsBonus = false;
   hasUserRefusedBonus = false;
 
@@ -18,5 +18,4 @@ export class EbookPopupComponent implements OnInit {
   userAcceptBonus() {
     this.hasUserAcceptsBonus = true;
   }
-
 }

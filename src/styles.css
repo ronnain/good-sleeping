@@ -1,6 +1,7 @@
 :root {
   --primary-main: #0d0d6d;
   --secondary-main: black;
+  --flip-time: 400ms;
 }
 
 body {

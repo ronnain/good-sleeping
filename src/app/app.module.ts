@@ -28,6 +28,8 @@ import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
 import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.component';
 import { EbookPopupComponent } from './retrieve-mail/ebook-popup/ebook-popup.component';
 import { Carousel3dComponent } from './retrieve-mail/ebook-popup/carousel3d/carousel3d.component';
+import { EbookFormComponent } from './retrieve-mail/ebook-form/ebook-form.component';
+import { EbookAddsComponent } from './retrieve-mail/ebook-adds/ebook-adds.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { Carousel3dComponent } from './retrieve-mail/ebook-popup/carousel3d/caro
     SafeHtmlPipe,
     CookiesHandlerComponent,
     EbookPopupComponent,
-    Carousel3dComponent
+    Carousel3dComponent,
+    EbookFormComponent,
+    EbookAddsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
