@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  GA_TRACKING_ID: null,
   serverConfig : {
     serverURL : "http://localhost:80/sleeping-bs/handleRequest.php",
     articlesPath: "http://localhost:80/sleeping-bs/articles/",

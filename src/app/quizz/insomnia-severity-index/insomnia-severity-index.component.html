@@ -23,7 +23,7 @@
       <p>{{step.title}}</p>
       <mat-form-field *ngFor="let question of step.questions" appearance="fill">
         <mat-label>{{question.label}}</mat-label>
-        <mat-select [(ngModel)]="question.answer">
+        <mat-select [(ngModel)]="question.answer" (ngModelChange)="onAnswerSelected()">
           <mat-option *ngFor="let scale of question.scale" [value]="scale.value">
             {{scale.viewValue}}
           </mat-option>
@@ -33,7 +33,7 @@
 
     <h2>Obtiens ton résultat</h2>
     <!-- Stepper -->
-    <quizz-mail-stepper (onShowResult)="getScore()">
+    <quizz-mail-stepper (onShowResult)="getScore()" (goToNextStep)="onNextStep()">
       <ng-container *ngIf="score <= 7">
         <p>Tu ne souffres d'aucune insomnie significative.</p>
         <p>Tu as obtenu un score de <strong>{{score}}.</strong></p>
