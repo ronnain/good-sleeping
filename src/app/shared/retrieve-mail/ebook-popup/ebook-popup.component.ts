@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { leftRightAnimation } from '../../animations/left-right';
@@ -17,12 +18,19 @@ export class EbookPopupComponent implements OnInit {
   userRefusesBonus = false;
   userGetBonus = false;
   popupTriggered = false;
+  isBrowser = false;
 
   constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
     private renderer: Renderer2,
-  ) { }
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+   }
 
   ngOnInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     this.setTimer();
   }
 

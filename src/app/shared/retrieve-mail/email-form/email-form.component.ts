@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { delay } from 'rxjs/operators';
-import { MailService } from 'src/app/shared/services/mail.service';
+import { MailService } from '../../services/mail.service';
 
 @Component({
   selector: 'app-email-form',

@@ -1,4 +1,4 @@
-<div class="overlay" @left-right *ngIf="popupTriggered && !userRefusesBonus && !userGetBonus">
+<div class="overlay" @left-right *ngIf="isBrowser && popupTriggered && !userRefusesBonus && !userGetBonus">
   <div
     class="card front-card"
     [ngClass]="{
