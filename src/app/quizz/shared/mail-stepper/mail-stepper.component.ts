@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MailService } from 'src/app/services/mail.service';
+import { MailService } from 'src/app/shared/services/mail.service';
 
 @Component({
   selector: 'quizz-mail-stepper',

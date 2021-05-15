@@ -1,15 +1,16 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { MailService } from '../services/mail.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { isPlatformBrowser } from '@angular/common';
+import { delay } from 'rxjs/operators';
+import { MailService } from 'src/app/shared/services/mail.service';
 
 @Component({
-  selector: 'app-retrieve-mail',
-  templateUrl: './retrieve-mail.component.html',
-  styleUrls: ['./retrieve-mail.component.css']
+  selector: 'app-email-form',
+  templateUrl: './email-form.component.html',
+  styleUrls: ['./email-form.component.css']
 })
-export class RetrieveMailComponent implements OnInit {
-  isBrowser: boolean;
+export class EmailFormComponent implements OnInit {
+
+  @Output() mailStored = new EventEmitter<boolean>();
 
   email: string;
   agreement: boolean = false;
@@ -17,11 +18,9 @@ export class RetrieveMailComponent implements OnInit {
   failSave: boolean = false;
   loading: boolean = false;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object, private mailService: MailService) {
-    this.isBrowser = isPlatformBrowser(platformId);
-  }
+  constructor(private mailService: MailService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
@@ -33,6 +32,7 @@ export class RetrieveMailComponent implements OnInit {
       data => {
         if(data.success === true) {
           this.showValidation = true;
+          this.onMailStored();
         } else {
           this.failSave = true;
         }
@@ -43,4 +43,11 @@ export class RetrieveMailComponent implements OnInit {
         this.failSave = true;
       });
   }
+
+  onMailStored() {
+    setTimeout(()=>{
+      this.mailStored.emit(true);
+    }, 4000);
+  }
+
 }

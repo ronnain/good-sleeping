@@ -1,0 +1,24 @@
+<div class="overlay" @left-right *ngIf="popupTriggered && !userRefusesBonus && !userGetBonus">
+  <div
+    class="card front-card"
+    [ngClass]="{
+      flipOut: userAcceptsBonus
+    }"
+  >
+    <ebook-adds
+      (userAcceptsBonus)="userAcceptsBonus = $event"
+      (userRefusesBonus)="userRefusesBonus = $event; onClosePopup()">
+    </ebook-adds>
+  </div>
+  <div
+    class="card back-card"
+    [ngClass]="{
+      flipIn: userAcceptsBonus
+    }"
+  >
+    <ebook-form
+      (userGetBonus)="userGetBonus = $event; onClosePopup()"
+      (userRefusesBonus)="userRefusesBonus = $event; onClosePopup()">
+    </ebook-form>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Comment } from '../modeles/interfaces.type';
-import { environment } from '../../environments/environment';
+import { Comment } from '../../modeles/interfaces.type';
+import { environment } from '../../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';

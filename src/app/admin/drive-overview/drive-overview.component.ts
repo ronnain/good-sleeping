@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DriveService } from 'src/app/services/drive.service';
+import { DriveService } from 'src/app/shared/services/drive.service';
 import { Router } from '@angular/router';
-import { ArticlesService } from 'src/app/services/articles.service';
+import { ArticlesService } from 'src/app/shared/services/articles.service';
 import { Article } from 'src/app/modeles/interfaces.type';
 import { Subscription } from 'rxjs';
 

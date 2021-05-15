@@ -1,6 +1,7 @@
 :root {
-  --primary-main: #3f51b5;
+  --primary-main: #0d0d6d;
   --secondary-main: black;
+  --flip-time: 400ms;
 }
 
 body {
@@ -119,6 +120,10 @@ h3 {
 
 .noMarginBottom {
   margin-bottom: 0;
+}
+
+.hiddenScroll {
+  overflow: hidden;
 }
 
 .backgroundFeather {

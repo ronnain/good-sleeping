@@ -1,0 +1,17 @@
+<div class="header">
+    <mat-icon class="header-close" aria-hidden="false" aria-label="Example home icon" (click)="onUserRefusesBonus()">close</mat-icon>
+    <p>Gratuit : Programme du bon dormeur</p>
+</div>
+<div class="body">
+  <div class="centerDiv">
+    <p>Pour recevoir <strong>immédiatement</strong> le guide, il ne te reste qu'à renseigner ton <strong>prénom</strong> et ton <strong>email</strong>.</p>
+    <div class="form-email">
+        <app-email-form
+          (mailStored)="onUserGetBonus()">
+        </app-email-form>
+    </div>
+    <button class="userChoice userRefused" (click)="onUserRefusesBonus()">
+      <p>Tant pis, ça sera pour une prochaine fois.</p>
+    </button>
+  </div>
+</div>

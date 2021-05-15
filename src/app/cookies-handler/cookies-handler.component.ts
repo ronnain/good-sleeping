@@ -2,22 +2,15 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ScriptLoaderService, ScriptModel } from '../services/script.service';
+import { upDownCookiesAnimation } from '../shared/animations/up-down-cookies';
+import { ScriptLoaderService, ScriptModel } from '../shared/services/script.service';
 
 @Component({
   selector: 'app-cookies-handler',
   templateUrl: './cookies-handler.component.html',
   styleUrls: ['./cookies-handler.component.css'],
   animations: [
-    trigger('up-down', [
-      transition(':enter', [
-        style({ transform: 'translateY(100px)'}),
-        animate('300ms ease-in-out', style({  transform: 'translateY(0)' })),
-      ]),
-      transition(':leave', [
-        animate('300ms ease-in-out', style({transform: ' translateY(100px)' }))
-      ])
-    ]),
+    upDownCookiesAnimation
   ]
 })
 export class CookiesHandlerComponent implements OnInit {
