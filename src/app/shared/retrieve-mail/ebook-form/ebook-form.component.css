@@ -1,0 +1,58 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border-bottom: solid 1px whitesmoke;
+  }
+
+.header p {
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.header .header-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+.header .header-close:hover {
+    color: var(--primary-main);
+}
+
+.body {
+    padding: 1.5rem;
+    /* display: flex;
+    height: calc(90vh - 100px);
+    justify-content: center;
+    align-items: center; */
+}
+
+.centerDiv {
+    width: 100%;
+}
+
+.userChoice {
+    background-color: var(--primary-main);
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    border-radius: 3px;
+    border: none;
+  }
+
+.userChoice p {
+    margin: 0;
+  }
+
+.userRefused {
+    background-color: #e9e6e6;
+    color: black;
+    font-weight: unset;
+    margin-top: 1.5rem;
+}

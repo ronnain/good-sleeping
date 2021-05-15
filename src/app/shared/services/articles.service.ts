@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Article } from '../modeles/interfaces.type';
+import { Article } from '../../modeles/interfaces.type';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';

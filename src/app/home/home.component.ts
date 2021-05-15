@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Page } from '../modeles/interfaces.type';
 import { environment } from 'src/environments/environment';
-import { HeaderService } from '../services/header.service';
+import { HeaderService } from '../shared/services/header.service';
 
 @Component({
   selector: 'app-home',

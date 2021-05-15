@@ -17,7 +17,7 @@
 .card {
   position: absolute;
   width: 90%;
-  height: 90%;
+  height: auto;
   max-height: 90%;
   overflow: auto;
   box-shadow: 2px 2px 20px #000;

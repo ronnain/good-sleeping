@@ -1,15 +1,5 @@
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  border-bottom: solid 1px whitesmoke;
-}
-
-.header p {
-  font-weight: bold;
-  padding: 1rem;
+.body {
+  padding: 1.5rem;
 }
 
 blockquote {
@@ -49,4 +39,28 @@ blockquote p {
   color: black;
   font-weight: unset;
   margin-top: 1.5rem;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  border-bottom: solid 1px whitesmoke;
+}
+
+.header p {
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.header .header-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.header .header-close:hover {
+  color: var(--primary-main);
 }

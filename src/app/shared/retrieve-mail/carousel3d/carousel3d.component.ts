@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'carousel3d',
@@ -6,6 +7,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./carousel3d.component.css']
 })
 export class Carousel3dComponent implements OnInit {
+
+  @Output() linkClicked = new EventEmitter<boolean>();
 
   @ViewChild("carousel") carousel: ElementRef;
 
@@ -17,10 +20,13 @@ export class Carousel3dComponent implements OnInit {
   rotationOrder = [1, 2, 3];
   displayedIndex = 1;
 
+  clicked = false;
+
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setAutomaticRotation();
   }
 
   rotateCarousel() {
@@ -49,5 +55,21 @@ export class Carousel3dComponent implements OnInit {
       this.rotationOrder.unshift(this.rotationOrder.pop());
     }
     this.rotateCarousel();
+  }
+
+  setAutomaticRotation() {
+    interval(2300).subscribe(x => {
+      if (this.clicked) {
+        this.clicked = false;
+        return;
+      }
+      // Rotate to the right
+      const indexToRotate = this.rotationOrder[1];
+      this.rotateTo(indexToRotate);
+    });
+  }
+
+  onLinkClicked() {
+    this.linkClicked.emit(true);
   }
 }

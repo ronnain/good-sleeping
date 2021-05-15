@@ -122,6 +122,10 @@ h3 {
   margin-bottom: 0;
 }
 
+.hiddenScroll {
+  overflow: hidden;
+}
+
 .backgroundFeather {
   /* Center and scale the image nicely */
   background-position: center;

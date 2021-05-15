@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Article, Page } from '../modeles/interfaces.type';
-import { ArticlesService } from '../services/articles.service';
+import { ArticlesService } from '../shared/services/articles.service';
 import { environment } from 'src/environments/environment';
-import { HeaderService } from '../services/header.service';
+import { HeaderService } from '../shared/services/header.service';
 
 
 @Component({

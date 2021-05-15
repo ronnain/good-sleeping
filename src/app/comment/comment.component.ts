@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Comment } from '../modeles/interfaces.type';
 import { NgForm } from '@angular/forms';
-import { CommentService } from '../services/comment.service';
+import { CommentService } from '../shared/services/comment.service';
 import { HttpClient } from '@angular/common/http';
-import { ArticlesService } from '../services/articles.service';
+import { ArticlesService } from '../shared/services/articles.service';
 
 @Component({
   selector: 'app-comment',
