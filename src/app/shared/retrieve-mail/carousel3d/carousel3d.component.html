@@ -4,6 +4,9 @@
       class="carousel__cell"
       (click)="rotateTo(1); clicked = true"
       [style.cursor]="displayedIndex === 1 ? 'initial' : 'pointer'"
+      swipe
+      (next)="onRotateNext()"
+      (previous)="onRotatePrevious()"
     >
       <div class="content">
         <img
@@ -23,6 +26,9 @@
       class="carousel__cell"
       (click)="rotateTo(2); clicked = true"
       [style.cursor]="displayedIndex === 2 ? 'initial' : 'pointer'"
+      swipe
+      (next)="onRotateNext()"
+      (previous)="onRotatePrevious()"
     >
       <div class="content">
         <img
@@ -42,6 +48,9 @@
       class="carousel__cell"
       (click)="rotateTo(3); clicked = true"
       [style.cursor]="displayedIndex === 3 ? 'initial' : 'pointer'"
+      swipe
+      (next)="onRotateNext()"
+      (previous)="onRotatePrevious()"
     >
       <div class="content">
         <img

@@ -31,6 +31,7 @@ import { Carousel3dComponent } from './shared/retrieve-mail/carousel3d/carousel3
 import { EbookFormComponent } from './shared/retrieve-mail/ebook-form/ebook-form.component';
 import { EbookAddsComponent } from './shared/retrieve-mail/ebook-adds/ebook-adds.component';
 import { EmailFormComponent } from './shared/retrieve-mail/email-form/email-form.component';
+import { SwipeDirective } from './shared/directives/swipe.directive';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { EmailFormComponent } from './shared/retrieve-mail/email-form/email-form
     InsomniaSeverityIndexComponent,
     MailStepperComponent,
     SafeHtmlPipe,
+    SwipeDirective,
     CookiesHandlerComponent,
     EbookPopupComponent,
     Carousel3dComponent,

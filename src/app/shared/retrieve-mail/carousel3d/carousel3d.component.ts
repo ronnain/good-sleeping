@@ -35,13 +35,13 @@ export class Carousel3dComponent implements OnInit {
   }
 
   rotateLeft() {
-    this.selectedIndex--;
-    this.rotateCarousel();
+    const indexToRotate = this.rotationOrder[2];
+    this.rotateTo(indexToRotate);
   }
 
   rotateRight() {
-    this.selectedIndex++;
-    this.rotateCarousel();
+    const indexToRotate = this.rotationOrder[1];
+    this.rotateTo(indexToRotate);
   }
 
   rotateTo(indexToRotate: number) {
@@ -64,9 +64,18 @@ export class Carousel3dComponent implements OnInit {
         return;
       }
       // Rotate to the right
-      const indexToRotate = this.rotationOrder[1];
-      this.rotateTo(indexToRotate);
+      this.rotateRight();
     });
+  }
+
+  onRotateNext() {
+    this.clicked = true;
+    this.rotateRight();
+  }
+
+  onRotatePrevious() {
+    this.clicked = true;
+    this.rotateLeft();
   }
 
   onLinkClicked() {
