@@ -1,5 +1,11 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+
+
+<div [@routeAnimations]="prepareRoute(outlet)">
+    <app-header></app-header>
+    <router-outlet #outlet="outlet"></router-outlet>
+    <!-- <app-footer></app-footer> -->
+
+</div>
+
 <!-- <app-cookies-handler></app-cookies-handler> -->
 <ebook-popup></ebook-popup>

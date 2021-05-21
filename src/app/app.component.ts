@@ -1,8 +1,9 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { slideInAnimation } from './shared/animations/slide-in.annimation';
 
 declare const gtag: Function;
 
@@ -10,10 +11,14 @@ declare const gtag: Function;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  animations: [
+    slideInAnimation
+  ]
 })
 export class AppComponent {
   title = 'Sommeil Profond';
   isBrowser;
+  desableRouteAnimation = true;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
@@ -50,5 +55,9 @@ export class AppComponent {
     document.head.prepend(gtagScript);
     /** Disable automatic page view hit to fix duplicate page view count  **/
     gtag('config', environment.GA_TRACKING_ID, { send_page_view: false });
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return !this.desableRouteAnimation && outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }

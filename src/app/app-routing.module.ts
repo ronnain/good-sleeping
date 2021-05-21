@@ -11,14 +11,14 @@ import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/
 import { UnsubcribeComponent } from './unsubcribe/unsubcribe.component';
 
 const routes: Routes = [
-  {path: 'articles', component: ArticlesComponent},
-  {path: 'articles/test-severite-insomnie', component: InsomniaSeverityIndexComponent},
-  {path: 'articles/:articleName', component: ArticleComponent},
-  {path: 'a-propos', component: MeComponent},
-  {path: 'bonus', component: LandingPageComponent},
+  {path: 'articles', component: ArticlesComponent, data: {animation: 'Articles'}},
+  {path: 'articles/test-severite-insomnie', component: InsomniaSeverityIndexComponent, data: {animation: 'Test'}},
+  {path: 'articles/:articleName', component: ArticleComponent, data: {animation: 'Article'}},
+  {path: 'a-propos', component: MeComponent, data: {animation: 'Me'}},
+  {path: 'bonus', component: LandingPageComponent, data: {animation: 'Bonus'}},
   {path: 'desabonnement/:key', component: UnsubcribeComponent},
-  {path: 'mentions', component: LegalNoticesComponent},
-  {path: 'contact', component: ContactComponent},
+  {path: 'mentions', component: LegalNoticesComponent, data: {animation: 'Mentions'}},
+  {path: 'contact', component: ContactComponent, data: {animation: 'Contact'}},
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
