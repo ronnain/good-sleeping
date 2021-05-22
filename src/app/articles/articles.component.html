@@ -4,7 +4,7 @@
         <li class="list-group-item" *ngFor="let article of articles">
             <div class="container-fluid articleLink noOutline" routerLink="/articles/{{article.articleName}}" (click)="loadArticle(article.articleName)">
                 <div class="row d-flex flex-wrap align-items-center noOutline">
-                    <div class="col-sm-4 align-middle">
+                    <div class="col-sm-4 align-middle articlesList-wrapper-img">
                         <picture>
                             <source  media="(min-width: 1200px)" srcset="{{imgPath}}{{article.img}}/articles/xl.jpg">
                             <source  media="(min-width: 992px)" srcset="{{imgPath}}{{article.img}}/articles/l.jpg">

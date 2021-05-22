@@ -1,4 +1,4 @@
-import { HeaderService } from '../services/header.service';
+import { HeaderService } from '../shared/services/header.service';
 
 export interface Contact {
     id?: string;

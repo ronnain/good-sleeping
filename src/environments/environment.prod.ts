@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  GA_TRACKING_ID: 'G-Z7E5RVJDW4',
   serverConfig : {
     serverURL : "https://sommeilprofond.fr/sleeping-bs/handleRequest.php",
     articlesPath: "https://sommeilprofond.fr/sleeping-bs/articles/",

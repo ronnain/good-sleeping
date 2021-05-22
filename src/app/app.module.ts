@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
+import { RetrieveMailComponent } from './shared/retrieve-mail/retrieve-mail.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { ArticleComponent } from './article/article.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,11 +24,18 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/insomnia-severity-index.component';
 import { MailStepperComponent } from './quizz/shared/mail-stepper/mail-stepper.component';
-import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
+import { SafeHtmlPipe } from './shared/pipes/safeHtmlPipe';
 import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.component';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { SocialNetworkShareButtonsComponent } from './social-network-share-buttons/social-network-share-buttons.component';
+import { EbookPopupComponent } from './shared/retrieve-mail/ebook-popup/ebook-popup.component';
+import { Carousel3dComponent } from './shared/retrieve-mail/carousel3d/carousel3d.component';
+import { EbookFormComponent } from './shared/retrieve-mail/ebook-form/ebook-form.component';
+import { EbookAddsComponent } from './shared/retrieve-mail/ebook-adds/ebook-adds.component';
+import { EmailFormComponent } from './shared/retrieve-mail/email-form/email-form.component';
+import { SwipeDirective } from './shared/directives/swipe.directive';
+
 
 @NgModule({
   declarations: [
@@ -48,8 +55,14 @@ import { SocialNetworkShareButtonsComponent } from './social-network-share-butto
     InsomniaSeverityIndexComponent,
     MailStepperComponent,
     SafeHtmlPipe,
-    CookiesHandlerComponent,
     SocialNetworkShareButtonsComponent,
+    SwipeDirective,
+    CookiesHandlerComponent,
+    EbookPopupComponent,
+    Carousel3dComponent,
+    EbookFormComponent,
+    EbookAddsComponent,
+    EmailFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

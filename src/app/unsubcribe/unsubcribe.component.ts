@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MailService } from '../services/mail.service';
+import { MailService } from '../shared/services/mail.service';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from '../modeles/interfaces.type';
-import { HeaderService } from '../services/header.service';
+import { HeaderService } from '../shared/services/header.service';
 
 @Component({
   selector: 'app-unsubcribe',

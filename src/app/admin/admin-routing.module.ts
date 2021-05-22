@@ -6,7 +6,7 @@ import { DriveArticleComponent } from './drive-article/drive-article.component';
 import { DriveOverviewComponent } from './drive-overview/drive-overview.component';
 import { LoginComponent } from './login/login.component';
 import { MailHandlerComponent } from './mail-handler/mail-handler.component';
-import { AuthGuardService as AuthGuard } from '../services/auth-guard.service';
+import { AuthGuardService as AuthGuard } from '../shared/services/auth-guard.service';
 
 
 const routes: Routes = [

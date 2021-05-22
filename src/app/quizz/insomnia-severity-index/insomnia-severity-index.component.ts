@@ -1,7 +1,9 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Page } from 'src/app/modeles/interfaces.type';
-import { HeaderService } from 'src/app/services/header.service';
+import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
+import { HeaderService } from 'src/app/shared/services/header.service';
+
 
 @Component({
   selector: 'app-insomnia-severity-index',
@@ -13,9 +15,17 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
   title = "Test de sévérité des troubles de l’insomnie gratuit en ligne";
   metaDesc = "Découvre si tu es insomniaque grâce à ce test rapide et gratuit, en ligne. Si tu es insomniaque, je te donne les meilleurs conseils pour t'en sortir.";
 
+  TEST_INSOMNIE_CATEGORIE = "TEST_INSOMNIE";
+  answerSelected = false;
+  firstStepSelected = false;
+  showResult = false;
+
   score: number = 0;
 
-  constructor(private viewportScroller: ViewportScroller, public headerService: HeaderService) { }
+  constructor(
+    private viewportScroller: ViewportScroller,
+    public headerService: HeaderService,
+    private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit(): void {
     this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
@@ -114,10 +124,48 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
     }
 
     this.score = total;
+
+    if (this.showResult) {
+      return;
+    }
+
+    this.googleAnalyticsService.sendEvent(
+      "show_result",
+      this.TEST_INSOMNIE_CATEGORIE,
+      "show_result",
+      "true"
+    );
+    this.showResult = true;
   }
 
   gotoAnchor(elementId: string): void {
     this.viewportScroller.scrollToAnchor(elementId);
   }
 
+  onAnswerSelected() {
+    if (this.answerSelected) {
+      return;
+    }
+    this.googleAnalyticsService.sendEvent(
+      "answer_selected",
+      this.TEST_INSOMNIE_CATEGORIE,
+      "answer_selected",
+      "true"
+      );
+    this.answerSelected = true;
+  }
+
+  onNextStep() {
+    if (this.firstStepSelected) {
+      return;
+    }
+
+    this.googleAnalyticsService.sendEvent(
+      "first_mail_step",
+      this.TEST_INSOMNIE_CATEGORIE,
+      "first_mail_step",
+      "true"
+      );
+    this.firstStepSelected = true;
+  }
 }

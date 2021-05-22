@@ -101,8 +101,8 @@ export function app() {
   }));
 
   // All regular routes use the Universal engine
-  // Add cache for 1 week
-  server.get('*', cache(604800), (req, res) => {
+  // Add cache for 1 year
+  server.get('*', cache(31449600), (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 

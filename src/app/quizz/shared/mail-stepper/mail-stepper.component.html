@@ -6,7 +6,7 @@
           <input matInput placeholder="Prénom" formControlName="name" required>
         </mat-form-field>
         <div>
-          <button mat-button color="primary" matStepperNext>Suivant</button>
+          <button mat-button color="primary" (click)="onNextStep()" matStepperNext>Suivant</button>
         </div>
       </form>
     </mat-step>
@@ -22,7 +22,7 @@
 
         <div>
           <button mat-button matStepperPrevious>Précédent</button>
-          <button mat-button (click)="onSubmit()" color="primary" matStepperNext>Résultat</button>
+          <button mat-button (click)="onSubmit(); onNextStep()" color="primary" matStepperNext>Résultat</button>
         </div>
       </form>
     </mat-step>

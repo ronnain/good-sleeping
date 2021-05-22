@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DriveService } from 'src/app/services/drive.service';
+import { DriveService } from 'src/app/shared/services/drive.service';
 import { Article, ArticleConfig, MyArticle } from 'src/app/modeles/interfaces.type';
 
 @Component({

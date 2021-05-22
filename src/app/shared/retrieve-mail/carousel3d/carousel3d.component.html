@@ -1,0 +1,62 @@
+<div class="scene"
+  swipe
+  (next)="onRotateNext()"
+  (previous)="onRotatePrevious()">
+
+    <div class="carousel" #carousel>
+      <div
+        class="carousel__cell"
+        (click)="rotateTo(1); clicked = true"
+        [style.cursor]="displayedIndex === 1 ? 'initial' : 'pointer'"
+      >
+        <div class="content">
+          <img
+            class="imgCell"
+            src="assets\icons\mediatation-icon.png"
+            alt="Meditation"
+          />
+          <p class="headerCell">21h00</p>
+          <p class="bodyCell">Relaxation</p>
+          <p class="subBodyCell">
+            Lire un livre, faire du yoga, medita...&nbsp;<a href="#" (click)="onLinkClicked()">Lire la suite</a>
+          </p>
+        </div>
+      </div>
+      <div
+        class="carousel__cell"
+        (click)="rotateTo(2); clicked = true"
+        [style.cursor]="displayedIndex === 2 ? 'initial' : 'pointer'"
+      >
+        <div class="content">
+          <img
+            class="imgCell"
+            src="assets\icons\sport-icon.png"
+            alt="Vélo de sport"
+          />
+          <p class="headerCell">17h00</p>
+          <p class="bodyCell">Activité physique</p>
+          <p class="subBodyCell">
+            Vélo, jardinage, course à...&nbsp;<a href="#" (click)="onLinkClicked()">Lire la suite</a>
+          </p>
+        </div>
+      </div>
+      <div
+        class="carousel__cell"
+        (click)="rotateTo(3); clicked = true"
+        [style.cursor]="displayedIndex === 3 ? 'initial' : 'pointer'"
+      >
+        <div class="content">
+          <img
+            class="imgCell"
+            src="assets\icons\cafe-icon.png"
+            alt="Tasse de cafe"
+          />
+          <p class="headerCell">Avant 8h00</p>
+          <p class="bodyCell">Petit-déjeuner</p>
+          <p class="subBodyCell">
+            Exemple : Un bol de...&nbsp;<a href="#" (click)="onLinkClicked()">Lire la suite</a>
+          </p>
+        </div>
+      </div>
+    </div>
+</div>

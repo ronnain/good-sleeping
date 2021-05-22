@@ -1,4 +1,4 @@
-<div *ngIf="!cookiesStored" class="popup" [ngClass]="{'GoDown': actionClicked}" >
+<div @up-down *ngIf="!isCookiesAuthorized && !actionClicked" class="popup" >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x="0"
@@ -66,20 +66,14 @@
     <p>
         Le site utilises des cookies pour analyser le trafic de notre site et améliorer la qualité des services.
     </p>
-    <button mat-button color="primary" (click)="clickCookies(true)" >
-      <span *ngIf="!(actionClicked && cookiesValidated)">
+    <button *ngIf="!actionClicked" mat-button color="primary" (click)="clickCookies(true)" >
+      <span>
         Accepter
       </span>
-      <svg class="primarySvg" *ngIf="(actionClicked && cookiesValidated)" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
     </button>
-    <button mat-button color="secondary" (click)="clickCookies(false)" >
-      <span *ngIf="!(actionClicked && !cookiesValidated)">
+    <button *ngIf="!actionClicked" mat-button color="secondary" (click)="clickCookies(false)" >
+      <span>
         Refuser
       </span>
-      <svg class="secondarySvg" *ngIf="(actionClicked && !cookiesValidated)" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
       </button>
-</div>
-<div *ngIf="cookiesValidated" style="visibility: hidden;">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7E5RVJDW4"></script>
 </div>

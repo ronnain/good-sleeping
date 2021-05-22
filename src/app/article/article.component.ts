@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID, Renderer2  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ArticlesService } from '../services/articles.service';
+import { ArticlesService } from '../shared/services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { HeaderService } from '../services/header.service';
+import { HeaderService } from '../shared/services/header.service';
 
 @Component({
   selector: 'app-article',

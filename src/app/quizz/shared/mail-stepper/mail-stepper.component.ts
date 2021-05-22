@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MailService } from 'src/app/services/mail.service';
+import { MailService } from 'src/app/shared/services/mail.service';
 
 @Component({
   selector: 'quizz-mail-stepper',
@@ -10,6 +10,7 @@ import { MailService } from 'src/app/services/mail.service';
 export class MailStepperComponent implements OnInit {
 
   @Output() onShowResult = new EventEmitter<null>();
+  @Output() goToNextStep = new EventEmitter<null>();
 
   nameFormGroup: FormGroup;
   emailFormGroup: FormGroup;
@@ -35,6 +36,10 @@ export class MailStepperComponent implements OnInit {
     const nameformValue = this.nameFormGroup.value;
     const emailformValue = this.emailFormGroup.value;
     this.mailService.createContact(nameformValue['name'], emailformValue['email'].toLowerCase()).subscribe();
+  }
+
+  onNextStep() {
+    this.goToNextStep.emit();
   }
 
 }

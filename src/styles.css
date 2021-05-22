@@ -1,8 +1,9 @@
 @import "socialButtonsStyles.css";
 
 :root {
-  --primary-main: #3f51b5;
+  --primary-main: #0d0d6d;
   --secondary-main: black;
+  --flip-time: 400ms;
 }
 
 body {
@@ -72,7 +73,8 @@ h3 {
 
 .article h1 {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 }
 
 .article h2 {
@@ -121,6 +123,10 @@ h3 {
 
 .noMarginBottom {
   margin-bottom: 0;
+}
+
+.hiddenScroll {
+  overflow: hidden;
 }
 
 .backgroundFeather {
@@ -179,5 +185,11 @@ h3 {
 }
 
 .divMailRetrieve {
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02), 0 6px 6px rgba(0, 0, 0, 0.10);
+
+}
+
+.divMailRetrieve:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
