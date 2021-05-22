@@ -4,6 +4,7 @@ import { ArticlesService } from '../shared/services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { HeaderService } from '../shared/services/header.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-article',
@@ -20,6 +21,9 @@ export class ArticleComponent implements OnInit, Page {
   articleRetrieve: boolean = false;
   failSave: boolean;
   loading: boolean;
+
+  articleUrl: string;
+  articleImg: string;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
@@ -53,6 +57,8 @@ export class ArticleComponent implements OnInit, Page {
         if (data) {
           this.articleContent = data;
           this.articleRetrieve = true;
+          this.articleUrl = environment.serverConfig.articlesPath + this.articleName;
+          this.articleImg = environment.serverConfig.imgPath + this.articleName + 'img1/m.jpg';
         } else {
           this.failSave = true;
         }

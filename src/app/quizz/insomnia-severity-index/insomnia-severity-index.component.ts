@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Page } from 'src/app/modeles/interfaces.type';
 import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
 import { HeaderService } from 'src/app/shared/services/header.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -21,6 +22,9 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
   showResult = false;
 
   score: number = 0;
+
+  articleUrl = environment.serverConfig.articlesPath + 'test-severite-insomnie';
+  articleImg = environment.serverConfig.imgPath + 'test-severite-insomnie' + 'img1/m.jpg';
 
   constructor(
     private viewportScroller: ViewportScroller,

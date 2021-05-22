@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./social-network-share-buttons.component.css']
 })
 export class SocialNetworkShareButtonsComponent implements OnInit {
+
+  @Input()
+  articleUrl: string;
+
+  @Input()
+  articleImg: string;
 
   constructor() { }
 

@@ -12,16 +12,26 @@
         </ol>
     </nav>
     <div class="col- " id="articleContent" [innerHtml]="articleContent | safeHtml"></div>
+
     <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>
+
     <div *ngIf="failSave" class="alert alert-danger verticalSpace" role="alert">
         <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
     </div>
-    <social-network-share-buttons></social-network-share-buttons>
+
+    <social-network-share-buttons
+      [articleImg]="articleImg"
+      [articleUrl]="articleUrl">
+    </social-network-share-buttons>
+
     <div *ngIf="article && article.dateModified && articleRetrieve">
         <footer class="blockquote-footer">Ecrit le {{ article.dateModified | date: 'dd/MM/yyyy'}} par <cite>Romain</cite></footer>
     </div>
+
     <app-retrieve-mail></app-retrieve-mail>
+
     <app-comment *ngIf="article && article.id" [articleId]="article.id"></app-comment>
+
     <div class="articles">
         <h2 class="titleBottomLine">A lire aussi  :</h2>
         <app-articles *ngIf="article" [currentArticleName]="article.articleName" [hideDescription]="true" (loadArticleEvent)="loadArticle($event)"></app-articles>
