@@ -16,6 +16,7 @@
     <div *ngIf="failSave" class="alert alert-danger verticalSpace" role="alert">
         <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
     </div>
+    <social-network-share-buttons></social-network-share-buttons>
     <div *ngIf="article && article.dateModified && articleRetrieve">
         <footer class="blockquote-footer">Ecrit le {{ article.dateModified | date: 'dd/MM/yyyy'}} par <cite>Romain</cite></footer>
     </div>
