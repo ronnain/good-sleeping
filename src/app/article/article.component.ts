@@ -23,7 +23,7 @@ export class ArticleComponent implements OnInit, Page {
   loading: boolean;
 
   articleUrl: string;
-  articleImg: string;
+  sharedArticleImg: string;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
@@ -57,8 +57,7 @@ export class ArticleComponent implements OnInit, Page {
         if (data) {
           this.articleContent = data;
           this.articleRetrieve = true;
-          this.articleUrl = environment.serverConfig.articlesPath + this.articleName;
-          this.articleImg = environment.serverConfig.imgPath + this.articleName + 'img1/m.jpg';
+          this.sharedArticleImg = environment.serverConfig.imgPath + this.articleName + 'img1/s.jpg';
         } else {
           this.failSave = true;
         }

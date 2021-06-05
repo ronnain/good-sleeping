@@ -1,4 +1,5 @@
-import { Input } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Input, PLATFORM_ID } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,15 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocialNetworkShareButtonsComponent implements OnInit {
 
-  @Input()
-  articleUrl: string;
+  private isBrowser: boolean = false;
 
+  articleUrl: string;
   @Input()
   articleImg: string;
 
-  constructor() { }
+  constructor( @Inject(PLATFORM_ID) platformId: Object,) {
+    this.isBrowser = isPlatformBrowser(platformId);
+   }
 
   ngOnInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+    this.articleUrl = window.location.href;
   }
 
 }
