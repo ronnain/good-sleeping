@@ -28,6 +28,10 @@ export class MailHandlerComponent implements OnInit {
   }
 
   sendMailToAll() {
+    if (!this.isValidMail()) {
+      alert("Add a link to a tag");
+      return
+    }
     this.showValidation = false;
     this.failSave = false;
     this.loading = true;
@@ -70,5 +74,9 @@ export class MailHandlerComponent implements OnInit {
         this.loading = false;
         this.failSave = true;
       });
+  }
+
+  private isValidMail():boolean {
+    return !/href=('|")\s*\1/.test(this.mailBody);
   }
 }
