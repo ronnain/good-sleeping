@@ -11,8 +11,8 @@ export class MailHandlerComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'firstName', 'mail', 'creationDate', 'source'];
 
-  mailObject;
-  mailBody;
+  mailObject: string = '';
+  mailBody: string = '';
 
   allMails = [];
 
