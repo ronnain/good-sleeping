@@ -35,6 +35,7 @@ import { EbookFormComponent } from './shared/retrieve-mail/ebook-form/ebook-form
 import { EbookAddsComponent } from './shared/retrieve-mail/ebook-adds/ebook-adds.component';
 import { EmailFormComponent } from './shared/retrieve-mail/email-form/email-form.component';
 import { SwipeDirective } from './shared/directives/swipe.directive';
+import { AnimateThatDirective } from './shared/directives/animation.directive';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { SwipeDirective } from './shared/directives/swipe.directive';
     SafeHtmlPipe,
     SocialNetworkShareButtonsComponent,
     SwipeDirective,
+    AnimateThatDirective,
     CookiesHandlerComponent,
     EbookPopupComponent,
     Carousel3dComponent,
