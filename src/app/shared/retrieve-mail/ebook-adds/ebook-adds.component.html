@@ -1,11 +1,11 @@
-<div class="header">
+<div class="header" [ngClass]="{'isMobile': isMobile}">
   <mat-icon class="header-close" aria-hidden="false" aria-label="Example home icon" (click)="onUserRefusesBonus()">close</mat-icon>
-  <p *ngIf="!isMobile">Gratuit : Ebook du bon dormeur</p>
+  <p>Gratuit : Ebook du bon dormeur</p>
 </div>
 <div class="body">
 
-  <ng-container *ngIf="!isMobile">
-    <p>
+  <div *ngIf="!isMobile" class="firstSection">
+    <p class="firstText">
       Cet ebook a été conçu pour les personnes voulant améliorer leur sommeil, il
       contient :
     </p>
@@ -17,8 +17,15 @@
           comprenant les étapes clés.
         </p>
       </li>
+      <li>
+        <p>Mes meilleurs conseils</p>
+      </li>
+      <li>
+        <p>Les étapes clés pour bien dormir. Exemple :</p>
+      </li>
     </ul>
-  </ng-container>
+
+  </div>
 
   <div *ngIf="isMobile" class="presentationTexts">
     <p>J'ai créé <strong>un programme idéal</strong> visant à aider le corps à
@@ -29,20 +36,11 @@
     </p>
   </div>
 
-  <ul *ngIf="!isMobile">
-    <li>
-      Mes meilleurs conseils
-    </li>
-    <li>
-      Les étapes clés pour bien dormir. Exemple :
-    </li>
-  </ul>
-
   <carousel3d
     (linkClicked)="onUserAcceptsBonus()">
   </carousel3d>
 
-  <ng-container *ngIf="!isMobile">
+  <div *ngIf="!isMobile" class="secondSection">
     <ul>
       <li>
         <p class="advices">
@@ -58,7 +56,7 @@
         façon...<a href="#" (click)="onUserAcceptsBonus()">Lire la suite</a>
       </p>
     </blockquote>
-  </ng-container>
+  </div>
 
   <button class="userChoice" (click)="onUserAcceptsBonus()">
     <p>Je veux télécharger gratuitement cet ebook !</p>

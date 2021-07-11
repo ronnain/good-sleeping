@@ -61,14 +61,16 @@ export class Carousel3dComponent implements OnInit {
   }
 
   setAutomaticRotation() {
-    interval(2300).subscribe(x => {
-      if (this.clicked) {
-        this.clicked = false;
-        return;
-      }
-      // Rotate to the right
-      this.rotateRight();
-    });
+    setTimeout(() => {
+      interval(2300).subscribe(x => {
+        if (this.clicked) {
+          this.clicked = false;
+          return;
+        }
+        // Rotate to the right
+        this.rotateRight();
+      });
+    }, 1700);
   }
 
   onRotateNext() {
