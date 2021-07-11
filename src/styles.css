@@ -3,6 +3,7 @@
 :root {
   --primary-main: #0d0d6d;
   --secondary-main: black;
+  --accent-color: #fe0000;
   --flip-time: 400ms;
 }
 

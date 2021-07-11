@@ -1,39 +1,64 @@
 <div class="header">
   <mat-icon class="header-close" aria-hidden="false" aria-label="Example home icon" (click)="onUserRefusesBonus()">close</mat-icon>
-  <p>Gratuit : Programme du bon dormeur</p>
+  <p *ngIf="!isMobile">Gratuit : Ebook du bon dormeur</p>
 </div>
 <div class="body">
-  <p>
-    Cet ebook a été conçu pour les personnes voulant améliorer leur sommeil, il
-    contient :
-  </p>
-  <ul>
+
+  <ng-container *ngIf="!isMobile">
+    <p>
+      Cet ebook a été conçu pour les personnes voulant améliorer leur sommeil, il
+      contient :
+    </p>
+    <ul>
+      <li>
+        <p>
+          J'ai créé  <strong>un programme idéal</strong> visant à aider le corps à
+          <strong>se resynchroniser avec ses besoins profonds</strong>,
+          comprenant les étapes clés.
+        </p>
+      </li>
+    </ul>
+  </ng-container>
+
+  <div *ngIf="isMobile" class="presentationTexts">
+    <p>J'ai créé <strong>un programme idéal</strong> visant à aider le corps à
+      <strong>se resynchroniser avec ses besoins profonds</strong>
+    </p>
+    <p>
+      Il comprend un guide avec <strong>l'heure où réaliser des activités clés</strong> pour bien dormir
+    </p>
+  </div>
+
+  <ul *ngIf="!isMobile">
     <li>
-      <p>
-        <strong>Un programme idéal</strong> visant à
-        <strong>se resynchroniser avec les besoins profonds du corps</strong>,
-        comprenant les étapes clés.
-      </p>
+      Mes meilleurs conseils
+    </li>
+    <li>
+      Les étapes clés pour bien dormir. Exemple :
     </li>
   </ul>
+
   <carousel3d
     (linkClicked)="onUserAcceptsBonus()">
   </carousel3d>
-  <ul>
-    <li>
-      <p class="advices">
-        <strong>Mes conseils inédits</strong>, testés et approuvés par un
-        <strong>ancien insiomniaque</strong> qui ne pensait pas que faire une
-        nuit complète était possible.
+
+  <ng-container *ngIf="!isMobile">
+    <ul>
+      <li>
+        <p class="advices">
+          <strong>Mes conseils inédits</strong>, testés et approuvés par un
+          <strong>ancien insiomniaque</strong> qui ne pensait pas que faire une
+          nuit complète était possible.
+        </p>
+      </li>
+    </ul>
+    <blockquote>
+      <p>
+        Travailler trop tard peut provoquer des réveils nocturnes. De la même
+        façon...<a href="#" (click)="onUserAcceptsBonus()">Lire la suite</a>
       </p>
-    </li>
-  </ul>
-  <blockquote>
-    <p>
-      Travailler trop tard peut provoquer des réveils nocturnes. De la même
-      façon...<a href="#" (click)="onUserAcceptsBonus()">Lire la suite</a>
-    </p>
-  </blockquote>
+    </blockquote>
+  </ng-container>
 
   <button class="userChoice" (click)="onUserAcceptsBonus()">
     <p>Je veux télécharger gratuitement cet ebook !</p>

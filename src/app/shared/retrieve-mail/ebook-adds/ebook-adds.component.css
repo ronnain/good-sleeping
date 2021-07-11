@@ -65,3 +65,7 @@ blockquote p {
 .header .header-close:hover {
   color: var(--primary-main);
 }
+
+.presentationTexts {
+  margin-top: 2rem;
+}

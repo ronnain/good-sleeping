@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MobileService } from '../../services/mobile.service';
 
 @Component({
   selector: 'ebook-adds',
@@ -10,9 +11,12 @@ export class EbookAddsComponent implements OnInit {
   @Output() userAcceptsBonus = new EventEmitter<boolean>();
   @Output() userRefusesBonus = new EventEmitter<boolean>();
 
-  constructor() { }
+  isMobile: boolean;
+
+  constructor(private mobileService: MobileService) { }
 
   ngOnInit(): void {
+    this.isMobile = this.mobileService.isMobile;
   }
 
   onUserAcceptsBonus() {

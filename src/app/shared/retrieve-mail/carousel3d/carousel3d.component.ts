@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { interval } from 'rxjs';
+import { MobileService } from '../../services/mobile.service';
 
 @Component({
   selector: 'carousel3d',
@@ -22,10 +23,12 @@ export class Carousel3dComponent implements OnInit {
 
   clicked = false;
 
+  isMobile:boolean;
 
-  constructor() { }
+  constructor(private mobileService: MobileService) { }
 
   ngOnInit(): void {
+    this.isMobile = this.mobileService.isMobile;
     this.setAutomaticRotation();
   }
 

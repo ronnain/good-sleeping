@@ -1,7 +1,8 @@
 <div class="scene"
   swipe
   (next)="onRotateNext()"
-  (previous)="onRotatePrevious()">
+  (previous)="onRotatePrevious()"
+  [ngClass]="{'isMobile': isMobile}">
 
     <div class="carousel" #carousel>
       <div
