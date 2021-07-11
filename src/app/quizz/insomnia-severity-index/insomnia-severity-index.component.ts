@@ -23,7 +23,7 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
 
   score: number = 0;
 
-  sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie' + 'img1/s.jpg';
+  sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie' + 'img1/xl.jpg';
 
   constructor(
     private viewportScroller: ViewportScroller,
@@ -32,6 +32,7 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
 
   ngOnInit(): void {
     this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
+    this.headerService.createOpenGraphMeta(this.title, this.metaDesc, this.sharedArticleImg);
   }
 
   scale1: any[] = [

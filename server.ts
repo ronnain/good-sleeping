@@ -2,13 +2,10 @@ import 'zone.js/dist/zone-node';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
-import { join } from 'path';
-
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
-import { existsSync } from 'fs';
-
 import { environment } from 'src/environments/environment';
+import { HOST_ID } from 'host';
 
 // ssr DOM
 const domino = require('domino');
@@ -102,8 +99,15 @@ export function app() {
 
   // All regular routes use the Universal engine
   // Add cache for 1 year
-  server.get('*', cache(31449600), (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+  server.get('*', cache(2147483), (req, res) => {
+    res.render(indexHtml,
+      {
+        req,
+        providers: [
+          { provide: APP_BASE_HREF, useValue: req.baseUrl },
+          { provide: HOST_ID, useValue: req.get('host') + req.originalUrl }, // sending host name in provider
+        ]
+      });
   });
 
   return server;

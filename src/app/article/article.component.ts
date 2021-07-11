@@ -29,8 +29,6 @@ export class ArticleComponent implements OnInit, Page {
     @Inject(PLATFORM_ID) platformId: Object,
     private _Activatedroute:ActivatedRoute,
     private articlesService: ArticlesService,
-    private renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document,
     private _router: Router,
     public headerService: HeaderService
     ) {
@@ -57,7 +55,6 @@ export class ArticleComponent implements OnInit, Page {
         if (data) {
           this.articleContent = data;
           this.articleRetrieve = true;
-          this.sharedArticleImg = environment.serverConfig.imgPath + this.articleName + 'img1/s.jpg';
         } else {
           this.failSave = true;
         }
@@ -90,6 +87,8 @@ export class ArticleComponent implements OnInit, Page {
         this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName);
         this.headerService.handleTitleAndMeta(this.article.title, this.article.metaDesc);
         this.createStructuredData();
+        this.sharedArticleImg = environment.serverConfig.imgPath + this.articleName + 'img1/xl.jpg';
+        this.headerService.createOpenGraphMeta(this.article.title, this.article.description, this.sharedArticleImg)
       },
       error => console.error('Une erreure est survenue à la récupération des articles !', error)
       );
@@ -126,11 +125,6 @@ export class ArticleComponent implements OnInit, Page {
       },
       "description": "${this.article.description}"
     }`;
-    const scriptStructuredData = this.renderer2.createElement('script');
-    scriptStructuredData.id = "structuredData";
-    scriptStructuredData.type = "application/ld+json";
-    scriptStructuredData.innerHTML = structuredData;
-
-    this.renderer2.appendChild(this._document.head, scriptStructuredData);
+    this.headerService.createStructuredData(structuredData);
   }
 }

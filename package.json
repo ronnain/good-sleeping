@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:dev:ssr": "ng run sleeping:serve-ssr",
-    "serve:ssr": "cd ./dist/sleeping/server/ && node main.js",
+    "serve:ssr": "cd ./dist/sleeping/server/ && node main.js --trace-warnings",
     "build:prod:ssr": "ng build --prod && ng run sleeping:server:production",
     "prerender": "ng run sleeping:prerender"
   },
@@ -22,7 +22,7 @@
     "@angular/compiler": "~11.0.8",
     "@angular/core": "^11.0.8",
     "@angular/forms": "~11.0.8",
-    "@angular/material": "^11.0.3",
+    "@angular/material": "^11.2.13",
     "@angular/platform-browser": "~11.0.8",
     "@angular/platform-browser-dynamic": "~11.0.8",
     "@angular/platform-server": "^11.0.8",
