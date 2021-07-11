@@ -1,6 +1,35 @@
 .body {
   padding: 1.5rem;
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(85vh);
+}
+
+.body .title {
+  font-size: 1.5rem;
+}
+
+.body ul {
+  position: relative;
+  left: 25%;
+}
+
+.nextStepBtn {
+  position: absolute;
+  bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--primary-main);
+}
+
+.nextStepBtn .mat-icon {
+  font-size: 70px;
+  width: 70px;
+  height: 70px;
 }
 
 blockquote {
@@ -65,3 +94,5 @@ blockquote p {
 .header .header-close:hover {
   color: var(--primary-main);
 }
+
+

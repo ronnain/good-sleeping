@@ -1,9 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { fadeIn } from '../../animations/animations';
 
 @Component({
   selector: 'ebook-adds',
   templateUrl: './ebook-adds.component.html',
-  styleUrls: ['./ebook-adds.component.css']
+  styleUrls: ['./ebook-adds.component.css'],
+  animations: [
+    fadeIn
+  ]
 })
 export class EbookAddsComponent implements OnInit {
 
@@ -21,5 +25,19 @@ export class EbookAddsComponent implements OnInit {
 
   onUserRefusesBonus() {
     this.userRefusesBonus.emit(true);
+  }
+
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }
