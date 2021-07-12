@@ -1,7 +1,7 @@
-import { trigger, transition, style, animate, query, stagger } from "@angular/animations";
+import { trigger, transition, style, animate, query, stagger, group } from "@angular/animations";
 
-export const leftRightAnimation =
-trigger('left-right', [
+export const popupBonus =
+trigger('popup-bonus', [
     transition(':enter', [
       // Hide elements
 
@@ -39,22 +39,23 @@ trigger('left-right', [
 
       // Display scene
       query('.scene', [
-          animate('0.5s', style({ opacity: 1 }))
+        animate('0.5s', style({ opacity: 1 }))
       ], { delay: 1000 }),
 
-      // Display second section and deskop
-      query('.secondSection li, .secondSection blockquote', [
-        stagger(1500, [
-          animate('0.5s', style({ opacity: 1, transform: 'translateY(0)' }))
-        ])
-      ], { delay: 1000,  optional: true }),
+      group([
+          // Display second section and deskop
+          query('.secondSection li, .secondSection blockquote', [
 
-      // Display action button
-      query('.userChoice', [
-        stagger(1000, [
-          animate('0.5s', style({ opacity: 1 }))
-        ])
-      ], { delay: 1000 }),
+            animate('0.5s', style({ opacity: 1, transform: 'translateY(0)' }))
+
+          ], { optional: true }),
+
+          // Display action button
+          query('.userChoice', [
+
+              animate('0.5s', style({ opacity: 1 }))
+          ]),
+      ], { delay: 1000 })
 
 
     ]),

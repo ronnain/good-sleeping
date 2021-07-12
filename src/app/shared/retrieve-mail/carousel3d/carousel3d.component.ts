@@ -70,7 +70,7 @@ export class Carousel3dComponent implements OnInit {
         // Rotate to the right
         this.rotateRight();
       });
-    }, 1700);
+    }, 4000);
   }
 
   onRotateNext() {

@@ -2,14 +2,14 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { leftRightAnimation } from '../../animations/left-right';
+import { popupBonus } from '../../animations/popup-bonus';
 
 @Component({
   selector: 'ebook-popup',
   templateUrl: './ebook-popup.component.html',
   styleUrls: ['./ebook-popup.component.css'],
   animations: [
-    leftRightAnimation
+    popupBonus
   ]
 })
 export class EbookPopupComponent implements OnInit {
