@@ -2,3 +2,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.buttonsChoice button:hover {
+    transform: scale(110%);
+}

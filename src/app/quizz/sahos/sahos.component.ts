@@ -34,8 +34,8 @@ export class SahosComponent implements OnInit {
       description: "A mesurer au niveau de la pomme d'Adam.\nSi tu es un femme, ton tour de coup est-il supérieur ou égale à 41 cm ?\nSi tu es un homme, ton tour de coup est-il supérieur ou égale à 41 cm ?"
     },
     {
-      title: "Es-tu un homme ?",
-      description: ""
+      title: "Sexe",
+      description: "Es-tu un homme ?"
     }
   ];
 

@@ -4,7 +4,12 @@
     <div class="cardBinaryQuestion fakePaper">
     </div>
 
-    <div *ngFor="let question of binaryQuestions; let index = index;" [@left-right-card]="currentIndex">
+    <div
+      *ngFor="let question of binaryQuestions; let index = index;"
+      [@left-right-card]="sideMovement"
+      (@left-right-card.start)="onAnimationStart()"
+      (@left-right-card.done)="onAnimationDone()"
+      >
         <div class="cardBinaryQuestion"  *ngIf="index === currentIndex"  swipe (next)="onChoice(false)" (previous)="onChoice(true)" >
             <p>Question {{index + 1}} sur {{binaryQuestions.length}}</p>
             <p>{{question.description}}</p>

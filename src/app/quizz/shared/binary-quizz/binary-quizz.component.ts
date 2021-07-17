@@ -15,36 +15,57 @@ export class BinaryQuizzComponent implements OnInit {
   @Input() binaryQuestions: binaryQuestionDTO[];
 
   currentIndex: number = 0;
-  increment:boolean;
+  sideMovement: number = 0;
+  isAnimationDone: boolean = true;
+  animationStarts: number = 0;
 
-  currentQuestion:binaryQuestionDTO;
 
   constructor() { }
 
   ngOnInit(): void {
     /* console.log('binaryQuestions', this.binaryQuestions); */
-    this.currentQuestion = this.binaryQuestions[0];
   }
 
   onNext() {
-    this.increment = true;
+    if (!this.isAnimationDone || this.currentIndex + 1 === this.binaryQuestions.length) {
+      return;
+    }
+    this.sideMovement++;
     this.currentIndex++;
-    this.currentQuestion = this.binaryQuestions[this.currentIndex];
   }
 
   onPrevious() {
-    this.increment = false;
+    if (!this.isAnimationDone || !this.currentIndex) {
+      return;
+    }
+    this.sideMovement--;
     this.currentIndex--;
-    this.currentQuestion = this.binaryQuestions[this.currentIndex];
   }
 
   onChoice(choice: boolean) {
-    this.currentQuestion.answer = choice;
-    if(choice) {
-      this.onNext();
+    if (!this.isAnimationDone) {
       return;
     }
-    this.onPrevious();
+
+    this.binaryQuestions[this.currentIndex].answer = choice;
+
+    if (this.currentIndex + 1 === this.binaryQuestions.length) {
+      return;
+    }
+    this.sideMovement = choice ? this.sideMovement + 1 : this.sideMovement -1;
+    this.currentIndex++;
+  }
+
+  onAnimationStart() {
+    this.animationStarts++;
+    this.isAnimationDone = false;
+  }
+
+  onAnimationDone() {
+    this.animationStarts--;
+    if (!this.animationStarts) {
+      this.isAnimationDone = true;
+    }
   }
 
 }
