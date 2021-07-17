@@ -1,0 +1,35 @@
+.questionsBlock {
+    height: 300px;
+}
+
+.cardBinaryQuestion {
+    width: 90%;
+    box-shadow: 1px 1px 4px rgb(99 99 101);
+    padding: 2rem;
+    text-align: justify;
+    margin-bottom: 2rem;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.cardBinaryQuestion:hover {
+    box-shadow: 2px 2px 8px rgba(99 99 101);
+}
+
+.cardBinaryQuestion.fakePaper {
+    height: 300px;
+    width: 80%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    box-shadow: 1px 1px 4px rgb(183 183 183);
+}
+
+.cardBinaryQuestion.fakePaper--2 {
+    height: 320px;
+    width: 70%;
+}
+
+.cardBinaryQuestion.fakePaper:hover {
+    box-shadow: 1px 1px 4px rgb(152 152 152);
+}

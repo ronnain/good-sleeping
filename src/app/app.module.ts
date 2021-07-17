@@ -36,6 +36,9 @@ import { EbookAddsComponent } from './shared/retrieve-mail/ebook-adds/ebook-adds
 import { EmailFormComponent } from './shared/retrieve-mail/email-form/email-form.component';
 import { SwipeDirective } from './shared/directives/swipe.directive';
 import { AnimateThatDirective } from './shared/directives/animation.directive';
+import { SahosComponent } from './quizz/sahos/sahos.component';
+import { BinaryActionsComponent } from './quizz/shared/binary-quizz/binary-actions/binary-actions.component';
+import { BinaryQuizzComponent } from './quizz/shared/binary-quizz/binary-quizz.component';
 
 
 @NgModule({
@@ -64,7 +67,10 @@ import { AnimateThatDirective } from './shared/directives/animation.directive';
     Carousel3dComponent,
     EbookFormComponent,
     EbookAddsComponent,
-    EmailFormComponent
+    EmailFormComponent,
+    SahosComponent,
+    BinaryActionsComponent,
+    BinaryQuizzComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
