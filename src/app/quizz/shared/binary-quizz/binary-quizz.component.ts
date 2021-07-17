@@ -38,4 +38,13 @@ export class BinaryQuizzComponent implements OnInit {
     this.currentQuestion = this.binaryQuestions[this.currentIndex];
   }
 
+  onChoice(choice: boolean) {
+    this.currentQuestion.answer = choice;
+    if(choice) {
+      this.onNext();
+      return;
+    }
+    this.onPrevious();
+  }
+
 }

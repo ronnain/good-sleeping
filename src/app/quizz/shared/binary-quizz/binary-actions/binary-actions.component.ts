@@ -9,6 +9,7 @@ export class BinaryActionsComponent implements OnInit {
 
   @Output() next = new EventEmitter<void>();
   @Output() previous = new EventEmitter<void>();
+  @Output() choice = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -21,6 +22,10 @@ export class BinaryActionsComponent implements OnInit {
 
   onPrevious() {
     this.previous.emit();
+  }
+
+  onChoice(choice: boolean) {
+    this.choice.emit(choice);
   }
 
 }

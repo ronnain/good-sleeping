@@ -5,7 +5,7 @@
     </div>
 
     <div *ngFor="let question of binaryQuestions; let index = index;" [@left-right-card]="currentIndex">
-        <div class="cardBinaryQuestion"  *ngIf="index === currentIndex"  >
+        <div class="cardBinaryQuestion"  *ngIf="index === currentIndex"  swipe (next)="onChoice(false)" (previous)="onChoice(true)" >
             <p>Question {{index + 1}} sur {{binaryQuestions.length}}</p>
             <p>{{question.description}}</p>
         </div>
@@ -15,4 +15,4 @@
     </div> -->
 
 </div>
-<binary-actions (next)="onNext()" (previous)="onPrevious()"></binary-actions>
+<binary-actions (next)="onNext()" (previous)="onPrevious()" (choice)="onChoice($event)"></binary-actions>
