@@ -1,0 +1,25 @@
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            Calculer son IMC
+        </mat-panel-title>
+        <mat-panel-description>
+            <span>Résultat : <strong>{{bmi ? bmi : "-"}}</strong> kg/m²</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Taille (cm)</mat-label>
+            <input matInput type="number" [(ngModel)]="height" (ngModelChange)="onCalculBMI()">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Poids (kg)</mat-label>
+            <input matInput type="number" [(ngModel)]="weight" (ngModelChange)="onCalculBMI()">
+        </mat-form-field>
+      </div>
+
+    </mat-expansion-panel>
+</mat-accordion>

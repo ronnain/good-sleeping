@@ -1,8 +1,8 @@
 <div class="questionsBlock">
-    <div class="cardBinaryQuestion fakePaper fakePaper--2">
+    <!-- <div class="cardBinaryQuestion fakePaper fakePaper--2">
     </div>
     <div class="cardBinaryQuestion fakePaper">
-    </div>
+    </div> -->
 
     <div
       *ngFor="let question of binaryQuestions; let index = index;"
@@ -11,13 +11,14 @@
       (@left-right-card.done)="onAnimationDone()"
       >
         <div class="cardBinaryQuestion"  *ngIf="index === currentIndex"  swipe (next)="onChoice(false)" (previous)="onChoice(true)" >
-            <p>Question {{index + 1}} sur {{binaryQuestions.length}}</p>
+            <p>Question {{index + 1}} sur {{binaryQuestions.length}}</p> showExtra {{showExtra}}
             <p>{{question.description}}</p>
+            <ng-content *ngIf="question.showExtra"></ng-content>
         </div>
     </div>
-
-    <!-- <div class="cardBinaryQuestion fakePaper2">
-    </div> -->
-
+    <div class="cardBinaryQuestion" *ngIf="currentIndex === binaryQuestions.length">
+        <p>Questionnaire complété à 100 %</p>
+        <mat-icon>done</mat-icon>
+    </div>
 </div>
-<binary-actions (next)="onNext()" (previous)="onPrevious()" (choice)="onChoice($event)"></binary-actions>
+<binary-actions (next)="onNext()" (previous)="onPrevious()" (choice)="onChoice($event)" [hideBtnsChoice]="hideBtnsChoice"></binary-actions>

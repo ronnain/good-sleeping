@@ -1,7 +1,7 @@
 <div class="actionsBlock">
     <button mat-button (click)="onPrevious()"><mat-icon>arrow_back</mat-icon></button>
 
-    <div class="buttonsChoice">
+    <div class="buttonsChoice" *ngIf="!hideBtnsChoice">
         <button mat-fab (click)="onChoice(false)">
             <mat-icon>thumb_down</mat-icon>
         </button>

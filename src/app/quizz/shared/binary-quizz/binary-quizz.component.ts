@@ -18,12 +18,11 @@ export class BinaryQuizzComponent implements OnInit {
   sideMovement: number = 0;
   isAnimationDone: boolean = true;
   animationStarts: number = 0;
-
+  hideBtnsChoice: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    /* console.log('binaryQuestions', this.binaryQuestions); */
   }
 
   onNext() {
@@ -40,6 +39,7 @@ export class BinaryQuizzComponent implements OnInit {
     }
     this.sideMovement--;
     this.currentIndex--;
+    this.hideBtnsChoice =  this.currentIndex >= this.binaryQuestions.length;
   }
 
   onChoice(choice: boolean) {
@@ -48,12 +48,13 @@ export class BinaryQuizzComponent implements OnInit {
     }
 
     this.binaryQuestions[this.currentIndex].answer = choice;
+    this.currentIndex++;
+    this.hideBtnsChoice =  this.currentIndex >= this.binaryQuestions.length;
 
     if (this.currentIndex + 1 === this.binaryQuestions.length) {
       return;
     }
     this.sideMovement = choice ? this.sideMovement + 1 : this.sideMovement -1;
-    this.currentIndex++;
   }
 
   onAnimationStart() {

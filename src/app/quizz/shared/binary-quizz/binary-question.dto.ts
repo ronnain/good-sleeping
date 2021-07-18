@@ -1,5 +1,7 @@
 export interface binaryQuestionDTO {
     title: string,
     description: string,
-    answer?: boolean
+    value: number,
+    answer?: boolean,
+    showExtra?:boolean
 }

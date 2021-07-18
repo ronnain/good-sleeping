@@ -2,8 +2,15 @@
 
     <h2>Passe le test du SOHAS</h2>
 
-    <!-- Questions -->
-    <binary-quizz [binaryQuestions]="quizz"></binary-quizz>
+    <binary-quizz [binaryQuestions]="quizzNoSAS">
+        <div class=".extra">
+            <bmi-calculator></bmi-calculator>
+        </div>
+    </binary-quizz>
 
-
+    <binary-quizz [binaryQuestions]="quizzStopBang">
+        <ng-container ngProjectAs="extra">
+            <bmi-calculator></bmi-calculator>
+        </ng-container>
+    </binary-quizz>
 </div>

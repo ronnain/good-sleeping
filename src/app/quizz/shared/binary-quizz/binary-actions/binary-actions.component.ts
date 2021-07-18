@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'binary-actions',
@@ -6,6 +6,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./binary-actions.component.css']
 })
 export class BinaryActionsComponent implements OnInit {
+
+  @Input() hideBtnsChoice: boolean = false;
 
   @Output() next = new EventEmitter<void>();
   @Output() previous = new EventEmitter<void>();

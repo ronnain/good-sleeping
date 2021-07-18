@@ -39,6 +39,7 @@ import { AnimateThatDirective } from './shared/directives/animation.directive';
 import { SahosComponent } from './quizz/sahos/sahos.component';
 import { BinaryActionsComponent } from './quizz/shared/binary-quizz/binary-actions/binary-actions.component';
 import { BinaryQuizzComponent } from './quizz/shared/binary-quizz/binary-quizz.component';
+import { BmiCalculatorComponent } from './quizz/shared/bmi-calculator/bmi-calculator.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { BinaryQuizzComponent } from './quizz/shared/binary-quizz/binary-quizz.c
     EmailFormComponent,
     SahosComponent,
     BinaryActionsComponent,
-    BinaryQuizzComponent
+    BinaryQuizzComponent,
+    BmiCalculatorComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
