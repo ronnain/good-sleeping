@@ -1,13 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { leftRightCard } from './binary-card.animation';
+import { userChoice } from './user-choice.animation';
 import { binaryQuestionDTO } from './binary-question.dto';
+import { backAction } from './back-action.animation';
 
 @Component({
   selector: 'binary-quizz',
   templateUrl: './binary-quizz.component.html',
   styleUrls: ['./binary-quizz.component.css'],
   animations: [
-    leftRightCard
+    userChoice,
+    backAction
   ]
 })
 export class BinaryQuizzComponent implements OnInit {
@@ -16,6 +18,7 @@ export class BinaryQuizzComponent implements OnInit {
 
   currentIndex: number = 0;
   sideMovement: number = 0;
+  backMovement: number = 0;
   isAnimationDone: boolean = true;
   animationStarts: number = 0;
   hideBtnsChoice: boolean = false;
@@ -37,8 +40,10 @@ export class BinaryQuizzComponent implements OnInit {
     if (!this.isAnimationDone || !this.currentIndex) {
       return;
     }
-    this.sideMovement--;
+    //this.sideMovement--;
     this.currentIndex--;
+    this.backMovement += this.binaryQuestions[this.currentIndex].answer ? 1 : -1;
+
     this.hideBtnsChoice =  this.currentIndex >= this.binaryQuestions.length;
   }
 

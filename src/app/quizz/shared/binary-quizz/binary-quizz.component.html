@@ -6,9 +6,13 @@
 
     <div
       *ngFor="let question of binaryQuestions; let index = index;"
-      [@left-right-card]="sideMovement"
-      (@left-right-card.start)="onAnimationStart()"
-      (@left-right-card.done)="onAnimationDone()"
+      [@user-choice]="sideMovement"
+      (@user-choice.start)="onAnimationStart()"
+      (@user-choice.done)="onAnimationDone()"
+      [@back-action]="backMovement"
+      (@back-action.start)="onAnimationStart()"
+      (@back-action.done)="onAnimationDone()"
+
       >
         <div class="cardBinaryQuestion"  *ngIf="index === currentIndex"  swipe (next)="onChoice(false)" (previous)="onChoice(true)" >
             <mat-progress-bar mode="determinate" [value]="index | progressRatio : binaryQuestions.length"></mat-progress-bar>
