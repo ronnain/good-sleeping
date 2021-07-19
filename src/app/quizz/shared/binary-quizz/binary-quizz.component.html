@@ -1,8 +1,5 @@
 <div class="questionsBlock">
-    <!-- <div class="cardBinaryQuestion fakePaper fakePaper--2">
-    </div>
-    <div class="cardBinaryQuestion fakePaper">
-    </div> -->
+
 
     <div
       *ngFor="let question of binaryQuestions; let index = index;"
@@ -14,7 +11,16 @@
       (@back-action.done)="onAnimationDone()"
 
       >
-        <div class="cardBinaryQuestion"  *ngIf="index === currentIndex"  swipe (next)="onChoice(false)" (previous)="onChoice(true)" >
+        <div
+          class="cardBinaryQuestion"
+          *ngIf="index === currentIndex"
+          swipe
+          (next)="onChoice(false)"
+          (previous)="onChoice(true)"
+          cdkDrag
+          cdkDragLockAxis="x"
+          (cdkDropListDropped)="onChoice($event)"
+        >
             <mat-progress-bar mode="determinate" [value]="index | progressRatio : binaryQuestions.length"></mat-progress-bar>
             <p>Question {{index + 1}} sur {{binaryQuestions.length}}</p>
             <p>{{question.description}}</p>
