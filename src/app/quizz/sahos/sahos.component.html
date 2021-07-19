@@ -1,28 +1,37 @@
-<div class="container article articlesList">
+<article>
+    <section>
+        <div class="container article">
 
-    <h2>Passe le test du SOHAS</h2>
+            <h2>Passe le test du SOHAS</h2>
 
-    <binary-quizz [binaryQuestions]="quizzNoSAS">
-        <div class=".extra">
-            <bmi-calculator></bmi-calculator>
+            <binary-quizz [binaryQuestions]="quizzNoSAS">
+                <div class=".extra">
+                    <bmi-calculator></bmi-calculator>
+                </div>
+            </binary-quizz>
+
+            <binary-quizz [binaryQuestions]="quizzStopBang">
+                <ng-container ngProjectAs="extra">
+                    <bmi-calculator></bmi-calculator>
+                </ng-container>
+            </binary-quizz>
         </div>
-    </binary-quizz>
+    </section>
 
-    <binary-quizz [binaryQuestions]="quizzStopBang">
-        <ng-container ngProjectAs="extra">
-            <bmi-calculator></bmi-calculator>
-        </ng-container>
-    </binary-quizz>
+    <section>
+        <div class="container article">
+            <h2>Obtiens ton résultat</h2>
 
-    <h2>Obtiens ton résultat</h2>
+            <quizz-mail-stepper (onShowResult)="onGetScore()">
 
-    <quizz-mail-stepper (onShowResult)="onGetScore()">
+                <!-- Quizz not completed -->
+                <ng-container *ngIf="quizzNoSASNotCompleted || quizzStopBangNotCompleted">
+                    <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test {{ quizzNoSASNotCompleted ? "NoSAS" : "StopBang"}}.</p>
+                    <p>Il te suffit de le compléter pour afficher ton score.</p>
+                </ng-container>
 
-        <!-- Quizz not completed -->
-        <ng-container *ngIf="quizzNoSASNotCompleted || quizzStopBangNotCompleted">
-            <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test {{ quizzNoSASNotCompleted ? "NoSAS" : "StopBang"}}.</p>
-            <p>Il te suffit de le compléter pour afficher ton score.</p>
-        </ng-container>
+            </quizz-mail-stepper>
+        </div>
 
-    </quizz-mail-stepper>
-</div>
+    </section>
+</article>
