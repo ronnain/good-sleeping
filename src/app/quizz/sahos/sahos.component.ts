@@ -87,9 +87,41 @@ export class SahosComponent implements OnInit {
     }
   ];
 
+  quizzNoSASNotCompleted: boolean = false;
+  quizzStopBangNotCompleted: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onGetScore() {
+    this.quizzNoSASNotCompleted = false;
+    this.quizzStopBangNotCompleted = false;
+    let noSasScore: number = 0;
+    let noStopBangScore: number = 0;
+
+    this.quizzNoSAS.map(question => question.answer = false)
+    this.quizzStopBang.map(question => question.answer = false)
+
+    for (const question of this.quizzNoSAS) {
+      if (! ('answer' in question)) {
+        this.quizzNoSASNotCompleted = true;
+        return;
+      }
+
+      noSasScore += question.answer ? question.value : 0;
+    }
+
+    for (const question of this.quizzStopBang) {
+
+      if (! ('answer' in question)) {
+        this.quizzStopBangNotCompleted = true;
+        return;
+      }
+
+      noStopBangScore += question.answer ? question.value : 0;
+    }
   }
 
 }

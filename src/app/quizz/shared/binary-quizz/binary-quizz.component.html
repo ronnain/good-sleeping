@@ -11,14 +11,17 @@
       (@left-right-card.done)="onAnimationDone()"
       >
         <div class="cardBinaryQuestion"  *ngIf="index === currentIndex"  swipe (next)="onChoice(false)" (previous)="onChoice(true)" >
-            <p>Question {{index + 1}} sur {{binaryQuestions.length}}</p> showExtra {{showExtra}}
+            <mat-progress-bar mode="determinate" [value]="index | progressRatio : binaryQuestions.length"></mat-progress-bar>
+            <p>Question {{index + 1}} sur {{binaryQuestions.length}}</p>
             <p>{{question.description}}</p>
             <ng-content *ngIf="question.showExtra"></ng-content>
         </div>
+
+        <div class="cardBinaryQuestion" *ngIf="currentIndex === binaryQuestions.length">
+            <p>Questionnaire complété à 100 %</p>
+            <mat-icon>done</mat-icon>
+        </div>
     </div>
-    <div class="cardBinaryQuestion" *ngIf="currentIndex === binaryQuestions.length">
-        <p>Questionnaire complété à 100 %</p>
-        <mat-icon>done</mat-icon>
-    </div>
+
 </div>
 <binary-actions (next)="onNext()" (previous)="onPrevious()" (choice)="onChoice($event)" [hideBtnsChoice]="hideBtnsChoice"></binary-actions>

@@ -40,6 +40,7 @@ import { SahosComponent } from './quizz/sahos/sahos.component';
 import { BinaryActionsComponent } from './quizz/shared/binary-quizz/binary-actions/binary-actions.component';
 import { BinaryQuizzComponent } from './quizz/shared/binary-quizz/binary-quizz.component';
 import { BmiCalculatorComponent } from './quizz/shared/bmi-calculator/bmi-calculator.component';
+import { progressRatioPipe } from './quizz/shared/pipes/progress-ratio';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { BmiCalculatorComponent } from './quizz/shared/bmi-calculator/bmi-calcul
     SahosComponent,
     BinaryActionsComponent,
     BinaryQuizzComponent,
-    BmiCalculatorComponent
+    BmiCalculatorComponent,
+    progressRatioPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

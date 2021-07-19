@@ -13,4 +13,16 @@
             <bmi-calculator></bmi-calculator>
         </ng-container>
     </binary-quizz>
+
+    <h2>Obtiens ton résultat</h2>
+
+    <quizz-mail-stepper (onShowResult)="onGetScore()">
+
+        <!-- Quizz not completed -->
+        <ng-container *ngIf="quizzNoSASNotCompleted || quizzStopBangNotCompleted">
+            <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test {{ quizzNoSASNotCompleted ? "NoSAS" : "StopBang"}}.</p>
+            <p>Il te suffit de le compléter pour afficher ton score.</p>
+        </ng-container>
+
+    </quizz-mail-stepper>
 </div>

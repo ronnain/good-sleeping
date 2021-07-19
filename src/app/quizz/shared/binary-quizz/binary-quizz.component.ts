@@ -50,10 +50,6 @@ export class BinaryQuizzComponent implements OnInit {
     this.binaryQuestions[this.currentIndex].answer = choice;
     this.currentIndex++;
     this.hideBtnsChoice =  this.currentIndex >= this.binaryQuestions.length;
-
-    if (this.currentIndex + 1 === this.binaryQuestions.length) {
-      return;
-    }
     this.sideMovement = choice ? this.sideMovement + 1 : this.sideMovement -1;
   }
 
