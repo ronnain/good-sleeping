@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
@@ -22,6 +22,10 @@ export class MailService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   createContact(firstName, mail) {
+    if (this.skipCreation()) {
+      return new Observable();
+    }
+
     const body = {
       "firstName" : this.capitalizeFirstLetter(firstName),
       "mail": mail
@@ -74,6 +78,12 @@ export class MailService {
 
   private capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  private skipCreation() {
+    const QueryString = window.location.search;
+    const urlParams = new URLSearchParams(QueryString);
+    return urlParams.has('skipCreation');
   }
 
   private handleError(error: HttpErrorResponse) {
