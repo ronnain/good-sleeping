@@ -1,6 +1,9 @@
-<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper [linear]="!skipCreation" #stepper="matHorizontalStepper">
 
     <mat-step [stepControl]="nameFormGroup" label="Pénom">
+      <div class="alert alert-info" role="alert">
+        Tu peux passer cette étape en cliquant directement sur l'étape Résultat
+      </div>
       <form [formGroup]="nameFormGroup">
         <mat-form-field>
           <input matInput placeholder="Prénom" formControlName="name" required>
@@ -12,6 +15,9 @@
     </mat-step>
 
     <mat-step [stepControl]="emailFormGroup" label="Email">
+      <div class="alert alert-info" role="alert">
+        Tu peux passer cette étape en cliquant directement sur l'étape Résultat
+      </div>
       <form [formGroup]="emailFormGroup">
         <mat-form-field>
           <input matInput placeholder="Adresse mail" formControlName="email" required>
@@ -31,6 +37,7 @@
       <!-- Results projection from parents -->
       <ng-content></ng-content>
       <div>
+          <button *ngIf="skipCreation" mat-button (click)="showResult()">Obtenir son résultat</button>
           <button mat-button (click)="stepper.reset()">Recommencer</button>
         </div>
     </mat-step>

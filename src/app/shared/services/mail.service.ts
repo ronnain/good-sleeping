@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { UrlService } from './url.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +20,13 @@ export class MailService {
     })
   };
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private urlService: UrlService) { }
 
   createContact(firstName, mail) {
-    if (this.skipCreation()) {
+    if (this.urlService.skipCreation) {
       return new Observable();
     }
 
@@ -78,12 +82,6 @@ export class MailService {
 
   private capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  private skipCreation() {
-    const QueryString = window.location.search;
-    const urlParams = new URLSearchParams(QueryString);
-    return urlParams.has('skipCreation');
   }
 
   private handleError(error: HttpErrorResponse) {

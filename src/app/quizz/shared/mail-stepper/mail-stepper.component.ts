@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MailService } from 'src/app/shared/services/mail.service';
+import { UrlService } from 'src/app/shared/services/url.service';
 
 @Component({
   selector: 'quizz-mail-stepper',
@@ -14,10 +15,15 @@ export class MailStepperComponent implements OnInit {
 
   nameFormGroup: FormGroup;
   emailFormGroup: FormGroup;
+  skipCreation: boolean = false;
 
-  constructor(private _formBuilder: FormBuilder, private mailService: MailService) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private mailService: MailService,
+    private urlService: UrlService) { }
 
   ngOnInit(): void {
+    this.skipCreation = this.urlService.skipCreation;
     this.nameFormGroup = this._formBuilder.group({
       name: ['', Validators.required]
     });
