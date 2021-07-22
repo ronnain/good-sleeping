@@ -19,7 +19,8 @@
 
 
   /* Animate an item that are dragging. */
-  .cdk-drag-dragging {
-    transition: opacity 1s;
-    opacity: 0.5;
-  }
+/*   .cdk-drag-dragging {
+    transition: filter 1s;
+    opacity: 0.7;
+    filter: blur(1px);
+  } */

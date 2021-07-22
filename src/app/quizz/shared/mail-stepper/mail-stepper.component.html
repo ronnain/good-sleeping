@@ -15,7 +15,7 @@
     </mat-step>
 
     <mat-step [stepControl]="emailFormGroup" label="Email">
-      <div class="alert alert-info" role="alert">
+      <div class="alert alert-info" role="alert" *ngIf="skipCreation">
         Tu peux passer cette étape en cliquant directement sur l'étape Résultat
       </div>
       <form [formGroup]="emailFormGroup">
