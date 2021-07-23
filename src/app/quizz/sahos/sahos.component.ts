@@ -11,7 +11,7 @@ export class SahosComponent implements OnInit {
   quizzNoSAS: binaryQuestionDTO[] = [
     {
       title: "Circonférence cou ",
-      description: "Est-ce que ton tour de cou est supérieur à 40 cm ? (Mesuré au niveau de la pomme d'Adam)",
+      description: "Est-ce que ton tour de cou est supérieur à 40 cm ?\n(Mesuré au niveau de la pomme d'Adam)",
       value: 4
     },
     {
@@ -46,7 +46,7 @@ export class SahosComponent implements OnInit {
   quizzStopBang: binaryQuestionDTO[] = [
     {
       title: "Tes Ronflements",
-      description: "Ronflez-vous fort ? (suffisament fort pour qu'on vous entende à travers une porte fermée ou que votre partenaire vous donne des coups de coude parceque vous ronflez la nuit ?",
+      description: "Ronflez-vous fort ?\n(suffisament fort pour qu'on vous entende à travers une porte fermée ou que votre partenaire vous donne des coups de coude parceque vous ronflez la nuit ?",
       value: 1
     },
     {
@@ -86,6 +86,8 @@ export class SahosComponent implements OnInit {
       value: 1
     }
   ];
+
+  quizz: binaryQuestionDTO[] = [...this.quizzNoSAS, ...this.quizzStopBang];
 
   quizzNoSASNotCompleted: boolean = false;
   quizzStopBangNotCompleted: boolean = false;

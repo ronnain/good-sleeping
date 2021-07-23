@@ -2,7 +2,7 @@
 
     <section>
         <div class="container article">
-            <h1>Test d&eacute;pistage d&rsquo;apn&eacute;e du sommeil en 13 questions</h1>
+            <h1>Test de d&eacute;pistage d&rsquo;apn&eacute;e du sommeil en 13 questions</h1>
             <p>
             <span
                 ><picture
@@ -77,16 +77,10 @@
 
             <h2>Passe le test du SOHAS</h2>
 
-            <binary-quizz [binaryQuestions]="quizzNoSAS">
+            <binary-quizz [binaryQuestions]="quizz">
                 <div class=".extra">
                     <bmi-calculator></bmi-calculator>
                 </div>
-            </binary-quizz>
-
-            <binary-quizz [binaryQuestions]="quizzStopBang">
-                <ng-container ngProjectAs="extra">
-                    <bmi-calculator></bmi-calculator>
-                </ng-container>
             </binary-quizz>
         </div>
     </section>

@@ -22,8 +22,11 @@
           (cdkDropListDropped)="onChoice($event)"
         >
             <mat-progress-bar mode="determinate" [value]="index | progressRatio : binaryQuestions.length"></mat-progress-bar>
-            <p>Question {{index + 1}} sur {{binaryQuestions.length}}</p>
-            <p>{{question.description}}</p>
+            <div>
+              <p class="headerQuestion">Question {{index + 1}} sur {{binaryQuestions.length}}</p>
+              <p class="questionText">{{question.description}}</p>
+            </div>
+
             <ng-content *ngIf="question.showExtra"></ng-content>
         </div>
 
