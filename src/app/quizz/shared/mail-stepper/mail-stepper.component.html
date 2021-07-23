@@ -1,7 +1,7 @@
 <mat-horizontal-stepper [linear]="!skipCreation" #stepper="matHorizontalStepper">
 
     <mat-step [stepControl]="nameFormGroup" label="Pénom">
-      <div class="alert alert-info" role="alert">
+      <div class="alert alert-info" role="alert" *ngIf="skipCreation">
         Tu peux passer cette étape en cliquant directement sur l'étape Résultat
       </div>
       <form [formGroup]="nameFormGroup">
