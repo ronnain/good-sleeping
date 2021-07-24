@@ -52,7 +52,7 @@ export class SahosComponent implements OnInit, Page {
     },
     {
       title: "Sexe",
-      description: "Est-tu un homme ?",
+      description: "Es-tu un homme ?",
       value: 2
     }
   ];
