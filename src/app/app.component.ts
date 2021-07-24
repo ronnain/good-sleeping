@@ -1,7 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 declare const gtag: Function;
@@ -17,7 +15,6 @@ export class AppComponent {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
-    private router: Router
     ) {
     this.isBrowser = isPlatformBrowser(platformId);
 
@@ -30,16 +27,6 @@ export class AppComponent {
     }
 
     this.addGAScript();
-
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      /** START : Code to Track Page View  */
-       gtag('event', 'page_view', {
-          page_path: event.urlAfterRedirects
-       })
-      /** END */
-    })
   }
 
   /** Add Google Analytics Script Dynamically */

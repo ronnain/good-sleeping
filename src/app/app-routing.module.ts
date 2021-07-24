@@ -14,7 +14,7 @@ import { UnsubcribeComponent } from './unsubcribe/unsubcribe.component';
 const routes: Routes = [
   {path: 'articles', component: ArticlesComponent},
   {path: 'articles/test-severite-insomnie', component: InsomniaSeverityIndexComponent},
-  {path: 'articles/test-depistage-apnee-du-sommeil', component: SahosComponent},
+  {path: 'articles/test-depistage-apnee-sommeil', component: SahosComponent},
   {path: 'articles/:articleName', component: ArticleComponent},
   {path: 'a-propos', component: MeComponent},
   {path: 'bonus', component: LandingPageComponent},

@@ -3,6 +3,7 @@ import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from 
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { popupBonus } from '../../animations/popup-bonus';
+import { UrlService } from '../../services/url.service';
 
 @Component({
   selector: 'ebook-popup',
@@ -23,6 +24,7 @@ export class EbookPopupComponent implements OnInit {
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
     private renderer: Renderer2,
+    private urlService: UrlService
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
    }
@@ -39,7 +41,7 @@ export class EbookPopupComponent implements OnInit {
           || document.documentElement.scrollTop
           || document.body.scrollTop || 0;
     // Scroll reached the middle of the page
-    if (verticalOffset > document.body.scrollHeight / 2) {
+    if (verticalOffset > document.body.scrollHeight / 2 && !this.urlService.skipCreation) {
       this.showPopup();
     }
   }
