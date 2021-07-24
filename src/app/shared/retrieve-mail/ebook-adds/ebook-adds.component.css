@@ -20,10 +20,19 @@ blockquote p {
   margin-top: 60px;
 }
 
+.footerAction {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .userChoice {
   background-color: var(--accent-color);
   color: white;
   width: 100%;
+  max-width: 300px;
   font-size: 1rem;
   padding: 1rem 2rem;
   font-weight: bold;
@@ -43,7 +52,7 @@ blockquote p {
 }
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   font-size: 1.5rem;
   border-bottom: solid 1px whitesmoke;

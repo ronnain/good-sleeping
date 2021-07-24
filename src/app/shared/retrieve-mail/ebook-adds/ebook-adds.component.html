@@ -58,10 +58,13 @@
     </blockquote>
   </div>
 
-  <button class="userChoice" (click)="onUserAcceptsBonus()">
-    <p>Je veux télécharger gratuitement cet ebook !</p>
-  </button>
-  <button class="userChoice userRefused" (click)="onUserRefusesBonus()">
-    <p>Tant pis, ça sera pour une prochaine fois.</p>
-  </button>
+  <div class="footerAction">
+    <button class="userChoice" (click)="onUserAcceptsBonus()">
+      <p>Télécharger l'ebook</p>
+    </button>
+    <button class="userChoice userRefused" (click)="onUserRefusesBonus()">
+      <p>Tant pis.</p>
+    </button>
+  </div>
+
 </div>
