@@ -53,7 +53,6 @@ export class BinaryQuizzComponent implements OnInit {
     if (!this.isAnimationDone) {
       return;
     }
-
     this.binaryQuestions[this.currentIndex].answer = choice;
     this.currentIndex++;
     this.hideBtnsChoice =  this.currentIndex >= this.binaryQuestions.length;

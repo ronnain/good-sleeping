@@ -1,0 +1,28 @@
+.scoreDisplay {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.resultCard {
+    box-shadow: 2px 2px 8px rgb(99 99 101);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1rem;
+    width: 300px;
+}
+
+.resultCard p{
+    width: 100%;
+}
+
+.resultCard .headerQuizz {
+    font-weight: bold;
+}
+
+.risk {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var(--accent-color);
+}

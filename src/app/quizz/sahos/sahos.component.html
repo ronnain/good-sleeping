@@ -2,7 +2,7 @@
 
     <section>
         <div class="container article">
-            <h1>Test de d&eacute;pistage d&rsquo;apn&eacute;e du sommeil en 13 questions</h1>
+            <h1>Test de d&eacute;pistage d&rsquo;apn&eacute;e du sommeil en 14 questions</h1>
             <p>
             <span
                 ><picture
@@ -56,7 +56,7 @@
             <p>
             Je te propose donc de
             <span style="font-weight: 700"
-                >r&eacute;pondre tr&egrave;s rapidement &agrave; 13 questions par oui ou
+                >r&eacute;pondre tr&egrave;s rapidement &agrave; 14 questions par oui ou
                 non</span
             >. De plus, certaines questions demandent de conna&icirc;tre son indice de
             masse corporelle (IMC), pour te faciliter la t&acirc;che, j&rsquo;ai inclus un
@@ -95,6 +95,22 @@
                 <ng-container *ngIf="quizzNoSASNotCompleted || quizzStopBangNotCompleted">
                     <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test {{ quizzNoSASNotCompleted ? "NoSAS" : "StopBang"}}.</p>
                     <p>Il te suffit de le compléter pour afficher ton score.</p>
+                </ng-container>
+
+                <ng-container *ngIf="!quizzNoSASNotCompleted && !quizzStopBangNotCompleted && riskNoSas">
+                    <div class="scoreDisplay">
+                        <div class="resultCard">
+                            <p class="headerQuizz">NoSAS</p>
+                            <p>Score : <span>{{noSasScore}}</span></p>
+                            <p>Risque : <span class="risk">{{riskNoSas}}</span></p>
+                        </div>
+                        <dib class="resultCard">
+                            <p class="headerQuizz">STOP BANG</p>
+                            <p>Score : <span>{{stopBangScore}}</span></p>
+                            <p>Risque : <span class="risk">{{riskStopBang}}</span></p>
+                        </dib>
+                    </div>
+                    <p>Les interprétations de tes résultats sont disponibles ci-dessous.</p>
                 </ng-container>
 
             </quizz-mail-stepper>

@@ -8,6 +8,11 @@ import { binaryQuestionDTO } from '../shared/binary-quizz/binary-question.dto';
 })
 export class SahosComponent implements OnInit {
 
+  noSasScore:number = 0;
+  stopBangScore: number = 0;
+  riskNoSas: string;
+  riskStopBang: string;
+
   quizzNoSAS: binaryQuestionDTO[] = [
     {
       title: "Circonférence cou ",
@@ -40,7 +45,7 @@ export class SahosComponent implements OnInit {
       title: "Sexe",
       description: "Est-tu un homme ?",
       value: 2
-    },
+    }
   ];
 
   quizzStopBang: binaryQuestionDTO[] = [
@@ -98,13 +103,9 @@ export class SahosComponent implements OnInit {
   }
 
   onGetScore() {
+
     this.quizzNoSASNotCompleted = false;
     this.quizzStopBangNotCompleted = false;
-    let noSasScore: number = 0;
-    let noStopBangScore: number = 0;
-
-    this.quizzNoSAS.map(question => question.answer = false)
-    this.quizzStopBang.map(question => question.answer = false)
 
     for (const question of this.quizzNoSAS) {
       if (! ('answer' in question)) {
@@ -112,7 +113,7 @@ export class SahosComponent implements OnInit {
         return;
       }
 
-      noSasScore += question.answer ? question.value : 0;
+      this.noSasScore += question.answer ? question.value : 0;
     }
 
     for (const question of this.quizzStopBang) {
@@ -122,8 +123,25 @@ export class SahosComponent implements OnInit {
         return;
       }
 
-      noStopBangScore += question.answer ? question.value : 0;
+      this.stopBangScore += question.answer ? question.value : 0;
     }
+
+    this.getRisk();
+  }
+
+  getRisk() {
+
+    this.riskNoSas = this.noSasScore > 7 ? "Elevé" : "Faible";
+
+    if (this.stopBangScore <= 2) {
+      this.riskStopBang = "Faible";
+      return;
+    }
+    if (this.stopBangScore <=3) {
+      this.riskStopBang = "Modéré";
+      return;
+    }
+    this.riskStopBang = "Elevé";
   }
 
 }
