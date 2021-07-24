@@ -8,7 +8,6 @@ import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RetrieveMailComponent } from './shared/retrieve-mail/retrieve-mail.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { ArticleComponent } from './article/article.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,17 +21,10 @@ import { MeComponent } from './me/me.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { SafeHtmlPipe } from './shared/pipes/safeHtmlPipe';
 import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.component';
-import { EbookPopupComponent } from './shared/retrieve-mail/ebook-popup/ebook-popup.component';
-import { Carousel3dComponent } from './shared/retrieve-mail/carousel3d/carousel3d.component';
-import { EbookFormComponent } from './shared/retrieve-mail/ebook-form/ebook-form.component';
-import { EbookAddsComponent } from './shared/retrieve-mail/ebook-adds/ebook-adds.component';
-import { EmailFormComponent } from './shared/retrieve-mail/email-form/email-form.component';
-import { SwipeDirective } from './shared/directives/swipe.directive';
-import { AnimateThatDirective } from './shared/directives/animation.directive';
 import { QuizzModule } from './quizz/quizz.module';
 import { ShareBtnsModule } from './social-network-share-buttons/share-btns.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -41,7 +33,6 @@ import { ShareBtnsModule } from './social-network-share-buttons/share-btns.modul
     HeaderComponent,
     HomeComponent,
     ArticlesComponent,
-    RetrieveMailComponent,
     ArticleComponent,
     LandingPageComponent,
     CommentComponent,
@@ -50,15 +41,7 @@ import { ShareBtnsModule } from './social-network-share-buttons/share-btns.modul
     LegalNoticesComponent,
     ContactComponent,
     MeComponent,
-    SafeHtmlPipe,
-    SwipeDirective,
-    AnimateThatDirective,
     CookiesHandlerComponent,
-    EbookPopupComponent,
-    Carousel3dComponent,
-    EbookFormComponent,
-    EbookAddsComponent,
-    EmailFormComponent,
 
   ],
   imports: [
@@ -73,7 +56,8 @@ import { ShareBtnsModule } from './social-network-share-buttons/share-btns.modul
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserTransferStateModule,
     QuizzModule,
-    ShareBtnsModule
+    ShareBtnsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

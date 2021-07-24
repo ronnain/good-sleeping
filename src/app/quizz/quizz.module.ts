@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
+import { SharedModule } from '../shared/shared.module';
 import { ShareBtnsModule } from '../social-network-share-buttons/share-btns.module';
 import { InsomniaSeverityIndexComponent } from './insomnia-severity-index/insomnia-severity-index.component';
 import { SahosComponent } from './sahos/sahos.component';
@@ -18,7 +19,8 @@ import { progressRatioPipe } from './shared/pipes/progress-ratio';
         FormsModule,
         MaterialModule,
         ReactiveFormsModule,
-        ShareBtnsModule
+        ShareBtnsModule,
+        SharedModule
     ],
     exports: [
         SahosComponent,

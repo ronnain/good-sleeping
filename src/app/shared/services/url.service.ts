@@ -49,13 +49,11 @@ export class UrlService {
 
         if (urlParams.has('skipCreation')) {
             this.skipCreation = true;
-            console.log('this.skipCreation skipurl', this.skipCreation);
             return;
         }
 
         if (/^\/admin/.test(event.url)) {
             this.skipCreation = true;
-            console.log('this.skipCreation admin', this.skipCreation);
             return;
         }
         if (this.noPopupPage.indexOf(event.url.slice(1)) !== -1) {
