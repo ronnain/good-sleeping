@@ -23,7 +23,7 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
 
   score: number = 0;
 
-  sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie' + 'img1/xl.jpg';
+  sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie/' + 'img1/xl.jpg';
 
   constructor(
     private viewportScroller: ViewportScroller,

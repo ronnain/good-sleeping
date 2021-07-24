@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Page } from 'src/app/modeles/interfaces.type';
+import { HeaderService } from 'src/app/shared/services/header.service';
+import { environment } from 'src/environments/environment';
 import { binaryQuestionDTO } from '../shared/binary-quizz/binary-question.dto';
 
 @Component({
@@ -6,7 +9,13 @@ import { binaryQuestionDTO } from '../shared/binary-quizz/binary-question.dto';
   templateUrl: './sahos.component.html',
   styleUrls: ['./sahos.component.css']
 })
-export class SahosComponent implements OnInit {
+export class SahosComponent implements OnInit, Page {
+
+  // todo SSR &&...
+
+  title = "Test de dépistage d’apnée du sommeil en 13 questions";
+  metaDesc = "Réponds rapidement à ces 14 questions pour connaître ton risque de faire des apnées du sommeil.";
+  sharedArticleImg = environment.serverConfig.imgPath + 'test-depistage-apnee-sommeil/' + 'img1/xl.jpg';
 
   noSasScore:number = 0;
   stopBangScore: number = 0;
@@ -97,9 +106,11 @@ export class SahosComponent implements OnInit {
   quizzNoSASNotCompleted: boolean = false;
   quizzStopBangNotCompleted: boolean = false;
 
-  constructor() { }
+  constructor(public headerService: HeaderService,) { }
 
   ngOnInit(): void {
+    this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
+    this.headerService.createOpenGraphMeta(this.title, this.metaDesc, this.sharedArticleImg);
   }
 
   onGetScore() {
