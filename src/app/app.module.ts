@@ -22,13 +22,8 @@ import { MeComponent } from './me/me.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/insomnia-severity-index.component';
-import { MailStepperComponent } from './quizz/shared/mail-stepper/mail-stepper.component';
 import { SafeHtmlPipe } from './shared/pipes/safeHtmlPipe';
 import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.component';
-import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
-import { ShareIconsModule } from 'ngx-sharebuttons/icons';
-import { SocialNetworkShareButtonsComponent } from './social-network-share-buttons/social-network-share-buttons.component';
 import { EbookPopupComponent } from './shared/retrieve-mail/ebook-popup/ebook-popup.component';
 import { Carousel3dComponent } from './shared/retrieve-mail/carousel3d/carousel3d.component';
 import { EbookFormComponent } from './shared/retrieve-mail/ebook-form/ebook-form.component';
@@ -36,11 +31,8 @@ import { EbookAddsComponent } from './shared/retrieve-mail/ebook-adds/ebook-adds
 import { EmailFormComponent } from './shared/retrieve-mail/email-form/email-form.component';
 import { SwipeDirective } from './shared/directives/swipe.directive';
 import { AnimateThatDirective } from './shared/directives/animation.directive';
-import { SahosComponent } from './quizz/sahos/sahos.component';
-import { BinaryActionsComponent } from './quizz/shared/binary-quizz/binary-actions/binary-actions.component';
-import { BinaryQuizzComponent } from './quizz/shared/binary-quizz/binary-quizz.component';
-import { BmiCalculatorComponent } from './quizz/shared/bmi-calculator/bmi-calculator.component';
-import { progressRatioPipe } from './quizz/shared/pipes/progress-ratio';
+import { QuizzModule } from './quizz/quizz.module';
+import { ShareBtnsModule } from './social-network-share-buttons/share-btns.module';
 
 
 @NgModule({
@@ -58,10 +50,7 @@ import { progressRatioPipe } from './quizz/shared/pipes/progress-ratio';
     LegalNoticesComponent,
     ContactComponent,
     MeComponent,
-    InsomniaSeverityIndexComponent,
-    MailStepperComponent,
     SafeHtmlPipe,
-    SocialNetworkShareButtonsComponent,
     SwipeDirective,
     AnimateThatDirective,
     CookiesHandlerComponent,
@@ -70,11 +59,7 @@ import { progressRatioPipe } from './quizz/shared/pipes/progress-ratio';
     EbookFormComponent,
     EbookAddsComponent,
     EmailFormComponent,
-    SahosComponent,
-    BinaryActionsComponent,
-    BinaryQuizzComponent,
-    BmiCalculatorComponent,
-    progressRatioPipe
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -87,8 +72,8 @@ import { progressRatioPipe } from './quizz/shared/pipes/progress-ratio';
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserTransferStateModule,
-    ShareButtonsModule,
-    ShareIconsModule
+    QuizzModule,
+    ShareBtnsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
