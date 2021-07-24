@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { userChoice } from './user-choice.animation';
 import { binaryQuestionDTO } from './binary-question.dto';
 import { backAction } from './back-action.animation';
 import { completeQuizz } from './complete.animation';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'binary-quizz',
@@ -25,7 +26,13 @@ export class BinaryQuizzComponent implements OnInit {
   animationStarts: number = 0;
   hideBtnsChoice: boolean = false;
 
-  constructor() { }
+  isBrowser:boolean = true;
+
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
   }

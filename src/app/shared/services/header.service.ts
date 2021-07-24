@@ -70,7 +70,7 @@ export class HeaderService {
         property:'og:type', content: 'article'
       },
       {
-        property:'og:image', content: imgPath
+        property:'og:image', content: imgPath, itemprop: "image"
       },
       {
         property:'og:url', content: pageUrl

@@ -87,7 +87,7 @@ export class ArticleComponent implements OnInit, Page {
         this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName);
         this.headerService.handleTitleAndMeta(this.article.title, this.article.metaDesc);
         this.createStructuredData();
-        this.sharedArticleImg = environment.serverConfig.imgPath + this.articleName + 'img1/xl.jpg';
+        this.sharedArticleImg = environment.serverConfig.imgPath + this.articleName + 'img1/xm.jpg';
         this.headerService.createOpenGraphMeta(this.article.title, this.article.description, this.sharedArticleImg)
       },
       error => console.error('Une erreure est survenue à la récupération des articles !', error)

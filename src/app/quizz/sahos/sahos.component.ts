@@ -15,7 +15,7 @@ export class SahosComponent implements OnInit, Page {
 
   title = "Test de dépistage d’apnée du sommeil en 13 questions";
   metaDesc = "Réponds rapidement à ces 14 questions pour connaître ton risque de faire des apnées du sommeil.";
-  sharedArticleImg = environment.serverConfig.imgPath + 'test-depistage-apnee-sommeil/' + 'img1/xl.jpg';
+  sharedArticleImg = environment.serverConfig.imgPath + 'test-depistage-apnee-sommeil/' + 'img1/xm.jpg';
 
   noSasScore:number = 0;
   stopBangScore: number = 0;
