@@ -1,6 +1,5 @@
 <div class="questionsBlock">
 
-
     <div
       *ngFor="let question of binaryQuestions; let index = index;"
       [@user-choice]="sideMovement"
@@ -29,11 +28,11 @@
 
             <ng-content *ngIf="question.showExtra"></ng-content>
         </div>
+    </div>
 
-        <div class="cardBinaryQuestion" *ngIf="currentIndex === binaryQuestions.length">
-            <p>Questionnaire complété à 100 %</p>
-            <mat-icon>done</mat-icon>
-        </div>
+    <div @completeQuizz class="cardBinaryQuestion cardValidation" *ngIf="currentIndex === binaryQuestions.length">
+      <p class="textEnd">Questionnaires complétés à 100 %</p>
+      <div class="iconEnd"><mat-icon>done</mat-icon></div>
     </div>
 
 </div>

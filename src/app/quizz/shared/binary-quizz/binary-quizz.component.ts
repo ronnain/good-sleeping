@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { userChoice } from './user-choice.animation';
 import { binaryQuestionDTO } from './binary-question.dto';
 import { backAction } from './back-action.animation';
+import { completeQuizz } from './complete.animation';
 
 @Component({
   selector: 'binary-quizz',
@@ -9,7 +10,8 @@ import { backAction } from './back-action.animation';
   styleUrls: ['./binary-quizz.component.css'],
   animations: [
     userChoice,
-    backAction
+    backAction,
+    completeQuizz
   ]
 })
 export class BinaryQuizzComponent implements OnInit {
@@ -40,7 +42,7 @@ export class BinaryQuizzComponent implements OnInit {
     if (!this.isAnimationDone || !this.currentIndex) {
       return;
     }
-    //this.sideMovement--;
+
     this.currentIndex--;
     this.backMovement += this.binaryQuestions[this.currentIndex].answer ? 1 : -1;
 

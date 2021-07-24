@@ -2,7 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { popupBonus } from '../../animations/popup-bonus';
+import { popupBonus } from '../../animations/popup-bonus.animation';
 import { UrlService } from '../../services/url.service';
 
 @Component({
@@ -41,7 +41,7 @@ export class EbookPopupComponent implements OnInit {
           || document.documentElement.scrollTop
           || document.body.scrollTop || 0;
     // Scroll reached the middle of the page
-    if (verticalOffset > document.body.scrollHeight / 2 && !this.urlService.skipCreation) {
+    if (verticalOffset > document.body.scrollHeight / 2) {
       this.showPopup();
     }
   }
@@ -54,7 +54,7 @@ export class EbookPopupComponent implements OnInit {
 
   showPopup() {
     // Show only one time the popup
-    if (this.popupTriggered) {
+    if (this.popupTriggered || this.urlService.skipCreation) {
       return;
     }
     this.popupTriggered = true;

@@ -1,5 +1,7 @@
 .questionsBlock {
     height: 450px;
+    width: calc(100%);
+    overflow: hidden;
 }
 
 .cardBinaryQuestion {
@@ -22,6 +24,28 @@
 
 .cardBinaryQuestion:hover {
     box-shadow: 2px 2px 8px rgba(99 99 101);
+}
+
+.carValidation {
+    justify-content: center;
+    width: 100%;
+}
+
+.textEnd {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.iconEnd {
+    width: 100%;
+    text-align: center;
+}
+
+.iconEnd .material-icons {
+    font-size: 100px;
+    width: 100px;
+    height: 100px;
+    color: var(--primary-main);
 }
 
 .headerQuestion {
