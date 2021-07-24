@@ -13,6 +13,10 @@ body {
   margin-top: 80px;
 }
 
+.container {
+  overflow: hidden;
+}
+
 hr {
   width: 95%;
 }

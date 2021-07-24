@@ -16,6 +16,7 @@ export class UrlService {
         "bonus",
         "mentions",
         "contact",
+        "",
     ]
 
     constructor(
