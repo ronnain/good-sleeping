@@ -23,7 +23,7 @@
           <input matInput placeholder="Adresse mail" formControlName="email" required>
         </mat-form-field>
 
-        <mat-checkbox formControlName="rgpd"><span class="text">J'ai pris connaissance des conditions d'utilisation de mes informations:</span></mat-checkbox><br/>
+        <mat-checkbox [formControlName]="'rgpd'"><span class="text">J'ai pris connaissance des conditions d'utilisation de mes informations:</span></mat-checkbox><br/>
         <p class="smallText">Votre email est collecté pour vous faire parvenir le bonus, les nouveaux articles ainsi que les offres commerciales, dans le strict respect de la réglementation européenne sur la collecte des données. Un lien de désabonnement sera disponible dans chaque mail envoyé. La politique de confidentialité est accessible depuis un lien situé en bas de cette page.</p>
 
         <div>
@@ -37,7 +37,7 @@
       <!-- Results projection from parents -->
       <ng-content></ng-content>
       <div>
-          <button *ngIf="skipCreation" mat-button (click)="showResult()">Obtenir son résultat</button>
+          <button *ngIf="skipCreation" mat-button color="primary" (click)="showResult()">Obtenir son résultat</button>
           <button mat-button (click)="stepper.reset()">Recommencer</button>
         </div>
     </mat-step>

@@ -54,7 +54,7 @@ export class EbookPopupComponent implements OnInit {
 
   showPopup() {
     // Show only one time the popup
-    if (this.popupTriggered || this.urlService.skipCreation) {
+    if (this.popupTriggered || this.urlService.skipPopup) {
       return;
     }
     this.popupTriggered = true;

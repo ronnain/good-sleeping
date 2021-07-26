@@ -8,6 +8,7 @@ declare const gtag: Function;
 export class UrlService {
 
     skipCreation: boolean = false;
+    skipPopup: boolean = false;
     isBrowser: boolean = false;
 
     noPopupPage = [
@@ -36,27 +37,30 @@ export class UrlService {
                     page_path: event.urlAfterRedirects
                 })
             }
-
-            this.checkSkipCreation(event);
+            this.checkSkipPopup(event);
+            this.checkSkipCreation();
         })
     }
 
-    private checkSkipCreation(event) {
+    private checkSkipPopup(event) {
+
+        if (/^\/admin/.test(event.url)) {
+            this.skipPopup = true;
+            return;
+        }
+        if (this.noPopupPage.indexOf(event.url.slice(1)) !== -1) {
+            this.skipPopup = true;
+            return;
+        }
+    }
+
+    private checkSkipCreation() {
         this.skipCreation = false;
 
         const QueryString = window.location.search;
         const urlParams = new URLSearchParams(QueryString);
 
         if (urlParams.has('skipCreation')) {
-            this.skipCreation = true;
-            return;
-        }
-
-        if (/^\/admin/.test(event.url)) {
-            this.skipCreation = true;
-            return;
-        }
-        if (this.noPopupPage.indexOf(event.url.slice(1)) !== -1) {
             this.skipCreation = true;
             return;
         }

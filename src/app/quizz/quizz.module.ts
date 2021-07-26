@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SharedModule } from '../shared/shared.module';
@@ -30,6 +32,8 @@ import { progressRatioPipe } from './shared/pipes/progress-ratio';
         MatFormFieldModule,
         MatExpansionModule,
         MatButtonModule,
+        MatInputModule,
+        MatCheckboxModule,
         ReactiveFormsModule,
         ShareBtnsModule,
         SharedModule
