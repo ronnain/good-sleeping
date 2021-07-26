@@ -19,6 +19,7 @@
           cdkDrag
           cdkDragLockAxis="x"
           (cdkDropListDropped)="onChoice($event)"
+          [cdkDragDisabled]="!mobileService.isMobile"
         >
             <mat-progress-bar mode="determinate" [value]="index | progressRatio : binaryQuestions.length"></mat-progress-bar>
             <div>

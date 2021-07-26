@@ -1,7 +1,12 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../material.module';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatStepperModule } from '@angular/material/stepper';
 import { SharedModule } from '../shared/shared.module';
 import { ShareBtnsModule } from '../social-network-share-buttons/share-btns.module';
 import { InsomniaSeverityIndexComponent } from './insomnia-severity-index/insomnia-severity-index.component';
@@ -17,14 +22,20 @@ import { progressRatioPipe } from './shared/pipes/progress-ratio';
     imports: [
         CommonModule,
         FormsModule,
-        MaterialModule,
+        DragDropModule,
+        MatProgressBarModule,
+        MatStepperModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatExpansionModule,
         ReactiveFormsModule,
         ShareBtnsModule,
         SharedModule
     ],
     exports: [
         SahosComponent,
-        InsomniaSeverityIndexComponent],
+        InsomniaSeverityIndexComponent
+    ],
     declarations: [
         InsomniaSeverityIndexComponent,
         SahosComponent,

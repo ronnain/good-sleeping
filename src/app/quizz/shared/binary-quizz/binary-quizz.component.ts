@@ -1,9 +1,10 @@
 import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
-import { userChoice } from './user-choice.animation';
+import { userChoice } from './animations/user-choice.animation';
 import { binaryQuestionDTO } from './binary-question.dto';
-import { backAction } from './back-action.animation';
-import { completeQuizz } from './complete.animation';
+import { backAction } from './animations/back-action.animation';
+import { completeQuizz } from './animations/complete.animation';
 import { isPlatformBrowser } from '@angular/common';
+import { MobileService } from 'src/app/shared/services/mobile.service';
 
 @Component({
   selector: 'binary-quizz',
@@ -30,6 +31,7 @@ export class BinaryQuizzComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
+    private mobileService: MobileService
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }

@@ -1,7 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Page } from 'src/app/modeles/interfaces.type';
-import { GoogleAnalyticsService } from 'src/app/services/google-analytics.service';
+import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
 import { HeaderService } from 'src/app/shared/services/header.service';
 import { environment } from 'src/environments/environment';
 
