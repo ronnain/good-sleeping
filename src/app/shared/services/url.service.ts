@@ -28,6 +28,8 @@ export class UrlService {
         this.isBrowser = isPlatformBrowser(platformId);
 
         this.router.events.subscribe(event => {
+            console.log("ici");
+
             if (!(event instanceof NavigationEnd)) {
                 return;
             }
@@ -48,7 +50,7 @@ export class UrlService {
             this.skipPopup = true;
             return;
         }
-        if (this.noPopupPage.indexOf(event.url.slice(1)) !== -1) {
+        if (this.noPopupPage.indexOf(window.location.pathname.slice(1)) !== -1) {
             this.skipPopup = true;
             return;
         }
