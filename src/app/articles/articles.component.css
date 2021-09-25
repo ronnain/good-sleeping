@@ -6,7 +6,7 @@
     font-size: 1.25rem;
     font-weight: 500;
     line-height: 1.2;
-    color: #212529;
+    color: var(--title-text-color);
 }
 
 .articlesList .articles-title:hover {
@@ -19,13 +19,13 @@
 }
 .articlesList li{
     border-radius: 3px;
-    box-shadow: 1px 1px 4px rgb(99 99 101);
+    box-shadow: var(--box-shadow-articles);
     margin-bottom: 1.5rem;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .articlesList li:hover{
-    box-shadow: 2px 2px 8px rgba(99 99 101);
+    box-shadow: var(--box-shadow-articles-hover);
     transform: scale(1.02) translate3d(0, 0, 0);
 }
 
@@ -36,6 +36,10 @@
 .footerLink {
     color: #6c757d;
     font-style: italic;
+}
+
+.blockquote-footer {
+    color: var(--third-text-color);
 }
 
 @media screen and (max-width: 575px) and (orientation: portrait) {
@@ -54,4 +58,4 @@
     .articles-desc {
         display: none;
     }
-  }
+}

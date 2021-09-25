@@ -28,7 +28,6 @@ export class UrlService {
         this.isBrowser = isPlatformBrowser(platformId);
 
         this.router.events.subscribe(event => {
-            console.log("ici");
 
             if (!(event instanceof NavigationEnd)) {
                 return;

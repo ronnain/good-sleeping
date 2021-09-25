@@ -19,6 +19,7 @@
     display: flex;
     align-content: stretch;
     flex-wrap: wrap;
+    background-color: var(--div-container-background-color);
 }
 
 .cardBinaryQuestion:hover {

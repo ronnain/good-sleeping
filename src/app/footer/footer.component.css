@@ -1,9 +1,9 @@
 .whiteSmoke {
-  background-color: whitesmoke;
+  background-color: var(--footer-background-color);
 }
 
 .whiteSmokeBold {
-  background-color: #e6e5e5;
+  background-color: var(--footer-bold-color);
 }
 
 .inline {

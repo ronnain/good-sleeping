@@ -1,8 +1,11 @@
- <nav class="navbar navbar-white bg-white">
+ <nav class="navbar">
   <a class="navbar-brand" routerLink="">
     Sommeil <span class="blueColor">Profond</span>
     <img src="https://sommeilprofond.fr/assets/logo/zzzLogomini.png" alt="Logo ZZZ Sommeil Profond" width="50px" />
   </a>
+
+  <mat-checkbox name="themeColor" [(ngModel)]="darkTheme" (ngModelChange)="changeThemeColor($event)"><span class="wrap">Dark</span></mat-checkbox><br/>
+
 
   <!-- Display only on small size -->
   <button mat-button [matMenuTriggerFor]="menu" *ngIf="isBrowser && !bigScreen" class="smallMenu">
@@ -23,7 +26,7 @@
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="bonus" class="nav-link">Bonus</a>
-      </li> 
+      </li>
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="a-propos" class="nav-link">Qui suis-je?</a>
       </li>

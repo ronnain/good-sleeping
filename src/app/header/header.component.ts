@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { ThemeColorService } from '../shared/services/theme-color.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,11 @@ export class HeaderComponent implements OnInit {
   bigScreen: boolean;
   bigScreenLimit = 768;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+  darkTheme: boolean = false;
+
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
+    private themeColorService: ThemeColorService) {
     this.isBrowser = isPlatformBrowser(platformId);
    }
 
@@ -20,11 +25,16 @@ export class HeaderComponent implements OnInit {
     if(this.isBrowser){
       this.bigScreen = screen.width >= this.bigScreenLimit;
     }
+    this.darkTheme = this.themeColorService.isDarkTheme();
   }
 
   @HostListener('window:resize', ['$event'])
     displaySize(event) {
      this.bigScreen = screen.width > this.bigScreenLimit;
+  }
+
+  changeThemeColor(event: any) {
+    this.themeColorService.setDarkTheme(event);
   }
 
 }
