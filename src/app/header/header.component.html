@@ -5,7 +5,7 @@
         <img src="https://sommeilprofond.fr/assets/logo/zzzLogomini.png" alt="Logo ZZZ Sommeil Profond" width="50px" />
       </a>
 
-      <mat-slide-toggle [checked]="darkTheme" (change)="changeThemeColor($event.checked)"></mat-slide-toggle>
+      <mat-slide-toggle *ngIf="bigScreen" [checked]="darkTheme" (change)="changeThemeColor($event.checked)"></mat-slide-toggle>
    </div>
 
 
@@ -19,6 +19,7 @@
     <a routerLink="bonus" class="nav-link">Bonus</a>
     <a routerLink="a-propos" class="nav-link">Qui suis-je ?</a>
     <a routerLink="contact" class="nav-link">Contact</a>
+    <a class="nav-link">Mode sombre <mat-slide-toggle [checked]="darkTheme" (change)="changeThemeColor($event.checked)"></mat-slide-toggle></a>
   </mat-menu>
 
   <div id="bigScreenMenu" *ngIf="bigScreen || !isBrowser">

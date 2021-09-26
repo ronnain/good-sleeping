@@ -305,7 +305,8 @@ h3 {
     background-color: var(--main-background-color);
   }
 
-  .mat-select-panel {
+  .mat-select-panel,
+  .mat-menu-panel {
     background-color: var(--div-container-background-color);
   }
 }
