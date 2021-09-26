@@ -1,13 +1,17 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
 
 export class ThemeColorService {
 
+    isBrowser;
+
     isDarkThemeSelectedCookiesKey = "isDarkThemeSelected"
     isDarkThemeSelected: boolean = false;
 
-    constructor() {
+    constructor(@Inject(PLATFORM_ID) platformId: Object) {
+        this.isBrowser = isPlatformBrowser(platformId);
         this.retrieveDarkTheme();
      }
 
@@ -28,6 +32,9 @@ export class ThemeColorService {
     }
 
     private retrieveDarkTheme() {
+        if (!this.isBrowser) {
+            return;
+        }
         const regexCookieAuthorisation = new RegExp(this.isDarkThemeSelectedCookiesKey+'=true');
         this.isDarkThemeSelected = regexCookieAuthorisation.test(document.cookie);
         this.refreshTheme();

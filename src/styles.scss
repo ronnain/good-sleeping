@@ -303,7 +303,11 @@ h3 {
   .mat-stepper-vertical,
   .mat-expansion-panel {
     background-color: var(--main-background-color);
-}
+  }
+
+  .mat-select-panel {
+    background-color: var(--div-container-background-color);
+  }
 }
 
 
