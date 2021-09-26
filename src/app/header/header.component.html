@@ -1,10 +1,12 @@
  <nav class="navbar">
-  <a class="navbar-brand" routerLink="">
-    Sommeil <span class="blueColor">Profond</span>
-    <img src="https://sommeilprofond.fr/assets/logo/zzzLogomini.png" alt="Logo ZZZ Sommeil Profond" width="50px" />
-  </a>
+   <div>
+      <a class="navbar-brand" routerLink="">
+        Sommeil <span class="blueColor">Profond</span>
+        <img src="https://sommeilprofond.fr/assets/logo/zzzLogomini.png" alt="Logo ZZZ Sommeil Profond" width="50px" />
+      </a>
 
-  <mat-checkbox name="themeColor" [(ngModel)]="darkTheme" (ngModelChange)="changeThemeColor($event)"><span class="wrap">Dark</span></mat-checkbox><br/>
+      <mat-slide-toggle [checked]="darkTheme" (change)="changeThemeColor($event.checked)"></mat-slide-toggle>
+   </div>
 
 
   <!-- Display only on small size -->

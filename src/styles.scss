@@ -1,28 +1,41 @@
 @import "socialButtonsStyles.css";
 
-/* :root {
+:root {
   --primary-main: #0d0d6d;
   --secondary-main: black;
   --accent-color: #fe0000;
-  --main-background-color: white;
+  --text-accent-color: black;
+  --main-background-color: white;  /* 1b1b58 */
   --main-text-color: #212529;
-  --title-text-color: #383838;
+  --secondary-text-color: #383838;
+  --third-text-color: #6c757d;
+  --title-text-color: var(--secondary-text-color);
+
   --body-color: #212529;
   --flip-time: 400ms;
+  --header-background-color: white;
   --footer-background-color: whitesmoke;
   --footer-bold-color: #e6e5e5;
+  --div-container-background-color: transparent;
+  --mat-form-field-color: var(--accent-color);
 
-  --third-text-color: #6c757d;
+  --link-color: #007bff;
+  --link-color-hover: #09519e;
 
   --blockquote-background: #f9f9f9;
   --blockquote-border: #ccc;
 
   --box-shadow-articles: 1px 1px 4px rgb(99 99 101);
-  --box-shadow-articles: 2px 2px 8px rgba(99 99 101);
-} */
+  --box-shadow-articles-hover: 2px 2px 8px rgba(99 99 101);
 
+  --button-binary-action-valid: var(--primary-main);
+  --button-binary-action-refuse: #fe0000;
 
-:root {
+  --button-submit-email-background: var(--primary-main);
+  --button-submit-email-color: white;
+}
+
+html[data-theme='dark'] {
   --primary-main: #0f0fbb;
   --secondary-main: black;
   --accent-color: #ffe100;
@@ -50,8 +63,11 @@
   --box-shadow-articles: none;
   --box-shadow-articles-hover: none;
 
-  --button-binary-action-valid: var(--primary-main);;
+  --button-binary-action-valid: var(--primary-main);
   --button-binary-action-refuse: #fe0000;
+
+  --button-submit-email-background: var(--accent-color);
+  --button-submit-email-color: var(--text-accent-color);
 }
 
 
@@ -251,7 +267,7 @@ h3 {
   color: var(--main-text-color);
 }
 
-/* Material design overrride */
+/* Material design overrride, should be handle in custom-theme*/
 
 .mat-stepper-horizontal {
   background-color: var(--main-background-color);
@@ -259,24 +275,35 @@ h3 {
 }
 
 /** Overrides underline color **/
-.mat-form-field-appearance-legacy .mat-form-field-underline,
-.mat-form-field-appearance-legacy .mat-form-field-ripple,
-.mat-form-field-appearance-legacy.mat-focused
-.mat-form-field-underline,
-.mat-form-field-appearance-legacy.mat-focused
-.mat-form-field-ripple {
-    background-color: var(--mat-form-field-color);
+.dark-theme {
+  .mat-form-field-appearance-legacy .mat-form-field-underline,
+  .mat-form-field-appearance-legacy .mat-form-field-ripple,
+  .mat-form-field-appearance-legacy.mat-focused
+  .mat-form-field-underline,
+  .mat-form-field-appearance-legacy.mat-focused
+  .mat-form-field-ripple {
+      background-color: var(--mat-form-field-color);
+  }
+
+  /** Overrides label color **/
+  //.mat-form-field-appearance-legacy .mat-form-field-label,
+  .mat-form-field-appearance-legacy.mat-focused
+  //.mat-form-field-label
+  {
+      color: var(--mat-form-field-color);
+  }
+
+  /** Overrides caret & text color **/
+  .mat-form-field-appearance-legacy .mat-input-element {
+      caret-color: var(--main-text-color);
+      color: var(--main-text-color);
+  }
+
+  .mat-stepper-horizontal,
+  .mat-stepper-vertical,
+  .mat-expansion-panel {
+    background-color: var(--main-background-color);
+}
 }
 
-/** Overrides label color **/
-.mat-form-field-appearance-legacy .mat-form-field-label,
-.mat-form-field-appearance-legacy.mat-focused
-.mat-form-field-label {
-    color: var(--mat-form-field-color);
-}
 
-/** Overrides caret & text color **/
-.mat-form-field-appearance-legacy .mat-input-element {
-    caret-color: var(--main-text-color);
-    color: var(--main-text-color);
-}

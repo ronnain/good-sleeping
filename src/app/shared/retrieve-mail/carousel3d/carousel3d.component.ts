@@ -5,7 +5,7 @@ import { MobileService } from '../../services/mobile.service';
 @Component({
   selector: 'carousel3d',
   templateUrl: './carousel3d.component.html',
-  styleUrls: ['./carousel3d.component.css']
+  styleUrls: ['./carousel3d.component.scss']
 })
 export class Carousel3dComponent implements OnInit {
 

@@ -7,7 +7,7 @@ trigger('back-action', [
     query(':enter', [
 
         style({  transform: 'translateX(20%) rotate(10deg)', transformOrigin: 'bottom right',  opacity: '0', background: '#c4c4ec' }),
-        animate('500ms ease-in-out', style({  transform: 'translateX(0) rotate(0)', opacity: '1', background: 'white' })),
+        animate('500ms ease-in-out', style({  transform: 'translateX(0) rotate(0)', opacity: '1', background: 'var(--div-container-background-color)' })),
 
      ], { optional: true, delay: 50 }),
     query(':leave', [
@@ -22,7 +22,7 @@ trigger('back-action', [
     query(':enter', [
 
         style({  transform: 'translateX(-20%) rotate(-10deg)', transformOrigin: 'bottom left',  opacity: '0', background: '#f7a0a0' }),
-        animate('500ms ease-in-out', style({  transform: 'translateX(0) rotate(0)', opacity: '1', background: 'white' })),
+        animate('500ms ease-in-out', style({  transform: 'translateX(0) rotate(0)', opacity: '1', background: 'var(--div-container-background-color)' })),
 
      ], { optional: true, delay: 50 }),
     query(':leave', [
