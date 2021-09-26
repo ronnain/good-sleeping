@@ -12,9 +12,9 @@
 }
 
 button.true {
-    background-color: var(--primary-main);
+    background-color: var(--button-binary-action-valid);
 }
 
 button.false {
-    background-color: var(--accent-color);
+    background-color: var(--button-binary-action-refuse);
 }

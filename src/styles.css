@@ -50,6 +50,8 @@
   --box-shadow-articles: none;
   --box-shadow-articles-hover: none;
 
+  --button-binary-action-valid: var(--primary-main);;
+  --button-binary-action-refuse: #fe0000;
 }
 
 

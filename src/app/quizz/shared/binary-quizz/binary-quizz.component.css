@@ -45,11 +45,11 @@
     font-size: 100px;
     width: 100px;
     height: 100px;
-    color: var(--primary-main);
+    color: var(--main-text-color);
 }
 
 .headerQuestion {
-    color: var(--primary-main);
+    color: var(--main-text-color);
 }
 
 .questionText {
