@@ -61,7 +61,7 @@ body {
 
 .content::after {
   position: absolute;
-  background-color: var(--primary-main);
+  background-color: transparent;
   transform: translateZ(-1px);
   top: 0;
   left: 0;
