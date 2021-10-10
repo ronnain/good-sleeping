@@ -13,6 +13,9 @@
                             <source  media="(min-width: 380px)" srcset="{{imgPath}}{{article.img}}/articles/s.jpg">
                             <img src="{{imgPath}}{{article.img}}/articles/xs.jpg" [alt]="article.imgTitle" [title]="article.imgTitle" style="max-width: 100%">
                         </picture>
+                        <div *ngIf="article.displayNewArticleBadge" class="newLabel">
+                            Nouveau
+                        </div>
                     </div>
                     <div class="card no-border col-sm-8">
                         <div class="card-body">

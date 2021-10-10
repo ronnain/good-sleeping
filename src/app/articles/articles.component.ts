@@ -55,6 +55,7 @@ export class ArticlesComponent implements OnInit, Page {
         data => {
           this.articles = data;
           this.loading = false;
+          this.handleNewBadgeDisplay();
         },
         err => {
           this.loading = false;
@@ -65,6 +66,7 @@ export class ArticlesComponent implements OnInit, Page {
         data => {
           this.articles = data;
           this.loading = false;
+          this.handleNewBadgeDisplay();
         },
         err => {
           this.loading = false;
@@ -83,5 +85,14 @@ export class ArticlesComponent implements OnInit, Page {
       // call only when the user click on antoher article in artcile component
       this.getArticles();
     }
+  }
+
+  handleNewBadgeDisplay() {
+    const previousMountDate = new Date();
+    previousMountDate.setMonth(previousMountDate.getMonth() - 1);
+
+    this.articles.forEach(article => {
+      article.displayNewArticleBadge = new Date(article.datePublished) > previousMountDate;
+    });
   }
 }

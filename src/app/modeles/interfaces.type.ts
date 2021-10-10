@@ -16,7 +16,8 @@ export interface Article{
     dateModified: string,
     img: string,
     imgTitle: string,
-    articleName: string
+    articleName: string,
+    displayNewArticleBadge?: boolean
 }
 
 export class MyArticle implements Article{
