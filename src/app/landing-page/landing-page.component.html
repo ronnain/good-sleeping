@@ -1,7 +1,7 @@
-<div class="section backgroundFeather" aria-label="Plume blanche légère">
+<div class="section" [ngClass]="{'backgroundFeather' : !themeColorService.isDarkThemeSelected}" aria-label="Plume blanche légère">
     <div class="container">
         <div class="flex-wrap align-items-center block">
-            <div class="card no-border transparent">
+            <div class="no-border transparent">
                 <div class="center">
                     <h1>{{bonusTitle}}</h1>
                 </div>

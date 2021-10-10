@@ -5,7 +5,7 @@ import { MailService } from '../../services/mail.service';
 @Component({
   selector: 'app-email-form',
   templateUrl: './email-form.component.html',
-  styleUrls: ['./email-form.component.css']
+  styleUrls: ['./email-form.component.scss']
 })
 export class EmailFormComponent implements OnInit {
 

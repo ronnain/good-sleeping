@@ -1,8 +1,13 @@
- <nav class="navbar navbar-white bg-white">
-  <a class="navbar-brand" routerLink="">
-    Sommeil <span class="blueColor">Profond</span>
-    <img src="https://sommeilprofond.fr/assets/logo/zzzLogomini.png" alt="Logo ZZZ Sommeil Profond" width="50px" />
-  </a>
+ <nav class="navbar">
+   <div>
+      <a class="navbar-brand" routerLink="">
+        Sommeil <span class="blueColor">Profond</span>
+        <img src="https://sommeilprofond.fr/assets/logo/zzzLogomini.png" alt="Logo ZZZ Sommeil Profond" width="50px" />
+      </a>
+
+      <mat-slide-toggle *ngIf="bigScreen" [checked]="darkTheme" (change)="changeThemeColor($event.checked)"></mat-slide-toggle>
+   </div>
+
 
   <!-- Display only on small size -->
   <button mat-button [matMenuTriggerFor]="menu" *ngIf="isBrowser && !bigScreen" class="smallMenu">
@@ -14,6 +19,7 @@
     <a routerLink="bonus" class="nav-link">Bonus</a>
     <a routerLink="a-propos" class="nav-link">Qui suis-je ?</a>
     <a routerLink="contact" class="nav-link">Contact</a>
+    <a class="nav-link">Mode sombre <mat-slide-toggle [checked]="darkTheme" (change)="changeThemeColor($event.checked)"></mat-slide-toggle></a>
   </mat-menu>
 
   <div id="bigScreenMenu" *ngIf="bigScreen || !isBrowser">
@@ -23,7 +29,7 @@
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="bonus" class="nav-link">Bonus</a>
-      </li> 
+      </li>
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="a-propos" class="nav-link">Qui suis-je?</a>
       </li>

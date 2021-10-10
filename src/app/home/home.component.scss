@@ -33,9 +33,13 @@
 }
 
 .home .btnBonus {
-  background-color: var(--primary-main);
-  color: white;
+  background-color: var(--button-submit-email-background);
+  color: var(--button-submit-email-color);
 
   font-size: 1.5rem;
   padding: 1.5rem 3rem;
+}
+
+.home .btnBonus p {
+  margin: 0;
 }

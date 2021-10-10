@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Page } from '../modeles/interfaces.type';
 import { HeaderService } from '../shared/services/header.service';
+import { ThemeColorService } from '../shared/services/theme-color.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -13,7 +14,8 @@ export class LandingPageComponent implements OnInit, Page {
   metaDesc = 'Récupérer le bonus gratuit : ' + this.bonusTitle;
 
   constructor(
-    public headerService: HeaderService
+    public headerService: HeaderService,
+    public themeColorService: ThemeColorService
   ) { }
 
   ngOnInit() {

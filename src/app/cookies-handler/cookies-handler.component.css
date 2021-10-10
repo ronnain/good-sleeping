@@ -1,6 +1,6 @@
 .popup {
   position: fixed;
-  background-color: white;
+  background-color: var(--div-container-background-color);
   bottom: 0;
   left: 0;
   z-index: 100;

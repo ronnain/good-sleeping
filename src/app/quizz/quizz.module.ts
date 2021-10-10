@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SharedModule } from '../shared/shared.module';
 import { ShareBtnsModule } from '../social-network-share-buttons/share-btns.module';
@@ -25,17 +26,18 @@ import { progressRatioPipe } from './shared/pipes/progress-ratio';
     imports: [
         CommonModule,
         FormsModule,
+        MatFormFieldModule,
         DragDropModule,
         MatProgressBarModule,
         MatStepperModule,
         MatIconModule,
-        MatFormFieldModule,
         MatExpansionModule,
         MatButtonModule,
         MatInputModule,
         MatCheckboxModule,
         ReactiveFormsModule,
         ShareBtnsModule,
+        MatSelectModule,
         SharedModule
     ],
     exports: [

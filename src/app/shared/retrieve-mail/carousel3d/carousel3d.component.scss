@@ -101,12 +101,18 @@ body {
   margin-top: 13px;
   margin-bottom: 5px;
   font-weight: bold;
+  color: black;
 }
 
 .subBodyCell {
   text-align: left;
   padding: 0 1rem;
   font-size: 0.85rem;
+  color: black;
+
+  a {
+    color: var(--primary-main);
+  }
 }
 
 @media screen and (max-width: 545px) and (orientation: portrait) {
