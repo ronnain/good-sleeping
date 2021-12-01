@@ -12,7 +12,7 @@
       >
         <div
           class="cardBinaryQuestion"
-          *ngIf="!isBrowser || index === currentIndex"
+          *ngIf="(isBrowser && index === currentIndex) || (!isBrowser || index === 0)"
           swipe
           (next)="onChoice(false)"
           (previous)="onChoice(true)"

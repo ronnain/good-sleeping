@@ -6,6 +6,7 @@ import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { HOST_ID } from 'host';
+import { USER_AGENT } from 'user-agent';
 
 // ssr DOM
 const domino = require('domino');
@@ -106,6 +107,7 @@ export function app() {
         providers: [
           { provide: APP_BASE_HREF, useValue: req.baseUrl },
           { provide: HOST_ID, useValue: req.get('host') + req.originalUrl }, // sending host name in provider
+          { provide: USER_AGENT, useValue: req.get('User-Agent') },
         ]
       });
   });

@@ -11,8 +11,6 @@ import { binaryQuestionDTO } from '../shared/binary-quizz/binary-question.dto';
 })
 export class SahosComponent implements OnInit, Page {
 
-  // todo SSR &&...
-
   title = "Test de dépistage d’apnée du sommeil en 13 questions";
   metaDesc = "Réponds rapidement à ces 14 questions pour connaître ton risque de faire des apnées du sommeil.";
   sharedArticleImg = environment.serverConfig.imgPath + 'test-depistage-apnee-sommeil/article/' + 'img1/xm.jpg';

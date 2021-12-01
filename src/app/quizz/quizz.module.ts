@@ -40,10 +40,6 @@ import { progressRatioPipe } from './shared/pipes/progress-ratio';
         MatSelectModule,
         SharedModule
     ],
-    exports: [
-        SahosComponent,
-        InsomniaSeverityIndexComponent
-    ],
     declarations: [
         InsomniaSeverityIndexComponent,
         SahosComponent,
@@ -54,5 +50,9 @@ import { progressRatioPipe } from './shared/pipes/progress-ratio';
         MailStepperComponent
     ],
     providers: [],
+    exports: [
+        SahosComponent,
+        InsomniaSeverityIndexComponent
+    ],
 })
 export class QuizzModule { }
