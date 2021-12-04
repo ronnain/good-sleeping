@@ -3,6 +3,7 @@ import { Page } from 'src/app/modeles/interfaces.type';
 import { HeaderService } from 'src/app/shared/services/header.service';
 import { environment } from 'src/environments/environment';
 import { binaryQuestionDTO } from '../shared/binary-quizz/binary-question.dto';
+import { CardConfigurationDTO } from '../shared/binary-quizz/card-configuration.dto';
 
 @Component({
   selector: 'app-sahos',
@@ -100,6 +101,12 @@ export class SahosComponent implements OnInit, Page {
   ];
 
   quizz: binaryQuestionDTO[] = [...this.quizzNoSAS, ...this.quizzStopBang];
+
+  cardConfiguration: CardConfigurationDTO = {
+    showCardFooterActionBar: true,
+    showThumbBar: true,
+    questionType: 'other'
+  }
 
   quizzNoSASNotCompleted: boolean = false;
   quizzStopBangNotCompleted: boolean = false;

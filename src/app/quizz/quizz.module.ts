@@ -20,6 +20,7 @@ import { BinaryQuizzComponent } from './shared/binary-quizz/binary-quizz.compone
 import { BmiCalculatorComponent } from './shared/bmi-calculator/bmi-calculator.component';
 import { MailStepperComponent } from './shared/mail-stepper/mail-stepper.component';
 import { progressRatioPipe } from './shared/pipes/progress-ratio';
+import { HorneOstbergComponent } from './horne-ostberg/horne-ostberg.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { progressRatioPipe } from './shared/pipes/progress-ratio';
         BinaryQuizzComponent,
         BmiCalculatorComponent,
         progressRatioPipe,
-        MailStepperComponent
+        MailStepperComponent,
+        HorneOstbergComponent
     ],
     providers: [],
     exports: [

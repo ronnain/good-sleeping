@@ -5,6 +5,7 @@ import { backAction } from './animations/back-action.animation';
 import { completeQuizz } from './animations/complete.animation';
 import { isPlatformBrowser } from '@angular/common';
 import { MobileService } from 'src/app/shared/services/mobile.service';
+import { CardConfigurationDTO } from './card-configuration.dto';
 
 @Component({
   selector: 'binary-quizz',
@@ -19,6 +20,8 @@ import { MobileService } from 'src/app/shared/services/mobile.service';
 export class BinaryQuizzComponent implements OnInit {
 
   @Input() binaryQuestions: binaryQuestionDTO[];
+
+  @Input() cardConfiguration: CardConfigurationDTO;
 
   currentIndex: number = 0;
   sideMovement: number = 0;
@@ -53,7 +56,8 @@ export class BinaryQuizzComponent implements OnInit {
     }
 
     this.currentIndex--;
-    this.backMovement += this.binaryQuestions[this.currentIndex].answer ? 1 : -1;
+
+    this.backMovement += this.cardConfiguration.questionType === 'binary' ? (this.binaryQuestions[this.currentIndex].answer ? 1 : -1) : 1;
 
     this.hideBtnsChoice =  this.currentIndex >= this.binaryQuestions.length;
   }
@@ -64,8 +68,8 @@ export class BinaryQuizzComponent implements OnInit {
     }
     this.binaryQuestions[this.currentIndex].answer = choice;
     this.currentIndex++;
-    this.hideBtnsChoice =  this.currentIndex >= this.binaryQuestions.length;
-    this.sideMovement = choice ? this.sideMovement + 1 : this.sideMovement -1;
+    this.hideBtnsChoice = this.currentIndex >= this.binaryQuestions.length;
+    this.sideMovement = choice ? this.sideMovement + 1 : this.sideMovement - 1;
   }
 
   onAnimationStart() {

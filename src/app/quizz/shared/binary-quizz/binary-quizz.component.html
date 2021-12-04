@@ -28,6 +28,11 @@
             </div>
 
             <ng-content *ngIf="question.showExtra" ></ng-content>
+
+            <div *ngIf="cardConfiguration.showCardFooterActionBar" class="cardFooterActionBar">
+              <button mat-button color="primary" (click)="onPrevious()">Retour</button>
+              <button mat-button color="primary" (click)="onNext()">Suivant</button>
+            </div>
         </div>
     </div>
 
@@ -37,4 +42,5 @@
     </div>
 
 </div>
-<binary-actions (next)="onNext()" (previous)="onPrevious()" (choice)="onChoice($event)" [hideBtnsChoice]="hideBtnsChoice"></binary-actions>
+
+<binary-actions *ngIf="cardConfiguration.showThumbBar" (next)="onNext()" (previous)="onPrevious()" (choice)="onChoice($event)" [hideBtnsChoice]="hideBtnsChoice"></binary-actions>
