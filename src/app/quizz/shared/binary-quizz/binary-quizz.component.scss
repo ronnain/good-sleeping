@@ -1,5 +1,12 @@
+/* $block-height : 450px;
+$box-height: 420px; */
+
+$block-height : 450px;
+$box-height: calc($block-height-30px);
+
+
 .questionsBlock {
-    height: 450px;
+    height: $block-height;
     overflow: hidden;
 }
 
@@ -15,7 +22,8 @@
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 10px;
-    height: 420px;
+    /* height: 420px; */
+    //height: $box-height;
     display: flex;
     align-content: stretch;
     flex-wrap: wrap;

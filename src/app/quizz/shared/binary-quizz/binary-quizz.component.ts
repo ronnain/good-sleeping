@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { userChoice } from './animations/user-choice.animation';
 import { binaryQuestionDTO } from './binary-question.dto';
 import { backAction } from './animations/back-action.animation';
@@ -10,7 +10,7 @@ import { CardConfigurationDTO } from './card-configuration.dto';
 @Component({
   selector: 'binary-quizz',
   templateUrl: './binary-quizz.component.html',
-  styleUrls: ['./binary-quizz.component.css'],
+  styleUrls: ['./binary-quizz.component.scss'],
   animations: [
     userChoice,
     backAction,
@@ -20,10 +20,20 @@ import { CardConfigurationDTO } from './card-configuration.dto';
 export class BinaryQuizzComponent implements OnInit {
 
   @Input() binaryQuestions: binaryQuestionDTO[];
-
   @Input() cardConfiguration: CardConfigurationDTO;
 
-  currentIndex: number = 0;
+  @Output() currentIndexChange = new EventEmitter<number>();
+
+  @Input() set currentIndex(value: number) {
+    this._currentIndex = value;
+    this.currentIndexChange.emit(value);
+  }
+
+  get currentIndex() {
+    return this._currentIndex;
+  }
+
+  private _currentIndex: number = 0;
   sideMovement: number = 0;
   backMovement: number = 0;
   isAnimationDone: boolean = true;

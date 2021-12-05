@@ -103,9 +103,9 @@ export class SahosComponent implements OnInit, Page {
   quizz: binaryQuestionDTO[] = [...this.quizzNoSAS, ...this.quizzStopBang];
 
   cardConfiguration: CardConfigurationDTO = {
-    showCardFooterActionBar: true,
+    showCardFooterActionBar: false,
     showThumbBar: true,
-    questionType: 'other'
+    questionType: 'binary'
   }
 
   quizzNoSASNotCompleted: boolean = false;

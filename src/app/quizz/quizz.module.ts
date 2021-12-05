@@ -21,6 +21,7 @@ import { BmiCalculatorComponent } from './shared/bmi-calculator/bmi-calculator.c
 import { MailStepperComponent } from './shared/mail-stepper/mail-stepper.component';
 import { progressRatioPipe } from './shared/pipes/progress-ratio';
 import { HorneOstbergComponent } from './horne-ostberg/horne-ostberg.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { HorneOstbergComponent } from './horne-ostberg/horne-ostberg.component';
         MatButtonModule,
         MatInputModule,
         MatCheckboxModule,
+        MatRadioModule,
         ReactiveFormsModule,
         ShareBtnsModule,
         MatSelectModule,
