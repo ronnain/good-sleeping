@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
 import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
 
 @Component({
@@ -9,6 +10,7 @@ import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
 export class HorneOstbergComponent implements OnInit {
 
   currentIndex: number = 0;
+  isQuizzCompleted: boolean = false;
 
   quizz: CardQuestionDTO[] = [
     {
@@ -133,11 +135,32 @@ export class HorneOstbergComponent implements OnInit {
         }
       ]
     }
-  ]
+  ];
 
-  constructor() { }
+  score: number = 0;
+  showResult: boolean = false;
+  TEST_CHRONOTYPE_CATEGORIE = "TEST_CHRONOTYPE";
+
+  constructor(private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit(): void {
+  }
+
+  onGetScore() {
+    let total = 0;
+    this.score = this.quizz.reduce((a,c) => a + c.answerValue , 0)
+
+    if (this.showResult) {
+      return;
+    }
+
+    this.googleAnalyticsService.sendEvent(
+      "show_result",
+      this.TEST_CHRONOTYPE_CATEGORIE,
+      "show_result",
+      "true"
+    );
+    this.showResult = true;
   }
 
 }

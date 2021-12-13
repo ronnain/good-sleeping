@@ -19,18 +19,18 @@
             <ng-content select="[questionContent]"></ng-content>
 
             <div class="cardFooterActionBar">
-              <button mat-button color="primary" (click)="onPrevious()">Retour</button>
+              <button mat-button color="primary" (click)="onPrevious()" [disabled]="!currentIndex">Retour</button>
               <button mat-button color="primary" (click)="onNext()">Suivant</button>
             </div>
         </div>
     </div>
 
-    <div @completeQuizz class="cardQuestions cardValidation" *ngIf="currentIndex === cardQuestions.length">
+    <div @completeQuizz class="cardQuestions cardValidation" *ngIf="isQuizzCompleted">
       <p class="textEnd">Questionnaires complétés à 100 %</p>
       <div class="iconEnd"><mat-icon>done</mat-icon></div>
       <div class="cardFooterActionBar">
         <button mat-button color="primary" (click)="onPrevious()">Retour</button>
-        <button mat-button color="primary" (click)="onNext()">Suivant</button>
+        <button mat-button color="primary" (click)="onNext()" [disabled]="isQuizzCompleted">Suivant</button>
       </div>
     </div>
 

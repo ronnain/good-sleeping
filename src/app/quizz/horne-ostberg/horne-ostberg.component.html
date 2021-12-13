@@ -3,9 +3,9 @@
     <div class="container article">
 
         <h2>Passe le test de vespéralité</h2>
-
-        <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex">
-            <div class="extra" questionContent *ngIf="currentIndex < quizz.length">
+        {{isQuizzCompleted}} isQuizzCompleted
+        <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" [(isQuizzCompleted)]="isQuizzCompleted">
+            <div class="extra" questionContent *ngIf="!isQuizzCompleted">
 
                 <div>
                     <mat-radio-group
@@ -25,4 +25,32 @@
             </div>
         </card-questions>
     </div>
+</section>
+
+<section>
+    <div class="container article">
+        <h2>Obtiens ton résultat</h2>
+
+        <quizz-mail-stepper (onShowResult)="onGetScore()">
+
+            <!-- Quizz not completed -->
+            <ng-container *ngIf="!isQuizzCompleted">
+                <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test.</p>
+                <p>Il te suffit de le compléter pour afficher ton score.</p>
+            </ng-container>
+
+            <ng-container *ngIf="isQuizzCompleted">
+                <div class="scoreDisplay">
+                    <div class="resultCard">
+                        <p class="headerQuizz">Chronotype</p>
+                        <p>Score : <span>{{score}}</span></p>
+                        <p>Risque : <span class="risk">Test </span></p>
+                    </div>
+                </div>
+                <p>Les interprétations de tes résultats sont disponibles ci-dessous.</p>
+            </ng-container>
+
+        </quizz-mail-stepper>
+    </div>
+
 </section>

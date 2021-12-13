@@ -17,6 +17,21 @@ export class CardQuizzComponent implements OnInit {
 
   @Output() currentIndexChange = new EventEmitter<number>();
 
+
+  @Input() set isQuizzCompleted(value: boolean) {
+    this._isQuizzCompleted = value;
+    this.isQuizzCompletedChange.emit(value);
+  }
+
+  get isQuizzCompleted() {
+    return this._isQuizzCompleted;
+  }
+
+  private _isQuizzCompleted:boolean = false;
+
+  @Output() isQuizzCompletedChange = new EventEmitter<boolean>();
+
+
   @Input() set currentIndex(value: number) {
     this._currentIndex = value;
     this.currentIndexChange.emit(value);
@@ -51,6 +66,7 @@ export class CardQuizzComponent implements OnInit {
     }
     this.sideMovement++;
     this.currentIndex++;
+    this.isQuizzCompleted = this.currentIndex === this.cardQuestions.length;
   }
 
   onPrevious() {
@@ -59,6 +75,7 @@ export class CardQuizzComponent implements OnInit {
     }
 
     this.currentIndex--;
+    this.isQuizzCompleted = this.currentIndex === this.cardQuestions.length;
 
     this.backMovement += 1;
 
