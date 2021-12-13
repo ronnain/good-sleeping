@@ -1,6 +1,9 @@
-$block-height : 450px;
-$box-height: 420px;
+/* $block-height : 450px;
+$box-height: 420px; */
 
+$block-height : 545px;
+$box-height: calc($block-height-30px);
+$box-height: 525px ;
 
 
 .questionsBlock {
@@ -8,7 +11,7 @@ $box-height: 420px;
     overflow: hidden;
 }
 
-.cardBinaryQuestion {
+.cardQuestions {
     width: 90%;
     max-width: 590px;
     position: absolute;
@@ -20,6 +23,7 @@ $box-height: 420px;
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 10px;
+    /* height: 420px; */
     height: $box-height;
     min-height: $box-height;
     display: flex;
@@ -28,7 +32,7 @@ $box-height: 420px;
     background-color: var(--div-container-background-color);
 }
 
-.cardBinaryQuestion:hover {
+.cardQuestions:hover {
     box-shadow: 2px 2px 8px rgba(99 99 101);
 }
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { AnimateThatDirective } from './directives/animation.directive';
+import { InserteComponentDirective } from './directives/inserte-component.directive';
 import { SwipeDirective } from './directives/swipe.directive';
 import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
 import { Carousel3dComponent } from './retrieve-mail/carousel3d/carousel3d.component';
@@ -22,6 +23,7 @@ import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
     ],
     exports: [
         SwipeDirective,
+        InserteComponentDirective,
         AnimateThatDirective,
         SafeHtmlPipe,
         RetrieveMailComponent,
@@ -33,6 +35,7 @@ import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
     ],
     declarations: [
         SwipeDirective,
+        InserteComponentDirective,
         AnimateThatDirective,
         SafeHtmlPipe,
         RetrieveMailComponent,

@@ -22,6 +22,8 @@ import { MailStepperComponent } from './shared/mail-stepper/mail-stepper.compone
 import { progressRatioPipe } from './shared/pipes/progress-ratio';
 import { HorneOstbergComponent } from './horne-ostberg/horne-ostberg.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { RadioGroupComponent } from './shared/radio-group/radio-group.component';
+import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
 
 
 @NgModule({
@@ -46,12 +48,14 @@ import { MatRadioModule } from '@angular/material/radio';
     declarations: [
         InsomniaSeverityIndexComponent,
         SahosComponent,
+        RadioGroupComponent,
         BinaryActionsComponent,
         BinaryQuizzComponent,
         BmiCalculatorComponent,
         progressRatioPipe,
         MailStepperComponent,
-        HorneOstbergComponent
+        HorneOstbergComponent,
+        CardQuizzComponent
     ],
     providers: [],
     exports: [

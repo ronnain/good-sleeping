@@ -7,21 +7,25 @@
         {{quizz|json}}
 
         currentIndex : {{currentIndex}}
-        <binary-quizz [binaryQuestions]="quizz" [cardConfiguration]="cardConfiguration" [(currentIndex)]="currentIndex">
-            <div class="extra">
+        <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex">
+            <div class="extra" questionContent>
 
                 <div>
                     <mat-radio-group
                       aria-labelledby="radio-group-label"
                       class="radio-group"
                       [(ngModel)]="quizz[currentIndex].answerValue">
-                      <mat-radio-button class="radio-button" *ngFor="let proposition of quizz[currentIndex].propositions" [value]="proposition.value">
+                      <mat-radio-button
+                        class="radio-button"
+                        *ngFor="let proposition of quizz[currentIndex].propositions"
+                        [value]="proposition.value"
+                      >
                           {{proposition.text}}
                       </mat-radio-button>
                   </mat-radio-group>
                 </div>
 
             </div>
-        </binary-quizz>
+        </card-questions>
     </div>
 </section>

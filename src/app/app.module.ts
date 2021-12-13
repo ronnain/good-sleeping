@@ -42,7 +42,6 @@ import { SharedModule } from './shared/shared.module';
     ContactComponent,
     MeComponent,
     CookiesHandlerComponent,
-
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

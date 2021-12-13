@@ -1,0 +1,10 @@
+<div class="extra">
+    <mat-radio-group
+      aria-labelledby="radio-group-label"
+      class="radio-group"
+      [(ngModel)]="question.answerValue">
+      <mat-radio-button class="radio-button" *ngFor="let proposition of question.propositions" [value]="proposition.value">
+          {{proposition.text}}
+      </mat-radio-button>
+  </mat-radio-group>
+</div>

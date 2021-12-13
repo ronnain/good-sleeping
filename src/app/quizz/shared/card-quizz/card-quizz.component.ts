@@ -1,24 +1,19 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
-import { userChoice } from './animations/user-choice.animation';
-import { backAction } from './animations/back-action.animation';
 import { isPlatformBrowser } from '@angular/common';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { MobileService } from 'src/app/shared/services/mobile.service';
-import { binaryQuestionDTO } from './binary-question.dto';
-import { completeQuizz } from './animations/complete.animation';
+import { completeQuizz } from '../binary-quizz/animations/complete.animation';
 
 @Component({
-  selector: 'binary-quizz',
-  templateUrl: './binary-quizz.component.html',
-  styleUrls: ['./binary-quizz.component.scss'],
+  selector: 'card-questions',
+  templateUrl: './card-quizz.component.html',
+  styleUrls: ['./card-quizz.component.scss'],
   animations: [
-    userChoice,
-    backAction,
     completeQuizz
   ]
 })
-export class BinaryQuizzComponent implements OnInit {
+export class CardQuizzComponent implements OnInit {
 
-  @Input() binaryQuestions: binaryQuestionDTO[];
+  @Input() cardQuestions: any[];
 
   @Output() currentIndexChange = new EventEmitter<number>();
 
@@ -42,7 +37,7 @@ export class BinaryQuizzComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
-    private mobileService: MobileService,
+    private mobileService: MobileService
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -51,7 +46,7 @@ export class BinaryQuizzComponent implements OnInit {
   }
 
   onNext() {
-    if (!this.isAnimationDone || this.currentIndex + 1 === this.binaryQuestions.length) {
+    if (!this.isAnimationDone || this.currentIndex + 1 === this.cardQuestions.length) {
       return;
     }
     this.sideMovement++;
@@ -65,18 +60,18 @@ export class BinaryQuizzComponent implements OnInit {
 
     this.currentIndex--;
 
-    this.backMovement += this.binaryQuestions[this.currentIndex].answer ? 1 : -1;
+    this.backMovement += 1;
 
-    this.hideBtnsChoice =  this.currentIndex >= this.binaryQuestions.length;
+    this.hideBtnsChoice =  this.currentIndex >= this.cardQuestions.length;
   }
 
   onChoice(choice: boolean) {
     if (!this.isAnimationDone) {
       return;
     }
-    this.binaryQuestions[this.currentIndex].answer = choice;
+    this.cardQuestions[this.currentIndex].answer = choice;
     this.currentIndex++;
-    this.hideBtnsChoice = this.currentIndex >= this.binaryQuestions.length;
+    this.hideBtnsChoice = this.currentIndex >= this.cardQuestions.length;
     this.sideMovement = choice ? this.sideMovement + 1 : this.sideMovement - 1;
   }
 

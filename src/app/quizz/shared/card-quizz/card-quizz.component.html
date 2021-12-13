@@ -1,0 +1,33 @@
+<div class="questionsBlock">
+
+    <div
+      *ngFor="let question of cardQuestions; let index = index;"
+      >
+        <div
+          class="cardQuestions"
+          *ngIf="(isBrowser && index === currentIndex) || (!isBrowser && index === 0)"
+          swipe
+          (next)="onChoice(false)"
+          (previous)="onChoice(true)"
+        >
+            <mat-progress-bar mode="determinate" [value]="index | progressRatio : cardQuestions.length"></mat-progress-bar>
+            <div>
+              <p class="headerQuestion">Question {{index + 1}} sur {{cardQuestions.length}}</p>
+              <p class="questionText">{{question.description}}</p>
+            </div>
+
+            <ng-content select="[questionContent]"></ng-content>
+
+            <div class="cardFooterActionBar">
+              <button mat-button color="primary" (click)="onPrevious()">Retour</button>
+              <button mat-button color="primary" (click)="onNext()">Suivant</button>
+            </div>
+        </div>
+    </div>
+
+    <div @completeQuizz class="cardQuestions cardValidation" *ngIf="currentIndex === cardQuestions.length">
+      <p class="textEnd">Questionnaires complétés à 100 %</p>
+      <div class="iconEnd"><mat-icon>done</mat-icon></div>
+    </div>
+
+</div>

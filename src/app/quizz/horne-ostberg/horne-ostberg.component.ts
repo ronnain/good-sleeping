@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CardConfigurationDTO } from '../shared/binary-quizz/card-configuration.dto';
+import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
 
 @Component({
   selector: 'app-horne-ostberg',
@@ -10,20 +10,9 @@ export class HorneOstbergComponent implements OnInit {
 
   currentIndex: number = 0;
 
-  test = 1;
-  favoriteSeason: string;
-  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
-
-  cardConfiguration: CardConfigurationDTO = {
-    showCardFooterActionBar: true,
-    showThumbBar: false,
-    questionType: 'other'
-  }
-
-  quizz: any[] = [
+  quizz: CardQuestionDTO[] = [
     {
       description: "Si tu vis à ton rythme (celui qui te plaît le plus), à quelle heure te lèverais-tu en étant entièrement libre d'organiser ta journée ?",
-      showExtra: true,
       answerValue: 5,
       propositions: [
         {
@@ -50,7 +39,6 @@ export class HorneOstbergComponent implements OnInit {
     },
     {
       description: "Comment te sens-tu dans la demi-heure qui suit ton réveil ?",
-      showExtra: true,
       answerValue: 1,
       propositions: [
         {
@@ -67,14 +55,13 @@ export class HorneOstbergComponent implements OnInit {
         },
         {
           text: 'Très en forme',
-          value: 1
+          value: 4
         }
       ]
     },
     {
       description: "A quelle moment de la soirée te sens-tu vraiment fatigué, au point de t'endormir ?",
-      showExtra: true,
-      answerValue: 1,
+      answerValue: 5,
       propositions: [
         {
           text: '20h00 - 21h00',
@@ -98,6 +85,54 @@ export class HorneOstbergComponent implements OnInit {
         }
       ]
     },
+    {
+      description: "A quelle heure de la jouenée te sens-tu dans ta meilleure forme ?",
+      answerValue: 5,
+      propositions: [
+        {
+          text: '5h00 - 8h00',
+          value: 5
+        },
+        {
+          text: '8h00 - 10h00',
+          value: 4
+        },
+        {
+          text: '10h00 - 17h00',
+          value: 3
+        },
+        {
+          text: '17h00 - 21h00',
+          value: 2
+        },
+        {
+          text: '20h00 - 4h00',
+          value: 1
+        }
+      ]
+    },
+    {
+      description: "On dit parfois que quelqu'un est un \"sujet du soir\" ou un \"sujet du matin\". Te considères-tu comme celui du matin ou du soir ?",
+      answerValue: 6,
+      propositions: [
+        {
+          text: 'Tout à fait un sujet du matin',
+          value: 6
+        },
+        {
+          text: 'Plutôt un sujet du matin',
+          value: 4
+        },
+        {
+          text: 'Plutôt un sujet du soir',
+          value: 2
+        },
+        {
+          text: 'Tout à fait un sujet du soir',
+          value: 0
+        }
+      ]
+    }
   ]
 
   constructor() { }
