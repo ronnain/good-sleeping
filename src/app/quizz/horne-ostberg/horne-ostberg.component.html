@@ -4,11 +4,8 @@
 
         <h2>Passe le test de vespéralité</h2>
 
-        {{quizz|json}}
-
-        currentIndex : {{currentIndex}}
         <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex">
-            <div class="extra" questionContent>
+            <div class="extra" questionContent *ngIf="currentIndex < quizz.length">
 
                 <div>
                     <mat-radio-group

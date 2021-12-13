@@ -28,6 +28,10 @@
     <div @completeQuizz class="cardQuestions cardValidation" *ngIf="currentIndex === cardQuestions.length">
       <p class="textEnd">Questionnaires complétés à 100 %</p>
       <div class="iconEnd"><mat-icon>done</mat-icon></div>
+      <div class="cardFooterActionBar">
+        <button mat-button color="primary" (click)="onPrevious()">Retour</button>
+        <button mat-button color="primary" (click)="onNext()">Suivant</button>
+      </div>
     </div>
 
 </div>

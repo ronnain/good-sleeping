@@ -46,7 +46,7 @@ export class CardQuizzComponent implements OnInit {
   }
 
   onNext() {
-    if (!this.isAnimationDone || this.currentIndex + 1 === this.cardQuestions.length) {
+    if (!this.isAnimationDone || this.currentIndex === this.cardQuestions.length) {
       return;
     }
     this.sideMovement++;
