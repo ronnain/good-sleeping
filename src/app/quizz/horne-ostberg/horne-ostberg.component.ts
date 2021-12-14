@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Page } from 'src/app/modeles/interfaces.type';
 import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
+import { HeaderService } from 'src/app/shared/services/header.service';
+import { environment } from 'src/environments/environment';
 import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
 
 @Component({
@@ -7,7 +10,11 @@ import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
   templateUrl: './horne-ostberg.component.html',
   styleUrls: ['./horne-ostberg.component.scss']
 })
-export class HorneOstbergComponent implements OnInit {
+export class HorneOstbergComponent implements OnInit, Page {
+
+  title = "Découvre ton chronotype grâce à ce test.";
+  metaDesc = "Découvre si tu es insomniaque grâce à ce test rapide et gratuit, en ligne. Si tu es insomniaque, je te donne les meilleurs conseils pour t'en sortir.";
+  sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie/article/' + 'img1/xm.jpg';
 
   currentIndex: number = 0;
   isQuizzCompleted: boolean = false;
@@ -142,9 +149,14 @@ export class HorneOstbergComponent implements OnInit {
   showResult: boolean = false;
   TEST_CHRONOTYPE_CATEGORIE = "TEST_CHRONOTYPE";
 
-  constructor(private googleAnalyticsService: GoogleAnalyticsService) { }
+  constructor(
+    private googleAnalyticsService: GoogleAnalyticsService,
+    public headerService: HeaderService
+    ) { }
 
   ngOnInit(): void {
+    this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
+    this.headerService.createOpenGraphMeta(this.title, this.metaDesc, this.sharedArticleImg);
   }
 
   onGetScore() {

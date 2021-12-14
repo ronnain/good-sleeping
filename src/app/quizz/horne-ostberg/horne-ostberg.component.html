@@ -2,8 +2,8 @@
 <section>
     <div class="container article">
 
-        <h2>Passe le test de vespéralité</h2>
-        {{isQuizzCompleted}} isQuizzCompleted
+        <h2>Passe le test de vespéralité et matinalité</h2>
+
         <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" [(isQuizzCompleted)]="isQuizzCompleted">
             <div class="extra" questionContent *ngIf="!isQuizzCompleted">
 
