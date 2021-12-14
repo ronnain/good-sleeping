@@ -12,6 +12,7 @@ export class MailStepperComponent implements OnInit {
 
   @Output() onShowResult = new EventEmitter<null>();
   @Output() goToNextStep = new EventEmitter<null>();
+  @Output() reset = new EventEmitter<null>();
 
   nameFormGroup: FormGroup;
   emailFormGroup: FormGroup;
@@ -48,4 +49,13 @@ export class MailStepperComponent implements OnInit {
     this.goToNextStep.emit();
   }
 
+  onReset() {
+    this.reset.emit();
+  }
+
+  onSelectionChange(e) {
+    if (this.skipCreation && e.selectedIndex === 2) {
+      this.showResult();
+    }
+  }
 }

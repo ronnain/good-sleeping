@@ -138,6 +138,7 @@ export class HorneOstbergComponent implements OnInit {
   ];
 
   score: number = 0;
+  chronotype: string = '';
   showResult: boolean = false;
   TEST_CHRONOTYPE_CATEGORIE = "TEST_CHRONOTYPE";
 
@@ -147,8 +148,9 @@ export class HorneOstbergComponent implements OnInit {
   }
 
   onGetScore() {
-    let total = 0;
-    this.score = this.quizz.reduce((a,c) => a + c.answerValue , 0)
+
+    this.score = this.quizz.reduce((a,c) => a + c.answerValue , 0);
+    this.chronotype = this.getChronotype();
 
     if (this.showResult) {
       return;
@@ -161,6 +163,32 @@ export class HorneOstbergComponent implements OnInit {
       "true"
     );
     this.showResult = true;
+  }
+
+  getChronotype() {
+
+    if (this.score <= 7) {
+      return 'Nettement du soir';
+    }
+
+    if (this.score <= 11) {
+      return 'Modérément du soir';
+    }
+
+    if (this.score <= 17) {
+      return 'Intermédiaire';
+    }
+
+    if (this.score <= 21) {
+      return 'Modérément du matin';
+    }
+
+    return 'Nettement du matin';
+  }
+
+  onReset() {
+    this.currentIndex = 0;
+    this.isQuizzCompleted = false;
   }
 
 }

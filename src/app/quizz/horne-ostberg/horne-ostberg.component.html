@@ -31,23 +31,24 @@
     <div class="container article">
         <h2>Obtiens ton résultat</h2>
 
-        <quizz-mail-stepper (onShowResult)="onGetScore()">
+        <quizz-mail-stepper (onShowResult)="onGetScore()" (reset)="onReset()">
 
             <!-- Quizz not completed -->
             <ng-container *ngIf="!isQuizzCompleted">
-                <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test.</p>
-                <p>Il te suffit de le compléter pour afficher ton score.</p>
+                <div class="alert alert-warning" role="alert">
+                    <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test.</p>
+                    <p>Il te suffit de le compléter pour afficher ton score.</p>
+                </div>
             </ng-container>
 
             <ng-container *ngIf="isQuizzCompleted">
                 <div class="scoreDisplay">
                     <div class="resultCard">
-                        <p class="headerQuizz">Chronotype</p>
+                        <p>Chronotype : <span class="risk">{{chronotype}} </span></p>
                         <p>Score : <span>{{score}}</span></p>
-                        <p>Risque : <span class="risk">Test </span></p>
                     </div>
                 </div>
-                <p>Les interprétations de tes résultats sont disponibles ci-dessous.</p>
+                <p>*Les interprétations de tes résultats sont disponibles ci-dessous.</p>
             </ng-container>
 
         </quizz-mail-stepper>

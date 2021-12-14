@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]="!skipCreation" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper [linear]="!skipCreation" #stepper="matHorizontalStepper" (selectionChange)="onSelectionChange($event)">
 
     <mat-step [stepControl]="nameFormGroup" label="Pénom">
       <div class="alert alert-info" role="alert" *ngIf="skipCreation">
@@ -38,7 +38,7 @@
       <ng-content></ng-content>
       <div>
           <button *ngIf="skipCreation" mat-button color="primary" (click)="showResult()">Obtenir son résultat</button>
-          <button mat-button (click)="stepper.reset()">Recommencer</button>
+          <button mat-button (click)="stepper.reset();onReset()">Recommencer</button>
         </div>
     </mat-step>
 
