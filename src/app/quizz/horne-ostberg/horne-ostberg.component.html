@@ -1,57 +1,256 @@
-<p>horne-ostberg works!</p>
-<section>
-    <div class="container article">
+<article>
 
-        <h2>Passe le test de vespéralité et matinalité</h2>
+    <section>
+        <div class="container article">
+            <h1>
+                <span style='font-size:20pt;'>Test chronotype : D&eacute;couvre ton chronotype gratuitement</span>
+            </h1>
+            <picture>
+                <source  media="(min-width: 1200px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img1/article/xl.jpg">
+                <source  media="(min-width: 992px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img1/article/l.jpg">
+                <source  media="(min-width: 768px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img1/article/xm.jpg">
+                <source  media="(min-width: 576px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img1/article/m.jpg">
+                <img src="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img1/article/m.jpg" alt="Test chronotype gratuit" title="Test chronotype gratuit" class=" fullWidth">
+            </picture>
+            <p>Découvre ton chronotype grâce au test de Horne et Ostberg.</p>
+            <h2>
+                <span style='font-size:16pt;'>Instructions pour l&rsquo;&eacute;chelle de Horne et Ostberg</span>
+            </h2>
+            <ol  start="1">
+                <li>Bien lire chaque question avant d&rsquo;y r&eacute;pondre.</li>
+                <li>R&eacute;pondre &agrave; toutes les questions.</li>
+                <li>R&eacute;pondre aux questions dans l&rsquo;ordre.</li>
+                <li>Tu peux r&eacute;pondre aux questions, les unes ind&eacute;pendamment des autres. Ne reviens pas en arri&egrave;re pour v&eacute;rifier ta r&eacute;ponse.</li>
+                <li>R&eacute;pondre sinc&egrave;rement aux questions.</li>
+            </ol>
+        </div>
+    </section>
 
-        <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" [(isQuizzCompleted)]="isQuizzCompleted">
-            <div class="extra" questionContent *ngIf="!isQuizzCompleted">
+    <section>
+        <div class="container article">
 
-                <div>
-                    <mat-radio-group
-                      aria-labelledby="radio-group-label"
-                      class="radio-group"
-                      [(ngModel)]="quizz[currentIndex].answerValue">
-                      <mat-radio-button
-                        class="radio-button"
-                        *ngFor="let proposition of quizz[currentIndex].propositions"
-                        [value]="proposition.value"
-                      >
-                          {{proposition.text}}
-                      </mat-radio-button>
-                  </mat-radio-group>
-                </div>
+            <h2>Passe le test de vespéralité et matinalité</h2>
 
-            </div>
-        </card-questions>
-    </div>
-</section>
+            <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" [(isQuizzCompleted)]="isQuizzCompleted">
+                <div class="extra" questionContent *ngIf="!isQuizzCompleted">
 
-<section>
-    <div class="container article">
-        <h2>Obtiens ton résultat</h2>
-
-        <quizz-mail-stepper (onShowResult)="onGetScore()" (reset)="onReset()">
-
-            <!-- Quizz not completed -->
-            <ng-container *ngIf="!isQuizzCompleted">
-                <div class="alert alert-warning" role="alert">
-                    <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test.</p>
-                    <p>Il te suffit de le compléter pour afficher ton score.</p>
-                </div>
-            </ng-container>
-
-            <ng-container *ngIf="isQuizzCompleted">
-                <div class="scoreDisplay">
-                    <div class="resultCard">
-                        <p>Chronotype : <span class="risk">{{chronotype}} </span></p>
-                        <p>Score : <span>{{score}}</span></p>
+                    <div>
+                        <mat-radio-group
+                          aria-labelledby="radio-group-label"
+                          class="radio-group"
+                          [(ngModel)]="quizz[currentIndex].answerValue">
+                          <mat-radio-button
+                            class="radio-button"
+                            *ngFor="let proposition of quizz[currentIndex].propositions"
+                            [value]="proposition.value"
+                          >
+                              {{proposition.text}}
+                          </mat-radio-button>
+                      </mat-radio-group>
                     </div>
+
                 </div>
-                <p>*Les interprétations de tes résultats sont disponibles ci-dessous.</p>
-            </ng-container>
+            </card-questions>
+        </div>
+    </section>
 
-        </quizz-mail-stepper>
-    </div>
+    <section>
+        <div class="container article">
+            <h2>Obtiens ton résultat</h2>
 
-</section>
+            <quizz-mail-stepper (onShowResult)="onGetScore()" (reset)="onReset()">
+
+                <!-- Quizz not completed -->
+                <ng-container *ngIf="!isQuizzCompleted">
+                    <div class="alert alert-warning" role="alert">
+                        <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test.</p>
+                        <p>Il te suffit de le compléter pour afficher ton score.</p>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="isQuizzCompleted">
+                    <div class="scoreDisplay">
+                        <div class="resultCard">
+                            <p>Chronotype : <span class="risk">{{chronotype}} </span>
+</p>
+                            <p>Score : <span>{{score}}</span>
+</p>
+                        </div>
+                    </div>
+                    <p>*Les interprétations de tes résultats sont disponibles ci-dessous.</p>
+                </ng-container>
+
+            </quizz-mail-stepper>
+        </div>
+
+    </section>
+
+    <section>
+        <div class="container article">
+            <h2>
+            <span style='font-size:16pt;'>Score de 4 &agrave; 11 : Rythme biologique des chronotypes nettement du soir et mod&eacute;r&eacute;ment du soir</span>
+            </h2>
+            <p>
+            <span>
+            <picture>
+            <source  media="(min-width: 1200px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img2/article/xl.jpg">
+            <source  media="(min-width: 992px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img2/article/l.jpg">
+            <source  media="(min-width: 768px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img2/article/xm.jpg">
+            <source  media="(min-width: 576px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img2/article/m.jpg">
+            <img src="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img2/article/m.jpg" alt="Chronotypes du soir" title="Chronotypes du soir" class=" fullWidth">
+            </picture>
+            </span>
+            </p>
+            <p>Voici une liste des caract&eacute;ristiques des chronotypes nettement du soir et mod&eacute;r&eacute;ment du soir, que l&rsquo;on peut regrouper sous le nom des couche-tard, ou des chronotypes vesp&eacute;raux. Les chronotypes nettement du soir auront des caract&eacute;ristiques plus marqu&eacute;es et plus extr&ecirc;mes par rapport &agrave; ceux mod&eacute;r&eacute;ment du soir.</p>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>Caract&eacute;ristiques d&rsquo;un chronotype couche-tard</span>
+            </h3>
+            <ul>
+            <li>R&eacute;veil difficile, voire tr&egrave;s difficile le matin.</li>
+            <li>Met beaucoup de temps &agrave; se r&eacute;veiller, laisse le r&eacute;veil sonner plusieurs fois avant de se lever.</li>
+            <li>A des difficult&eacute;s &agrave; manger un petit-d&eacute;jeuner convenable.</li>
+            <li>Grosses difficult&eacute;s &agrave; s&rsquo;endormir &agrave; une heure convenable.</li>
+            <li>Sujet aux dettes de sommeil.</li>
+            <li>Risque de d&eacute;velopper une d&eacute;pendance &agrave; tous ce qui peut-&ecirc;tre addictif (tabac, drogue, alcool, Netflix, casino&hellip;).</li>
+            <li>Personne g&eacute;n&eacute;ralement cr&eacute;ative.</li>
+            <li>Atteint son pic d&rsquo;&eacute;nergie et de concentration en milieu/fin d&rsquo;apr&egrave;s-midi.</li>
+            <li>Profil pr&eacute;sentant le plus grand risque de d&eacute;pression, et d&rsquo;insatisfaction de la vie.</li>
+            <li>Esprit de r&eacute;bellion, d&rsquo;impatience et d&#39;impulsivit&eacute;.</li>
+            </ul>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>Les challenges d&rsquo;un couche-tard</span>
+            </h3>
+            <ul>
+            <li>R&eacute;ussir &agrave; mieux supporter le rythme de travail, surtout le matin. </li>
+            <li>Faire des nuits plus longues et r&eacute;paratrices.</li>
+            <li>Se sentir davantage satisfait de sa vie, adoucir les sauts d&rsquo;humeur.</li>
+            </ul>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>L&rsquo;horloge biologique d&rsquo;un chronotype vesp&eacute;rale</span>
+            </h3>
+            <p>La diff&eacute;rence la plus notable entre les chronotypes vient de l&rsquo;horloge interne. L&rsquo;horloge biologique interne rythme beaucoup processus dans le corps. Elle est notamment responsable du rythme &eacute;veil/sommeil, des heures de sommeil, du cycle circadien (24h), du changement de temp&eacute;rature corporelle au cours de la journ&eacute;e, de la production des diff&eacute;rentes hormones &agrave; des moments pr&eacute;cis de la journ&eacute;e&hellip;.</p>
+            <p>Chez les chronotypes vesp&eacute;raux, on peut remarquer certains traits typiques :</p>
+            <ul>
+            <li>La m&eacute;latonine, hormone du sommeil qui donne envie d&rsquo;aller dormir, commence &agrave; monter apr&egrave;s minuit.</li>
+            <li>La m&eacute;latonine voit son taux fortement chuter vers midi. C&rsquo;est pour cela que la matin&eacute;e est difficile pour les types vesp&eacute;raux et que leur productivit&eacute; est plus importante &agrave; partir de midi.</li>
+            <li>A l&rsquo;inverse, leur taux de cortisol, hormone de l&rsquo;&eacute;veil, est &agrave; son pic au milieu de l&rsquo;apr&egrave;s-midi. Ce qui fait qu&rsquo;&agrave; partir du milieu d&rsquo;apr&egrave;s-midi, ce type est &agrave; sa plus grande forme.</li>
+            </ul>
+            <p>Aller &agrave; l&rsquo;encontre des directives donn&eacute;es par son horloge centrale peut occasionner des troubles de la sant&eacute;, et du bien-&ecirc;tre, une diminution des performances mentales et physiques, des troubles du sommeil, d&eacute;gradation de la qualit&eacute; du sommeil, des difficult&eacute;s d&rsquo;endormissement&hellip;</p>
+            <h2>Score de 12 &agrave; 17 : <span style='font-size:16pt;'>Rythme circadien in</span>
+            <span style='font-size:16pt;'>term&eacute;diaire</span>
+            </h2>
+            <p>
+            <span>
+            <picture>
+            <source  media="(min-width: 1200px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img3/article/xl.jpg">
+            <source  media="(min-width: 992px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img3/article/l.jpg">
+            <source  media="(min-width: 768px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img3/article/xm.jpg">
+            <source  media="(min-width: 576px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img3/article/m.jpg">
+            <img src="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img3/article/m.jpg" alt="Chronotype interm&eacute;diaire" title="Chronotype interm&eacute;diaire" class=" fullWidth">
+            </picture>
+            </span>
+            </p>
+            <p>Les personnes pr&eacute;sentant un chronotype interm&eacute;diaire sont celles vivant le plus en phase avec le rythme du soleil et de la soci&eacute;t&eacute;. Les grands principes de la soci&eacute;t&eacute;, comme les rythmes scolaires et de travail, se sont bas&eacute;s sur ce chronotype. Ils sont donc plus aptes &agrave; s&rsquo;int&eacute;grer dans notre soci&eacute;t&eacute;. C&rsquo;est aussi le chronotype le plus repr&eacute;sent&eacute;.</p>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>Caract&eacute;ristiques d&rsquo;un chronotype diurn</span>
+            </h3>
+            <ul>
+            <li>Se l&egrave;ve le matin ni trop t&ocirc;t ni trop tard.</li>
+            <li>Ne pr&eacute;sente pas de difficult&eacute;s particuli&egrave;res pour se r&eacute;veiller.</li>
+            <li>Mange beaucoup le matin et le midi.</li>
+            <li>Personne g&eacute;n&eacute;ralement tr&egrave;s sociable aimant le travail en groupe.</li>
+            <li>Peut avoir des tendances de bons vivants, trop manger&hellip;</li>
+            <li>Adore les grasses matin&eacute;es.</li>
+            <li>Est touch&eacute; par la somnolence apr&egrave;s avoir mang&eacute;.</li>
+            <li>Tent&eacute; par le grignotage nocturne</li>
+            </ul>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>Les challenges d&rsquo;une personne du jour</span>
+            </h3>
+            <ul>
+            <li>Faire du sport en semaine et dormir suffisamment.</li>
+            <li>&Eacute;viter de manger trop le soir.</li>
+            <li>Mettre en place des activit&eacute;s et des siestes bien plac&eacute;s pour baisser la fatigue de l&rsquo;apr&egrave;s-midi.</li>
+            </ul>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>L&rsquo;horloge biologique d&rsquo;un chronotype interm&eacute;diaire</span>
+            </h3>
+            <p>Chacun poss&egrave;de une horloge interne qui impose son rythme au corps humain, elle est responsable du cycle jour nuit, de la r&eacute;gulation de la temp&eacute;rature du corps, du rythme du sommeil (cycles du sommeil et temps de sommeil), elle &eacute;tablit un rythme de production des diff&eacute;rentes hormones pr&eacute;sentes dans le corps&hellip;</p>
+            <p>L&rsquo;horloge centrale des chronotypes interm&eacute;diaires poss&egrave;de certains traits typiques :</p>
+            <ul>
+            <li>Au r&eacute;veil, le taux de testost&eacute;rone est assez haut et celui du cortisol assez bas. Faire l&rsquo;amour &agrave; ce moment-l&agrave; est id&eacute;al pour monter le rythme cardiaque, et la temp&eacute;rature du corps pour mieux se r&eacute;veiller.</li>
+            <li>Il y a un pic de fatigue en d&eacute;but d&rsquo;apr&egrave;s-midi, c&rsquo;est le moment id&eacute;al pour faire une petite sieste.</li>
+            <li>La fin d&rsquo;apr&egrave;s-midi est le moment id&eacute;al pour faire du sport.</li>
+            </ul>
+            <h2>
+            <span style='font-size:16pt;'>Score de 18 &agrave; 25 : Rythme veille-sommeil nettement du matin</span>
+            </h2>
+            <p>
+            <span>
+            <picture>
+            <source  media="(min-width: 1200px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img4/article/xl.jpg">
+            <source  media="(min-width: 992px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img4/article/l.jpg">
+            <source  media="(min-width: 768px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img4/article/xm.jpg">
+            <source  media="(min-width: 576px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img4/article/m.jpg">
+            <img src="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype/img4/article/m.jpg" alt="Chronotypes du matin" title="Chronotypes du matin" class=" fullWidth">
+            </picture>
+            </span>
+            </p>
+            <p>Voici une liste non-exhaustive qui pr&eacute;sente les grandes caract&eacute;ristiques des chronotypes matinaux. Le test distingue les chronotypes nettement du matin et mod&eacute;r&eacute;ment du matin, mais j&rsquo;ai choisi de les regrouper, car la principale diff&eacute;rence va venir de caract&eacute;ristiques plus marqu&eacute;es chez les personnes nettement du matin.</p>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>Caract&eacute;ristiques d&rsquo;un chronotype nettement du matin</span>
+            </h3>
+            <ul>
+            <li>R&eacute;veil t&ocirc;t, voire tr&egrave;s t&ocirc;t le matin.</li>
+            <li>Se r&eacute;veiller en pleine forme.</li>
+            <li>Profite des heures o&ugrave; les autres dorment encore pour faire des activit&eacute;s comme du sport, de la lecture, du travail&hellip;</li>
+            <li>Ressens les premiers signes de fatigue d&egrave;s le d&eacute;but d&rsquo;apr&egrave;s-midi.</li>
+            <li>Les personnes du matin pr&eacute;sentent un profil tr&egrave;s bosseur, tr&egrave;s logique et pragmatique, &agrave; la recherche de d&eacute;fis et de l&rsquo;atteinte de r&eacute;sultat.</li>
+            <li>Se couche-t&ocirc;t, voire tr&egrave;s t&ocirc;t.</li>
+            <li>Deviens irritable le soir &agrave; cause de la fatigue.</li>
+            </ul>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>Les challenges des personnes matinales</span>
+            </h3>
+            <ul>
+            <li>Am&eacute;liorer le niveau d&rsquo;&eacute;nergie le soir, afin d&rsquo;avoir plus de temps pour socialiser le soir. Car l&rsquo;&eacute;nergie des types matinaux &eacute;tant faible le soir peut limiter les activit&eacute;s de socialisation (ap&eacute;ro entre amis, jouer avec les enfants, rencontrer du monde&hellip;) </li>
+            <li>Adapter sa routine pour mieux r&eacute;partir son &eacute;nergie dans la journ&eacute;e.</li>
+            <li>Accepter que ce changement de routine prenne du temps &agrave; produire des r&eacute;sultats.</li>
+            </ul>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>L&rsquo;horloge interne des types matinaux</span>
+            </h3>
+            <p>L&rsquo;horloge biologique r&eacute;gule les diff&eacute;rents processus internes du corps, elle est situ&eacute;e dans l&#39;hypothalamus une petite r&eacute;gion au centre du cerveau. Elle impose son rythme au corps et au cerveau.</p>
+            <p>Voici certains traits typiques des chronotypes du matin :</p>
+            <ul>
+            <li>La m&eacute;latonine commence &agrave; &ecirc;tre produite d&egrave;s la fin d&rsquo;apr&egrave;s-midi. C&rsquo;est pour cela que les types matinaux peuvent &ecirc;tre somnolents tr&egrave;s t&ocirc;t le soir.</li>
+            <li>La s&eacute;rotonine, hormone du bonheur atteint son pic autour de midi, cela participe &agrave; nous garder &eacute;veill&eacute; et calme, avec un sentiment de pl&eacute;nitude.</li>
+            </ul>
+            <h2>
+            <span style='font-size:16pt;'>Existe-t-il d&rsquo;autres chronotypes ? </span>
+            </h2>
+            <p>Bien que ce test diff&eacute;rencie 5 chronotypes, d&rsquo;autres &eacute;tudes sugg&egrave;rent qu&rsquo;il en existe d&rsquo;autres. Elles se basent sur l&rsquo;&eacute;volution du niveau d&rsquo;&eacute;nergie dans la journ&eacute;e.</p>
+            <p>Cependant, comme le Dr Breus le sugg&egrave;re, il semble exister un autre chronotype, celui qu&rsquo;on associe aux insomniaques. Ce sont des personnes qui ont un sommeil l&eacute;ger, qui se r&eacute;veillent au moindre bruit, qui pr&eacute;sentent des difficult&eacute;s d&rsquo;endormissement, et se r&eacute;veillent tr&egrave;s souvent la nuit. Elles sont les plus sujettes aux troubles du sommeil, faible temps de sommeil, manque de sommeil.... Cependant, tous les insomniaques ne font pas partie de cette cat&eacute;gorie. Par exemple, si l&rsquo;on ne respecte pas son chronotype, si on ne met pas en place une bonne hygi&egrave;ne du sommeil, on peut souffrir d&rsquo;insomnie.</p>
+            <p>Certaines personnes peuvent avoir un travail avec des horaires d&eacute;cal&eacute;s, pouvant travailler tr&egrave;s t&ocirc;t, tr&egrave;s tard, avoir un travail de nuit. Les travailleurs d&eacute;cal&eacute;s peuvent voir leur horloge interne boulevers&eacute;e, et souffrir de troubles du rythme circadien. Travailler en horaires d&eacute;cal&eacute;s, n&rsquo;est vraiment pas bon pour le corps, cela l&rsquo;ab&icirc;me, car on ne le pousse &agrave; suivre un rythme qui n&rsquo;est pas le sien. J&rsquo;encourage les travailleurs de nuit &agrave; trouver un autre emploi en coh&eacute;rence avec leur chronotype. Bien entendu, je comprends que cela n&rsquo;est pas simple. </p>
+            <h2>
+            <span style='font-size:16pt;'>Pourquoi s&rsquo;int&eacute;resser &agrave; la chronobiologie ?</span>
+            </h2>
+            <p>S&rsquo;int&eacute;resser &agrave; la chronobiologie et en particulier comprendre les rythmes biologiques de son corps permettent de vivre en harmonie avec soi. Si on voit son corps comme une machine, respecter son rythme et son horloge interne, c&rsquo;est profiter du rendement le plus optimal, tout en limitant l&rsquo;usure.</p>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>&Eacute;viter les troubles du rythme circadien en s&rsquo;exposant &agrave; la lumi&egrave;re bleue</span>
+            </h3>
+            <p>Les cycles circadiens sont r&eacute;gul&eacute;s par notre horloge interne situ&eacute;e dans la glande pin&eacute;ale, et aussi par la lumi&egrave;re du jour, en particulier la lumi&egrave;re bleue. Un manque de lumi&egrave;re naturelle peut engendrer une d&eacute;synchronisation des rythmes biologiques. C&rsquo;est pourquoi, il est important d&rsquo;aller prendre l&rsquo;air en journ&eacute;e. Il est aussi possible de mettre en place des s&eacute;ances de luminoth&eacute;rapie pour profiter des bienfaits de la lumi&egrave;re du jour.</p>
+            <p>Les effets de la lumi&egrave;re du jour sur le bon fonctionnement de notre organisme sont tr&egrave;s importants, il ne faut pas les n&eacute;gliger.</p>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>En savoir plus sur les chronotypes</span>
+            </h3>
+            <p>Pour aller plus loin voici <span style='text-decoration:underline;color:#1155cc;'>
+            <a href="https://sommeilprofond.fr/articles/chronotype-definition">un article sur les chronotypes</a>
+            </span>.</p>
+            <h3>
+            <span style='color:#434343;font-size:14pt;'>Quel chronotype es-tu ?</span>
+            </h3>
+            <p>Fais moi savoir en commentaire qu&rsquo;elle chronotype tu es. Personnelement, je suis mod&eacute;r&eacute;ment du matin d&rsquo;apr&egrave;s ce test.</p>
+        </div>
+    </section>
+</article>
