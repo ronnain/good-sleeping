@@ -12,8 +12,8 @@ import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
 })
 export class HorneOstbergComponent implements OnInit, Page {
 
-  title = "Découvre ton chronotype grâce à ce test.";
-  metaDesc = "Découvre si tu es insomniaque grâce à ce test rapide et gratuit, en ligne. Si tu es insomniaque, je te donne les meilleurs conseils pour t'en sortir.";
+  title = "Test chronotype : Découvre ton chronotype gratuitement";
+  metaDesc = "5 Questions pour déterminer son chronotype. Connaître les caractéristiques associées à son chronotype. Chronotype du soir, de la journée ou du matin.";
   sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie/article/' + 'img1/xm.jpg';
 
   currentIndex: number = 0;
