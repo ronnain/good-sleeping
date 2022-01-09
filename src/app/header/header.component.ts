@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, HostListener, Inject, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ThemeColorService } from '../shared/services/theme-color.service';
 
@@ -14,6 +14,11 @@ export class HeaderComponent implements OnInit {
   bigScreenLimit = 768;
 
   darkTheme: boolean = false;
+
+  isBonusTabActive:boolean = false;
+  isArticlesTabActive:boolean = false;
+  isAProposTabActive:boolean = false;
+  isContactTabActive:boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,

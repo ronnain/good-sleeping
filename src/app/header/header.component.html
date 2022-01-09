@@ -24,17 +24,17 @@
 
   <div id="bigScreenMenu" *ngIf="bigScreen || !isBrowser">
     <ul class="nav">
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="articles" class="nav-link">Articles</a>
+      <li class="nav-item" [ngClass]="{'active': isArticlesTabActive}">
+        <alink routerPath="articles" linkClass="nav-link" linkCategory="header" linkContent="Articles" (activeLink)="isArticlesTabActive = $event"></alink>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="bonus" class="nav-link">Bonus</a>
+      <li class="nav-item" [ngClass]="{'active': isBonusTabActive}">
+        <alink routerPath="bonus" linkClass="nav-link" linkCategory="header" linkContent="Bonus" (activeLink)="isBonusTabActive = $event"></alink>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="a-propos" class="nav-link">Qui suis-je?</a>
+      <li class="nav-item" [ngClass]="{'active': isAProposTabActive}">
+        <alink routerPath="a-propos" linkClass="nav-link" linkCategory="header" linkContent="Qui suis-je?" (activeLink)="isAProposTabActive = $event"></alink>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="contact" class="nav-link">Contact</a>
+      <li class="nav-item" [ngClass]="{'active': isContactTabActive}">
+        <alink routerPath="contact" linkClass="nav-link" linkCategory="header" linkContent="Contact" (activeLink)="isContactTabActive = $event"></alink>
       </li>
     </ul>
   </div>

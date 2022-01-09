@@ -1,0 +1,15 @@
+<a
+  *ngIf="!isSpanTag"
+  [routerLink]="routerPath"
+  [ngClass]="[linkClass, activeClass]"
+  [innerHtml]="linkContent"
+  >
+</a>
+
+<span
+  *ngIf="isSpanTag"
+  [ngClass]="['linkSpan', linkClass, activeClass]"
+  (click)="onGoToPath()"
+  [innerHtml]="linkContent"
+  >
+</span>

@@ -25,6 +25,7 @@ import { CookiesHandlerComponent } from './cookies-handler/cookies-handler.compo
 import { QuizzModule } from './quizz/quizz.module';
 import { ShareBtnsModule } from './social-network-share-buttons/share-btns.module';
 import { SharedModule } from './shared/shared.module';
+import { LinkComponentComponent } from './shared/component/link-component/link-component.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { SharedModule } from './shared/shared.module';
     ContactComponent,
     MeComponent,
     CookiesHandlerComponent,
+    LinkComponentComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
