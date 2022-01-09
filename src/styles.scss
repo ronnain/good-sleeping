@@ -311,4 +311,13 @@ h3 {
   }
 }
 
+.olBreadcrumb {
+  background-color: transparent;
+  padding-left: 0;
+}
 
+.breadcrumb-articleTitle {
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
