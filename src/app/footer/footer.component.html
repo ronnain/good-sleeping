@@ -16,17 +16,17 @@
         <div class="col-md-6 mb-md-0 mb-3">
             <p class="text-uppercase smallTitle">Liens</p>
             <ul class="list-unstyled linkText">
-              <li routerLink="articles" (click)="scrollToTop()">
-                <a>Revenir à la liste des articles</a>
+              <li (click)="scrollToTop()">
+                <alink routerPath="articles" linkCategory="footer" linkContent="Revenir à la liste des articles"></alink>
               </li>
-              <li routerLink="bonus" (click)="scrollToTop()">
-                <a>Découvrir le bonus gratuit</a>
+              <li (click)="scrollToTop()">
+                <alink routerPath="bonus" linkCategory="footer" linkContent="Découvrir le bonus gratuit"></alink>
               </li>
-              <li routerLink="contact" (click)="scrollToTop()">
-                <a>Contact</a>
+              <li (click)="scrollToTop()">
+                <alink routerPath="contact" linkCategory="footer" linkContent="Contact"></alink>
               </li>
-              <li routerLink="mentions" (click)="scrollToTop()">
-                <a>Mentions légales</a>
+              <li (click)="scrollToTop()">
+                <alink routerPath="mentions" linkCategory="footer" linkContent="Mentions légales"></alink>
               </li>
             </ul>
           </div>
