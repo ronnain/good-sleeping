@@ -1,0 +1,49 @@
+.contact {
+    min-height: 100vh;
+
+    h1 {
+        margin-bottom: 3rem;
+    }
+
+    form {
+        margin-bottom: 3rem;
+    }
+
+    &__form-field {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    &__other {
+
+        list-style:none;
+
+        li {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 2rem;
+            cursor: pointer;
+
+            p {
+                padding-left: 1rem;
+                margin: 0;
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+        }
+
+        img {
+            width: 30px;
+            height: 30px;
+            margin: 0;
+            display: inline-block;
+        }
+
+    }
+}

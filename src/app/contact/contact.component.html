@@ -1,8 +1,77 @@
-<div class="container article">
-    <div class="col- " id="articleContent">
-        <h1>Contact - Adresse mail - Sommeil Profond</h1>
-        <p>Voici mon adresse mail où vous pouvez me contacter : <strong>romain@sommeilprofond.fr</strong></p>
-        <p>Je vous répondrai dans les meilleurs délais.</p>
-        <p>A bientôt.</p>
+<div class="container article contact">
+    <div class="row">
+        <div class="col">
+            <h1>Contacte moi</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col gx-5">
+
+            <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" novalidate>
+
+                <mat-form-field class="contact__form-field" appearance="fill">
+                    <mat-label>Prénom</mat-label>
+                    <input type="text" matInput formControlName="firstName" placeholder="Romain">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="firstName.hasError('required')">
+                        Le prénom est <strong>requis</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="contact__form-field" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ex. romain@sommeilprofond.fr">
+                    <mat-icon matSuffix>mail</mat-icon>
+                    <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                    L'email n'est pas valide
+                    </mat-error>
+                    <mat-error *ngIf="email.hasError('required')">
+                    L'email est <strong>requis</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="contact__form-field" appearance="fill">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput
+                            cdkTextareaAutosize
+                            cdkAutosizeMinRows="6"
+                            formControlName="message">
+                    </textarea>
+                    <mat-error *ngIf="message.hasError('minlength') && !message.hasError('required')">
+                        Le message est trop court
+                    </mat-error>
+                    <mat-error *ngIf="message.hasError('required')">
+                        Le message <strong>requis</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary">Envoyer</button>
+
+            </form>
+
+            <mat-progress-bar mode="query" *ngIf="isLoading" class="verticalSpace"></mat-progress-bar>
+
+            <div *ngIf="failSend" class="alert alert-danger verticalSpace" role="alert">
+                <p>Une erreur s'est produite, veuillez ré-essayer plus tard.</p>
+            </div>
+
+            <div *ngIf="isSend" class="alert alert-info verticalSpace" role="alert">
+                <p>Message envoyé avec succès.</p>
+            </div>
+
+        </div>
+        <div class="col">
+            <ul class="contact__other">
+                <li (click)="onOpenLinkedin()">
+                    <img src="assets/icons/icon_linkedin.svg" alt="Linkedin"/>
+                    <p><strong>Romain Geffrault</strong></p>
+                </li>
+                <li (click)="copyToClipBoard()">
+                    <img src="assets/icons/icon_email.svg" alt="Mail"/>
+                    <p><strong>romain@sommeilprofond.fr</strong></p>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </div>
