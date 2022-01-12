@@ -113,6 +113,19 @@
     </section>
   </div>
 
-<social-network-share-buttons
+  <section>
+    <social-network-share-buttons
       [articleImg]="sharedArticleImg">
-</social-network-share-buttons>
+    </social-network-share-buttons>
+  </section>
+
+
+  <section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <app-comment [articleId]="articleId"></app-comment>
+            </div>
+        </div>
+    </div>
+  </section>

@@ -261,4 +261,20 @@
             <p>Fais moi savoir en commentaire qu&rsquo;elle chronotype tu es. Personnelement, je suis mod&eacute;r&eacute;ment du matin d&rsquo;apr&egrave;s ce test.</p>
         </div>
     </section>
+
+    <section>
+        <social-network-share-buttons
+            [articleImg]="sharedArticleImg">
+        </social-network-share-buttons>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <app-comment [articleId]="articleId"></app-comment>
+                </div>
+            </div>
+        </div>
+    </section>
 </article>

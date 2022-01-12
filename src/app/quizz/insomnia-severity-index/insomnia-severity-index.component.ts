@@ -15,6 +15,9 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
 
   title = "Test de sévérité des troubles de l’insomnie gratuit en ligne";
   metaDesc = "Découvre si tu es insomniaque grâce à ce test rapide et gratuit, en ligne. Si tu es insomniaque, je te donne les meilleurs conseils pour t'en sortir.";
+  sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie/article/' + 'img1/xm.jpg';
+  articleId = 35;
+
 
   TEST_INSOMNIE_CATEGORIE = "TEST_INSOMNIE";
   answerSelected = false;
@@ -22,8 +25,6 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
   showResult = false;
 
   score: number = 0;
-
-  sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie/article/' + 'img1/xm.jpg';
 
   constructor(
     private viewportScroller: ViewportScroller,

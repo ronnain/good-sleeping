@@ -43,7 +43,7 @@ import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
         ReactiveFormsModule,
         ShareBtnsModule,
         MatSelectModule,
-        SharedModule
+        SharedModule,
     ],
     declarations: [
         InsomniaSeverityIndexComponent,
