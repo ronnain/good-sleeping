@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Page } from '../modeles/interfaces.type';
 import { HeaderService } from '../shared/services/header.service';
 import { ContactService } from '../shared/services/http/contact.service';
@@ -33,7 +34,8 @@ export class ContactComponent implements OnInit, Page {
 
   constructor(
     public headerService: HeaderService,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private _snackBar: MatSnackBar
     ) { }
 
   ngOnInit() {
@@ -73,5 +75,7 @@ export class ContactComponent implements OnInit, Page {
     temp.select();
     document.execCommand("copy");
     document.body.removeChild(temp);
+
+    this._snackBar.open("Copié !", null, { duration: 3000} );
   }
 }
