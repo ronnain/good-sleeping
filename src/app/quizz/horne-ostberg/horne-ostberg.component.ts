@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Page } from 'src/app/modeles/interfaces.type';
 import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
+import { ArticlesService } from 'src/app/shared/services/articles.service';
 import { HeaderService } from 'src/app/shared/services/header.service';
 import { environment } from 'src/environments/environment';
 import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
@@ -15,6 +16,7 @@ export class HorneOstbergComponent implements OnInit, Page {
   title = "Test chronotype : Découvre ton chronotype gratuitement";
   metaDesc = "5 Questions pour déterminer son chronotype. Connaître les caractéristiques associées à son chronotype. Chronotype du soir, de la journée ou du matin.";
   sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie/article/' + 'img1/xm.jpg';
+  articleId = 63; // If from prod
 
   currentIndex: number = 0;
   isQuizzCompleted: boolean = false;
@@ -151,7 +153,7 @@ export class HorneOstbergComponent implements OnInit, Page {
 
   constructor(
     private googleAnalyticsService: GoogleAnalyticsService,
-    public headerService: HeaderService
+    public headerService: HeaderService,
     ) { }
 
   ngOnInit(): void {

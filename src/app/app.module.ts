@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { ArticleComponent } from './article/article.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { CommentComponent } from './comment/comment.component';
 import { UnsubcribeComponent } from './unsubcribe/unsubcribe.component';
 import { FooterComponent } from './footer/footer.component';
 import { LegalNoticesComponent } from './legal-notices/legal-notices.component';
@@ -36,7 +35,6 @@ import { LinkComponentComponent } from './shared/component/link-component/link-c
     ArticlesComponent,
     ArticleComponent,
     LandingPageComponent,
-    CommentComponent,
     UnsubcribeComponent,
     FooterComponent,
     LegalNoticesComponent,

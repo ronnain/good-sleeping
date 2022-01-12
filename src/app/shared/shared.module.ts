@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
+import { CommentComponent } from './component/comment/comment.component';
 import { AnimateThatDirective } from './directives/animation.directive';
 import { InserteComponentDirective } from './directives/inserte-component.directive';
 import { SwipeDirective } from './directives/swipe.directive';
@@ -32,6 +33,7 @@ import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
         EbookFormComponent,
         EbookPopupComponent,
         EmailFormComponent,
+        CommentComponent
     ],
     declarations: [
         SwipeDirective,
@@ -44,6 +46,7 @@ import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
         EbookFormComponent,
         EbookPopupComponent,
         EmailFormComponent,
+        CommentComponent
 
     ],
     providers: [],

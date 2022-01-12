@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { Comment } from '../modeles/interfaces.type';
+import { Comment } from '../../../modeles/interfaces.type';
 import { NgForm } from '@angular/forms';
-import { CommentService } from '../shared/services/comment.service';
-import { HttpClient } from '@angular/common/http';
-import { ArticlesService } from '../shared/services/articles.service';
+import { CommentService } from '../../services/comment.service';
+import { ArticlesService } from '../../services/articles.service';
 
 @Component({
   selector: 'app-comment',
@@ -102,7 +101,7 @@ export class CommentComponent implements OnInit {
     this.showReply = false;
   }
 
-  getArticleComments() {    
+  getArticleComments() {
     this.commentService.getCommentsByArticle(this.articleId).subscribe(
       data => {
         this.comments = data,

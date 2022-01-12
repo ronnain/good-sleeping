@@ -1,5 +1,12 @@
 <div class="container article articlesList">
 
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb olBreadcrumb">
+    <li class="breadcrumb-item"><a href="https://sommeilprofond.fr/articles">Articles</a></li>
+    <li class="breadcrumb-item active breadcrumb-articleTitle" aria-current="page">Test de s&eacute;v&eacute;rit&eacute; des troubles de l&rsquo;insomnie gratuit en ligne</li>
+    </ol>
+  </nav>
+
     <h1>Test de s&eacute;v&eacute;rit&eacute; des troubles de l&rsquo;insomnie gratuit en ligne</h1>
 
     <picture>
@@ -106,6 +113,19 @@
     </section>
   </div>
 
-<social-network-share-buttons
+  <section>
+    <social-network-share-buttons
       [articleImg]="sharedArticleImg">
-</social-network-share-buttons>
+    </social-network-share-buttons>
+  </section>
+
+
+  <section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <app-comment [articleId]="articleId"></app-comment>
+            </div>
+        </div>
+    </div>
+  </section>
