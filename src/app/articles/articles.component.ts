@@ -1,14 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, Inject, PLATFORM_ID } from '@angular/core';
 import { Article, Page } from '../modeles/interfaces.type';
 import { ArticlesService } from '../shared/services/articles.service';
 import { environment } from 'src/environments/environment';
 import { HeaderService } from '../shared/services/header.service';
+import { Category } from './categories.dto';
+import { dropDownCategories } from '../shared/animations/dropdown.animation';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.css']
+  styleUrls: ['./articles.component.scss'],
+  animations: [dropDownCategories]
 })
 export class ArticlesComponent implements OnInit, Page {
 
@@ -33,15 +37,46 @@ export class ArticlesComponent implements OnInit, Page {
 
   articles: Article[] = [];
 
+  categories: Category[] = [
+    {
+      category: 'all',
+      text: 'Tous les articles',
+      active: true
+    },
+    {
+      category: 'quizz',
+      text: 'Test ton sommeil',
+    },
+    {
+      category: 'hygiène',
+      text: 'Comment bien dormir',
+    },
+    {
+      category: 'troubles',
+      text: 'Troubles du sommeil',
+    }
+  ];
+  categoriesDropDown: boolean = false;
+
+  isBrowser:boolean = false;
+  bigScreen: boolean = false;
+  bigScreenLimit = 777;
+
   constructor(
     private articlesService: ArticlesService,
-    public headerService: HeaderService
-    ) { }
+    public headerService: HeaderService,
+    @Inject(PLATFORM_ID) platformId: Object,
+    ) {
+      this.isBrowser = isPlatformBrowser(platformId);
+    }
 
   ngOnInit() {
     // Main page, otherwise it is called inside article component
     if(!this.currentArticleName) {
       this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
+    }
+    if(this.isBrowser){
+      this.bigScreen = screen.width >= this.bigScreenLimit;
     }
     this.getArticles();
   }
@@ -94,5 +129,17 @@ export class ArticlesComponent implements OnInit, Page {
     this.articles.forEach(article => {
       article.displayNewArticleBadge = new Date(article.datePublished) > previousMountDate;
     });
+  }
+
+  onCategorySelected(indexSelected: number) {
+    for (let index = 0; index < this.categories.length; index++) {
+      const category = this.categories[index];
+      category.active = indexSelected === index;
+    }
+    this.categoriesDropDown = false;
+  }
+
+  onToggleDropDown() {
+    this.categoriesDropDown = !this.categoriesDropDown;
   }
 }
