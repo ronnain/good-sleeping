@@ -57,7 +57,7 @@
     <div class="container article articlesList">
 
         <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let article of articles">
+            <li class="list-group-item" *ngFor="let article of articles | articlesFromCategory: categories[categorySelected].category" >
                 <div class="container-fluid articleLink noOutline" routerLink="/articles/{{article.articleName}}" (click)="loadArticle(article.articleName)">
                     <div class="row d-flex flex-wrap align-items-center noOutline">
                         <div class="col-sm-4 align-middle articlesList-wrapper-img">

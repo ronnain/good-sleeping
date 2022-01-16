@@ -18,6 +18,7 @@ export interface Article{
     imgTitle: string,
     articleName: string,
     displayNewArticleBadge?: boolean
+    category: 'all' | 'quizz' | 'hygiene' | 'troubles' | 'other'
 }
 
 export class MyArticle implements Article{
@@ -30,8 +31,9 @@ export class MyArticle implements Article{
     img: string;
     imgTitle: string;
     articleName: string;
+    category: 'all' | 'quizz' | 'hygiene' | 'troubles' | 'other';
 
-    constructor(id: number, title: string, metaDesc: string, description: string, datePublished: string, dateModified: string, img: string, imgTitle: string, articleName: string) {
+    constructor(id: number, title: string, metaDesc: string, description: string, datePublished: string, dateModified: string, img: string, imgTitle: string, articleName: string, category) {
         this.id = id;
         this.title = title;
         this.metaDesc = metaDesc;
@@ -41,6 +43,7 @@ export class MyArticle implements Article{
         this.img = img;
         this.imgTitle = imgTitle;
         this.articleName = articleName;
+        this.category = category;
     }
 }
 

@@ -48,7 +48,7 @@ export class ArticlesComponent implements OnInit, Page {
       text: 'Test ton sommeil',
     },
     {
-      category: 'hygiène',
+      category: 'hygiene',
       text: 'Comment bien dormir',
     },
     {

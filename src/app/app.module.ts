@@ -25,6 +25,7 @@ import { QuizzModule } from './quizz/quizz.module';
 import { ShareBtnsModule } from './social-network-share-buttons/share-btns.module';
 import { SharedModule } from './shared/shared.module';
 import { LinkComponentComponent } from './shared/component/link-component/link-component.component';
+import { ArticlesFromCategoryPipe } from './articles/articles-from-category.pipe';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { LinkComponentComponent } from './shared/component/link-component/link-c
     MeComponent,
     CookiesHandlerComponent,
     LinkComponentComponent,
+    ArticlesFromCategoryPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

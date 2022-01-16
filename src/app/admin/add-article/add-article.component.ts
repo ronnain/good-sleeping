@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AddArticleComponent implements OnInit {
 
-  article: MyArticle = new MyArticle(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+  article: MyArticle = new MyArticle(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
   articleText: string;
   imgPath = environment.serverConfig.imgPath;
   listImg : any[];

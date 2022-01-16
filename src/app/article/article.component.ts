@@ -84,7 +84,7 @@ export class ArticleComponent implements OnInit, Page {
           this._router.navigate(['articles']);
           return;
         }
-        this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName);
+        this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName, data.category);
         this.headerService.handleTitleAndMeta(this.article.title, this.article.metaDesc);
         this.createStructuredData();
         this.sharedArticleImg = environment.serverConfig.imgPath + this.articleName + 'img1/xm.jpg';
