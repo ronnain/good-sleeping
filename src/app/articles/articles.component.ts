@@ -57,6 +57,7 @@ export class ArticlesComponent implements OnInit, Page {
     }
   ];
   categoriesDropDown: boolean = false;
+  categorySelected: number = 0;
 
   isBrowser:boolean = false;
   bigScreen: boolean = false;
@@ -132,6 +133,7 @@ export class ArticlesComponent implements OnInit, Page {
   }
 
   onCategorySelected(indexSelected: number) {
+    this.categorySelected = indexSelected;
     for (let index = 0; index < this.categories.length; index++) {
       const category = this.categories[index];
       category.active = indexSelected === index;

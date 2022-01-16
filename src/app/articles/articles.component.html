@@ -35,11 +35,9 @@
 
             <ng-container *ngIf="!bigScreen && isBrowser">
                 <div class="container section-categories--mobile-wrapper">
-                    <ng-container *ngFor="let category of categories; let index = index">
-                        <div *ngIf="category.active" class="section-categories--mobile-wrapper__active" [ngClass]="{'active': category.active}" (click)="onToggleDropDown()">
-                            <span>{{category.text}}</span> <mat-icon>arrow_drop_down</mat-icon>
-                        </div>
-                    </ng-container>
+                    <div class="section-categories--mobile-wrapper__active" [ngClass]="{'active': categories[categorySelected].active}" (click)="onToggleDropDown()">
+                        <span>{{categories[categorySelected].text}}</span> <mat-icon>arrow_drop_down</mat-icon>
+                    </div>
                 </div>
             </ng-container>
 
