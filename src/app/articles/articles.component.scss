@@ -210,7 +210,7 @@
 }
 
 .articles-page {
-    background-color: #f4f5f9;
+    background-color: var(--grey-background-color);
  }
 
 @media screen and (max-width: 777px) and (orientation: portrait) {

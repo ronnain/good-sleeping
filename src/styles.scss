@@ -10,6 +10,7 @@
   --secondary-text-color: #383838;
   --third-text-color: #6c757d;
   --title-text-color: var(--secondary-text-color);
+  --grey-background-color: #f4f5f9;
 
   --body-color: #212529;
   --flip-time: 400ms;
@@ -53,6 +54,8 @@ html[data-theme='dark'] {
   --footer-bold-color: #0b0b24;
   --div-container-background-color: #12126b;
   --mat-form-field-color: var(--accent-color);
+  --grey-background-color: #12126b;
+
 
   --link-color: var(--accent-color);
   --link-color-hover: #fff7b9;
