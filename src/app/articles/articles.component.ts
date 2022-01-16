@@ -6,13 +6,14 @@ import { HeaderService } from '../shared/services/header.service';
 import { Category } from './categories.dto';
 import { dropDownCategories } from '../shared/animations/dropdown.animation';
 import { isPlatformBrowser } from '@angular/common';
+import { articleAniamtion } from '../shared/animations/articles.animation';
 
 
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss'],
-  animations: [dropDownCategories]
+  animations: [dropDownCategories, articleAniamtion]
 })
 export class ArticlesComponent implements OnInit, Page {
 
