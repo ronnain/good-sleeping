@@ -46,11 +46,11 @@ export class ArticlesComponent implements OnInit, Page {
     },
     {
       category: 'quizz',
-      text: 'Test ton sommeil',
+      text: 'Teste ton sommeil',
     },
     {
       category: 'hygiene',
-      text: 'Comment bien dormir',
+      text: 'Comment bien dormir ?',
     },
     {
       category: 'troubles',
