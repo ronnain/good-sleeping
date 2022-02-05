@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ArticleComponent } from './article/article.component';
 import { ArticlesComponent } from './articles/articles.component';
+import { CoachingComponent } from './coaching/coaching.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'desabonnement/:key', component: UnsubcribeComponent},
   {path: 'mentions', component: LegalNoticesComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'coach-sommeil', component: CoachingComponent},
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)

@@ -1,0 +1,107 @@
+.coaching {
+    .background-img {
+        background: url(/assets/background-img/coaching2.jpg) center no-repeat #06101a;
+        color: white;
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+
+        .wrapper {
+            height: calc(100vh);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background-color: #00000029;
+            padding: 10%;
+
+            h1 {
+                span {
+                    display: block;
+                }
+
+                .main {
+                    font-size: 4rem;
+                    padding: 2rem 0;
+                }
+                .seconde {
+                    font-size: 1.25rem;
+                }
+            }
+
+            .call-to-action {
+                button {
+                    background-color: #00ff49;
+                    color: black;
+                    padding: 0.75rem 2.5rem;
+                    display: inline-block;
+                    font-weight: bold;
+                    text-align: center;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    user-select: none;
+                    border: 1px solid transparent;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    border-radius: 0.25rem;
+                    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+                    &:hover {
+                        background-color: #20eb59;
+                    }
+                }
+            }
+        }
+    }
+    .backgroundGradient-1 {
+        background: linear-gradient(#06101a 40%, #d5d8da);
+
+        color: white;
+        h2 {
+            color: white;
+        }
+        h3 {
+            color: #dfe0eb
+        }
+    }
+    .backgroundGradient-2 {
+        background: linear-gradient(#d5d8da 20%, #fff);
+    }
+
+    .targets-methode {
+        background-color: #ebf2f7;
+        border: transparent solid 1px;
+        border-radius: 3px;
+        padding: 2rem 2.5rem;
+
+        > p {
+            font-size: 2rem;
+        }
+
+        ul {
+            padding: 0;
+            li {
+                list-style: none;
+                margin-bottom: 1rem;
+                position: relative;
+                display: flex;
+                align-items: center;
+
+            }
+            li::before {
+                content: '';
+                display: inline-block;
+                width: 26px;
+                min-width: 26px;
+                height: 26px;
+                margin-right: 1rem;
+                background-image: url(/assets/svg/check-mark.svg);
+            }
+        }
+    }
+
+    .row {
+        padding-top: 8rem;
+    }
+}

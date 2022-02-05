@@ -26,6 +26,7 @@ import { ShareBtnsModule } from './social-network-share-buttons/share-btns.modul
 import { SharedModule } from './shared/shared.module';
 import { LinkComponentComponent } from './shared/component/link-component/link-component.component';
 import { ArticlesFromCategoryPipe } from './articles/articles-from-category.pipe';
+import { CoachingComponent } from './coaching/coaching.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ArticlesFromCategoryPipe } from './articles/articles-from-category.pipe
     MeComponent,
     CookiesHandlerComponent,
     LinkComponentComponent,
-    ArticlesFromCategoryPipe
+    ArticlesFromCategoryPipe,
+    CoachingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
