@@ -7,7 +7,8 @@
                 <div class="section-background-img__opacity"></div>
 
                 <div class="section-background-img__wrapper">
-                    <h1 *ngIf="!this.currentArticleName">Découvre les articles qui t'aident à mieux dormir</h1>
+                    <h1 *ngIf="!this.isDisplayOnArticlePage">Découvre les articles qui t'aident à mieux dormir</h1>
+                    <p *ngIf="this.isDisplayOnArticlePage">Découvre les articles qui t'aident à mieux dormir</p>
                 </div>
 
             </div>
@@ -26,7 +27,7 @@
                 <div class="row">
                     <div class="col" *ngFor="let category of categories; let index = index">
                         <div class="section-categories__categories-wrapper" [ngClass]="{'active': category.active}" (click)="onCategorySelected(index)">
-                            <p><span>{{category.text}}</span></p>
+                            <p><span>{{category.label}}</span></p>
                         </div>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
             <ng-container *ngIf="!bigScreen && isBrowser">
                 <div class="container section-categories--mobile-wrapper">
                     <div class="section-categories--mobile-wrapper__active" [ngClass]="{'active': categories[categorySelected].active}" (click)="onToggleDropDown()">
-                        <span>{{categories[categorySelected].text}}</span> <mat-icon>arrow_drop_down</mat-icon>
+                        <span>{{categories[categorySelected].label}}</span> <mat-icon>arrow_drop_down</mat-icon>
                     </div>
                 </div>
             </ng-container>
@@ -47,7 +48,7 @@
             <div class="section-categories--mobile-wrapper__items" *ngIf="categoriesDropDown" @dropDownCategories>
                 <div class="section-categories--mobile-wrapper__items__category"  *ngFor="let category of categories; let index = index" [ngClass]="{'active': category.active}" (click)="onCategorySelected(index)">
                     <div class="container">
-                        <p><span>{{category.text}}</span></p>
+                        <p><span>{{category.label}}</span></p>
                     </div>
                 </div>
             </div>
@@ -57,8 +58,8 @@
     <div class="container article articlesList">
 
         <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let article of articles | articlesFromCategory: categories[categorySelected].category" @articlesAnimation>
-                <div class="container-fluid articleLink noOutline" routerLink="/articles/{{article.articleName}}" (click)="loadArticle(article.articleName)">
+            <li class="list-group-item" *ngFor="let article of articles | articlesFromCategory: categories[categorySelected].categoryName" @articlesAnimation>
+                <div class="container-fluid articleLink noOutline" [routerLink]="['/articles', article.articleName]" (click)="loadArticle(article.articleName)">
                     <div class="row d-flex flex-wrap align-items-center noOutline">
                         <div class="col-sm-4 align-middle articlesList-wrapper-img">
                             <picture>
@@ -67,7 +68,7 @@
                                 <source  media="(min-width: 768px)" srcset="{{imgPath}}{{article.img}}/articles/xm.jpg">
                                 <source  media="(min-width: 576px)" srcset="{{imgPath}}{{article.img}}/articles/m.jpg">
                                 <source  media="(min-width: 380px)" srcset="{{imgPath}}{{article.img}}/articles/s.jpg">
-                                <img src="{{imgPath}}{{article.img}}/articles/xs.jpg" [alt]="article.imgTitle" [title]="article.imgTitle" style="max-width: 100%">
+                                <img [src]="imgPath + article.img + '/articles/xs.jpg'" [alt]="article.imgTitle" [title]="article.imgTitle" style="max-width: 100%">
                             </picture>
                             <div *ngIf="article.displayNewArticleBadge" class="newLabel">
                                 Nouveau
@@ -75,7 +76,7 @@
                         </div>
                         <div class="card no-border col-sm-8">
                             <div class="card-body">
-                                <a class="card-title articles-title" routerLink="/articles/{{article.articleName}}">{{article.title}}</a>
+                                <a class="card-title articles-title" [routerLink]="['/articles', article.articleName]">{{article.title}}</a>
                                 <a class="card-text articles-desc" *ngIf="!hideDescription">{{article.description}}</a>
                                 <footer class="blockquote-footer">Le {{article.dateModified | date: 'dd/MM/yyyy'}} par <cite>Romain</cite>.</footer>
                             </div>
@@ -84,6 +85,12 @@
                 </div>
             </li>
         </ul>
+
+        <div *ngIf="this.isDisplayOnArticlePage" class="articlesList__moreArticles">
+            <button (click)="onMoreArticles()" mat-button color="primary"><mat-icon>add</mat-icon> Plus d'articles</button>
+        </div>
+
+
         <div *ngIf="loading">
             <p>Chargement des articles...</p>
             <mat-progress-bar mode="query" *ngIf="loading" class="verticalSpace"></mat-progress-bar>

@@ -24,6 +24,7 @@ import { HorneOstbergComponent } from './horne-ostberg/horne-ostberg.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { RadioGroupComponent } from './shared/radio-group/radio-group.component';
 import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
+import { ArticlesModule } from '../articles/articles.module';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
         ShareBtnsModule,
         MatSelectModule,
         SharedModule,
+        ArticlesModule
     ],
     declarations: [
         InsomniaSeverityIndexComponent,

@@ -25,7 +25,7 @@ import { QuizzModule } from './quizz/quizz.module';
 import { ShareBtnsModule } from './social-network-share-buttons/share-btns.module';
 import { SharedModule } from './shared/shared.module';
 import { LinkComponentComponent } from './shared/component/link-component/link-component.component';
-import { ArticlesFromCategoryPipe } from './articles/articles-from-category.pipe';
+import { ArticlesModule } from './articles/articles.module';
 
 
 @NgModule({
@@ -33,7 +33,6 @@ import { ArticlesFromCategoryPipe } from './articles/articles-from-category.pipe
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    ArticlesComponent,
     ArticleComponent,
     LandingPageComponent,
     UnsubcribeComponent,
@@ -43,7 +42,6 @@ import { ArticlesFromCategoryPipe } from './articles/articles-from-category.pipe
     MeComponent,
     CookiesHandlerComponent,
     LinkComponentComponent,
-    ArticlesFromCategoryPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -58,7 +56,8 @@ import { ArticlesFromCategoryPipe } from './articles/articles-from-category.pipe
     BrowserTransferStateModule,
     QuizzModule,
     ShareBtnsModule,
-    SharedModule
+    SharedModule,
+    ArticlesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

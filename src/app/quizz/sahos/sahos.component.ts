@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryNameEnum, CategoryNameKeys } from 'src/app/modeles/category.type';
 import { Page } from 'src/app/modeles/interfaces.type';
+import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { HeaderService } from 'src/app/shared/services/header.service';
 import { environment } from 'src/environments/environment';
 import { binaryQuestionDTO } from '../shared/binary-quizz/binary-question.dto';
@@ -14,7 +16,11 @@ export class SahosComponent implements OnInit, Page {
   title = "Test de dépistage d’apnée du sommeil en 13 questions";
   metaDesc = "Réponds rapidement à ces 14 questions pour connaître ton risque de faire des apnées du sommeil.";
   sharedArticleImg = environment.serverConfig.imgPath + 'test-depistage-apnee-sommeil/article/' + 'img1/xm.jpg';
-  articleId = 53;
+  articleId = environment.quizz.sahosId;
+  articleName: string = 'test-depistage-apnee-sommeil';
+  articleCategories: CategoryNameKeys[] = [CategoryNameEnum.apnee, CategoryNameEnum.quizz, CategoryNameEnum.troubles];
+
+
 
   noSasScore:number = 0;
   stopBangScore: number = 0;
@@ -105,9 +111,13 @@ export class SahosComponent implements OnInit, Page {
   quizzNoSASNotCompleted: boolean = false;
   quizzStopBangNotCompleted: boolean = false;
 
-  constructor(public headerService: HeaderService,) { }
+  constructor(
+    public headerService: HeaderService,
+    private categoriesService: CategoriesService
+    ) { }
 
   ngOnInit(): void {
+    this.categoriesService.setCurrentArticleCategories(this.articleCategories);
     this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
     this.headerService.createOpenGraphMeta(this.title, this.metaDesc, this.sharedArticleImg);
   }

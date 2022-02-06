@@ -1,7 +1,9 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { CategoryNameEnum, CategoryNameKeys } from 'src/app/modeles/category.type';
 import { Page } from 'src/app/modeles/interfaces.type';
 import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
+import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { HeaderService } from 'src/app/shared/services/header.service';
 import { environment } from 'src/environments/environment';
 
@@ -16,7 +18,9 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
   title = "Test de sévérité des troubles de l’insomnie gratuit en ligne";
   metaDesc = "Découvre si tu es insomniaque grâce à ce test rapide et gratuit, en ligne. Si tu es insomniaque, je te donne les meilleurs conseils pour t'en sortir.";
   sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie/article/' + 'img1/xm.jpg';
-  articleId = 35;
+  articleId = environment.quizz.insomniaSeverityId;
+  articleName: string = 'test-severite-insomnie';
+  articleCategories: CategoryNameKeys[] = [CategoryNameEnum.insomnie, CategoryNameEnum.quizz, CategoryNameEnum.troubles];
 
 
   TEST_INSOMNIE_CATEGORIE = "TEST_INSOMNIE";
@@ -29,9 +33,12 @@ export class InsomniaSeverityIndexComponent implements OnInit, Page {
   constructor(
     private viewportScroller: ViewportScroller,
     public headerService: HeaderService,
-    private googleAnalyticsService: GoogleAnalyticsService) { }
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private categoriesService: CategoriesService
+    ) { }
 
   ngOnInit(): void {
+    this.categoriesService.setCurrentArticleCategories(this.articleCategories);
     this.headerService.handleTitleAndMeta(this.title, this.metaDesc);
     this.headerService.createOpenGraphMeta(this.title, this.metaDesc, this.sharedArticleImg);
   }

@@ -31,8 +31,8 @@
 
     <app-comment *ngIf="article && article.id" [articleId]="article.id"></app-comment>
 
-    <div class="articles">
+    <div class="articles" *ngIf="article && article.categories">
         <h2 class="titleBottomLine">A lire aussi  :</h2>
-        <app-articles *ngIf="article" [currentArticleName]="article.articleName" [hideDescription]="true" (loadArticleEvent)="loadArticle($event)"></app-articles>
+        <app-articles *ngIf="article" [currentArticleName]="article.articleName" [hideDescription]="true" (loadArticleEvent)="onLoadArticle($event)"></app-articles>
     </div>
 </div>

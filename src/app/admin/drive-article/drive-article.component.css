@@ -31,3 +31,7 @@
 .emptyCacheBtn {
     color: white;
 }
+
+.categories {
+    list-style: none;
+}
