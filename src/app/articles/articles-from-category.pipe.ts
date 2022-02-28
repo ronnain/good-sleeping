@@ -8,7 +8,7 @@ import { Article } from '../modeles/interfaces.type';
 export class ArticlesFromCategoryPipe implements PipeTransform {
     transform(articles: Article[], category: CategoryNameKeys): Article[] {
 
-        if (category.includes(CategoryNameEnum.all) ) {
+        if (category === CategoryNameEnum.all) {
             return articles;
         }
 
