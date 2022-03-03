@@ -10,6 +10,8 @@ declare const gtag: Function;
 export class GoogleAnalyticsService {
    isBrowser;
 
+   SUB_CATEGORIE = "SUB_CATEGORIE";
+
   constructor(
       @Inject(PLATFORM_ID) platformId: Object
       ) {

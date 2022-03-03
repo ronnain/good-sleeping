@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { MailService } from 'src/app/shared/services/mail.service';
 import { UrlService } from 'src/app/shared/services/url.service';
 
@@ -17,6 +19,9 @@ export class MailStepperComponent implements OnInit {
   nameFormGroup: FormGroup;
   emailFormGroup: FormGroup;
   skipCreation: boolean = false;
+  bounceCreation: Subject<void> = new Subject<void>();
+
+  contactSubscription: Subscription;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -32,6 +37,9 @@ export class MailStepperComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       rgpd: [false, Validators.requiredTrue]
     });
+    this.contactSubscription = this.bounceCreation.pipe(debounceTime(800)).subscribe(data => {
+      this.storeContact();
+    });
   }
 
   showResult() {
@@ -40,9 +48,9 @@ export class MailStepperComponent implements OnInit {
 
   onSubmit() {
     this.showResult();
-    const nameformValue = this.nameFormGroup.value;
-    const emailformValue = this.emailFormGroup.value;
-    this.mailService.createContact(nameformValue['name'], emailformValue['email'].toLowerCase()).subscribe();
+    this.skipCreation = true;
+    this.urlService.skipCreation = true;
+    this.bounceCreation.next();
   }
 
   onNextStep() {
@@ -53,9 +61,22 @@ export class MailStepperComponent implements OnInit {
     this.reset.emit();
   }
 
+  onRestart() {
+    this.reset.emit();
+  }
+
   onSelectionChange(e) {
     if (this.skipCreation && e.selectedIndex === 2) {
       this.showResult();
     }
+  }
+
+  private storeContact() {
+    this.mailService.createContact(this.nameFormGroup.value['name'], this.emailFormGroup.value['email'].toLowerCase()).subscribe();
+
+  }
+
+  ngDestroy() {
+    this.contactSubscription?.unsubscribe();
   }
 }

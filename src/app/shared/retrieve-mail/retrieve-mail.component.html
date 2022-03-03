@@ -1,5 +1,5 @@
-<div class="container divMailRetrieve">
-    <div class="row">
+<div class="container divMailRetrieve" [@opacityAniamtion]="step">
+    <div class="row" *ngIf="!isMailStored else problem">
         <div class="col">
             <div>
                 <p class="bigSize marginTop"><strong>Gratuit : Guide du Bon Dormeur</strong></p>
@@ -15,7 +15,15 @@
                 </ul>
                 <p>Pour le <strong>télécharger gratuitement</strong>, renseigne ton prénom et ton mail ci-dessous.</p>
             </div>
-            <app-email-form></app-email-form>
+            <app-email-form [fromComponent]="'RetrieveMail'" (mailStoredSuccess)="onMailStored($event)"></app-email-form>
         </div>
     </div>
 </div>
+
+<ng-template #problem>
+    <div class="row">
+        <div class="col">
+            <app-problem-form (problemStored)="onProblemStored()"></app-problem-form>
+        </div>
+    </div>
+</ng-template>

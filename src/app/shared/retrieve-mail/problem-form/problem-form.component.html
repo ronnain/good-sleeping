@@ -1,0 +1,42 @@
+<div class="problemform">
+
+    <div *ngIf="!isStored else problemShared">
+        <div class="alert alert-success" role="alert">
+            <p>Merci !</p>
+            <p>D'ici quelques minutes, tu recevras le bonus dans ta boîte mail.</p>
+        </div>
+
+        <p>Afin de t'aider, je souhaite en savoir plus sur ton sommeil.</p>
+        <p><strong>Quel est le plus gros obstacle que tu rencontres actuellement avec ton sommeil ?</strong></p>
+
+        <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" novalidate>
+            <mat-form-field class="problemform__textarea" appearance="fill">
+                <mat-label>Dis moi tout.</mat-label>
+                <textarea matInput
+                        cdkTextareaAutosize
+                        cdkAutosizeMinRows="6"
+                        formControlName="message">
+                </textarea>
+                <mat-error *ngIf="message.hasError('minlength') && !message.hasError('required')">
+                    Le message est trop court.
+                </mat-error>
+                <mat-error *ngIf="message.hasError('required')">
+                    Le message <strong>requis</strong>.
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" class="submit-problem">Envoyer</button>
+
+            <mat-progress-bar mode="query" *ngIf="isLoading" class="verticalSpace"></mat-progress-bar>
+        </form>
+
+    </div>
+</div>
+
+<ng-template #problemShared>
+    <div>
+        <p><strong>Merci pour ton partage.</strong></p>
+        <p>Et à très vite.</p>
+        <p>Romain</p>
+    </div>
+</ng-template>

@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { interval } from 'rxjs';
-import { MobileService } from '../../services/mobile.service';
+import { MobileService } from '../../../services/mobile.service';
 
 @Component({
   selector: 'carousel3d',

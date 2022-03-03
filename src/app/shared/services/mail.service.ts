@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, Subject, throwError } from 'rxjs';
+import { catchError, debounceTime } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { UrlService } from './url.service';
 
@@ -14,6 +14,8 @@ export class MailService {
   pseudo;
   token;
 
+  userMail: string;
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -23,12 +25,15 @@ export class MailService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private urlService: UrlService) { }
+    private urlService: UrlService
+    ) {}
 
   createContact(firstName, mail) {
     if (this.urlService.skipCreation) {
       return new Observable();
     }
+
+    this.userMail = mail;
 
     const body = {
       "firstName" : this.capitalizeFirstLetter(firstName),
@@ -39,6 +44,18 @@ export class MailService {
     .pipe(
       catchError(this.handleError)
     );
+  }
+
+  storeContactProblem(message: string) {
+    const body = {
+      message,
+      "mail": this.userMail
+    };
+    const url = environment.serverConfig.serverURL + '?method=storeContactProblem';
+    return this.http.post<string>(url, body, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   sendMailToAll(objectMail, bodyMail) {

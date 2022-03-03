@@ -38,7 +38,7 @@
       <ng-content></ng-content>
       <div>
           <button *ngIf="skipCreation" mat-button color="primary" (click)="showResult()">Obtenir son résultat</button>
-          <button mat-button (click)="stepper.reset();onReset()">Recommencer</button>
+          <button mat-button (click)="onRestart()">Recommencer</button>
         </div>
     </mat-step>
 

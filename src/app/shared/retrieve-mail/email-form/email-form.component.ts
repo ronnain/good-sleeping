@@ -1,5 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, take } from 'rxjs/operators';
+import { GoogleAnalyticsService } from '../../directives/google-analytics.service';
 import { MailService } from '../../services/mail.service';
 
 @Component({
@@ -9,29 +12,53 @@ import { MailService } from '../../services/mail.service';
 })
 export class EmailFormComponent implements OnInit {
 
-  @Output() mailStored = new EventEmitter<boolean>();
+  SUB_EVENT = "SUB_EVENT";
+
+  @Input() fromComponent: string;
+
+  @Output() mailStoredSuccess = new EventEmitter<boolean>();
 
   email: string;
   agreement: boolean = false;
   showValidation: boolean = false;
   failSave: boolean = false;
   loading: boolean = false;
+  form: NgForm;
 
-  constructor(private mailService: MailService) { }
+  bounceCreation: Subject<void> = new Subject<void>();
+  contactSubscription: Subscription;
+
+  constructor(
+    private mailService: MailService,
+    private googleAnalyticsService: GoogleAnalyticsService
+    ) { }
 
   ngOnInit(): void {
+    this.contactSubscription = this.bounceCreation.pipe(debounceTime(800)).subscribe(data => {
+      this.storeContact();
+    });
   }
 
   onSubmit(form: NgForm) {
     this.showValidation = false;
     this.failSave = false;
     this.loading = true;
+    this.form = form;
+    this.bounceCreation.next();
+  }
 
-    this.mailService.createContact(form.value.firstName, form.value.email.toLowerCase()).subscribe(
+  private storeContact() {
+
+    this.mailStoredSuccess.next(true);
+    return;
+
+
+    this.mailService.createContact(this.form.value.firstName, this.form.value.email.toLowerCase()).pipe(take(1)).subscribe(
       data => {
         if(data.success === true) {
           this.showValidation = true;
-          this.onMailStored();
+          this.mailStoredSuccess.next(true);
+          this.googleAnalyticsService.sendEvent(this.SUB_EVENT, this.googleAnalyticsService.SUB_CATEGORIE, 'fromComponent', this.fromComponent);
         } else {
           this.failSave = true;
         }
@@ -43,10 +70,8 @@ export class EmailFormComponent implements OnInit {
       });
   }
 
-  onMailStored() {
-    setTimeout(()=>{
-      this.mailStored.emit(true);
-    }, 4000);
+  ngDestroy() {
+    this.contactSubscription?.unsubscribe();
   }
 
 }

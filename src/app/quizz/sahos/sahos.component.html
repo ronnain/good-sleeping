@@ -80,7 +80,7 @@
 
             <h2>Passe le test du SOHAS</h2>
 
-            <binary-quizz [binaryQuestions]="quizz">
+            <binary-quizz [binaryQuestions]="quizz" [restart]="restartValue">
                 <div class="extra" extra>
                     <bmi-calculator></bmi-calculator>
                 </div>
@@ -92,7 +92,7 @@
         <div class="container article">
             <h2>Obtiens ton résultat</h2>
 
-            <quizz-mail-stepper (onShowResult)="onGetScore()">
+            <quizz-mail-stepper (onShowResult)="onGetScore()"  (reset)="onReset()">
 
                 <!-- Quizz not completed -->
                 <ng-container *ngIf="quizzNoSASNotCompleted || quizzStopBangNotCompleted">

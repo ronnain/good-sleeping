@@ -2,8 +2,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { popupBonus } from '../../animations/popup-bonus.animation';
-import { UrlService } from '../../services/url.service';
+import { popupBonus } from '../../../animations/popup-bonus.animation';
+import { UrlService } from '../../../services/url.service';
 
 @Component({
   selector: 'ebook-popup',
@@ -47,7 +47,7 @@ export class EbookPopupComponent implements OnInit {
   }
 
   setTimer() {
-    timer(60000).pipe(take(1)).subscribe(val => {
+    timer(6000).pipe(take(1)).subscribe(val => {
       this.showPopup();
     });
   }
