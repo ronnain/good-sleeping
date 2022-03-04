@@ -7,7 +7,7 @@ declare const gtag: Function;
 @Injectable({providedIn: 'root'})
 export class UrlService {
 
-    skipCreation: boolean = false;
+    skipCreation: boolean = false; // todo set and add in url when set to true
     skipPopup: boolean = false;
     isBrowser: boolean = false;
 
@@ -41,6 +41,14 @@ export class UrlService {
             this.checkSkipPopup(event);
             this.checkSkipCreation();
         })
+    }
+
+    setSkipCreation(value: boolean) {
+        const QueryString = window.location.search;
+        const urlParams = new URLSearchParams(QueryString);
+
+        urlParams.set('skipCreation', '' + value);
+        this.skipCreation = true;
     }
 
     private checkSkipPopup(event) {

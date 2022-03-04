@@ -49,7 +49,7 @@ export class MailStepperComponent implements OnInit {
   onSubmit() {
     this.showResult();
     this.skipCreation = true;
-    this.urlService.skipCreation = true;
+    this.urlService.setSkipCreation(true);
     this.bounceCreation.next();
   }
 
@@ -66,6 +66,7 @@ export class MailStepperComponent implements OnInit {
   }
 
   onSelectionChange(e) {
+    // todo marche pas quand on va d'un questionnaire à un autre
     if (this.skipCreation && e.selectedIndex === 2) {
       this.showResult();
     }
