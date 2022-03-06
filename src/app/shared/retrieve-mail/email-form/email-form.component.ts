@@ -13,8 +13,6 @@ import { UrlService } from '../../services/url.service';
 })
 export class EmailFormComponent implements OnInit {
 
-  SUB_EVENT = "SUB_EVENT";
-
   @Input() fromComponent: string;
 
   @Output() mailStoredSuccess = new EventEmitter<boolean>();
@@ -53,11 +51,11 @@ export class EmailFormComponent implements OnInit {
 
     this.mailService.createContact(this.form.value.firstName, this.form.value.email.toLowerCase()).pipe(take(1)).subscribe(
       data => {
-        if(data.success === true) {
+        if(data['success'] === true) {
           this.showValidation = true;
           this.mailStoredSuccess.next(true);
           this.urlService.setSkipCreation(true);
-          this.googleAnalyticsService.sendEvent(this.SUB_EVENT, this.googleAnalyticsService.SUB_CATEGORIE, 'fromComponent', this.fromComponent);
+          this.mailService.$isMailSotred.next(true);
         } else {
           this.failSave = true;
         }

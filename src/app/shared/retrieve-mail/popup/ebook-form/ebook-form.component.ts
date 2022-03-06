@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
 
 @Component({
   selector: 'ebook-form',
@@ -13,7 +14,9 @@ export class EbookFormComponent implements OnInit {
   mailStored: boolean = false;
   problemStored: boolean = false;
 
-  constructor() { }
+  constructor(
+    private googleAnalyticsService: GoogleAnalyticsService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -28,10 +31,13 @@ export class EbookFormComponent implements OnInit {
 
   onMailStored() {
     this.mailStored = true;
+    this.googleAnalyticsService.sendEvent(this.googleAnalyticsService.SUB_FROM_POPUP_EVENT, this.googleAnalyticsService.SUB_CATEGORIE, 'sub', 'popup');
   }
 
-  onProblemStored() {
+  onProblemStored(message: string) {
     this.problemStored = true;
+    this.googleAnalyticsService.sendEvent(this.googleAnalyticsService.PROBLEM_STORED_FROM_QUIZZ_EVENT, this.googleAnalyticsService.SUBMIT_PROBLEM_CATEGORIE, 'message', message);
+
     setTimeout(() => {
       this.userGetBonus.emit(true);
     }, 3000);

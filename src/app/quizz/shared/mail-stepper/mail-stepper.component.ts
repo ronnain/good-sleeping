@@ -2,13 +2,18 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { opacityAnimation } from 'src/app/shared/animations/opacity.animation';
+import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
 import { MailService } from 'src/app/shared/services/mail.service';
 import { UrlService } from 'src/app/shared/services/url.service';
 
 @Component({
   selector: 'quizz-mail-stepper',
   templateUrl: './mail-stepper.component.html',
-  styleUrls: ['./mail-stepper.component.css']
+  styleUrls: ['./mail-stepper.component.css'],
+  animations: [
+    opacityAnimation
+  ]
 })
 export class MailStepperComponent implements OnInit {
 
@@ -20,16 +25,20 @@ export class MailStepperComponent implements OnInit {
   emailFormGroup: FormGroup;
   skipCreation: boolean = false;
   bounceCreation: Subject<void> = new Subject<void>();
+  showProblemForm: boolean = false;
+  stepIndex = 0;
 
   contactSubscription: Subscription;
 
   constructor(
     private _formBuilder: FormBuilder,
-    private mailService: MailService,
-    private urlService: UrlService) { }
+    public mailService: MailService,
+    private urlService: UrlService,
+    private googleAnalyticsService: GoogleAnalyticsService) { }
 
   ngOnInit(): void {
     this.skipCreation = this.urlService.skipCreation;
+    this.showProblemForm = this.skipCreation;
     this.nameFormGroup = this._formBuilder.group({
       name: ['', Validators.required]
     });
@@ -50,6 +59,7 @@ export class MailStepperComponent implements OnInit {
     this.showResult();
     this.skipCreation = true;
     this.urlService.setSkipCreation(true);
+    this.showProblemForm = true;
     this.bounceCreation.next();
   }
 
@@ -66,14 +76,25 @@ export class MailStepperComponent implements OnInit {
   }
 
   onSelectionChange(e) {
-    // todo marche pas quand on va d'un questionnaire à un autre
     if (this.skipCreation && e.selectedIndex === 2) {
       this.showResult();
     }
   }
 
+  onGoToResultStep() {
+    this.stepIndex = 2;
+  }
+
   private storeContact() {
-    this.mailService.createContact(this.nameFormGroup.value['name'], this.emailFormGroup.value['email'].toLowerCase()).subscribe();
+    this.mailService.createContact(this.nameFormGroup.value['name'], this.emailFormGroup.value['email'].toLowerCase()).subscribe(
+      data => {
+        if(!data['success']) {
+          return;
+        }
+        this.mailService.$isMailSotred.next(true);
+        this.googleAnalyticsService.sendEvent(this.googleAnalyticsService.SUB_FROM_QUIZZ_EVENT, this.googleAnalyticsService.SUB_CATEGORIE, 'sub', 'quizz');
+      }
+    );
 
   }
 

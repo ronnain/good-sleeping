@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 declare const gtag: Function;
@@ -22,6 +22,7 @@ export class UrlService {
 
     constructor(
         private router: Router,
+        private _route: ActivatedRoute,
         @Inject(PLATFORM_ID) platformId: Object,
         ) {
 
@@ -44,11 +45,7 @@ export class UrlService {
     }
 
     setSkipCreation(value: boolean) {
-        const QueryString = window.location.search;
-        const urlParams = new URLSearchParams(QueryString);
-
-        urlParams.set('skipCreation', '' + value);
-        this.skipCreation = true;
+        this.skipCreation = value;
     }
 
     private checkSkipPopup(event) {
@@ -64,7 +61,9 @@ export class UrlService {
     }
 
     private checkSkipCreation() {
-        this.skipCreation = false;
+        if (this.skipCreation) {
+            return;
+        }
 
         const QueryString = window.location.search;
         const urlParams = new URLSearchParams(QueryString);
@@ -74,5 +73,4 @@ export class UrlService {
             return;
         }
     }
-
 }

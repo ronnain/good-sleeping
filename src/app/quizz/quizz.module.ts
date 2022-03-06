@@ -25,6 +25,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { RadioGroupComponent } from './shared/radio-group/radio-group.component';
 import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
 import { ArticlesModule } from '../articles/articles.module';
+import { QuizzProblemFormComponent } from './shared/quizz-problem-form/quizz-problem-form.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ArticlesModule } from '../articles/articles.module';
         progressRatioPipe,
         MailStepperComponent,
         HorneOstbergComponent,
-        CardQuizzComponent
+        CardQuizzComponent,
+        QuizzProblemFormComponent
     ],
     providers: [],
     exports: [

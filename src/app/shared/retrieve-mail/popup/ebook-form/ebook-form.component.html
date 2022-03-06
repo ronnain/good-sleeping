@@ -22,7 +22,7 @@
 </div>
 
 <ng-template #problemForm>
-  <app-problem-form (problemStored)="onProblemStored()"></app-problem-form>
+  <app-problem-form (problemStored)="onProblemStored($event)"></app-problem-form>
   <button class="userChoice userRefused" (click)="onClose()">
     <p>Fermer</p>
   </button>

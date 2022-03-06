@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable, Subject, throwError } from 'rxjs';
-import { catchError, debounceTime } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { UrlService } from './url.service';
 
@@ -15,6 +15,9 @@ export class MailService {
   token;
 
   userMail: string;
+
+  $isMailSotred: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  $isProblemSotred: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -44,6 +47,7 @@ export class MailService {
     .pipe(
       catchError(this.handleError)
     );
+
   }
 
   storeContactProblem(message: string) {

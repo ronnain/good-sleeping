@@ -1,5 +1,5 @@
-<div class="container divMailRetrieve" [@opacityAniamtion]="step">
-    <div class="row" *ngIf="!isMailStored else problem">
+<div class="container divMailRetrieve" [@opacityAnimation]="step" *ngIf="!(mailService.$isMailSotred | async) || !(mailService.$isProblemSotred | async)">
+    <div class="row" *ngIf="!(mailService.$isMailSotred | async) else problem">
         <div class="col">
             <div>
                 <p class="bigSize marginTop"><strong>Gratuit : Guide du Bon Dormeur</strong></p>
@@ -23,7 +23,7 @@
 <ng-template #problem>
     <div class="row">
         <div class="col">
-            <app-problem-form (problemStored)="onProblemStored()"></app-problem-form>
+            <app-problem-form (problemStored)="onProblemStored($event)"></app-problem-form>
         </div>
     </div>
 </ng-template>

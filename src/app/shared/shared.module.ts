@@ -34,7 +34,8 @@ import { ProblemFormComponent } from './retrieve-mail/problem-form/problem-form.
         EbookFormComponent,
         EbookPopupComponent,
         EmailFormComponent,
-        CommentComponent
+        CommentComponent,
+        ProblemFormComponent
     ],
     declarations: [
         SwipeDirective,

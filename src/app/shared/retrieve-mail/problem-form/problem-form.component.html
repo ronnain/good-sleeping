@@ -1,13 +1,16 @@
 <div class="problemform">
 
-    <div *ngIf="!isStored else problemShared">
-        <div class="alert alert-success" role="alert">
+    <div *ngIf="!isProblemStored else problemStored">
+        <div class="alert alert-success" role="alert" *ngIf="(mailService.$isMailSotred | async)" @opacityAnimation>
             <p>Merci !</p>
             <p>D'ici quelques minutes, tu recevras le bonus dans ta boîte mail.</p>
         </div>
 
-        <p>Afin de t'aider, je souhaite en savoir plus sur ton sommeil.</p>
+        <div class="" role="alert" [ngClass]="{'alert alert-info': !(mailService.$isMailSotred | async)}">
+            <p>Afin de t'aider, je souhaite en savoir plus sur ton sommeil.</p>
+        </div>
         <p><strong>Quel est le plus gros obstacle que tu rencontres actuellement avec ton sommeil ?</strong></p>
+
 
         <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" novalidate>
             <mat-form-field class="problemform__textarea" appearance="fill">
@@ -33,7 +36,7 @@
     </div>
 </div>
 
-<ng-template #problemShared>
+<ng-template #problemStored>
     <div>
         <p><strong>Merci pour ton partage.</strong></p>
         <p>Et à très vite.</p>

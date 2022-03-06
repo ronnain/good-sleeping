@@ -2,8 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { opacityAniamtion } from '../../animations/opacity.animation';
-import { GoogleAnalyticsService } from '../../directives/google-analytics.service';
+import { opacityAnimation } from '../../animations/opacity.animation';
 import { MailService } from '../../services/mail.service';
 
 @Component({
@@ -11,19 +10,18 @@ import { MailService } from '../../services/mail.service';
   templateUrl: './problem-form.component.html',
   styleUrls: ['./problem-form.component.scss'],
   animations: [
-    opacityAniamtion,
-    opacityAniamtion
+    opacityAnimation,
+    opacityAnimation
   ]
 })
 export class ProblemFormComponent implements OnInit {
 
-  PROBLEM_STORED_EVENT = "PROBLEM_STORED_EVENT";
-
   isLoading: boolean = false;
-  isStored: boolean = false;
+  isProblemStored: boolean = false;
+  isMailStored: boolean = false;
   storeProblemSubject: Subject<void> = new Subject<void>();
 
-  @Output() problemStored = new EventEmitter<boolean>();
+  @Output() problemStored = new EventEmitter<string>();
 
   reactiveForm = new FormGroup({
     message: new FormControl('', [Validators.required, Validators.minLength(6)])
@@ -34,8 +32,7 @@ export class ProblemFormComponent implements OnInit {
   problemSubscription: Subscription;
 
   constructor(
-    private mailService: MailService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    public mailService: MailService
     ) { }
 
   ngOnInit(): void {
@@ -55,11 +52,11 @@ export class ProblemFormComponent implements OnInit {
   storeContactProblem() {
     const values = this.reactiveForm.value;
     this.mailService.storeContactProblem(values.message).subscribe(data=> {
-      this.isStored = true;
+      this.isProblemStored = true;
       this.isLoading = false;
       this.reactiveForm.reset();
-      this.problemStored.next(true);
-      this.googleAnalyticsService.sendEvent(this.PROBLEM_STORED_EVENT, this.googleAnalyticsService.SUB_CATEGORIE, 'message', values.message);
+      this.mailService.$isProblemSotred.next(true);
+      this.problemStored.next(values.message);
     });
   }
 

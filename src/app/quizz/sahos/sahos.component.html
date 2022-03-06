@@ -96,8 +96,10 @@
 
                 <!-- Quizz not completed -->
                 <ng-container *ngIf="quizzNoSASNotCompleted || quizzStopBangNotCompleted">
-                    <p>Oups, il semblerait que tu n'ai pas répondu à l'ensemble des questions du test {{ quizzNoSASNotCompleted ? "NoSAS" : "StopBang"}}.</p>
-                    <p>Il te suffit de le compléter pour afficher ton score.</p>
+                    <div class="alert alert-warning" role="alert">
+                        <p>Oups, il semblerait que tu n'aies pas répondu à l'ensemble des questions du test {{ quizzNoSASNotCompleted ? "NoSAS" : "StopBang"}}.</p>
+                        <p>Il te suffit de le compléter pour afficher ton score.</p>
+                    </div>
                 </ng-container>
 
                 <ng-container *ngIf="!quizzNoSASNotCompleted && !quizzStopBangNotCompleted && riskNoSas">
@@ -389,6 +391,16 @@
         <social-network-share-buttons
         [articleImg]="sharedArticleImg">
       </social-network-share-buttons>
+    </section>
+
+    <section>
+        <div class="container divMailRetrieve commonMarginTop">
+            <div class="row">
+                <div class="col commonMargin">
+                    <quizz-problem-form></quizz-problem-form>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section>
