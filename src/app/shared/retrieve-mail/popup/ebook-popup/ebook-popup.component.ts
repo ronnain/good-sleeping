@@ -47,7 +47,7 @@ export class EbookPopupComponent implements OnInit {
   }
 
   setTimer() {
-    timer(6000).pipe(take(1)).subscribe(val => {
+    timer(60000).pipe(take(1)).subscribe(val => {
       this.showPopup();
     });
   }
