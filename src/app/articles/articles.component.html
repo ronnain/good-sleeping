@@ -78,7 +78,7 @@
                             <div class="card-body">
                                 <a class="card-title articles-title" [routerLink]="['/articles', article.articleName]">{{article.title}}</a>
                                 <a class="card-text articles-desc" *ngIf="!hideDescription">{{article.description}}</a>
-                                <footer class="blockquote-footer">Le {{article.dateModified | date: 'dd/MM/yyyy'}} par <cite>Romain</cite>.</footer>
+                                <footer class="blockquote-footer">Le {{article.dateModified | date: 'dd/MM/yyyy'}} par <cite>{{article.author}}</cite>.</footer>
                             </div>
                         </div>
                     </div>

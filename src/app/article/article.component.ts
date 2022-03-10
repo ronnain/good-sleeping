@@ -88,7 +88,7 @@ export class ArticleComponent implements OnInit, Page {
           this._router.navigate(['articles']);
           return;
         }
-        this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName, data.categories);
+        this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName, data.categories, data.author);
         if (!this.articlesService.loadFromArticles) {
           this.categoriesService.setCurrentArticleCategories(this.article.categories);
         }

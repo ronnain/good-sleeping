@@ -24,7 +24,7 @@
     </social-network-share-buttons>
 
     <div *ngIf="article && article.dateModified && articleRetrieve">
-        <footer class="blockquote-footer">Ecrit le {{ article.dateModified | date: 'dd/MM/yyyy'}} par <cite>Romain</cite></footer>
+        <footer class="blockquote-footer">Ecrit le {{ article.dateModified | date: 'dd/MM/yyyy'}} par <cite>{{article.author}}</cite></footer>
     </div>
 
     <app-retrieve-mail></app-retrieve-mail>
