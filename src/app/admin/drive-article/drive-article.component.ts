@@ -14,7 +14,7 @@ import { Categories } from 'src/app/modeles/categories.dto';
 })
 export class DriveArticleComponent implements OnInit {
   articleName:string;
-  article: MyArticle = new MyArticle(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+  article: MyArticle = new MyArticle(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
   articleConfig: ArticleConfig = {id: undefined, idArticle: undefined, img: []};
   nbImg: number;
   articleCreation: boolean = true; // use for published a new article at a specific time

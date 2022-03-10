@@ -22,7 +22,7 @@
             <ul class="categories">
                 <li *ngFor="let category of categories">
                   <mat-checkbox [(ngModel)]="category.active">
-                    {{category.text}}
+                    {{category.label}}
                   </mat-checkbox>
                 </li>
             </ul>
