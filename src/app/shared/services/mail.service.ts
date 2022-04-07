@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { UrlService } from './url.service';
@@ -33,14 +33,15 @@ export class MailService {
 
   createContact(firstName, mail) {
     if (this.urlService.skipCreation) {
-      return new Observable();
+      return of(true);
     }
 
     this.userMail = mail;
 
     const body = {
       "firstName" : this.capitalizeFirstLetter(firstName),
-      "mail": mail
+      "mail": mail,
+      "referer": window.location.pathname
     };
     const url = environment.serverConfig.serverURL + '?method=createContact';
     return this.http.post<any>(url, body, this.httpOptions)

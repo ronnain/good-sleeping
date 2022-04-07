@@ -57,8 +57,6 @@ export class MailStepperComponent implements OnInit {
 
   onSubmit() {
     this.showResult();
-    this.skipCreation = true;
-    this.urlService.setSkipCreation(true);
     this.showProblemForm = true;
     this.bounceCreation.next();
   }
@@ -88,11 +86,18 @@ export class MailStepperComponent implements OnInit {
   private storeContact() {
     this.mailService.createContact(this.nameFormGroup.value['name'], this.emailFormGroup.value['email'].toLowerCase()).subscribe(
       data => {
+
         if(!data['success']) {
           return;
         }
+        this.skipCreation = true;
+        this.urlService.setSkipCreation(true);
         this.mailService.$isMailSotred.next(true);
         this.googleAnalyticsService.sendEvent(this.googleAnalyticsService.SUB_FROM_QUIZZ_EVENT, this.googleAnalyticsService.SUB_CATEGORIE, 'sub', 'quizz');
+      },
+      error => {
+        this.skipCreation = true;
+        this.urlService.setSkipCreation(true);
       }
     );
 
