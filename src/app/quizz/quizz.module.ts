@@ -26,6 +26,8 @@ import { RadioGroupComponent } from './shared/radio-group/radio-group.component'
 import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
 import { ArticlesModule } from '../articles/articles.module';
 import { QuizzProblemFormComponent } from './shared/quizz-problem-form/quizz-problem-form.component';
+import { ChronotypeAnnimalComponent } from './chronotype-annimal/chronotype-annimal.component';
+import { DolphinQuizzComponent } from './chronotype-annimal/dolphin-quizz/dolphin-quizz.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { QuizzProblemFormComponent } from './shared/quizz-problem-form/quizz-pro
         MailStepperComponent,
         HorneOstbergComponent,
         CardQuizzComponent,
-        QuizzProblemFormComponent
+        QuizzProblemFormComponent,
+        ChronotypeAnnimalComponent,
+        DolphinQuizzComponent
     ],
     providers: [],
     exports: [

@@ -1,0 +1,61 @@
+<!-- TODO questions size, and fix it only for other tests ...&  remove popup bonus-->
+<div class="dolphinQuizz">
+    <card-questions
+        [cardQuestions]="isDolphinQuizz"
+        [questionTpl]="dolphinQuestionTpl"
+        [quizzCompleteTpl]="isUserADolphin ? isDolphinTpl : notDolphinTpl"
+        [(currentIndex)]="currentDolphinIndex"
+        (quizzComplete)="onGetDolphinScore()"
+    >
+        <ng-template #dolphinQuestionTpl let-question>
+            <div class="dolphinQuizz__propositions-wrapper">
+                <mat-radio-group
+                  aria-labelledby="radio-group-label"
+                  class="radio-group"
+                  [(ngModel)]="question.answerValue"
+                >
+                        <mat-radio-button
+                          class="radio-button"
+                          *ngFor="let proposition of question.propositions"
+                          [value]="proposition.value"
+                        >
+                            {{proposition.text}}
+                        </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </ng-template>
+
+    </card-questions>
+</div>
+
+<ng-template #isDolphinTpl>
+    <p class="textEnd">Tu es un dauphin !</p>
+    <div class="iconEnd">
+        <img src="assets\icons\bioryhtme-annimals\dolphin.svg" alt="Dauphin"/>
+    </div>
+    <div>
+        <p>Ton chronotype est celui d'un dauphin.</p>
+        <p>Coucher idéale : <strong>23 h 30</strong></p>
+        <p>Réveil idéale : <strong>6 h 30</strong></p>
+        <p class="dolphinQuizz__more-info">Retrouve plus d'informations sur ton chronotype ci-dessous.</p>
+    </div>
+    <div class="cardFooterActionBar">
+        <button mat-button color="primary" (click)="onPrevious()">Retour</button>
+        <button mat-button color="primary" (click)="onNext()" [disabled]="isQuizzCompleted">Suivant</button>
+    </div>
+</ng-template>
+
+<ng-template #notDolphinTpl>
+    <p class="textEnd">Tu n'es pas un dauphin !</p>
+    <div class="iconEnd"><mat-icon>done</mat-icon></div>
+    <div>
+        <p>Continuer</p>
+        <p>Coucher idéale : <strong>23 h 30</strong></p>
+        <p>Réveil idéale : <strong>6 h 30</strong></p>
+        <p class="dolphinQuizz__more-info">Retrouve plus d'informations sur ton chronotype ci-dessous.</p>
+    </div>
+    <div class="cardFooterActionBar">
+        <button mat-button color="primary" (click)="onPrevious()">Retour</button>
+        <button mat-button color="primary" (click)="onNext()" [disabled]="isQuizzCompleted">Suivant</button>
+    </div>
+</ng-template>

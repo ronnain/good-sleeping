@@ -11,12 +11,13 @@
           (previous)="onChoice(true)"
         >
             <mat-progress-bar mode="determinate" [value]="index | progressRatio : cardQuestions.length"></mat-progress-bar>
-            <div>
+            <div class="cardQuestions__header">
               <p class="headerQuestion">Question {{index + 1}} sur {{cardQuestions.length}}</p>
               <p class="questionText">{{question.description}}</p>
             </div>
 
             <ng-content select="[questionContent]"></ng-content>
+            <ng-container *ngTemplateOutlet="questionTpl; context: {$implicit: question, index: index}"></ng-container>
 
             <div class="cardFooterActionBar">
               <button mat-button color="primary" (click)="onPrevious()" [disabled]="!currentIndex">Retour</button>
@@ -26,12 +27,16 @@
     </div>
 
     <div @completeQuizz class="cardQuestions cardValidation" *ngIf="isQuizzCompleted">
-      <p class="textEnd">Questionnaires complétés à 100 %</p>
-      <div class="iconEnd"><mat-icon>done</mat-icon></div>
-      <div class="cardFooterActionBar">
-        <button mat-button color="primary" (click)="onPrevious()">Retour</button>
-        <button mat-button color="primary" (click)="onNext()" [disabled]="isQuizzCompleted">Suivant</button>
-      </div>
+      <ng-container *ngTemplateOutlet="quizzCompleteTpl ? quizzCompleteTpl : defaultQuizzComplete;"></ng-container>
     </div>
 
 </div>
+
+<ng-template #defaultQuizzComplete>
+    <p class="textEnd">Questionnaires complétés à 100 %</p>
+    <div class="iconEnd"><mat-icon>done</mat-icon></div>
+    <div class="cardFooterActionBar">
+      <button mat-button color="primary" (click)="onPrevious()">Retour</button>
+      <button mat-button color="primary" (click)="onNext()" [disabled]="true">Suivant</button>
+    </div>
+</ng-template>

@@ -23,13 +23,24 @@ $box-height: 525px ;
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 10px;
-    /* height: 420px; */
     height: $box-height;
     min-height: $box-height;
     display: flex;
     align-content: stretch;
     flex-wrap: wrap;
     background-color: var(--div-container-background-color);
+    justify-content: flex-start;
+
+    &__header {
+        width: 100%;
+    }
+
+    .radio-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
 }
 
 .cardQuestions:hover {

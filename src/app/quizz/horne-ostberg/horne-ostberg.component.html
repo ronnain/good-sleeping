@@ -39,7 +39,7 @@
 
             <h2>Passe le test de vespéralité et matinalité</h2>
 
-            <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" [(isQuizzCompleted)]="isQuizzCompleted">
+            <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" (quizzComplete)="isQuizzCompleted = $event">
                 <div class="extra" questionContent *ngIf="!isQuizzCompleted">
 
                     <div>
@@ -79,10 +79,8 @@
                 <ng-container *ngIf="isQuizzCompleted">
                     <div class="scoreDisplay">
                         <div class="resultCard">
-                            <p>Chronotype : <span class="risk">{{chronotype}} </span>
-</p>
-                            <p>Score : <span>{{score}}</span>
-</p>
+                            <p>Chronotype : <span class="risk">{{chronotype}} </span></p>
+                            <p>Score : <span>{{score}}</span></p>
                         </div>
                     </div>
                     <p>*Les interprétations de tes résultats sont disponibles ci-dessous.</p>
