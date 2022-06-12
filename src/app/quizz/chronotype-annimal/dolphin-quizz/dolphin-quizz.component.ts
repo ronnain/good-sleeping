@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CardQuestionDTO } from '../../shared/card-quizz/card-question.dto';
 import { IS_DOLPHIN_QUESTIONS } from '../biorythme-questions.ressources';
+
+export type IsDolphin = boolean;
 
 @Component({
   selector: 'app-dolphin-quizz',
@@ -27,6 +29,8 @@ export class DolphinQuizzComponent implements OnInit {
     return this.dolphinScore >= 7;
   }
 
+  @Output() dolphinQuizzComplet = new EventEmitter<IsDolphin>();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -35,6 +39,7 @@ export class DolphinQuizzComponent implements OnInit {
 
   onGetDolphinScore() {
     this.dolphinScore = this.isDolphinQuizz.reduce((a,c) => a + c.answerValue , 0);
+    this.dolphinQuizzComplet.emit(this.isUserADolphin);
   }
 
   onPrevious() {
