@@ -28,6 +28,7 @@ import { ArticlesModule } from '../articles/articles.module';
 import { QuizzProblemFormComponent } from './shared/quizz-problem-form/quizz-problem-form.component';
 import { ChronotypeAnnimalComponent } from './chronotype-annimal/chronotype-annimal.component';
 import { DolphinQuizzComponent } from './chronotype-annimal/dolphin-quizz/dolphin-quizz.component';
+import { BiorythmeQuizzComponent } from './chronotype-annimal/biorythme-quizz/biorythme-quizz.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { DolphinQuizzComponent } from './chronotype-annimal/dolphin-quizz/dolphi
         CardQuizzComponent,
         QuizzProblemFormComponent,
         ChronotypeAnnimalComponent,
-        DolphinQuizzComponent
+        DolphinQuizzComponent,
+        BiorythmeQuizzComponent
     ],
     providers: [],
     exports: [

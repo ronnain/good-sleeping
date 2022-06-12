@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CardQuestionDTO } from '../../shared/card-quizz/card-question.dto';
 import { IS_DOLPHIN_QUESTIONS } from '../biorythme-questions.ressources';
-
-export type IsDolphin = boolean;
+import { Biorythme, BiorythmeScore } from '../biorythme.type';
 
 @Component({
   selector: 'app-dolphin-quizz',
@@ -21,7 +20,7 @@ export class DolphinQuizzComponent implements OnInit {
     },
   ];
 
-  isDolphinQuizz: CardQuestionDTO[] = IS_DOLPHIN_QUESTIONS;
+  dolphinQuizz: CardQuestionDTO[] = IS_DOLPHIN_QUESTIONS;
   currentDolphinIndex: number = 0;
   dolphinScore: number = 0;
 
@@ -29,17 +28,17 @@ export class DolphinQuizzComponent implements OnInit {
     return this.dolphinScore >= 7;
   }
 
-  @Output() dolphinQuizzComplet = new EventEmitter<IsDolphin>();
+  @Output() dolphinQuizzComplet = new EventEmitter<BiorythmeScore>();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.isDolphinQuizz.forEach(question => question.propositions = this.trueFalsePropistions);
+    this.dolphinQuizz.forEach(question => question.propositions = this.trueFalsePropistions);
   }
 
   onGetDolphinScore() {
-    this.dolphinScore = this.isDolphinQuizz.reduce((a,c) => a + c.answerValue , 0);
-    this.dolphinQuizzComplet.emit(this.isUserADolphin);
+    this.dolphinScore = this.dolphinQuizz.reduce((a,c) => a + c.answerValue , 0);
+    this.dolphinQuizzComplet.emit([this.isUserADolphin ? Biorythme.Dolphin : null, this.dolphinScore]);
   }
 
   onPrevious() {

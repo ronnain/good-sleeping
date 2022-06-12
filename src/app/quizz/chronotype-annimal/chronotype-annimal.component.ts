@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
-import { IS_DOLPHIN_QUESTIONS } from './biorythme-questions.ressources';
+import { BiorythmeScore } from './biorythme.type';
 
 @Component({
   selector: 'app-chronotype-annimal',
@@ -14,8 +13,8 @@ export class ChronotypeAnnimalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDolphinQuizzComplet(isDolphin: boolean) {
-    console.log('isDolphin', isDolphin);
+  onDolphinQuizzComplet(biorythmeScore: BiorythmeScore) {
+    console.log('isDolphin', biorythmeScore);
   }
 
 }

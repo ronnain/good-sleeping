@@ -1,14 +1,14 @@
 <!-- TODO questions size, and fix it only for other tests ...&  remove popup bonus-->
-<div class="dolphinQuizz">
+<div class="biorythmeQuizz">
     <card-questions
-        [cardQuestions]="dolphinQuizz"
+        [cardQuestions]="biorythmeQuizz"
         [questionTpl]="dolphinQuestionTpl"
-        [quizzCompleteTpl]="isUserADolphin ? isDolphinTpl : notDolphinTpl"
-        [(currentIndex)]="currentDolphinIndex"
+        [quizzCompleteTpl]="isDolphinTpl"
+        [(currentIndex)]="currentIndex"
         (quizzComplete)="onGetDolphinScore()"
     >
         <ng-template #dolphinQuestionTpl let-question>
-            <div class="dolphinQuizz__propositions-wrapper">
+            <div class="biorythmeQuizz__propositions-wrapper">
                 <mat-radio-group
                   aria-labelledby="radio-group-label"
                   class="radio-group"
@@ -36,22 +36,7 @@
     <div>
        <!--  <p>Coucher idéale : <strong>23 h 30</strong></p>
         <p>Réveil idéale : <strong>6 h 30</strong></p> -->
-        <p><span class="dolphinQuizz__more-info">Plus d'informations ci-dessous.</span></p>
-    </div>
-    <div class="cardFooterActionBar">
-        <button mat-button color="primary" (click)="onPrevious()">Retour</button>
-        <button mat-button color="primary" (click)="onNext()" [disabled]="isQuizzCompleted">Suivant</button>
-    </div>
-</ng-template>
-
-<ng-template #notDolphinTpl>
-    <p class="textEnd">Tu n'es pas un dauphin !</p>
-    <div class="iconEnd"><mat-icon>done</mat-icon></div>
-    <div>
-        <p>Continuer</p>
-        <p>Coucher idéale : <strong>23 h 30</strong></p>
-        <p>Réveil idéale : <strong>6 h 30</strong></p>
-        <p class="dolphinQuizz__more-info">Retrouve plus d'informations sur ton chronotype ci-dessous.</p>
+        <p><span class="biorythmeQuizz__more-info">Plus d'informations ci-dessous.</span></p>
     </div>
     <div class="cardFooterActionBar">
         <button mat-button color="primary" (click)="onPrevious()">Retour</button>
