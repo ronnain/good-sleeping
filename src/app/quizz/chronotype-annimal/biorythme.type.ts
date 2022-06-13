@@ -1,8 +1,8 @@
 export enum Biorythme {
-    Dolphin,
-    Lion,
-    Bear,
-    Wolf
+    Dolphin = "Dauphin",
+    Lion = "Lion",
+    Bear = "Ours",
+    Wolf = "Loup"
 };
 
 export type BiorythmeType = typeof Biorythme[keyof typeof Biorythme];

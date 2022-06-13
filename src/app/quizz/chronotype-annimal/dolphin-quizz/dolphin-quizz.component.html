@@ -5,7 +5,7 @@
         [questionTpl]="dolphinQuestionTpl"
         [quizzCompleteTpl]="isUserADolphin ? isDolphinTpl : notDolphinTpl"
         [(currentIndex)]="currentDolphinIndex"
-        (quizzComplete)="onGetDolphinScore()"
+        (quizzComplete)="onGetScore()"
     >
         <ng-template #dolphinQuestionTpl let-question>
             <mat-radio-group
@@ -32,8 +32,6 @@
         <img src="assets\icons\bioryhtme-annimals\dolphin.svg" alt="Dauphin"/>
     </div>
     <div>
-       <!--  <p>Coucher idéale : <strong>23 h 30</strong></p>
-        <p>Réveil idéale : <strong>6 h 30</strong></p> -->
         <p><span class="dolphinQuizz__more-info">Plus d'informations ci-dessous.</span></p>
     </div>
     <div class="cardFooterActionBar">
@@ -46,13 +44,15 @@
     <p class="textEnd">Tu n'es pas un dauphin !</p>
     <div class="iconEnd"><mat-icon>done</mat-icon></div>
     <div>
-        <p>Continuer</p>
-        <p>Coucher idéale : <strong>23 h 30</strong></p>
-        <p>Réveil idéale : <strong>6 h 30</strong></p>
-        <p class="dolphinQuizz__more-info">Retrouve plus d'informations sur ton chronotype ci-dessous.</p>
+        <p>Tu as obtenus un score de {{score}} / 10.</p>
+        <p>Un score inférieur à 7 indique que tu n'es pas un dauphin.</p>
+        <p>Passe le test suivant pour savoir si tu es un lion, un ours ou bien un loup.</p>
+        <div class="dolphinQuizz__continue">
+            <button mat-raised-button color="primary" (click)="onNextTest()">Continuer <mat-icon>arrow_right_alt</mat-icon></button>
+        </div>
     </div>
     <div class="cardFooterActionBar">
         <button mat-button color="primary" (click)="onPrevious()">Retour</button>
-        <button mat-button color="primary" (click)="onNext()" [disabled]="isQuizzCompleted">Suivant</button>
+        <button mat-button color="primary" (click)="onNextTest()">Continuer</button>
     </div>
 </ng-template>

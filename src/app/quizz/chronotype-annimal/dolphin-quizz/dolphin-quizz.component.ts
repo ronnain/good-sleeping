@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { CardQuestionDTO } from '../../shared/card-quizz/card-question.dto';
-import { IS_DOLPHIN_QUESTIONS } from '../biorythme-questions.ressources';
+import { DOLPHIN_QUESTIONS } from '../biorythme-questions.ressources';
 import { Biorythme, BiorythmeScore } from '../biorythme.type';
 
 @Component({
@@ -11,28 +13,41 @@ import { Biorythme, BiorythmeScore } from '../biorythme.type';
 export class DolphinQuizzComponent implements OnInit {
 
 
-  dolphinQuizz: CardQuestionDTO[] = IS_DOLPHIN_QUESTIONS;
+  dolphinQuizz: CardQuestionDTO[] = DOLPHIN_QUESTIONS;
   currentDolphinIndex: number = 0;
-  dolphinScore: number = 0;
+  score: number = 0;
 
   get isUserADolphin() : boolean {
-    return this.dolphinScore >= 7;
+    return this.score >= 7;
   }
 
+  debouncedNextTest: Subject<void> = new Subject();
+
   @Output() dolphinQuizzComplet = new EventEmitter<BiorythmeScore>();
+  @Output() nextTest = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log('dolphinQuizz', this.dolphinQuizz);
+    this.debouncedNextTest.pipe(debounceTime(300)).subscribe(() =>
+      this.nextTest.emit()
+    );
   }
 
-  onGetDolphinScore() {
-    this.dolphinScore = this.dolphinQuizz.reduce((a,c) => a + c.answerValue , 0);
-    this.dolphinQuizzComplet.emit([this.isUserADolphin ? Biorythme.Dolphin : null, this.dolphinScore]);
+  onGetScore() {
+    this.score = this.dolphinQuizz.reduce((a,c) => a + c.answerValue , 0);
+    this.dolphinQuizzComplet.emit([this.isUserADolphin ? Biorythme.Dolphin : null, this.score]);
+  }
+
+  onNextTest() {
+    this.debouncedNextTest.next();
   }
 
   onPrevious() {
     this.currentDolphinIndex--;
+  }
+
+  ngOnDestroy() {
+    this.debouncedNextTest.unsubscribe();
   }
 }

@@ -4,16 +4,16 @@
         <div class="container article">
 
             <h2>Passe le test de vespéralité et matinalité</h2>
-            <app-dolphin-quizz (dolphinQuizzComplet)="onDolphinQuizzComplet($event)"></app-dolphin-quizz>
-
-        </div>
-    </section>
-
-    <section>
-        <div class="container article">
-
-            <h2>Passe le test de vespéralité et matinalité</h2>
-            <app-biorythme-quizz (biorythmeQuizzComplet)="onDolphinQuizzComplet($event)"></app-biorythme-quizz>
+            <app-dolphin-quizz
+              *ngIf="testIndex === 0"
+              (dolphinQuizzComplet)="onQuizzComplet($event)"
+              (nextTest)="onNextTest()"
+              >
+            </app-dolphin-quizz>
+            <app-biorythme-quizz
+              *ngIf="testIndex === 1"
+              (biorythmeQuizzComplet)="onQuizzComplet($event)">
+            </app-biorythme-quizz>
 
         </div>
     </section>

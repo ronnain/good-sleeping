@@ -8,13 +8,18 @@ import { BiorythmeScore } from './biorythme.type';
 })
 export class ChronotypeAnnimalComponent implements OnInit {
 
+  testIndex: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onDolphinQuizzComplet(biorythmeScore: BiorythmeScore) {
-    console.log('isDolphin', biorythmeScore);
+  onQuizzComplet(biorythmeScore: BiorythmeScore) {
+    console.log('biorythmeScore', biorythmeScore);
   }
 
+  onNextTest() {
+    this.testIndex++;
+  }
 }

@@ -1,7 +1,6 @@
 import { CardQuestionDTO } from "../shared/card-quizz/card-question.dto";
 
-// todo add propositions here
-export const IS_DOLPHIN_QUESTIONS: CardQuestionDTO[] = [
+export const DOLPHIN_QUESTIONS: CardQuestionDTO[] = [
   {
     description: "Je n'arrive pas à m'endormir (ou je me réveille) s'il y a un peu de lumière ou du bruit.",
     propositions: [

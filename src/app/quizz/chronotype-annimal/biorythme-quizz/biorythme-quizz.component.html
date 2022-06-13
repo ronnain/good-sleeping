@@ -27,13 +27,11 @@
 </div>
 
 <ng-template #isDolphinTpl>
-    <p class="textEnd">Tu es un dauphin !</p>
+    <p class="textEnd">Tu es un {{score | annimal}} !</p>
     <div class="iconEnd">
-        <img src="assets\icons\bioryhtme-annimals\dolphin.svg" alt="Dauphin"/>
+        <img [src]="score | annimalPicture" [alt]="score | annimal"/>
     </div>
     <div>
-       <!--  <p>Coucher idéale : <strong>23 h 30</strong></p>
-        <p>Réveil idéale : <strong>6 h 30</strong></p> -->
         <p><span class="biorythmeQuizz__more-info">Plus d'informations ci-dessous.</span></p>
     </div>
     <div class="cardFooterActionBar">

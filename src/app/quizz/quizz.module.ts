@@ -30,6 +30,8 @@ import { ChronotypeAnnimalComponent } from './chronotype-annimal/chronotype-anni
 import { DolphinQuizzComponent } from './chronotype-annimal/dolphin-quizz/dolphin-quizz.component';
 import { BiorythmeQuizzComponent } from './chronotype-annimal/biorythme-quizz/biorythme-quizz.component';
 import { IsAnswerSelectedPipe } from './shared/card-quizz/card-answer-selected.pipe';
+import { AnnimalPicturePipe } from './chronotype-annimal/biorythme-quizz/annimal-picture.pipe';
+import { AnnimalPipe } from './chronotype-annimal/biorythme-quizz/annimal.pipe';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import { IsAnswerSelectedPipe } from './shared/card-quizz/card-answer-selected.p
         QuizzProblemFormComponent,
         ChronotypeAnnimalComponent,
         DolphinQuizzComponent,
-        BiorythmeQuizzComponent
+        BiorythmeQuizzComponent,
+        AnnimalPicturePipe,
+        AnnimalPipe
     ],
     providers: [],
     exports: [
