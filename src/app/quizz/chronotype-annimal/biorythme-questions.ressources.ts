@@ -2,37 +2,97 @@ import { CardQuestionDTO } from "../shared/card-quizz/card-question.dto";
 
 // todo add propositions here
 export const IS_DOLPHIN_QUESTIONS: CardQuestionDTO[] = [
-    {
-      description: "Je n'arrive pas à m'endormir (ou je me réveille) s'il y a un peu de lumière ou du bruit.",
-    },
-    {
-      description: "La nourriture me laisse relativement indéfférent(e).",
-    },
-    {
-      description: "Je me réveille généralment avant la sonnerie de mon réveil.",
-    },
-    {
-      description: "Je ne dors pas bien en avion, même avec un masque et des bouchons d'oreille."
-    },
-    {
-      description: "La fatigue me rend souvent irritable."
-    },
-    {
-      description: "Je me fais beaucoup trop de souci pour de menus détails."
-    },
-    {
-      description: "J'ai éré déclaré(e) insommniaque par un médecin (ou je me suis auto-diagnostiqué(e))."
-    },
-    {
-      description: "Pendant mes études, j'étais très stressé(e) par mes notes."
-    },
-    {
-      description:"Au lieu de m'endormir, je rumine le passé et je m'insquiète pour l'avenir."
-    },
-    {
-      description: "Je suis perfectionniste."
-    }
-  ];
+  {
+    description: "Je n'arrive pas à m'endormir (ou je me réveille) s'il y a un peu de lumière ou du bruit.",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  },
+  {
+    description: "La nourriture me laisse relativement indéfférent(e).",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  },
+  {
+    description: "Je me réveille généralment avant la sonnerie de mon réveil.",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  },
+  {
+    description: "Je ne dors pas bien en avion, même avec un masque et des bouchons d'oreille.",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  },
+  {
+    description: "La fatigue me rend souvent irritable.",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  },
+  {
+    description: "Je me fais beaucoup trop de souci pour de menus détails.",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  },
+  {
+    description: "J'ai éré déclaré(e) insommniaque par un médecin (ou je me suis auto-diagnostiqué(e)).",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  },
+  {
+    description: "Pendant mes études, j'étais très stressé(e) par mes notes.",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  },
+  {
+    description: "Au lieu de m'endormir, je rumine le passé et je m'insquiète pour l'avenir.",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  },
+  {
+    description: "Je suis perfectionniste.",
+    propositions: [
+      [
+        { text: "Vrai", value: 1 },
+        { text: "Faux", value: 0 }
+      ]
+    ]
+  }
+];
 
 export const BIORYTHME_QUESTIONS: CardQuestionDTO[] =
   [

@@ -9,16 +9,7 @@ import { Biorythme, BiorythmeScore } from '../biorythme.type';
   styleUrls: ['./dolphin-quizz.component.scss']
 })
 export class DolphinQuizzComponent implements OnInit {
-  trueFalsePropistions = [
-    {
-      text: 'Vrai',
-      value: 1
-    },
-    {
-      text: 'Faux',
-      value: 0
-    },
-  ];
+
 
   dolphinQuizz: CardQuestionDTO[] = IS_DOLPHIN_QUESTIONS;
   currentDolphinIndex: number = 0;
@@ -33,7 +24,6 @@ export class DolphinQuizzComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.dolphinQuizz.forEach(question => question.propositions = this.trueFalsePropistions);
   }
 
   onGetDolphinScore() {
