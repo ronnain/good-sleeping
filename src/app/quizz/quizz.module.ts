@@ -29,6 +29,7 @@ import { QuizzProblemFormComponent } from './shared/quizz-problem-form/quizz-pro
 import { ChronotypeAnnimalComponent } from './chronotype-annimal/chronotype-annimal.component';
 import { DolphinQuizzComponent } from './chronotype-annimal/dolphin-quizz/dolphin-quizz.component';
 import { BiorythmeQuizzComponent } from './chronotype-annimal/biorythme-quizz/biorythme-quizz.component';
+import { IsAnswerSelectedPipe } from './shared/card-quizz/card-answer-selected.pipe';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { BiorythmeQuizzComponent } from './chronotype-annimal/biorythme-quizz/bi
         MailStepperComponent,
         HorneOstbergComponent,
         CardQuizzComponent,
+        IsAnswerSelectedPipe,
         QuizzProblemFormComponent,
         ChronotypeAnnimalComponent,
         DolphinQuizzComponent,

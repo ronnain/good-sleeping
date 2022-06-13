@@ -3,16 +3,6 @@
         font-style: italic;
     }
 
-    &__propositions-wrapper {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-
-        .radio-group {
-            width: fit-content;
-        }
-    }
-
     .iconEnd img {
         width: 200px;
         height: 200px;

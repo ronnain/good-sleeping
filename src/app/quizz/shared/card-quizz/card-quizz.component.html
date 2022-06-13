@@ -17,11 +17,13 @@
             </div>
 
             <ng-content select="[questionContent]"></ng-content>
-            <ng-container *ngTemplateOutlet="questionTpl; context: {$implicit: question, index: index}"></ng-container>
+            <div class="cardQuestions__content">
+              <ng-container *ngTemplateOutlet="questionTpl; context: {$implicit: question, index: index}"></ng-container>
+            </div>
 
             <div class="cardFooterActionBar">
               <button mat-button color="primary" (click)="onPrevious()" [disabled]="!currentIndex">Retour</button>
-              <button mat-button color="primary" (click)="onNext()">Suivant</button>
+              <button mat-button color="primary" (click)="onNext()" [disabled]="!(question.answerValue | isAnswerSelected)">Suivant</button>
             </div>
         </div>
     </div>

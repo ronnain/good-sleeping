@@ -8,21 +8,19 @@
         (quizzComplete)="onGetDolphinScore()"
     >
         <ng-template #dolphinQuestionTpl let-question>
-            <div class="biorythmeQuizz__propositions-wrapper">
-                <mat-radio-group
-                  aria-labelledby="radio-group-label"
-                  class="radio-group"
-                  [(ngModel)]="question.answerValue"
-                >
-                        <mat-radio-button
-                          class="radio-button"
-                          *ngFor="let proposition of question.propositions"
-                          [value]="proposition.value"
-                        >
-                            {{proposition.text}}
-                        </mat-radio-button>
-                </mat-radio-group>
-            </div>
+            <mat-radio-group
+                aria-labelledby="radio-group-label"
+                class="radio-group"
+                [(ngModel)]="question.answerValue"
+            >
+                    <mat-radio-button
+                        class="radio-button"
+                        *ngFor="let proposition of question.propositions"
+                        [value]="proposition.value"
+                    >
+                        {{proposition.text}}
+                    </mat-radio-button>
+            </mat-radio-group>
         </ng-template>
 
     </card-questions>
