@@ -24,6 +24,7 @@ export class DolphinQuizzComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('dolphinQuizz', this.dolphinQuizz);
   }
 
   onGetDolphinScore() {

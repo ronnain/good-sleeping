@@ -47,7 +47,7 @@ const trueFalsePropistions = [
 ];
 
 questions.forEach(question => {
-    question.propositions = [trueFalsePropistions];
+    question.propositions = [...trueFalsePropistions];
 });
 
 
