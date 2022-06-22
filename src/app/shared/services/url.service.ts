@@ -14,6 +14,7 @@ export class UrlService {
     noPopupPage = [
         "articles/test-severite-insomnie",
         "articles/test-depistage-apnee-sommeil",
+        "articles/test-chronotype-annimal",
         "bonus",
         "mentions",
         "contact",

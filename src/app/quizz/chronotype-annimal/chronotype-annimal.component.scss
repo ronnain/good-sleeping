@@ -1,10 +1,17 @@
-.dolphinQuizz {
-    &__more-info {
-        font-style: italic;
+.annimalQuizz {
+
+    img {
+        max-height: 500px;
     }
 
-    .iconEnd {
-        width: 100px;
-        height: 100px;
-    }
+    &__book-link {
+        color: var(--link-color);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--link-color-hover);
+          }
+      }
+
+
 }

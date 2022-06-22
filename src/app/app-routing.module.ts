@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'articles/test-severite-insomnie', component: InsomniaSeverityIndexComponent},
   {path: 'articles/test-depistage-apnee-sommeil', component: SahosComponent},
   {path: 'articles/test-chronotype', component: HorneOstbergComponent},
-  {path: 'articles/test-chronotype-annimal', component: ChronotypeAnnimalComponent},
+  {path: 'articles/test-chronotype-animal', component: ChronotypeAnnimalComponent},
   {path: 'articles/:articleName', component: ArticleComponent},
   {path: 'a-propos', component: MeComponent},
   {path: 'bonus', component: LandingPageComponent},
