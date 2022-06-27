@@ -28,14 +28,14 @@ export class BiorythmeQuizzComponent implements OnInit {
 
   onGetDolphinScore() {
     this.score = this.biorythmeQuizz.reduce((a,c) => a + c.answerValue , 0);
-    this.biorythmeQuizzComplet.emit([this.getAnnimal(), this.score ]);
+    this.biorythmeQuizzComplet.emit([this.getAnimal(), this.score ]);
   }
 
   onPrevious() {
     this.currentIndex--;
   }
 
-  getAnnimal() {
+  getAnimal() {
     if (this.score < 32) {
       return Biorythme.Lion;
     }

@@ -26,12 +26,12 @@ import { RadioGroupComponent } from './shared/radio-group/radio-group.component'
 import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
 import { ArticlesModule } from '../articles/articles.module';
 import { QuizzProblemFormComponent } from './shared/quizz-problem-form/quizz-problem-form.component';
-import { ChronotypeAnnimalComponent } from './chronotype-annimal/chronotype-annimal.component';
+import { ChronotypeAnimalComponent } from './chronotype-annimal/chronotype-animal.component';
 import { DolphinQuizzComponent } from './chronotype-annimal/dolphin-quizz/dolphin-quizz.component';
 import { BiorythmeQuizzComponent } from './chronotype-annimal/biorythme-quizz/biorythme-quizz.component';
 import { IsAnswerSelectedPipe } from './shared/card-quizz/card-answer-selected.pipe';
-import { AnnimalPicturePipe } from './chronotype-annimal/biorythme-quizz/annimal-picture.pipe';
-import { AnnimalPipe } from './chronotype-annimal/biorythme-quizz/annimal.pipe';
+import { AnimalPicturePipe } from './chronotype-annimal/biorythme-quizz/animal-picture.pipe';
+import { AnnimalPipe } from './chronotype-annimal/biorythme-quizz/animal.pipe';
 
 
 @NgModule({
@@ -67,10 +67,10 @@ import { AnnimalPipe } from './chronotype-annimal/biorythme-quizz/annimal.pipe';
         CardQuizzComponent,
         IsAnswerSelectedPipe,
         QuizzProblemFormComponent,
-        ChronotypeAnnimalComponent,
+        ChronotypeAnimalComponent,
         DolphinQuizzComponent,
         BiorythmeQuizzComponent,
-        AnnimalPicturePipe,
+        AnimalPicturePipe,
         AnnimalPipe
     ],
     providers: [],

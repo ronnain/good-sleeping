@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Biorythme } from '../biorythme.type';
 
 @Pipe({
-    name: 'annimal'
+    name: 'animal'
 })
 
 export class AnnimalPipe implements PipeTransform {

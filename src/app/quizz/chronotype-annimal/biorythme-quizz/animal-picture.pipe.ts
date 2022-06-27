@@ -5,15 +5,15 @@ import { Biorythme } from '../biorythme.type';
     name: 'annimalPicture'
 })
 
-export class AnnimalPicturePipe implements PipeTransform {
+export class AnimalPicturePipe implements PipeTransform {
     transform(score: number): string {
         if (score < 32) {
-            return "assets/icons/bioryhtme-annimals/lion.svg";
+            return "assets/icons/bioryhtme-animals/lion.svg";
           }
           if (score < 47) {
-            return "assets/icons/bioryhtme-annimals/bear.svg";
+            return "assets/icons/bioryhtme-animals/bear.svg";
           }
 
-          return "assets/icons/bioryhtme-annimals/wolf.svg";
+          return "assets/icons/bioryhtme-animals/wolf.svg";
     }
 }
