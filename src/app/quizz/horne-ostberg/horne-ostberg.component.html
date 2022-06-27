@@ -39,25 +39,23 @@
 
             <h2>Passe le test de vespéralité et matinalité</h2>
 
-            <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" (quizzComplete)="isQuizzCompleted = $event">
-                <div class="extra" questionContent *ngIf="!isQuizzCompleted">
-
+            <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" [questionTpl]="chronotypeQuestionTpl" (quizzComplete)="isQuizzCompleted = $event">
+                <ng-template #chronotypeQuestionTpl let-question>
                     <div>
                         <mat-radio-group
                           aria-labelledby="radio-group-label"
                           class="radio-group"
-                          [(ngModel)]="quizz[currentIndex].answerValue">
+                          [(ngModel)]="question.answerValue">
                           <mat-radio-button
                             class="radio-button"
-                            *ngFor="let proposition of quizz[currentIndex].propositions"
+                            *ngFor="let proposition of question.propositions"
                             [value]="proposition.value"
                           >
                               {{proposition.text}}
                           </mat-radio-button>
                       </mat-radio-group>
                     </div>
-
-                </div>
+                </ng-template>
             </card-questions>
         </div>
     </section>

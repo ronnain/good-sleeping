@@ -16,7 +16,6 @@
               <p class="questionText">{{question.description}}</p>
             </div>
 
-            <ng-content select="[questionContent]"></ng-content>
             <div class="cardQuestions__content">
               <ng-container *ngTemplateOutlet="questionTpl; context: {$implicit: question, index: index}"></ng-container>
             </div>
