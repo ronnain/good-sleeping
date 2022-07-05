@@ -13,6 +13,7 @@ import { BiorythmeScore } from './biorythme.type';
   styleUrls: ['./chronotype-animal.component.scss']
 })
 export class ChronotypeAnimalComponent implements OnInit, Page {
+  // todo set cookie or token that sub
 
   title = "Test chronotype animal";
   metaDesc = "Quizz pour connaître son chronotype animal. Es-tu un lion, un ours, un loup ou un dauphin ?";
@@ -41,7 +42,6 @@ export class ChronotypeAnimalComponent implements OnInit, Page {
   }
 
   onQuizzComplet(biorythmeScore: BiorythmeScore) {
-    console.log('biorythmeScore', biorythmeScore);
   }
 
   onNextTest() {
@@ -49,7 +49,6 @@ export class ChronotypeAnimalComponent implements OnInit, Page {
   }
 
   onGoToBook() {
-    console.log('onGoToBook');
     this.googleAnalyticsService.sendEvent(
       "goto_quand_book",
       this.TEST_CHRONOTYPE__ANIMAL_CATEGORIE,

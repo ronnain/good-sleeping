@@ -1,4 +1,3 @@
-<!-- TODO questions size, and fix it only for other tests ...&  remove popup bonus-->
 <div class="dolphinQuizz">
     <card-questions
         [cardQuestions]="dolphinQuizz"
@@ -36,7 +35,7 @@
     </div>
     <div class="cardFooterActionBar">
         <button mat-button color="primary" (click)="onPrevious()">Retour</button>
-        <button mat-button color="primary" (click)="onNext()" [disabled]="isQuizzCompleted">Suivant</button>
+        <button mat-button color="primary" (click)="onNext()" [disabled]="true">Suivant</button>
     </div>
 </ng-template>
 

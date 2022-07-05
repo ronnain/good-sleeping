@@ -62,6 +62,16 @@
 
     <section>
         <div class="container article">
+            <div class="alert alert-info" role="alert">
+                Es-tu un lion, un ours, un loup ou bien un dauphin ?
+                Un second test est disponible pour découvrir son chronotype animal.
+                <a routerLink="articles/test-chronotype">Voir le test.</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container article">
             <h2>Obtiens ton résultat</h2>
 
             <quizz-mail-stepper (onShowResult)="onGetScore()" (reset)="onReset()">
