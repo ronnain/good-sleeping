@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MobileService } from 'src/app/shared/services/mobile.service';
+import { UrlService } from 'src/app/shared/services/url.service';
 import { completeQuizz } from '../binary-quizz/animations/complete.animation';
 
 @Component({
@@ -23,9 +24,20 @@ export class CardQuizzComponent implements OnInit {
 
   @Output() currentIndexChange = new EventEmitter<number>();
 
+  @Input() disabled: boolean;
+
+  @Input() handleSubribeCreation: boolean = false;
+
+
   get isQuizzCompleted(): boolean {
     return this.currentIndex === this.cardQuestions.length;
   }
+
+  get needToSubscribe(): boolean {
+    return this.handleSubribeCreation && (!this.urlService.skipCreation || !this.userSubcribed);
+  }
+
+  userSubcribed: boolean = false;
 
   @Output() quizzComplete = new EventEmitter<boolean>();
 
@@ -49,7 +61,8 @@ export class CardQuizzComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
-    private mobileService: MobileService
+    private mobileService: MobileService,
+    private urlService: UrlService
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -106,6 +119,10 @@ export class CardQuizzComponent implements OnInit {
     if (!this.animationStarts) {
       this.isAnimationDone = true;
     }
+  }
+
+  onSubcribe() {
+    this.userSubcribed = true;
   }
 
 }

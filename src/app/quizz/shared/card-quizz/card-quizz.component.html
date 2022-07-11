@@ -1,4 +1,4 @@
-<div class="questionsBlock">
+<div class="questionsBlock" [ngClass]="{'spaceForEmailForm': isQuizzCompleted && needToSubscribe}">
 
     <div
       *ngFor="let question of cardQuestions; let index = index;"
@@ -22,13 +22,13 @@
 
             <div class="cardFooterActionBar">
               <button mat-button color="primary" (click)="onPrevious()" [disabled]="!currentIndex">Retour</button>
-              <button mat-raised-button color="primary" (click)="onNext()" [disabled]="!(question.answerValue | isAnswerSelected)">Suivant</button>
+              <button mat-raised-button color="primary" (click)="onNext()" [disabled]="disabled || !(question.answerValue | isAnswerSelected)">Suivant</button>
             </div>
         </div>
     </div>
 
-    <div @completeQuizz class="cardQuestions cardValidation" *ngIf="isQuizzCompleted">
-      <ng-container *ngTemplateOutlet="quizzCompleteTpl ? quizzCompleteTpl : defaultQuizzComplete;"></ng-container>
+    <div @completeQuizz *ngIf="isQuizzCompleted" class="cardQuestions cardValidation" [ngClass]="{'subscribeStep': needToSubscribe}">
+      <ng-container *ngTemplateOutlet="needToSubscribe ? needToSubscribeTpl : (quizzCompleteTpl ? quizzCompleteTpl : defaultQuizzComplete);"></ng-container>
     </div>
 
 </div>
@@ -40,4 +40,12 @@
       <button mat-button color="primary" (click)="onPrevious()">Retour</button>
       <button mat-button color="primary" (click)="onNext()" [disabled]="true">Suivant</button>
     </div>
+</ng-template>
+
+<ng-template #needToSubscribeTpl>
+  <p class="textEnd">Dernière étape avant d'obtenir ton résultat.</p>
+  <div class="cardQuestions__subscribeStep__icon"><mat-icon>mail</mat-icon></div>
+  <div class="cardQuestions__subscribeStep__email-form">
+    <app-email-form (submitEmail)="onSubcribe();"></app-email-form>
+  </div>
 </ng-template>

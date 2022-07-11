@@ -5,6 +5,7 @@
         [quizzCompleteTpl]="isUserADolphin ? isDolphinTpl : notDolphinTpl"
         [(currentIndex)]="currentDolphinIndex"
         (quizzComplete)="onGetScore()"
+        [handleSubribeCreation]="true"
     >
         <ng-template #dolphinQuestionTpl let-question>
             <mat-radio-group

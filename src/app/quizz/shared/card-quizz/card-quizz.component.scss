@@ -9,6 +9,11 @@ $box-height: 525px ;
 .questionsBlock {
     height: $block-height;
     overflow: hidden;
+    transition: height 0.3s ease-in-out;
+
+    &.spaceForEmailForm {
+        height: calc(#{$box-height} + 150px);
+    }
 }
 
 .cardQuestions {
@@ -52,6 +57,27 @@ $box-height: 525px ;
             }
         }
     }
+    &.subscribeStep {
+        height: auto;
+    }
+
+    &__subscribeStep {
+        &__email-form {
+            width: 100%;
+            padding-bottom: 2rem;
+        }
+        &__icon {
+            width: 100%;
+            text-align: center;
+            .material-icons {
+                font-size: 200px;
+                width: 200px;
+                height: 200px;
+                color: var(--main-text-color);
+            }
+        }
+    }
+
 }
 
 .cardQuestions:hover {

@@ -7,7 +7,19 @@ declare const gtag: Function;
 @Injectable({providedIn: 'root'})
 export class UrlService {
 
-    skipCreation: boolean = false; // todo set and add in url when set to true
+    SKIP_SUBSCRIBE_CREATION: string = "SKIP_SUBSCRIBE_CREATION";
+
+    _skipCreation: boolean = false;
+    set skipCreation(skipCreation: boolean) {
+        this._skipCreation = skipCreation;
+        localStorage.setItem(this.SKIP_SUBSCRIBE_CREATION, JSON.stringify(skipCreation));
+    }
+
+    get skipCreation(): boolean {
+        return this._skipCreation || JSON.parse(localStorage.getItem(this.SKIP_SUBSCRIBE_CREATION));
+    }
+
+
     skipPopup: boolean = false;
     isBrowser: boolean = false;
 

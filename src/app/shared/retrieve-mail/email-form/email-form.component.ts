@@ -17,6 +17,8 @@ export class EmailFormComponent implements OnInit {
 
   @Output() mailStoredSuccess = new EventEmitter<boolean>();
 
+  @Output() submitEmail = new EventEmitter<void>();
+
   email: string;
   agreement: boolean = false;
   showValidation: boolean = false;
@@ -45,6 +47,7 @@ export class EmailFormComponent implements OnInit {
     this.loading = true;
     this.form = form;
     this.bounceCreation.next();
+    this.submitEmail.next();
   }
 
   private storeContact() {
