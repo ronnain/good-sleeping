@@ -18,7 +18,7 @@ export class ChronotypeAnimalComponent implements OnInit, Page {
   metaDesc = "Quizz pour connaître son chronotype animal. Es-tu un lion, un ours, un loup ou un dauphin ?";
   sharedArticleImg = environment.serverConfig.imgPath + 'test-chronotype-animal/article/' + 'img1/xm.jpg';
 
-  articleId = environment.quizz.sahosId; // todo change that !
+  articleId = environment.quizz.chronotypeAnimal;
   articleName: string = 'test-chronotype-animal';
   articleCategories: CategoryNameKeys[] = [CategoryNameEnum.quizz];
 

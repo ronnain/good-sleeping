@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
-import { debounceTime, take } from 'rxjs/operators';
+import { debounceTime, switchMap } from 'rxjs/operators';
 import { GoogleAnalyticsService } from '../../directives/google-analytics.service';
 import { MailService } from '../../services/mail.service';
 import { UrlService } from '../../services/url.service';
@@ -36,9 +36,25 @@ export class EmailFormComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.contactSubscription = this.bounceCreation.pipe(debounceTime(800)).subscribe(data => {
-      this.storeContact();
+    this.contactSubscription = this.bounceCreation.pipe(debounceTime(800)).subscribe(() => {
+      this.mailService.storeContact(this.form.value.firstName, this.form.value.email);
     });
+    this.bounceCreation.pipe(
+      debounceTime(800),
+      switchMap(() => {
+        return this.mailService.storeContact(this.form.value.firstName, this.form.value.email);
+      })
+      ).subscribe(
+        () => {
+          this.showValidation = true;
+          this.mailStoredSuccess.next(true);
+          this.loading = false;
+        },
+        () => {
+          this.loading = false;
+          this.failSave = true;
+        }
+      )
   }
 
   onSubmit(form: NgForm) {
@@ -48,26 +64,6 @@ export class EmailFormComponent implements OnInit {
     this.form = form;
     this.bounceCreation.next();
     this.submitEmail.next();
-  }
-
-  private storeContact() {
-
-    this.mailService.createContact(this.form.value.firstName, this.form.value.email.toLowerCase()).pipe(take(1)).subscribe(
-      data => {
-        if(data['success'] === true) {
-          this.showValidation = true;
-          this.mailStoredSuccess.next(true);
-          this.urlService.setSkipCreation(true);
-          this.mailService.$isMailSotred.next(true);
-        } else {
-          this.failSave = true;
-        }
-        this.loading = false;
-      },
-      err => {
-        this.loading = false;
-        this.failSave = true;
-      });
   }
 
   ngDestroy() {

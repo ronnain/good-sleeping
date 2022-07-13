@@ -34,7 +34,7 @@ export class CardQuizzComponent implements OnInit {
   }
 
   get needToSubscribe(): boolean {
-    return this.handleSubribeCreation && (!this.urlService.skipCreation || !this.userSubcribed);
+    return this.handleSubribeCreation && !this.urlService.skipCreation && !this.userSubcribed;
   }
 
   userSubcribed: boolean = false;

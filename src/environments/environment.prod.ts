@@ -16,6 +16,7 @@ export const environment = {
   quizz: {
     insomniaSeverityId: 35,
     sahosId: 53,
-    horneOstbergId: 63
+    horneOstbergId: 63,
+    chronotypeAnimal: 74
   }
 };

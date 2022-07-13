@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { BehaviorSubject, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { UrlService } from './url.service';
@@ -31,7 +31,28 @@ export class MailService {
     private urlService: UrlService
     ) {}
 
-  createContact(firstName, mail) {
+  storeContact(firstName: string, mail: string): Observable<boolean> {
+    return new Observable(observer => {
+      this.createContact(firstName, mail.toLowerCase()).subscribe(
+        data => {
+          if(data['success'] === true) {
+            this.urlService.setSkipCreation(true);
+            this.$isMailSotred.next(true);
+            observer.next(true);
+            observer.complete();
+          } else {
+            observer.next(false);
+            observer.complete();
+          }
+        },
+        err => {
+          observer.error(err);
+          observer.complete();
+        });
+    });
+  }
+
+  createContact(firstName: string, mail: string) {
     if (this.urlService.skipCreation) {
       return of(true);
     }
@@ -45,9 +66,9 @@ export class MailService {
     };
     const url = environment.serverConfig.serverURL + '?method=createContact';
     return this.http.post<any>(url, body, this.httpOptions)
-    .pipe(
-      catchError(this.handleError)
-    );
+      .pipe(
+        catchError(this.handleError)
+      );
 
   }
 

@@ -20,7 +20,8 @@ export const environment = {
   quizz: {
     insomniaSeverityId: 57,
     sahosId: 58,
-    horneOstbergId: 1
+    horneOstbergId: 1,
+    chronotypeAnimal: 74
   }
 };
 /*
