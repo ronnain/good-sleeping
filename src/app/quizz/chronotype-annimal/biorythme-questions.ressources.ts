@@ -44,7 +44,7 @@ export const DOLPHIN_QUESTIONS: CardQuestionDTO[] = [
     ]
   },
   {
-    description: "J'ai éré déclaré(e) insommniaque par un médecin (ou je me suis auto-diagnostiqué(e)).",
+    description: "J'ai été déclaré(e) insommniaque par un médecin (ou je me suis auto-diagnostiqué(e)).",
     propositions: [
       { text: "Vrai", value: 1 },
       { text: "Faux", value: 0 }
@@ -58,7 +58,7 @@ export const DOLPHIN_QUESTIONS: CardQuestionDTO[] = [
     ]
   },
   {
-    description: "Au lieu de m'endormir, je rumine le passé et je m'insquiète pour l'avenir.",
+    description: "Au lieu de m'endormir, je rumine le passé et je m'inquiète pour l'avenir.",
     propositions: [
       { text: "Vrai", value: 1 },
       { text: "Faux", value: 0 }
