@@ -1,4 +1,5 @@
 import { HeaderService } from '../shared/services/header.service';
+import { CategoryNameKeys } from './category.type';
 
 export interface Contact {
     id?: string;
@@ -18,7 +19,8 @@ export interface Article{
     imgTitle: string,
     articleName: string,
     displayNewArticleBadge?: boolean
-    category: 'all' | 'quizz' | 'hygiene' | 'troubles' | 'other'
+    categories: CategoryNameKeys[], // not an array, it is a string separate with ","
+    author: string
 }
 
 export class MyArticle implements Article{
@@ -31,9 +33,10 @@ export class MyArticle implements Article{
     img: string;
     imgTitle: string;
     articleName: string;
-    category: 'all' | 'quizz' | 'hygiene' | 'troubles' | 'other';
+    categories: CategoryNameKeys[];
+    author: string;
 
-    constructor(id: number, title: string, metaDesc: string, description: string, datePublished: string, dateModified: string, img: string, imgTitle: string, articleName: string, category) {
+    constructor(id: number, title: string, metaDesc: string, description: string, datePublished: string, dateModified: string, img: string, imgTitle: string, articleName: string, categories: any, author: string) {
         this.id = id;
         this.title = title;
         this.metaDesc = metaDesc;
@@ -43,7 +46,8 @@ export class MyArticle implements Article{
         this.img = img;
         this.imgTitle = imgTitle;
         this.articleName = articleName;
-        this.category = category;
+        this.categories = categories?.split(',');
+        this.author = author;
     }
 }
 

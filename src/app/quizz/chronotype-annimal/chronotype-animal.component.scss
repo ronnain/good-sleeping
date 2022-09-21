@@ -1,0 +1,17 @@
+.animalQuizz {
+
+    img {
+        max-height: 500px;
+    }
+
+    &__book-link {
+        color: var(--link-color);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--link-color-hover);
+          }
+      }
+
+
+}

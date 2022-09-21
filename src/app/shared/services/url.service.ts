@@ -1,19 +1,32 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 declare const gtag: Function;
 @Injectable({providedIn: 'root'})
 export class UrlService {
 
-    skipCreation: boolean = false;
+    SKIP_SUBSCRIBE_CREATION: string = "SKIP_SUBSCRIBE_CREATION";
+
+    _skipCreation: boolean = false;
+    set skipCreation(skipCreation: boolean) {
+        this._skipCreation = skipCreation;
+        localStorage.setItem(this.SKIP_SUBSCRIBE_CREATION, JSON.stringify(skipCreation));
+    }
+
+    get skipCreation(): boolean {
+        return this._skipCreation || JSON.parse(localStorage.getItem(this.SKIP_SUBSCRIBE_CREATION));
+    }
+
+
     skipPopup: boolean = false;
     isBrowser: boolean = false;
 
     noPopupPage = [
         "articles/test-severite-insomnie",
         "articles/test-depistage-apnee-sommeil",
+        "articles/test-chronotype-animal",
         "bonus",
         "mentions",
         "contact",
@@ -22,6 +35,7 @@ export class UrlService {
 
     constructor(
         private router: Router,
+        private _route: ActivatedRoute,
         @Inject(PLATFORM_ID) platformId: Object,
         ) {
 
@@ -43,6 +57,10 @@ export class UrlService {
         })
     }
 
+    setSkipCreation(value: boolean) {
+        this.skipCreation = value;
+    }
+
     private checkSkipPopup(event) {
 
         if (/^\/admin/.test(event.url)) {
@@ -56,7 +74,9 @@ export class UrlService {
     }
 
     private checkSkipCreation() {
-        this.skipCreation = false;
+        if (this.skipCreation) {
+            return;
+        }
 
         const QueryString = window.location.search;
         const urlParams = new URLSearchParams(QueryString);
@@ -66,5 +86,4 @@ export class UrlService {
             return;
         }
     }
-
 }

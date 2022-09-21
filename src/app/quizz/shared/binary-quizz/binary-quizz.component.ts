@@ -31,6 +31,15 @@ export class BinaryQuizzComponent implements OnInit {
     return this._currentIndex;
   }
 
+  @Input() set restart(value: number) {
+    this._currentIndex = 0;
+    this.sideMovement = 0;
+    this.backMovement = 0;
+    this.isAnimationDone = true;
+    this.animationStarts = 0;
+    this.hideBtnsChoice = false;
+  }
+
   private _currentIndex: number = 0;
   sideMovement: number = 0;
   backMovement: number = 0;

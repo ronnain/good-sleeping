@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { ArticlesComponent } from './articles/articles.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
@@ -25,8 +24,8 @@ import { QuizzModule } from './quizz/quizz.module';
 import { ShareBtnsModule } from './social-network-share-buttons/share-btns.module';
 import { SharedModule } from './shared/shared.module';
 import { LinkComponentComponent } from './shared/component/link-component/link-component.component';
-import { ArticlesFromCategoryPipe } from './articles/articles-from-category.pipe';
 import { CoachingComponent } from './coaching/coaching.component';
+import { ArticlesModule } from './articles/articles.module';
 
 
 @NgModule({
@@ -34,7 +33,6 @@ import { CoachingComponent } from './coaching/coaching.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    ArticlesComponent,
     ArticleComponent,
     LandingPageComponent,
     UnsubcribeComponent,
@@ -44,7 +42,6 @@ import { CoachingComponent } from './coaching/coaching.component';
     MeComponent,
     CookiesHandlerComponent,
     LinkComponentComponent,
-    ArticlesFromCategoryPipe,
     CoachingComponent
   ],
   imports: [
@@ -60,7 +57,8 @@ import { CoachingComponent } from './coaching/coaching.component';
     BrowserTransferStateModule,
     QuizzModule,
     ShareBtnsModule,
-    SharedModule
+    SharedModule,
+    ArticlesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,6 +10,18 @@ declare const gtag: Function;
 export class GoogleAnalyticsService {
    isBrowser;
 
+
+   PROBLEM_STORED_FROM_MAIL_RETRIEVER_EVENT = "PROBLEM_STORED_EVENT";
+   PROBLEM_STORED_FROM_QUIZZ_EVENT = "PROBLEM_STORED_EVENT";
+   PROBLEM_STORED_FROM_POPUP_EVENT = "PROBLEM_STORED_EVENT";
+   SUBMIT_PROBLEM_CATEGORIE = "SUMBIT_PROBLEM_CATEGORIE";
+
+   SUB_MAIL_RETRIEVER_EVENT = "SUB_EVENT";
+   SUB_FROM_QUIZZ_EVENT = "SUB_EVENT";
+   SUB_FROM_POPUP_EVENT = "SUB_EVENT";
+   SUB_CATEGORIE = "SUB_CATEGORIE";
+
+
   constructor(
       @Inject(PLATFORM_ID) platformId: Object
       ) {
@@ -31,6 +43,7 @@ export class GoogleAnalyticsService {
         {
             event_category: category,
             event_label: label,
+            page: window.location.pathname,
             value: value
         }
     );

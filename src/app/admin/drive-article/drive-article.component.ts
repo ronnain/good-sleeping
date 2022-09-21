@@ -3,6 +3,9 @@ import { ActivatedRoute, Router, NavigationStart, NavigationEnd, NavigationError
 import { Subscription } from 'rxjs';
 import { DriveService } from 'src/app/shared/services/drive.service';
 import { Article, ArticleConfig, MyArticle } from 'src/app/modeles/interfaces.type';
+import { CategoryNameEnum, CategoryNameKeys } from 'src/app/modeles/category.type';
+import { CATEGORIES } from 'src/app/modeles/categories-list.type';
+import { Categories } from 'src/app/modeles/categories.dto';
 
 @Component({
   selector: 'app-drive-article',
@@ -11,7 +14,7 @@ import { Article, ArticleConfig, MyArticle } from 'src/app/modeles/interfaces.ty
 })
 export class DriveArticleComponent implements OnInit {
   articleName:string;
-  article: MyArticle = new MyArticle(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+  article: MyArticle = new MyArticle(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
   articleConfig: ArticleConfig = {id: undefined, idArticle: undefined, img: []};
   nbImg: number;
   articleCreation: boolean = true; // use for published a new article at a specific time
@@ -20,6 +23,7 @@ export class DriveArticleComponent implements OnInit {
 
   defaultTitle: string;
   defaultMetaDescription: string;
+  categories: Categories[] = JSON.parse(JSON.stringify(CATEGORIES));
   showValidation: boolean = false;
   imgListFail = [];
 
@@ -30,6 +34,7 @@ export class DriveArticleComponent implements OnInit {
   constructor(private _Activatedroute:ActivatedRoute, private driveService: DriveService, private router: Router) { }
 
   ngOnInit(): void {
+    this.initializeCategories();
     this.getArticleName();
     this.article.articleName = this.articleName;
     this.getArticleInformation();
@@ -52,9 +57,11 @@ export class DriveArticleComponent implements OnInit {
           this.router.navigate(['/admin']);
         }
         if (data.article) {
+          data.article.categories = data.article.categories.split(',');
           this.article = data.article;
           this.defaultTitle = this.article.title;
           this.defaultMetaDescription = this.article.metaDesc;
+          this.setCategories();
         }
         this.article.articleName = this.articleName;
         if (data.articleConfig) {
@@ -78,6 +85,8 @@ export class DriveArticleComponent implements OnInit {
     this.loading = true;
     const metaDesc = this.article.metaDesc;
     const title = this.article.title;
+
+    this.setArticleSelectedCategories();
 
     this.driveService.updateArticle(this.article, this.articleConfig, this.articleCreation, title, metaDesc, updateTextOnly).subscribe(
       data => {
@@ -132,6 +141,25 @@ export class DriveArticleComponent implements OnInit {
   refreshTitleAndMetaDesc() {
     this.article.title = this.defaultTitle;
     this.article.metaDesc = this.defaultMetaDescription;
+  }
+
+  setArticleSelectedCategories() {
+    const selectedCategories = this.categories.filter(category => category.active).map(category => category.categoryName);
+    this.article.categories = selectedCategories;
+
+    if (!this.article.categories.length) {
+      this.article.categories.push(CategoryNameEnum.other);
+    }
+  }
+
+  private setCategories() {
+    this.categories.forEach(category => {
+      category.active = this.article.categories.includes(category.categoryName);
+    });
+  }
+
+  private initializeCategories() {
+    this.categories.shift();
   }
 
   ngOnDestroy() {

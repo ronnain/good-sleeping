@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MobileService } from '../../services/mobile.service';
+import { MobileService } from '../../../services/mobile.service';
 
 @Component({
   selector: 'ebook-adds',

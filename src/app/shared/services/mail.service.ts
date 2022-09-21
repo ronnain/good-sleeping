@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { UrlService } from './url.service';
@@ -14,6 +14,11 @@ export class MailService {
   pseudo;
   token;
 
+  userMail: string;
+
+  $isMailSotred: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  $isProblemSotred: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -23,22 +28,60 @@ export class MailService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private urlService: UrlService) { }
+    private urlService: UrlService
+    ) {}
 
-  createContact(firstName, mail) {
+  storeContact(firstName: string, mail: string): Observable<boolean> {
+    return new Observable(observer => {
+      this.createContact(firstName, mail.toLowerCase()).subscribe(
+        data => {
+          if(data['success'] === true) {
+            this.urlService.setSkipCreation(true);
+            this.$isMailSotred.next(true);
+            observer.next(true);
+            observer.complete();
+          } else {
+            observer.next(false);
+            observer.complete();
+          }
+        },
+        err => {
+          observer.error(err);
+          observer.complete();
+        });
+    });
+  }
+
+  createContact(firstName: string, mail: string) {
     if (this.urlService.skipCreation) {
-      return new Observable();
+      return of(true);
     }
+
+    this.userMail = mail;
 
     const body = {
       "firstName" : this.capitalizeFirstLetter(firstName),
-      "mail": mail
+      "mail": mail,
+      "referer": window.location.pathname
     };
     const url = environment.serverConfig.serverURL + '?method=createContact';
     return this.http.post<any>(url, body, this.httpOptions)
-    .pipe(
-      catchError(this.handleError)
-    );
+      .pipe(
+        catchError(this.handleError)
+      );
+
+  }
+
+  storeContactProblem(message: string) {
+    const body = {
+      message,
+      "mail": this.userMail
+    };
+    const url = environment.serverConfig.serverURL + '?method=storeContactProblem';
+    return this.http.post<string>(url, body, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   sendMailToAll(objectMail, bodyMail) {

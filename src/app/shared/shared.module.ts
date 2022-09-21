@@ -7,12 +7,13 @@ import { AnimateThatDirective } from './directives/animation.directive';
 import { InserteComponentDirective } from './directives/inserte-component.directive';
 import { SwipeDirective } from './directives/swipe.directive';
 import { SafeHtmlPipe } from './pipes/safeHtmlPipe';
-import { Carousel3dComponent } from './retrieve-mail/carousel3d/carousel3d.component';
-import { EbookAddsComponent } from './retrieve-mail/ebook-adds/ebook-adds.component';
-import { EbookFormComponent } from './retrieve-mail/ebook-form/ebook-form.component';
-import { EbookPopupComponent } from './retrieve-mail/ebook-popup/ebook-popup.component';
+import { Carousel3dComponent } from './retrieve-mail/popup/carousel3d/carousel3d.component';
+import { EbookAddsComponent } from './retrieve-mail/popup/ebook-adds/ebook-adds.component';
+import { EbookFormComponent } from './retrieve-mail/popup/ebook-form/ebook-form.component';
+import { EbookPopupComponent } from './retrieve-mail/popup/ebook-popup/ebook-popup.component';
 import { EmailFormComponent } from './retrieve-mail/email-form/email-form.component';
 import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
+import { ProblemFormComponent } from './retrieve-mail/problem-form/problem-form.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
         EbookFormComponent,
         EbookPopupComponent,
         EmailFormComponent,
-        CommentComponent
+        CommentComponent,
+        ProblemFormComponent
     ],
     declarations: [
         SwipeDirective,
@@ -46,7 +48,8 @@ import { RetrieveMailComponent } from './retrieve-mail/retrieve-mail.component';
         EbookFormComponent,
         EbookPopupComponent,
         EmailFormComponent,
-        CommentComponent
+        CommentComponent,
+        ProblemFormComponent
 
     ],
     providers: [],

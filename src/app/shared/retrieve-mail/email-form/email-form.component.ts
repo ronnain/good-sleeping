@@ -1,6 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
+import { GoogleAnalyticsService } from '../../directives/google-analytics.service';
 import { MailService } from '../../services/mail.service';
+import { UrlService } from '../../services/url.service';
 
 @Component({
   selector: 'app-email-form',
@@ -9,44 +13,61 @@ import { MailService } from '../../services/mail.service';
 })
 export class EmailFormComponent implements OnInit {
 
-  @Output() mailStored = new EventEmitter<boolean>();
+  @Input() fromComponent: string;
+
+  @Output() mailStoredSuccess = new EventEmitter<boolean>();
+
+  @Output() submitEmail = new EventEmitter<void>();
 
   email: string;
   agreement: boolean = false;
   showValidation: boolean = false;
   failSave: boolean = false;
   loading: boolean = false;
+  form: NgForm;
 
-  constructor(private mailService: MailService) { }
+  bounceCreation: Subject<void> = new Subject<void>();
+  contactSubscription: Subscription;
+
+  constructor(
+    private mailService: MailService,
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private urlService: UrlService
+    ) { }
 
   ngOnInit(): void {
+    this.contactSubscription = this.bounceCreation.pipe(debounceTime(800)).subscribe(() => {
+      this.mailService.storeContact(this.form.value.firstName, this.form.value.email);
+    });
+    this.bounceCreation.pipe(
+      debounceTime(800),
+      switchMap(() => {
+        return this.mailService.storeContact(this.form.value.firstName, this.form.value.email);
+      })
+      ).subscribe(
+        () => {
+          this.showValidation = true;
+          this.mailStoredSuccess.next(true);
+          this.loading = false;
+        },
+        () => {
+          this.loading = false;
+          this.failSave = true;
+        }
+      )
   }
 
   onSubmit(form: NgForm) {
     this.showValidation = false;
     this.failSave = false;
     this.loading = true;
-
-    this.mailService.createContact(form.value.firstName, form.value.email.toLowerCase()).subscribe(
-      data => {
-        if(data.success === true) {
-          this.showValidation = true;
-          this.onMailStored();
-        } else {
-          this.failSave = true;
-        }
-        this.loading = false;
-      },
-      err => {
-        this.loading = false;
-        this.failSave = true;
-      });
+    this.form = form;
+    this.bounceCreation.next();
+    this.submitEmail.next();
   }
 
-  onMailStored() {
-    setTimeout(()=>{
-      this.mailStored.emit(true);
-    }, 4000);
+  ngDestroy() {
+    this.contactSubscription?.unsubscribe();
   }
 
 }

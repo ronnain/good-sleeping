@@ -1,36 +1,45 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MobileService } from 'src/app/shared/services/mobile.service';
+import { UrlService } from 'src/app/shared/services/url.service';
 import { completeQuizz } from '../binary-quizz/animations/complete.animation';
 
 @Component({
   selector: 'card-questions',
   templateUrl: './card-quizz.component.html',
   styleUrls: ['./card-quizz.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [
     completeQuizz
   ]
 })
 export class CardQuizzComponent implements OnInit {
 
+
   @Input() cardQuestions: any[];
+
+  @Input() questionTpl: TemplateRef<any> | null;
+
+  @Input() quizzCompleteTpl: TemplateRef<any> | null;
 
   @Output() currentIndexChange = new EventEmitter<number>();
 
+  @Input() disabled: boolean;
 
-  @Input() set isQuizzCompleted(value: boolean) {
-    this._isQuizzCompleted = value;
-    this.isQuizzCompletedChange.emit(value);
+  @Input() handleSubribeCreation: boolean = false;
+
+
+  get isQuizzCompleted(): boolean {
+    return this.currentIndex === this.cardQuestions.length;
   }
 
-  get isQuizzCompleted() {
-    return this._isQuizzCompleted;
+  get needToSubscribe(): boolean {
+    return this.handleSubribeCreation && !this.urlService.skipCreation && !this.userSubcribed;
   }
 
-  private _isQuizzCompleted:boolean = false;
+  userSubcribed: boolean = false;
 
-  @Output() isQuizzCompletedChange = new EventEmitter<boolean>();
-
+  @Output() quizzComplete = new EventEmitter<boolean>();
 
   @Input() set currentIndex(value: number) {
     this._currentIndex = value;
@@ -52,7 +61,8 @@ export class CardQuizzComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
-    private mobileService: MobileService
+    private mobileService: MobileService,
+    private urlService: UrlService
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -66,7 +76,10 @@ export class CardQuizzComponent implements OnInit {
     }
     this.sideMovement++;
     this.currentIndex++;
-    this.isQuizzCompleted = this.currentIndex === this.cardQuestions.length;
+
+    if (this.isQuizzCompleted) {
+      this.quizzComplete.emit(true);
+    }
   }
 
   onPrevious() {
@@ -74,12 +87,16 @@ export class CardQuizzComponent implements OnInit {
       return;
     }
 
+    if (this.isQuizzCompleted) {
+      this.quizzComplete.emit(false);
+    }
+
     this.currentIndex--;
-    this.isQuizzCompleted = this.currentIndex === this.cardQuestions.length;
 
     this.backMovement += 1;
 
     this.hideBtnsChoice =  this.currentIndex >= this.cardQuestions.length;
+
   }
 
   onChoice(choice: boolean) {
@@ -102,6 +119,10 @@ export class CardQuizzComponent implements OnInit {
     if (!this.animationStarts) {
       this.isAnimationDone = true;
     }
+  }
+
+  onSubcribe() {
+    this.userSubcribed = true;
   }
 
 }

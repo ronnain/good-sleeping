@@ -12,5 +12,11 @@ export const environment = {
     indexHtmlFile : "index.html",
     abolsutePathPublicHtml: "/home/gero8821/public_html/",
     port : "passenger"
+  },
+  quizz: {
+    insomniaSeverityId: 35,
+    sahosId: 53,
+    horneOstbergId: 63,
+    chronotypeAnimal: 74
   }
 };

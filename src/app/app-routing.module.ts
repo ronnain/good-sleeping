@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LegalNoticesComponent } from './legal-notices/legal-notices.component';
 import { MeComponent } from './me/me.component';
+import { ChronotypeAnimalComponent } from './quizz/chronotype-annimal/chronotype-animal.component';
 import { HorneOstbergComponent } from './quizz/horne-ostberg/horne-ostberg.component';
 import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/insomnia-severity-index.component';
 import { SahosComponent } from './quizz/sahos/sahos.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'articles/test-severite-insomnie', component: InsomniaSeverityIndexComponent},
   {path: 'articles/test-depistage-apnee-sommeil', component: SahosComponent},
   {path: 'articles/test-chronotype', component: HorneOstbergComponent},
+  {path: 'articles/test-chronotype-animal', component: ChronotypeAnimalComponent},
   {path: 'articles/:articleName', component: ArticleComponent},
   {path: 'a-propos', component: MeComponent},
   {path: 'bonus', component: LandingPageComponent},

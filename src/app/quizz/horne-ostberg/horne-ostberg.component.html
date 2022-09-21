@@ -39,26 +39,34 @@
 
             <h2>Passe le test de vespéralité et matinalité</h2>
 
-            <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" [(isQuizzCompleted)]="isQuizzCompleted">
-                <div class="extra" questionContent *ngIf="!isQuizzCompleted">
-
+            <card-questions [cardQuestions]="quizz" [(currentIndex)]="currentIndex" [questionTpl]="chronotypeQuestionTpl" (quizzComplete)="isQuizzCompleted = $event">
+                <ng-template #chronotypeQuestionTpl let-question>
                     <div>
                         <mat-radio-group
                           aria-labelledby="radio-group-label"
                           class="radio-group"
-                          [(ngModel)]="quizz[currentIndex].answerValue">
+                          [(ngModel)]="question.answerValue">
                           <mat-radio-button
                             class="radio-button"
-                            *ngFor="let proposition of quizz[currentIndex].propositions"
+                            *ngFor="let proposition of question.propositions"
                             [value]="proposition.value"
                           >
                               {{proposition.text}}
                           </mat-radio-button>
                       </mat-radio-group>
                     </div>
-
-                </div>
+                </ng-template>
             </card-questions>
+        </div>
+    </section>
+
+    <section>
+        <div class="container article">
+            <div class="alert alert-info" role="alert">
+                Es-tu un lion, un ours, un loup ou bien un dauphin ?
+                Un second test est disponible pour découvrir son chronotype animal.
+                <a routerLink="articles/test-chronotype">Voir le test.</a>
+            </div>
         </div>
     </section>
 
@@ -79,10 +87,8 @@
                 <ng-container *ngIf="isQuizzCompleted">
                     <div class="scoreDisplay">
                         <div class="resultCard">
-                            <p>Chronotype : <span class="risk">{{chronotype}} </span>
-</p>
-                            <p>Score : <span>{{score}}</span>
-</p>
+                            <p>Chronotype : <span class="risk">{{chronotype}} </span></p>
+                            <p>Score : <span>{{score}}</span></p>
                         </div>
                     </div>
                     <p>*Les interprétations de tes résultats sont disponibles ci-dessous.</p>
@@ -266,6 +272,27 @@
         <social-network-share-buttons
             [articleImg]="sharedArticleImg">
         </social-network-share-buttons>
+    </section>
+
+    <section>
+        <div class="container divMailRetrieve commonMarginTop">
+            <div class="row">
+                <div class="col commonMargin">
+                    <quizz-problem-form></quizz-problem-form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="articles">
+                    <h2 class="titleBottomLine">A lire aussi  :</h2>
+                    <app-articles [currentArticleName]="articleName" [hideDescription]="true"></app-articles>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section>

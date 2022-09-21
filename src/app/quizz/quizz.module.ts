@@ -24,6 +24,14 @@ import { HorneOstbergComponent } from './horne-ostberg/horne-ostberg.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { RadioGroupComponent } from './shared/radio-group/radio-group.component';
 import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
+import { ArticlesModule } from '../articles/articles.module';
+import { QuizzProblemFormComponent } from './shared/quizz-problem-form/quizz-problem-form.component';
+import { ChronotypeAnimalComponent } from './chronotype-annimal/chronotype-animal.component';
+import { DolphinQuizzComponent } from './chronotype-annimal/dolphin-quizz/dolphin-quizz.component';
+import { BiorythmeQuizzComponent } from './chronotype-annimal/biorythme-quizz/biorythme-quizz.component';
+import { IsAnswerSelectedPipe } from './shared/card-quizz/card-answer-selected.pipe';
+import { AnimalPicturePipe } from './chronotype-annimal/biorythme-quizz/animal-picture.pipe';
+import { AnnimalPipe } from './chronotype-annimal/biorythme-quizz/animal.pipe';
 
 
 @NgModule({
@@ -44,6 +52,7 @@ import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
         ShareBtnsModule,
         MatSelectModule,
         SharedModule,
+        ArticlesModule
     ],
     declarations: [
         InsomniaSeverityIndexComponent,
@@ -55,7 +64,14 @@ import { CardQuizzComponent } from './shared/card-quizz/card-quizz.component';
         progressRatioPipe,
         MailStepperComponent,
         HorneOstbergComponent,
-        CardQuizzComponent
+        CardQuizzComponent,
+        IsAnswerSelectedPipe,
+        QuizzProblemFormComponent,
+        ChronotypeAnimalComponent,
+        DolphinQuizzComponent,
+        BiorythmeQuizzComponent,
+        AnimalPicturePipe,
+        AnnimalPipe
     ],
     providers: [],
     exports: [

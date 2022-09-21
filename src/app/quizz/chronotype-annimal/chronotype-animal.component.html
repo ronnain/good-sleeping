@@ -1,0 +1,160 @@
+<article class="animalQuizz article">
+
+  <section>
+    <div class="container">
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb olBreadcrumb">
+          <li class="breadcrumb-item"><a href="https://sommeilprofond.fr/articles">Articles</a></li>
+          <li class="breadcrumb-item active breadcrumb-articleTitle" aria-current="page">Test chronotype, dauphin, lion, ours ou loup ?</li>
+          </ol>
+        </nav>
+
+        <h1>Es-tu un lion, un ours, un loup ou bien un dauphin ?</h1>
+
+        <picture><source media="(min-width: 1200px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype-animal/img1/article/xl.jpg">
+          <source media="(min-width: 992px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype-animal/img1/article/l.jpg">
+          <source media="(min-width: 768px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype-animal/img1/article/xm.jpg">
+          <source media="(min-width: 576px)" srcset="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype-animal/img1/article/m.jpg">
+          <img src="https://sommeilprofond.fr/sleeping-bs/img/test-chronotype-animal/img1/article/m.jpg" alt="Quizz chronotype animal" title="Quizz chronotype animal" class=" fullWidth">
+        </picture>
+
+        <p>Voici un test pour déterminer ton chronotype animal. Passe le test et découvre l’heure idéale à laquelle tu devrais te coucher et te lever.</p>
+
+        <p>Ce test vient du livre “Quand ?” écrit par le Dr. Breus. C’est un livre très remarquable qui décrit la journée idéale de chaque chronotype.</p>
+
+        <p>Il comprend une première série de 10 questions afin de déterminer si tu es un dauphin ou non. Si tu n’es pas un dauphin, il faudra cliquer sur le bouton “Continuer” pour accéder à une deuxième série de 20 questions. Elles détermineront si tu es un lion, un ours, ou bien un loup.</p>
+
+        <p>Pour répondre à une question, il te suffit de cliquer sur la réponse qui te convient le plus et de cliquer sur “Suivant”.</p>
+
+    </div>
+  </section>
+
+    <section>
+        <div class="container">
+
+            <h2>Passe le test</h2>
+
+            <app-dolphin-quizz
+              *ngIf="testIndex === 0"
+              (dolphinQuizzComplet)="onQuizzComplet($event)"
+              (nextTest)="onNextTest()"
+              >
+            </app-dolphin-quizz>
+            <app-biorythme-quizz
+              *ngIf="testIndex === 1"
+              (biorythmeQuizzComplet)="onQuizzComplet($event)">
+            </app-biorythme-quizz>
+
+        </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <!-- Dauphins -->
+
+        <h2 id="dolphin">Les dauphins</h2>
+
+        <img src="assets\icons\bioryhtme-animals\dolphin.svg"/>
+
+        <p>Lorsqu’un dauphin dort, il ne dort qu’avec la moitié de son cerveau. L’autre partie continue de gérer la nage, de vérifier qu’il est en sécurité comme lorsque le dauphin est éveillé. D’après le Dr.Breus ce comportement représente bien les insomniaques. Des personnes intelligentes et névrosées, au sommeil léger et au faible besoin en sommeil.</p>
+
+        <p>Ils représentent 10% de la population.</p>
+
+        <p>Les dauphins étaient indispensables à la survie d'un groupe. Grâce à leur sommeil léger, ils pouvaient se réveiller au moindre bruit et alerter le groupe en cas de danger.</p>
+
+        <p><strong>Heure du réveil idéal : 6 h 30</strong></p>
+
+        <p><strong>Heure du coucher idéal : 23 h 30</strong></p>
+
+        <!-- Lions -->
+
+        <h2 id="lion">Les lions</h2>
+
+        <img src="assets\icons\bioryhtme-animals\lion.svg"/>
+
+        <p>Les lions sont des chasseurs matinaux, qui règnent au sommet de la chaîne alimentaire. Cela caractérise bien les personnes matinales généralement optimistes, avec un besoin en sommeil moyen.</p>
+
+        <p>Ils représentent 10 à 20 % de la population.</p>
+
+        <p>Les lions qui se lèvent tôt, assurent le premier tour de garde du groupe afin de la protéger d'éventuels prédateurs.</p>
+
+        <p><strong>Heure du réveil idéal : 5 h 30</strong></p>
+        <p><strong>Heure du coucher idéal : 22 h 30</strong></p>
+
+        <!-- Ours -->
+
+        <h2 id="bear">Les ours</h2>
+
+        <img src="assets\icons\bioryhtme-animals\bear.svg"/>
+
+        <p>Les ours sont des vagabonds très adaptables, qui dorment beaucoup et chassent à n’importe quel moment de la journée. Cela correspond bien aux personnes qui aiment se divertir, passer du temps avec les autres et programmer leurs journées en fonction de la météo. Ces personnes ont aussi un fort besoin en sommeil.</p>
+
+        <p>Ils représentent 50 % de la population.</p>
+
+        <p>Calé sur le rythme solaire. Ils chassent et cueillent du matin au soir pour assurer la survie du groupe.</p>
+
+        <p><strong>Heure du réveil idéal : 7 h 00</strong></p>
+        <p><strong>Heure du coucher idéal : 23 h 00</strong></p>
+
+        <!-- Loups -->
+
+        <h2 id="wolf">Les loups</h2>
+
+        <img src="assets\icons\bioryhtme-animals\wolf.svg"/>
+
+        <p>Les loups sont des chasseurs nocturnes. Les personnes ayant ce chronotype sont généralement créatifs, introvertis avec un besoin en sommeil moyen.</p>
+
+        <p>Ils représentent 15 à 20 % de la population.</p>
+
+        <p>Ils prennent le dernier tour de garde, et commencent à sombrer dans le sommeil lorsque les Lions les plus extrêmes se réveillent.</p>
+
+        <p><strong>Premier réveil : 7 h 00, second réveil, 7 h 20</strong></p>
+        <p><strong>Heure du coucher idéal : 00 h 00</strong></p>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+          <h2>Je suis à la limite de 2 chronotypes, comment savoir lequel je suis vraiment ?</h2>
+          <p>Il est possible qu’à une question près, ton chronotype change. Le livre offre des questionnaires secondaires afin de déterminer plus précisément quel chronotype on est.</p>
+
+          <p>Je n’ai volontairement pas ajouté ces tests, car ils ne sont pas indispensables. L’idéal est de tester, de suivre un programme pour un chronotype en particulier. Puis essayer l’autre. Après quelques semaines, garder le programme qui nous convient le mieux.</p>
+
+          <p>Par exemple, je suis à 6 ou 7 / 10 au test du dauphin. Et j’ai un score de 32 au second test. Je suis donc à la limite entre être un dauphin, un ours et un lion. J’ai donc commencé par essayer le programme du dauphin. J’appréciais beaucoup, mais j’ai vite manqué de sommeil. J’ai ensuite essayé celui de l’ours, qui m’a presque convenu.</p>
+
+          <p>J’ai alors simplement décalé 30 min plus tôt mes heures de coucher et de réveil et cela était parfait. Je suis donc un ours au sommeil léger et qui se lève tôt parmi les ours.</p>
+
+          <h2>Comment connaître le programme idéal de mon chronotype ?</h2>
+
+          <p>Pour cela, je ne peux que te recommander la lecture du <span class="animalQuizz__book-link" (click)="onGoToBook()">livre “Quand ?” du Dr Breus</span>. Il y partage les journées idéales de chaque chronotype et explique pourquoi telle action sera plus efficace à tel moment.</p>
+        </div>
+
+    </section>
+
+    <section>
+      <div class="container">
+          <div class="row">
+              <div class="articles">
+                  <h2 class="titleBottomLine">A lire aussi  :</h2>
+                  <app-articles [currentArticleName]="articleName" [hideDescription]="true"></app-articles>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section>
+      <div class="container">
+          <div class="row">
+              <div class="col">
+                  <app-comment [articleId]="articleId"></app-comment>
+              </div>
+          </div>
+      </div>
+  </section>
+
+</article>
+

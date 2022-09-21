@@ -9,6 +9,11 @@ $box-height: 525px ;
 .questionsBlock {
     height: $block-height;
     overflow: hidden;
+    transition: height 0.3s ease-in-out;
+
+    &.spaceForEmailForm {
+        height: calc(#{$box-height} + 150px);
+    }
 }
 
 .cardQuestions {
@@ -20,16 +25,59 @@ $box-height: 525px ;
     left: 0;
     right: 0;
     box-shadow: 1px 1px 4px rgb(99 99 101);
-    padding: 2rem;
+    padding: 2rem 2rem 0;
     margin-bottom: 2rem;
     border-radius: 10px;
-    /* height: 420px; */
     height: $box-height;
     min-height: $box-height;
     display: flex;
-    align-content: stretch;
+    align-content: space-between;
     flex-wrap: wrap;
     background-color: var(--div-container-background-color);
+    justify-content: flex-start;
+
+    &__header {
+        width: 100%;
+    }
+
+    &__content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: fit-content;
+
+            .mat-radio-label {
+                white-space: unset;
+                align-items: stretch;
+            }
+        }
+    }
+    &.subscribeStep {
+        height: auto;
+    }
+
+    &__subscribeStep {
+        &__email-form {
+            width: 100%;
+            padding-bottom: 2rem;
+        }
+        &__icon {
+            width: 100%;
+            text-align: center;
+            .material-icons {
+                font-size: 200px;
+                width: 200px;
+                height: 200px;
+                color: var(--main-text-color);
+            }
+        }
+    }
+
 }
 
 .cardQuestions:hover {
@@ -75,11 +123,8 @@ $box-height: 525px ;
   } */
 
   .cardFooterActionBar {
-    position: absolute;
     width: 100%;
-    bottom: 0;
-    right: 0;
-    padding: 1rem 2rem;
+    padding: 1rem 0rem 1rem 1rem;
     border-top: 1px solid #e5e5e5;
     text-align: right;
   }

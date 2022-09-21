@@ -1,0 +1,17 @@
+.dolphinQuizz {
+    &__more-info {
+        font-style: italic;
+    }
+
+    .iconEnd img {
+        width: 200px;
+        height: 200px;
+    }
+
+    &__continue {
+        display: flex;
+        justify-content: center;
+    }
+
+
+}

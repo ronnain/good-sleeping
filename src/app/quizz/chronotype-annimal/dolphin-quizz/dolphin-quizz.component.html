@@ -1,0 +1,58 @@
+<div class="dolphinQuizz">
+    <card-questions
+        [cardQuestions]="dolphinQuizz"
+        [questionTpl]="dolphinQuestionTpl"
+        [quizzCompleteTpl]="isUserADolphin ? isDolphinTpl : notDolphinTpl"
+        [(currentIndex)]="currentDolphinIndex"
+        (quizzComplete)="onGetScore()"
+        [handleSubribeCreation]="true"
+    >
+        <ng-template #dolphinQuestionTpl let-question>
+            <mat-radio-group
+                aria-labelledby="radio-group-label"
+                class="radio-group"
+                [(ngModel)]="question.answerValue"
+            >
+                    <mat-radio-button
+                        class="radio-button"
+                        *ngFor="let proposition of question.propositions"
+                        [value]="proposition.value"
+                    >
+                        {{proposition.text}}
+                    </mat-radio-button>
+            </mat-radio-group>
+        </ng-template>
+
+    </card-questions>
+</div>
+
+<ng-template #isDolphinTpl>
+    <p class="textEnd">Tu es un dauphin !</p>
+    <div class="iconEnd">
+        <img src="assets\icons\bioryhtme-animals\dolphin.svg" alt="Dauphin"/>
+    </div>
+    <div>
+        <p><span class="dolphinQuizz__more-info">Plus d'informations ci-dessous.</span></p>
+    </div>
+    <div class="cardFooterActionBar">
+        <button mat-button color="primary" (click)="onPrevious()">Retour</button>
+        <button mat-button color="primary" (click)="onNext()" [disabled]="true">Suivant</button>
+    </div>
+</ng-template>
+
+<ng-template #notDolphinTpl>
+    <p class="textEnd">Tu n'es pas un dauphin !</p>
+    <div class="iconEnd"><mat-icon>done</mat-icon></div>
+    <div>
+        <p>Tu as obtenus un score de {{score}} / 10.</p>
+        <p>Un score inférieur à 7 indique que tu n'es pas un dauphin.</p>
+        <p>Passe le test suivant pour savoir si tu es un lion, un ours ou bien un loup.</p>
+        <div class="dolphinQuizz__continue">
+            <button mat-raised-button color="primary" (click)="onNextTest()">Continuer <mat-icon>arrow_right_alt</mat-icon></button>
+        </div>
+    </div>
+    <div class="cardFooterActionBar">
+        <button mat-button color="primary" (click)="onPrevious()">Retour</button>
+        <button mat-button color="primary" (click)="onNextTest()">Continuer</button>
+    </div>
+</ng-template>

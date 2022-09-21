@@ -5,6 +5,7 @@ import { Page, MyArticle, Article } from '../modeles/interfaces.type';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { HeaderService } from '../shared/services/header.service';
 import { environment } from 'src/environments/environment';
+import { CategoriesService } from '../shared/services/categories.service';
 
 @Component({
   selector: 'app-article',
@@ -22,6 +23,8 @@ export class ArticleComponent implements OnInit, Page {
   failSave: boolean;
   loading: boolean;
 
+  isLoadedFromArticle: boolean = false;
+
   articleUrl: string;
   sharedArticleImg: string;
 
@@ -30,7 +33,8 @@ export class ArticleComponent implements OnInit, Page {
     private _Activatedroute:ActivatedRoute,
     private articlesService: ArticlesService,
     private _router: Router,
-    public headerService: HeaderService
+    public headerService: HeaderService,
+    private categoriesService: CategoriesService
     ) {
     this.isBrowser = isPlatformBrowser(platformId);
    }
@@ -39,7 +43,7 @@ export class ArticleComponent implements OnInit, Page {
     this.loadArticle();
   }
 
-  loadArticle(articleName?: any) {
+  loadArticle(articleName?: string) {
     this.articleName = articleName? articleName : this._Activatedroute.snapshot.paramMap.get("articleName");
     this.setHead();
     this.getArticle();
@@ -84,7 +88,10 @@ export class ArticleComponent implements OnInit, Page {
           this._router.navigate(['articles']);
           return;
         }
-        this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName, data.category);
+        this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName, data.categories, data.author);
+        if (!this.articlesService.loadFromArticles) {
+          this.categoriesService.setCurrentArticleCategories(this.article.categories);
+        }
         this.headerService.handleTitleAndMeta(this.article.title, this.article.metaDesc);
         this.createStructuredData();
         this.sharedArticleImg = environment.serverConfig.imgPath + this.articleName + 'img1/xm.jpg';
@@ -126,5 +133,10 @@ export class ArticleComponent implements OnInit, Page {
       "description": "${this.article.description}"
     }`;
     this.headerService.createStructuredData(structuredData);
+  }
+
+  onLoadArticle(articleName?: string) {
+    this.articlesService.loadFromArticles = !!articleName;
+    this.loadArticle(articleName);
   }
 }

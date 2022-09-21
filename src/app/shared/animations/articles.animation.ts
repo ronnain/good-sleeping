@@ -1,4 +1,4 @@
-import { trigger, transition, style, animate, stagger, query } from "@angular/animations";
+import { trigger, transition, style, animate } from "@angular/animations";
 
 export const articleAniamtion =
   trigger('articlesAnimation', [
