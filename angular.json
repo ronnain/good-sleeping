@@ -193,7 +193,6 @@
       }
     }
   },
-  "defaultProject": "sleeping",
   "cli": {
     "analytics": false
   }
