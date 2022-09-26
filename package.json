@@ -38,7 +38,7 @@
     "bootstrap": "^4.6.2",
     "core-js": "^2.6.12",
     "express": "^4.15.2",
-    "firebase": "^7.24.0",
+    "firebase": "^9.10.0",
     "memory-cache": "^0.2.0",
     "ngx-sharebuttons": "^8.1.0",
     "rxjs": "^6.6.7",
