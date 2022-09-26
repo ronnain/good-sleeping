@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { UntypedFormControl, Validators, UntypedFormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Page } from '../modeles/interfaces.type';
 import { HeaderService } from '../shared/services/header.service';
@@ -15,12 +15,12 @@ export class ContactComponent implements OnInit, Page {
   title = "Contact - Adresse mail - Sommeil Profond";
   metaDesc = "Contact Sommeil Profond - Comment me contacter ? Adresse mail pour me contacter.";
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  emailFormControl = new UntypedFormControl('', [Validators.required, Validators.email]);
 
-  reactiveForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    message: new FormControl('', [Validators.required, Validators.minLength(15)])
+  reactiveForm = new UntypedFormGroup({
+    firstName: new UntypedFormControl('', [Validators.required]),
+    email: new UntypedFormControl('', [Validators.required, Validators.email]),
+    message: new UntypedFormControl('', [Validators.required, Validators.minLength(15)])
   })
 
   get firstName() { return this.reactiveForm.get('firstName'); }
