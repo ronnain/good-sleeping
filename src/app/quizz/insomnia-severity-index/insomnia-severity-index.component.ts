@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class InsomniaSeverityIndexComponent implements OnInit, Page {
 
-  title = "Test de sévérité des troubles de l’insomnie gratuit en ligne";
+  title = "Test de sévérité des troubles de l’insomnie gratuit en ligne 2023";
   metaDesc = "Découvre si tu es insomniaque grâce à ce test rapide et gratuit, en ligne. Si tu es insomniaque, je te donne les meilleurs conseils pour t'en sortir.";
   sharedArticleImg = environment.serverConfig.imgPath + 'test-severite-insomnie/article/' + 'img1/xm.jpg';
   articleId = environment.quizz.insomniaSeverityId;

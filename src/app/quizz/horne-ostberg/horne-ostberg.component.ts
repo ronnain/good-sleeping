@@ -15,7 +15,7 @@ import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
 })
 export class HorneOstbergComponent implements OnInit, Page {
 
-  title = "Test chronotype : Découvre ton chronotype gratuitement";
+  title = "Test chronotype 2023: Découvre ton chronotype gratuitement";
   metaDesc = "5 Questions pour déterminer son chronotype. Connaître les caractéristiques associées à son chronotype. Chronotype du soir, de la journée ou du matin.";
   sharedArticleImg = environment.serverConfig.imgPath + 'test-chronotype/article/' + 'img1/xm.jpg';
   articleId = environment.quizz.horneOstbergId;

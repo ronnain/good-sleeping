@@ -14,7 +14,7 @@ import { QUIZZ_NO_SAS, QUIZZ_STOP_BANG } from './sahos.questions.dto';
 })
 export class SahosComponent implements OnInit, Page {
 
-  title = "Test de dépistage d’apnée du sommeil en 13 questions";
+  title = "Test de dépistage d’apnée du sommeil en 13 questions en 2023";
   metaDesc = "Réponds rapidement à ces 14 questions pour connaître ton risque de faire des apnées du sommeil.";
   sharedArticleImg = environment.serverConfig.imgPath + 'test-depistage-apnee-sommeil/article/' + 'img1/xm.jpg';
   articleId = environment.quizz.sahosId;
