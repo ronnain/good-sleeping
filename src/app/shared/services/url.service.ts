@@ -27,6 +27,7 @@ export class UrlService {
         "articles/test-severite-insomnie",
         "articles/test-depistage-apnee-sommeil",
         "articles/test-chronotype-animal",
+        "coach-sommeil",
         "bonus",
         "mentions",
         "contact",

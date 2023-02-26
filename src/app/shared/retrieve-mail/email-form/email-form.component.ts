@@ -36,25 +36,24 @@ export class EmailFormComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.contactSubscription = this.bounceCreation.pipe(debounceTime(800)).subscribe(() => {
-      this.mailService.storeContact(this.form.value.firstName, this.form.value.email);
-    });
-    this.bounceCreation.pipe(
-      debounceTime(800),
-      switchMap(() => {
-        return this.mailService.storeContact(this.form.value.firstName, this.form.value.email);
-      })
-      ).subscribe(
-        () => {
-          this.showValidation = true;
-          this.mailStoredSuccess.next(true);
-          this.loading = false;
-        },
-        () => {
-          this.loading = false;
-          this.failSave = true;
-        }
-      )
+    this.contactSubscription =
+      this.bounceCreation.pipe(
+        debounceTime(800),
+        switchMap(() => {
+          console.log('bounceCreation');
+          return this.mailService.storeContact(this.form.value.firstName, this.form.value.email);
+        })
+        ).subscribe(
+          () => {
+            this.showValidation = true;
+            this.mailStoredSuccess.next(true);
+            this.loading = false;
+          },
+          () => {
+            this.loading = false;
+            this.failSave = true;
+          }
+        )
   }
 
   onSubmit(form: NgForm) {

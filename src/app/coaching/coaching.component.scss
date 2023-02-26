@@ -1,10 +1,18 @@
 .coaching {
     .background-img {
-        background: url(/assets/background-img/coaching2.jpg) center no-repeat #06101a;
+        background-image: url(/assets/background-img/coaching/sunset-with-man--small.jpg);
+        @media screen and (min-width: 545px) {
+            background-image: url(/assets/background-img/coaching/sunset-with-man--large.jpg);
+        }
+        background-position: center;
+        background-color: #06101a;
+        background-size: cover;
+        //background-blend-mode: multiply;
         color: white;
         position: relative;
         min-height: 100vh;
         width: 100%;
+        margin-bottom: -1px;
 
         .wrapper {
             height: calc(100vh);
@@ -30,7 +38,7 @@
 
             .call-to-action {
                 button {
-                    background-color: #00ff49;
+                    background-color: #f7af2c;
                     color: black;
                     padding: 0.75rem 2.5rem;
                     display: inline-block;
@@ -54,8 +62,8 @@
             }
         }
     }
-    .backgroundGradient-1 {
-        background: linear-gradient(#06101a 40%, #d5d8da);
+    .backgroundGradient {
+        background: linear-gradient(180deg, #010b10, #5b0060, #870160, #ac255e, #ca485c, #e16b5c, #f39060, #ffb56b);
 
         color: white;
         h2 {
@@ -65,14 +73,16 @@
             color: #dfe0eb
         }
     }
-    .backgroundGradient-2 {
-        background: linear-gradient(#d5d8da 20%, #fff);
-    }
 
     .targets-methode {
-        background-color: #ebf2f7;
-        border: transparent solid 1px;
-        border-radius: 3px;
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
         padding: 2rem 2.5rem;
 
         > p {
@@ -104,4 +114,33 @@
     .row {
         padding-top: 8rem;
     }
+}
+
+.timeline {
+  border-left: 1px solid hsl(0, 0%, 90%);
+  position: relative;
+  list-style: none;
+}
+
+.timeline .timeline-item {
+  position: relative;
+
+  p {
+    color: #dfdcdc
+  }
+}
+
+.timeline .timeline-item:after {
+  position: absolute;
+  display: block;
+  top: 0;
+}
+
+.timeline .timeline-item:after {
+  background-color: hsl(0, 0%, 90%);
+  left: -46px;
+  border-radius: 50%;
+  height: 11px;
+  width: 11px;
+  content: "";
 }
