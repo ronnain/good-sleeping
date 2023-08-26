@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, Validators, UntypedFormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Page } from '../modeles/interfaces.type';
 import { HeaderService } from '../shared/services/header.service';
 import { ContactService } from '../shared/services/http/contact.service';
