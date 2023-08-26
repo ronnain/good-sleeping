@@ -135,7 +135,9 @@
               "sourceMap": false,
               "optimization": true
             },
-            "development": {}
+            "development": {
+              "vendorChunk": true
+            }
           },
           "defaultConfiguration": "production"
         },
