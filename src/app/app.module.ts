@@ -1,4 +1,4 @@
-import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -53,7 +53,6 @@ import { ArticlesModule } from './articles/articles.module';
     LayoutModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserTransferStateModule,
     QuizzModule,
     ShareBtnsModule,
     SharedModule,

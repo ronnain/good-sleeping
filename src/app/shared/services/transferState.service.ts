@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { from, Observable, throwError } from 'rxjs';
-import { TransferState } from '@angular/platform-browser';
+import { from, Observable } from 'rxjs';
+import { TransferState } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
