@@ -1,16 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DriveService } from 'src/app/shared/services/drive.service';
-import { Article, ArticleConfig, MyArticle } from 'src/app/modeles/interfaces.type';
-import { CategoryNameEnum, CategoryNameKeys } from 'src/app/modeles/category.type';
+import { ArticleConfig, MyArticle } from 'src/app/modeles/interfaces.type';
+import { CategoryNameEnum } from 'src/app/modeles/category.type';
 import { CATEGORIES } from 'src/app/modeles/categories-list.type';
 import { Categories } from 'src/app/modeles/categories.dto';
+import { NgFor, NgIf, JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
-  selector: 'app-drive-article',
-  templateUrl: './drive-article.component.html',
-  styleUrls: ['./drive-article.component.css']
+    selector: 'app-drive-article',
+    templateUrl: './drive-article.component.html',
+    styleUrls: ['./drive-article.component.css'],
+    standalone: true,
+    imports: [MatFormFieldModule, MatInputModule, FormsModule, NgFor, MatCheckboxModule, NgIf, MatButtonModule, MatProgressBarModule, JsonPipe]
 })
 export class DriveArticleComponent implements OnInit {
   articleName:string;

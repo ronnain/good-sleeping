@@ -2,14 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { opacityAnimation } from '../animations/opacity.animation';
 import { GoogleAnalyticsService } from '../directives/google-analytics.service';
 import { MailService } from '../services/mail.service';
+import { ProblemFormComponent } from './problem-form/problem-form.component';
+import { EmailFormComponent } from './email-form/email-form.component';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-retrieve-mail',
-  templateUrl: './retrieve-mail.component.html',
-  styleUrls: ['./retrieve-mail.component.scss'],
-  animations: [
-    opacityAnimation
-  ]
+    selector: 'app-retrieve-mail',
+    templateUrl: './retrieve-mail.component.html',
+    styleUrls: ['./retrieve-mail.component.scss'],
+    animations: [
+        opacityAnimation
+    ],
+    standalone: true,
+    imports: [NgIf, EmailFormComponent, ProblemFormComponent, AsyncPipe]
 })
 export class RetrieveMailComponent implements OnInit {
 

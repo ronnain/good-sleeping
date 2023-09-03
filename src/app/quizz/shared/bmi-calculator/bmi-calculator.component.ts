@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'bmi-calculator',
-  templateUrl: './bmi-calculator.component.html',
-  styleUrls: ['./bmi-calculator.component.css']
+    selector: 'bmi-calculator',
+    templateUrl: './bmi-calculator.component.html',
+    styleUrls: ['./bmi-calculator.component.css'],
+    standalone: true,
+    imports: [MatExpansionModule, MatFormFieldModule, MatInputModule, FormsModule]
 })
 export class BmiCalculatorComponent implements OnInit {
 

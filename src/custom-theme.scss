@@ -1,98 +1,31 @@
+@use '@angular/material' as mat;
 
-@use 'sass:map';
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
-// Plus imports for other components in your app.
+@include mat.core();
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
+// Define a light theme
+$light-theme: mat.define-light-theme((
+ color: (
+   primary: mat.define-palette(mat.$indigo-palette, 500),
+   accent: mat.define-palette(mat.$pink-palette),
+ ),
+));
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$sleeping-primary: mat-palette($mat-indigo);
-$sleeping-accent: mat-palette($mat-pink, A200, A100, A400);
+// Apply the dark theme by default
+@include mat.core-theme($light-theme);
 
-// The warn palette is optional (defaults to red).
-$sleeping-warn: mat-palette($mat-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$sleeping-theme: mat-light-theme($sleeping-primary, $sleeping-accent, $sleeping-warn);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($sleeping-theme);
+$dark-theme: mat.define-dark-theme((
+ color: (
+   primary: mat.define-palette(mat.$pink-palette),
+   accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
+ ),
+  // Only include `typography` and `density` in the default dark theme.
+  typography: mat.define-typography-config(),
+  density: 0,
+));
 
 
 // Our dark theme
 .dark-theme {
-    color: $light-primary-text;
-    $dark-primary: mat-palette($mat-yellow);
-    $dark-accent: mat-palette($mat-amber, A400, A100, A700);
-    $dark-warn: mat-palette($mat-red);
-
-    $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-
-
-    @include angular-material-theme($dark-theme);
-
-
-   /*  $my-dark-theme-background: (
-        status-bar: red,
-        app-bar:    map_get($mat-blue, 900),
-        background: orange,
-        hover:      rgba(white, 0.04),
-        card:       map_get($mat-red, 800),
-        dialog:     map_get($mat-grey, 800),
-        disabled-button: $white-12-opacity,
-        raised-button: map-get($mat-grey, 800),
-        focused-button: $white-6-opacity,
-        selected-button: map_get($mat-grey, 900),
-        selected-disabled-button: map_get($mat-grey, 800),
-        disabled-button-toggle: black,
-        unselected-chip: map_get($mat-grey, 700),
-        disabled-list-option: black,
-    );
-
-    $my-dark-theme-foreground: (
-    base:              yellow,
-    divider:           $white-12-opacity,
-    dividers:          $white-12-opacity,
-    disabled:          rgba(white, 0.3),
-    disabled-button:   rgba(white, 0.3),
-    disabled-text:     rgba(white, 0.3),
-    hint-text:         rgba(white, 0.3),
-    secondary-text:    rgba(white, 0.7),
-    icon:              white,
-    icons:             white,
-    text:              yellow,
-    slider-min:        white,
-    slider-off:        rgba(white, 0.3),
-    slider-off-active: rgba(white, 0.3),
-    );
-
-    // instead of creating a theme with mat-light-theme like a sane person, we will create our own theme-creating function that lets us apply our own foreground and background palettes.
-    @function create-wonky-theme($primary, $accent, $warn: mat-palette($mat-red)) {
-    @return (
-        primary: $primary,
-        accent: $accent,
-        warn: $warn,
-        is-dark: false,
-        foreground: $my-dark-theme-foreground,
-        background: $my-dark-theme-background,
-    );
-    }
-
-    // The rest of this is like a normal theme.scss file. The only difference being that we use create-wonky-theme instead of mat-light-theme
-    $custom-theme-primary: mat-palette($mat-green);
-    $custom-theme-accent: mat-palette($mat-blue);
-    $custom-theme-warn: mat-palette($mat-red);
-
-    $custom-theme: create-wonky-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
-
-    @include angular-material-theme($custom-theme); */
+    @include mat.core-theme($dark-theme);
 }
+

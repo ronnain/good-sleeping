@@ -6,11 +6,18 @@ import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { HeaderService } from 'src/app/shared/services/header.service';
 import { environment } from 'src/environments/environment';
 import { BiorythmeScore } from './biorythme.type';
+import { CommentComponent } from '../../shared/component/comment/comment.component';
+import { ArticlesComponent } from '../../articles/articles.component';
+import { BiorythmeQuizzComponent } from './biorythme-quizz/biorythme-quizz.component';
+import { DolphinQuizzComponent } from './dolphin-quizz/dolphin-quizz.component';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-chronotype-animal',
-  templateUrl: './chronotype-animal.component.html',
-  styleUrls: ['./chronotype-animal.component.scss']
+    selector: 'app-chronotype-animal',
+    templateUrl: './chronotype-animal.component.html',
+    styleUrls: ['./chronotype-animal.component.scss'],
+    standalone: true,
+    imports: [NgIf, DolphinQuizzComponent, BiorythmeQuizzComponent, ArticlesComponent, CommentComponent]
 })
 export class ChronotypeAnimalComponent implements OnInit, Page {
 

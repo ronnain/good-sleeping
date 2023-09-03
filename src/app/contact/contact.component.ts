@@ -1,14 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, Validators, UntypedFormGroup } from '@angular/forms';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { UntypedFormControl, Validators, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Page } from '../modeles/interfaces.type';
 import { HeaderService } from '../shared/services/header.service';
 import { ContactService } from '../shared/services/http/contact.service';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { NgIf } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+    selector: 'app-contact',
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, NgIf, TextFieldModule, MatButtonModule, MatProgressBarModule, MatSnackBarModule]
 })
 export class ContactComponent implements OnInit, Page {
 

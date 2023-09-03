@@ -2,16 +2,24 @@ import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID, Renderer2  }
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from '../shared/services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { isPlatformBrowser, NgIf, DatePipe } from '@angular/common';
 import { HeaderService } from '../shared/services/header.service';
 import { environment } from 'src/environments/environment';
 import { CategoriesService } from '../shared/services/categories.service';
+import { SafeHtmlPipe } from '../shared/pipes/safeHtmlPipe';
+import { ArticlesComponent } from '../articles/articles.component';
+import { CommentComponent } from '../shared/component/comment/comment.component';
+import { RetrieveMailComponent } from '../shared/retrieve-mail/retrieve-mail.component';
+import { SocialNetworkShareButtonsComponent } from '../social-network-share-buttons/social-network-share-buttons.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.css'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-article',
+    templateUrl: './article.component.html',
+    styleUrls: ['./article.component.css'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [NgIf, MatProgressBarModule, SocialNetworkShareButtonsComponent, RetrieveMailComponent, CommentComponent, ArticlesComponent, DatePipe, SafeHtmlPipe]
 })
 export class ArticleComponent implements OnInit, Page {
   isBrowser: boolean;

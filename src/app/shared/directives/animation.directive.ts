@@ -4,7 +4,10 @@ import { fromEvent } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 import { hideBottomAnimation, hideLeftAnimation, hideRightAnimation, showBottomAnimation, showLeftAnimation, showRightAnimation } from '../animations/scroll.animation';
 
-@Directive({ selector: '[animateThat]' })
+@Directive({
+    selector: '[animateThat]',
+    standalone: true
+})
 export class AnimateThatDirective {
 
     @Input()

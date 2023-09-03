@@ -4,20 +4,26 @@ import { ArticlesService } from '../shared/services/articles.service';
 import { environment } from 'src/environments/environment';
 import { HeaderService } from '../shared/services/header.service';
 import { dropDownCategories } from '../shared/animations/dropdown.animation';
-import { isPlatformBrowser } from '@angular/common';
-import { articleAniamtion } from '../shared/animations/articles.animation';
+import { isPlatformBrowser, NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
+import { articleAnimation } from '../shared/animations/articles.animation';
 import { CATEGORIES } from '../modeles/categories-list.type';
 import { CategoriesService } from '../shared/services/categories.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Categories } from '../modeles/categories.dto';
 import { CategoryNameEnum } from '../modeles/category.type';
+import { ArticlesFromCategoryPipe } from './articles-from-category.pipe';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @Component({
-  selector: 'app-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss'],
-  animations: [dropDownCategories, articleAniamtion]
+    selector: 'app-articles',
+    templateUrl: './articles.component.html',
+    styleUrls: ['./articles.component.scss'],
+    animations: [dropDownCategories, articleAnimation],
+    standalone: true,
+    imports: [NgIf, NgFor, NgClass, MatIconModule, RouterLink, MatButtonModule, MatProgressBarModule, DatePipe, ArticlesFromCategoryPipe]
 })
 export class ArticlesComponent implements OnInit, Page {
 

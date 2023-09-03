@@ -1,11 +1,15 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { interval } from 'rxjs';
 import { MobileService } from '../../../services/mobile.service';
+import { NgClass } from '@angular/common';
+import { SwipeDirective } from '../../../directives/swipe.directive';
 
 @Component({
-  selector: 'carousel3d',
-  templateUrl: './carousel3d.component.html',
-  styleUrls: ['./carousel3d.component.scss']
+    selector: 'carousel3d',
+    templateUrl: './carousel3d.component.html',
+    styleUrls: ['./carousel3d.component.scss'],
+    standalone: true,
+    imports: [SwipeDirective, NgClass]
 })
 export class Carousel3dComponent implements OnInit {
 

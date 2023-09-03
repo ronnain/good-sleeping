@@ -16,7 +16,8 @@ import { HtmlContainer } from 'src/app/shared/services/html-container.model';
 import { ComponentFactoryService } from 'src/app/shared/services/component-factory.service';
 
 @Directive({
-  selector: '[inserteComponent]'
+    selector: '[inserteComponent]',
+    standalone: true
 })
 export class InserteComponentDirective {
 

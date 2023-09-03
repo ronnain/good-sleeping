@@ -1,13 +1,20 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Comment } from '../../../modeles/interfaces.type';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { CommentService } from '../../services/comment.service';
 import { ArticlesService } from '../../services/articles.service';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
-  selector: 'app-comment',
-  templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.css']
+    selector: 'app-comment',
+    templateUrl: './comment.component.html',
+    styleUrls: ['./comment.component.css'],
+    standalone: true,
+    imports: [NgFor, MatButtonModule, FormsModule, NgIf, MatFormFieldModule, MatInputModule, MatProgressBarModule, DatePipe]
 })
 export class CommentComponent implements OnInit {
 

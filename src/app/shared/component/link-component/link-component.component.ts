@@ -1,11 +1,14 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewEncapsulation } from '@angular/core';
-import { Router, Event, NavigationEnd } from '@angular/router';
+import { Router, Event, NavigationEnd, RouterLink } from '@angular/router';
+import { NgIf, NgClass } from '@angular/common';
 
 @Component({
-  selector: 'alink',
-  templateUrl: './link-component.component.html',
-  styleUrls: ['./link-component.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'alink',
+    templateUrl: './link-component.component.html',
+    styleUrls: ['./link-component.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [NgIf, RouterLink, NgClass]
 })
 export class LinkComponentComponent implements OnInit {
 

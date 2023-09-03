@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Page } from '../modeles/interfaces.type';
 import { HeaderService } from '../shared/services/header.service';
+import { RetrieveMailComponent } from '../shared/retrieve-mail/retrieve-mail.component';
 
 @Component({
-  selector: 'app-me',
-  templateUrl: './me.component.html',
-  styleUrls: ['./me.component.css']
+    selector: 'app-me',
+    templateUrl: './me.component.html',
+    styleUrls: ['./me.component.css'],
+    standalone: true,
+    imports: [RetrieveMailComponent]
 })
 export class MeComponent implements OnInit, Page {
 

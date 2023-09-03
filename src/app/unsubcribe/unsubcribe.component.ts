@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { MailService } from '../shared/services/mail.service';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from '../modeles/interfaces.type';
 import { HeaderService } from '../shared/services/header.service';
+import { NgIf } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
-  selector: 'app-unsubcribe',
-  templateUrl: './unsubcribe.component.html',
-  styleUrls: ['./unsubcribe.component.css']
+    selector: 'app-unsubcribe',
+    templateUrl: './unsubcribe.component.html',
+    styleUrls: ['./unsubcribe.component.css'],
+    standalone: true,
+    imports: [FormsModule, MatButtonModule, NgIf, MatProgressBarModule]
 })
 export class UnsubcribeComponent implements OnInit, Page {
 

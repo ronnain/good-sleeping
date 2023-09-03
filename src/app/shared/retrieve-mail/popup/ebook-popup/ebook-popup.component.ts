@@ -1,17 +1,21 @@
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgIf, NgClass } from '@angular/common';
 import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { popupBonus } from '../../../animations/popup-bonus.animation';
 import { UrlService } from '../../../services/url.service';
+import { EbookFormComponent } from '../ebook-form/ebook-form.component';
+import { EbookAddsComponent } from '../ebook-adds/ebook-adds.component';
 
 @Component({
-  selector: 'ebook-popup',
-  templateUrl: './ebook-popup.component.html',
-  styleUrls: ['./ebook-popup.component.css'],
-  animations: [
-    popupBonus
-  ]
+    selector: 'ebook-popup',
+    templateUrl: './ebook-popup.component.html',
+    styleUrls: ['./ebook-popup.component.css'],
+    animations: [
+        popupBonus
+    ],
+    standalone: true,
+    imports: [NgIf, NgClass, EbookAddsComponent, EbookFormComponent]
 })
 export class EbookPopupComponent implements OnInit {
 

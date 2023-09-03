@@ -3,7 +3,8 @@ import { CategoryNameEnum, CategoryNameKeys } from '../modeles/category.type';
 import { Article } from '../modeles/interfaces.type';
 
 @Pipe({
-    name: 'articlesFromCategory'
+    name: 'articlesFromCategory',
+    standalone: true
 })
 export class ArticlesFromCategoryPipe implements PipeTransform {
     transform(articles: Article[], category: CategoryNameKeys): Article[] {

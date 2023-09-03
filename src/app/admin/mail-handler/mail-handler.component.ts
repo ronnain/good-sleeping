@@ -1,11 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { MailService } from 'src/app/shared/services/mail.service';
 import { Router } from '@angular/router';
+import { ReplaceLineBreaks } from '../pipes/replaceLinesBreaks';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @Component({
-  selector: 'app-mail-handler',
-  templateUrl: './mail-handler.component.html',
-  styleUrls: ['./mail-handler.component.css']
+    selector: 'app-mail-handler',
+    templateUrl: './mail-handler.component.html',
+    styleUrls: ['./mail-handler.component.css'],
+    standalone: true,
+    imports: [MatTabsModule, MatTableModule, MatButtonModule, NgIf, MatProgressBarModule, MatFormFieldModule, MatInputModule, FormsModule, ReplaceLineBreaks]
 })
 export class MailHandlerComponent implements OnInit {
 

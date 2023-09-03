@@ -13,7 +13,7 @@ import { InsomniaSeverityIndexComponent } from './quizz/insomnia-severity-index/
 import { SahosComponent } from './quizz/sahos/sahos.component';
 import { UnsubcribeComponent } from './unsubcribe/unsubcribe.component';
 
-const routes: Routes = [
+export const AppRoutes: Routes = [
   {path: 'articles', component: ArticlesComponent},
   {path: 'articles/test-severite-insomnie', component: InsomniaSeverityIndexComponent},
   {path: 'articles/test-depistage-apnee-sommeil', component: SahosComponent},
@@ -35,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' })],
+  imports: [RouterModule.forRoot(AppRoutes, { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

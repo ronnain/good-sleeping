@@ -6,11 +6,21 @@ import { HeaderService } from 'src/app/shared/services/header.service';
 import { environment } from 'src/environments/environment';
 import { binaryQuestionDTO } from '../shared/binary-quizz/binary-question.dto';
 import { QUIZZ_NO_SAS, QUIZZ_STOP_BANG } from './sahos.questions.dto';
+import { CommentComponent } from '../../shared/component/comment/comment.component';
+import { ArticlesComponent } from '../../articles/articles.component';
+import { QuizzProblemFormComponent } from '../shared/quizz-problem-form/quizz-problem-form.component';
+import { SocialNetworkShareButtonsComponent } from '../../social-network-share-buttons/social-network-share-buttons.component';
+import { NgIf } from '@angular/common';
+import { MailStepperComponent } from '../shared/mail-stepper/mail-stepper.component';
+import { BmiCalculatorComponent } from '../shared/bmi-calculator/bmi-calculator.component';
+import { BinaryQuizzComponent } from '../shared/binary-quizz/binary-quizz.component';
 
 @Component({
-  selector: 'app-sahos',
-  templateUrl: './sahos.component.html',
-  styleUrls: ['./sahos.component.css']
+    selector: 'app-sahos',
+    templateUrl: './sahos.component.html',
+    styleUrls: ['./sahos.component.css'],
+    standalone: true,
+    imports: [BinaryQuizzComponent, BmiCalculatorComponent, MailStepperComponent, NgIf, SocialNetworkShareButtonsComponent, QuizzProblemFormComponent, ArticlesComponent, CommentComponent]
 })
 export class SahosComponent implements OnInit, Page {
 

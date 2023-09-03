@@ -1,17 +1,19 @@
-import { trigger, transition, style, animate } from '@angular/animations';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser, NgIf } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { upDownCookiesAnimation } from '../shared/animations/up-down-cookies';
 import { ScriptLoaderService, ScriptModel } from '../shared/services/script.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-cookies-handler',
-  templateUrl: './cookies-handler.component.html',
-  styleUrls: ['./cookies-handler.component.css'],
-  animations: [
-    upDownCookiesAnimation
-  ]
+    selector: 'app-cookies-handler',
+    templateUrl: './cookies-handler.component.html',
+    styleUrls: ['./cookies-handler.component.css'],
+    animations: [
+        upDownCookiesAnimation
+    ],
+    standalone: true,
+    imports: [NgIf, MatButtonModule]
 })
 export class CookiesHandlerComponent implements OnInit {
   isBrowser: boolean;

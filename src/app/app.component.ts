@@ -7,9 +7,9 @@ import { ThemeColorService } from './shared/services/theme-color.service';
 declare const gtag: Function;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'Sommeil Profond';
