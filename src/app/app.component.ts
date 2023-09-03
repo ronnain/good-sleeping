@@ -2,7 +2,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CategoriesService } from './shared/services/categories.service';
-import { ThemeColorService } from './shared/services/theme-color.service';
 
 declare const gtag: Function;
 
@@ -17,7 +16,6 @@ export class AppComponent {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
-    private themeColorService: ThemeColorService,
     private categoriesService: CategoriesService
   ) {
     this.isBrowser = isPlatformBrowser(platformId);

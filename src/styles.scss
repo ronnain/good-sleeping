@@ -34,44 +34,47 @@
 
   --button-submit-email-background: var(--primary-main);
   --button-submit-email-color: white;
+
+  // Overide material design
+  --mdc-filled-text-field-container-color: transparent;
 }
 
-html[data-theme='dark'] {
-  --primary-main: #0f0fbb;
-  --secondary-main: black;
-  --accent-color: #ffe100;
-  --text-accent-color: black;
-  --main-background-color: #0f0f3b;  /* 1b1b58 */
-  --main-text-color: white;
-  --secondary-text-color: #ededfd;
-  --third-text-color: #b5b7b9;
-  --title-text-color: var(--secondary-text-color);
+// html[data-theme='dark'] {
+//   --primary-main: #0f0fbb;
+//   --secondary-main: black;
+//   --accent-color: #ffe100;
+//   --text-accent-color: black;
+//   --main-background-color: #0f0f3b;  /* 1b1b58 */
+//   --main-text-color: white;
+//   --secondary-text-color: #ededfd;
+//   --third-text-color: #b5b7b9;
+//   --title-text-color: var(--secondary-text-color);
 
-  --body-color: white;
-  --flip-time: 400ms;
-  --header-background-color: #0c0c5e;
-  --footer-background-color: #0f0f35;
-  --footer-bold-color: #0b0b24;
-  --div-container-background-color: #12126b;
-  --mat-form-field-color: var(--accent-color);
-  --grey-background-color: #12126b;
+//   --body-color: white;
+//   --flip-time: 400ms;
+//   --header-background-color: #0c0c5e;
+//   --footer-background-color: #0f0f35;
+//   --footer-bold-color: #0b0b24;
+//   --div-container-background-color: #12126b;
+//   --mat-form-field-color: var(--accent-color);
+//   --grey-background-color: #12126b;
 
 
-  --link-color: var(--accent-color);
-  --link-color-hover: #fff7b9;
+//   --link-color: var(--accent-color);
+//   --link-color-hover: #fff7b9;
 
-  --blockquote-background: var(--primary-main);
-  --blockquote-border: #0a0a92;
+//   --blockquote-background: var(--primary-main);
+//   --blockquote-border: #0a0a92;
 
-  --box-shadow-articles: none;
-  --box-shadow-articles-hover: none;
+//   --box-shadow-articles: none;
+//   --box-shadow-articles-hover: none;
 
-  --button-binary-action-valid: var(--primary-main);
-  --button-binary-action-refuse: #fe0000;
+//   --button-binary-action-valid: var(--primary-main);
+//   --button-binary-action-refuse: #fe0000;
 
-  --button-submit-email-background: var(--accent-color);
-  --button-submit-email-color: var(--text-accent-color);
-}
+//   --button-submit-email-background: var(--accent-color);
+//   --button-submit-email-color: var(--text-accent-color);
+// }
 
 
 body {

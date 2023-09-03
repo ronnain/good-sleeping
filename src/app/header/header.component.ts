@@ -20,16 +20,13 @@ export class HeaderComponent implements OnInit {
   bigScreen: boolean;
   bigScreenLimit = 768;
 
-  darkTheme: boolean = false;
-
   isBonusTabActive:boolean = false;
   isArticlesTabActive:boolean = false;
   isAProposTabActive:boolean = false;
   isContactTabActive:boolean = false;
 
   constructor(
-    @Inject(PLATFORM_ID) platformId: Object,
-    private themeColorService: ThemeColorService) {
+    @Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
    }
 
@@ -37,16 +34,11 @@ export class HeaderComponent implements OnInit {
     if(this.isBrowser){
       this.bigScreen = screen.width >= this.bigScreenLimit;
     }
-    this.darkTheme = this.themeColorService.isDarkTheme();
   }
 
   @HostListener('window:resize', ['$event'])
     displaySize(event) {
      this.bigScreen = screen.width > this.bigScreenLimit;
-  }
-
-  changeThemeColor(event: any) {
-    this.themeColorService.setDarkTheme(event);
   }
 
 }

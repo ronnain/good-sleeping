@@ -5,9 +5,9 @@
             <span class="material-icons">menu</span>
             </button>
             <mat-menu #adminMenu="matMenu" xPosition="after">
-                <a routerLink="/admin/newArticle" class="nav-link">Article</a>
-                <a routerLink="/admin/driveOverview" class="nav-link">Drive</a>
-                <a routerLink="/admin/mail" class="nav-link">Mails</a>
+                <a mat-menu-item routerLink="/admin/newArticle" class="nav-link">Article</a>
+                <a mat-menu-item routerLink="/admin/driveOverview" class="nav-link">Drive</a>
+                <a mat-menu-item routerLink="/admin/mail" class="nav-link">Mails</a>
             </mat-menu>
             <button mat-button color="warn" (click)="logout()">Déconnexion</button>
         </div>
