@@ -1,4 +1,4 @@
-import { isPlatformBrowser, NgIf, NgClass } from '@angular/common';
+import { isPlatformBrowser, NgIf, NgClass, DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -28,7 +28,8 @@ export class EbookPopupComponent implements OnInit {
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
     private renderer: Renderer2,
-    private urlService: UrlService
+    private urlService: UrlService,
+    @Inject(DOCUMENT) private _document
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
    }
@@ -42,8 +43,8 @@ export class EbookPopupComponent implements OnInit {
 
   @HostListener("window:scroll", []) onWindowScroll() {
     const verticalOffset = window.pageYOffset
-          || document.documentElement.scrollTop
-          || document.body.scrollTop || 0;
+          || this._document.documentElement.scrollTop
+          || this._document.body.scrollTop || 0;
     // Scroll reached the middle of the page
     if (verticalOffset > document.body.scrollHeight / 2) {
       this.showPopup();

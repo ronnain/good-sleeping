@@ -1,8 +1,9 @@
 import { AnimationBuilder, style, animate, AnimationMetadata, AnimationPlayer, keyframes, query, sequence } from '@angular/animations';
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Inject, Input } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 import { hideBottomAnimation, hideLeftAnimation, hideRightAnimation, showBottomAnimation, showLeftAnimation, showRightAnimation } from '../animations/scroll.animation';
+import { DOCUMENT } from '@angular/common';
 
 @Directive({
     selector: '[animateThat]',
@@ -25,7 +26,7 @@ export class AnimateThatDirective {
     visible:boolean = false;
     initialAnimation: boolean = true;
 
-    constructor(private element: ElementRef ,private builder: AnimationBuilder) { }
+    constructor(private element: ElementRef ,private builder: AnimationBuilder, @Inject(DOCUMENT) private _document) { }
 
     ngOnInit() {
         [this.hideAnimation, this.showAnimation] = this.animationMap[this.sideAnimation];
@@ -46,7 +47,7 @@ export class AnimateThatDirective {
 
     private checkVisible() {
         const rect = this.element.nativeElement.getBoundingClientRect();
-        const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+        const viewHeight = Math.max(this._document.documentElement.clientHeight, window.innerHeight);
         return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
       }
 

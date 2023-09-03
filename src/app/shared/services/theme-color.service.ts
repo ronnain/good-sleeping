@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
@@ -10,7 +10,7 @@ export class ThemeColorService {
     isDarkThemeSelectedCookiesKey = "isDarkThemeSelected"
     isDarkThemeSelected: boolean = false;
 
-    constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    constructor(@Inject(PLATFORM_ID) platformId: Object, @Inject(DOCUMENT) private _document) {
         this.isBrowser = isPlatformBrowser(platformId);
         this.retrieveDarkTheme();
      }
@@ -42,7 +42,7 @@ export class ThemeColorService {
 
     private refreshTheme() {
         const targetTheme = this.isDarkThemeSelected ? 'dark' : '';
-        document.documentElement.setAttribute('data-theme', targetTheme);
+        this._document.documentElement.setAttribute('data-theme', targetTheme);
 
         const htmlElement = document.getElementsByTagName('html')[0];
         if (this.isDarkThemeSelected) {
