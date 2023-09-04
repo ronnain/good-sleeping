@@ -2,13 +2,14 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, Input, PLATFORM_ID } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 @Component({
     selector: 'social-network-share-buttons',
     templateUrl: './social-network-share-buttons.component.html',
     styleUrls: ['./social-network-share-buttons.component.css'],
     standalone: true,
-    imports: [ShareButtonsModule]
+    imports: [ShareButtonsModule, ShareIconsModule]
 })
 export class SocialNetworkShareButtonsComponent implements OnInit {
 
