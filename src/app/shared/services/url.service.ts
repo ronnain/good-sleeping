@@ -16,12 +16,15 @@ export class UrlService {
     }
 
     get skipCreation(): boolean {
+        if (!this.isBrowser) {
+            return false;
+        }
         return this._skipCreation || JSON.parse(localStorage.getItem(this.SKIP_SUBSCRIBE_CREATION));
     }
 
 
     skipPopup: boolean = false;
-    isBrowser: boolean = false;
+    isBrowser = isPlatformBrowser(this.platformId);
 
     noPopupPage = [
         "articles/test-severite-insomnie",
@@ -36,10 +39,8 @@ export class UrlService {
     constructor(
         private router: Router,
         private _route: ActivatedRoute,
-        @Inject(PLATFORM_ID) platformId: Object,
+        @Inject(PLATFORM_ID) private platformId: Object,
         ) {
-
-        this.isBrowser = isPlatformBrowser(platformId);
 
         this.router.events.subscribe(event => {
 
