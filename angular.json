@@ -15,7 +15,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/sleeping/browser",
             "index": "src/index-dev.html",
@@ -75,15 +75,15 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
           },
           "configurations": {
             "production": {
-              "browserTarget": "sleeping:build:production"
+              "buildTarget": "sleeping:build:production"
             },
             "development": {
-              "browserTarget": "sleeping:build:development"
+              "buildTarget": "sleeping:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +91,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sleeping:build"
+            "buildTarget": "sleeping:build"
           }
         },
         "test": {
@@ -115,7 +115,7 @@
           }
         },
         "server": {
-          "builder": "@angular-devkit/build-angular:server",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/sleeping/server",
             "main": "server.ts",
@@ -144,7 +144,7 @@
           "defaultConfiguration": "production"
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
           },
           "configurations": {
@@ -160,7 +160,7 @@
           "defaultConfiguration": "development"
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "sleeping:build:production",
             "serverTarget": "sleeping:server:production",
