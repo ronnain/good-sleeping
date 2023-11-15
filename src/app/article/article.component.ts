@@ -90,8 +90,8 @@ export class ArticleComponent implements OnInit, Page {
   }
 
   setHead() {
-    this.articlesService.getArticleByName(this.articleName).subscribe(
-      data => {
+    this.articlesService.getArticleByName(this.articleName).subscribe({
+      next: data => {
         if (!data) {
           this._router.navigate(['articles']);
           return;
@@ -105,8 +105,8 @@ export class ArticleComponent implements OnInit, Page {
         this.sharedArticleImg = environment.serverConfig.imgPath + this.articleName + 'img1/xm.jpg';
         this.headerService.createOpenGraphMeta(this.article.title, this.article.description, this.sharedArticleImg)
       },
-      error => console.error('Une erreure est survenue à la récupération des articles !', error)
-      );
+      error: error => console.error('Une erreur est survenue à la récupération des articles !', error)
+      });
   }
 
   createStructuredData() {

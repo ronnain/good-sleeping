@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 import { HOST_ID } from 'host';
 import { USER_AGENT } from 'user-agent';
 
+console.log('START');
+
 // ssr DOM
 const domino = require('domino');
 const fs = require('fs');
@@ -133,6 +135,7 @@ const mainModule = __non_webpack_require__.main;
 const moduleFilename = mainModule && mainModule.filename || '';
 
 if (moduleFilename === __filename || moduleFilename.includes('node')) {
+  console.log('run');
   run();
 }
 
