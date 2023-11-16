@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, afterRender } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 declare const gtag: Function;
 @Injectable({providedIn: 'root'})
@@ -41,21 +41,23 @@ export class UrlService {
         private _route: ActivatedRoute,
         @Inject(PLATFORM_ID) private platformId: Object,
         ) {
+            afterRender(() => {
+                this.router.events.subscribe(event => {
 
-        this.router.events.subscribe(event => {
+                    if (!(event instanceof NavigationEnd)) {
+                        return;
+                    }
+                    if (environment.production && this.isBrowser) {
+                        /** START : Code to Track Page View  */
+                        gtag('event', 'page_view', {
+                            page_path: event.urlAfterRedirects
+                        })
+                    }
+                    this.checkSkipPopup(event);
+                    this.checkSkipCreation();
+                });
+            });
 
-            if (!(event instanceof NavigationEnd)) {
-                return;
-            }
-            if (environment.production && this.isBrowser) {
-                /** START : Code to Track Page View  */
-                gtag('event', 'page_view', {
-                    page_path: event.urlAfterRedirects
-                })
-            }
-            this.checkSkipPopup(event);
-            this.checkSkipCreation();
-        })
     }
 
     setSkipCreation(value: boolean) {
@@ -68,6 +70,8 @@ export class UrlService {
             this.skipPopup = true;
             return;
         }
+
+
         if (this.noPopupPage.indexOf(window.location.pathname.slice(1)) !== -1) {
             this.skipPopup = true;
             return;

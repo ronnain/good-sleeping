@@ -1,10 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryNameEnum, CategoryNameKeys } from 'src/app/modeles/category.type';
-import { Page } from 'src/app/modeles/interfaces.type';
-import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
-import { CategoriesService } from 'src/app/shared/services/categories.service';
-import { HeaderService } from 'src/app/shared/services/header.service';
-import { environment } from 'src/environments/environment';
 import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
 import { CommentComponent } from '../../shared/component/comment/comment.component';
 import { ArticlesComponent } from '../../articles/articles.component';
@@ -15,6 +9,12 @@ import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardQuizzComponent } from '../shared/card-quizz/card-quizz.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { environment } from '../../../environments/environment';
+import { CategoryNameKeys, CategoryNameEnum } from '../../modeles/category.type';
+import { Page } from '../../modeles/interfaces.type';
+import { GoogleAnalyticsService } from '../../shared/directives/google-analytics.service';
+import { CategoriesService } from '../../shared/services/categories.service';
+import { HeaderService } from '../../shared/services/header.service';
 
 @Component({
     selector: 'app-horne-ostberg',

@@ -4,7 +4,6 @@ import { ArticlesService } from '../shared/services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
 import { isPlatformBrowser, NgIf, DatePipe } from '@angular/common';
 import { HeaderService } from '../shared/services/header.service';
-import { environment } from 'src/environments/environment';
 import { CategoriesService } from '../shared/services/categories.service';
 import { SafeHtmlPipe } from '../shared/pipes/safeHtmlPipe';
 import { ArticlesComponent } from '../articles/articles.component';
@@ -12,6 +11,7 @@ import { CommentComponent } from '../shared/component/comment/comment.component'
 import { RetrieveMailComponent } from '../shared/retrieve-mail/retrieve-mail.component';
 import { SocialNetworkShareButtonsComponent } from '../social-network-share-buttons/social-network-share-buttons.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'app-article',

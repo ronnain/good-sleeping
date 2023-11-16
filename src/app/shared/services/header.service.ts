@@ -1,7 +1,7 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Renderer2, Inject, Injectable, PLATFORM_ID, Optional, InjectionToken, RendererFactory2 } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { HOST_ID } from 'host';
+import { HOST_ID } from '../../host';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +44,9 @@ export class HeaderService {
   }
 
   private removeStructuredData() {
+    if (!this.isBrowser) {
+      return;
+    }
     const structuredData = document.getElementById("structuredData");
     if(structuredData) {
       structuredData.remove();

@@ -1,9 +1,9 @@
 import { AnimationBuilder, style, animate, AnimationMetadata, AnimationPlayer, keyframes, query, sequence } from '@angular/animations';
-import { Directive, ElementRef, Inject, Input } from '@angular/core';
+import { Directive, ElementRef, Inject, Input, PLATFORM_ID } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 import { hideBottomAnimation, hideLeftAnimation, hideRightAnimation, showBottomAnimation, showLeftAnimation, showRightAnimation } from '../animations/scroll.animation';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Directive({
     selector: '[animateThat]',
@@ -26,11 +26,14 @@ export class AnimateThatDirective {
     visible:boolean = false;
     initialAnimation: boolean = true;
 
-    constructor(private element: ElementRef ,private builder: AnimationBuilder, @Inject(DOCUMENT) private _document) { }
+    constructor(private element: ElementRef ,private builder: AnimationBuilder, @Inject(DOCUMENT) private _document, @Inject(PLATFORM_ID) private platformId: Object) { }
 
     ngOnInit() {
+        if (!isPlatformBrowser(this.platformId)) {
+            return;
+        }
         [this.hideAnimation, this.showAnimation] = this.animationMap[this.sideAnimation];
-        fromEvent(window, 'scroll').pipe(throttleTime(500)).subscribe(event => {
+        fromEvent(this._document.window, 'scroll').pipe(throttleTime(500)).subscribe(event => {
             this.visible = this.checkVisible();
 
             if (this.visible && this.initialAnimation) {

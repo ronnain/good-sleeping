@@ -3,9 +3,12 @@ import 'zone.js/node';
 
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr';
-import * as express from 'express';
-import { environment } from 'src/environments/environment';
-import { AppServerModule } from './src/main.server';
+import express from 'express';
+import bootstrap from './src/main.server';
+import { environment } from './src/environments/environment';
+import { HOST_ID } from './src/app/host';
+import { USER_AGENT } from './src/app/user-agent';
+
 
 console.log('start');
 // The Express app is exported so that it can be used by serverless Functions.
@@ -32,12 +35,15 @@ export function app(): express.Express {
 
     commonEngine
       .render({
-        bootstrap: AppServerModule,
+        bootstrap,
         documentFilePath: indexHtml,
         url: `${protocol}://${headers.host}${originalUrl}`,
         publicPath: browserFolder,
         providers: [
-          { provide: APP_BASE_HREF, useValue: baseUrl },],
+          { provide: APP_BASE_HREF, useValue: baseUrl },
+          { provide: HOST_ID, useValue: req.get('host') + req.originalUrl }, // sending host name in provider
+          { provide: USER_AGENT, useValue: req.get('User-Agent') }
+        ],
       })
       .then((html) => res.send(html))
       .catch((err) => next(err));
@@ -56,12 +62,4 @@ function run(): void {
   });
 }
 
-// Webpack will replace 'require' with '__webpack_require__'
-// '__non_webpack_require__' is a proxy to Node 'require'
-// The below code is to ensure that the server is run only when not requiring the bundle.
-declare const __non_webpack_require__: NodeRequire;
-const mainModule = __non_webpack_require__.main;
-const moduleFilename = mainModule && mainModule.filename || '';
-if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
-  run();
-}
+run();

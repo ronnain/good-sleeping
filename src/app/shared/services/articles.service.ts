@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../../modeles/interfaces.type';
-import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { TransferStateService } from './transferState.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -88,7 +88,6 @@ export class ArticlesService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log('handleError error', error);
     if (error?.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);

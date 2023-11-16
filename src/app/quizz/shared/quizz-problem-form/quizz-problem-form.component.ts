@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
 import { ProblemFormComponent } from '../../../shared/retrieve-mail/problem-form/problem-form.component';
+import { GoogleAnalyticsService } from '../../../shared/directives/google-analytics.service';
 
 @Component({
     selector: 'quizz-problem-form',

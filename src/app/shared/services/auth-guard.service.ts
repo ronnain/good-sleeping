@@ -19,6 +19,7 @@ export class AuthGuardService  {
     return true;
     } else {
     this.router.navigate(['/admin']);
+    return false;
     }
   }
 

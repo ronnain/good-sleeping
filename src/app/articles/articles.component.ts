@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, Inject, PLATFORM_ID } from '@angular/core';
 import { Article, Page } from '../modeles/interfaces.type';
 import { ArticlesService } from '../shared/services/articles.service';
-import { environment } from 'src/environments/environment';
 import { HeaderService } from '../shared/services/header.service';
 import { dropDownCategories } from '../shared/animations/dropdown.animation';
 import { isPlatformBrowser, NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
@@ -15,6 +14,7 @@ import { ArticlesFromCategoryPipe } from './articles-from-category.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -101,7 +101,7 @@ export class ArticlesComponent implements OnInit, Page {
 
   ngOnChanges(changes: SimpleChanges) {
     // call from article component
-    if (changes.currentArticleName && changes.currentArticleName.previousValue) {
+    if (changes['currentArticleName'] && changes['currentArticleName'].previousValue) {
       // call only when the user click on antoher article in artcile component
       this.getArticles();
     }

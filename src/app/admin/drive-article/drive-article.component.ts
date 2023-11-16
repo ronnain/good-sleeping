@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DriveService } from 'src/app/shared/services/drive.service';
-import { ArticleConfig, MyArticle } from 'src/app/modeles/interfaces.type';
-import { CategoryNameEnum } from 'src/app/modeles/category.type';
-import { CATEGORIES } from 'src/app/modeles/categories-list.type';
-import { Categories } from 'src/app/modeles/categories.dto';
 import { NgFor, NgIf, JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +8,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CATEGORIES } from '../../modeles/categories-list.type';
+import { Categories } from '../../modeles/categories.dto';
+import { CategoryNameEnum } from '../../modeles/category.type';
+import { MyArticle, ArticleConfig } from '../../modeles/interfaces.type';
+import { DriveService } from '../../shared/services/drive.service';
 
 @Component({
     selector: 'app-drive-article',

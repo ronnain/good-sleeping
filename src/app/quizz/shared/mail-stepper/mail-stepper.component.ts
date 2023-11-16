@@ -2,10 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { opacityAnimation } from 'src/app/shared/animations/opacity.animation';
-import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
-import { MailService } from 'src/app/shared/services/mail.service';
-import { UrlService } from 'src/app/shared/services/url.service';
 import { QuizzProblemFormComponent } from '../quizz-problem-form/quizz-problem-form.component';
 import { NgIf, AsyncPipe } from '@angular/common';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -13,6 +9,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { opacityAnimation } from '../../../shared/animations/opacity.animation';
+import { GoogleAnalyticsService } from '../../../shared/directives/google-analytics.service';
+import { MailService } from '../../../shared/services/mail.service';
+import { UrlService } from '../../../shared/services/url.service';
 
 @Component({
     selector: 'quizz-mail-stepper',

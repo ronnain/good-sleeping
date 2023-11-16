@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, InjectionToken, Optional, PLATFORM_ID } from '@angular/core';
-import { USER_AGENT } from 'user-agent';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
+import { USER_AGENT } from '../../user-agent';
 
 @Injectable({providedIn: 'root'})
 export class MobileService {

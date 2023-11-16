@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryNameEnum, CategoryNameKeys } from 'src/app/modeles/category.type';
-import { Page } from 'src/app/modeles/interfaces.type';
-import { CategoriesService } from 'src/app/shared/services/categories.service';
-import { HeaderService } from 'src/app/shared/services/header.service';
-import { environment } from 'src/environments/environment';
 import { binaryQuestionDTO } from '../shared/binary-quizz/binary-question.dto';
 import { QUIZZ_NO_SAS, QUIZZ_STOP_BANG } from './sahos.questions.dto';
 import { CommentComponent } from '../../shared/component/comment/comment.component';
@@ -14,6 +9,11 @@ import { NgIf } from '@angular/common';
 import { MailStepperComponent } from '../shared/mail-stepper/mail-stepper.component';
 import { BmiCalculatorComponent } from '../shared/bmi-calculator/bmi-calculator.component';
 import { BinaryQuizzComponent } from '../shared/binary-quizz/binary-quizz.component';
+import { environment } from '../../../environments/environment';
+import { CategoryNameKeys, CategoryNameEnum } from '../../modeles/category.type';
+import { Page } from '../../modeles/interfaces.type';
+import { CategoriesService } from '../../shared/services/categories.service';
+import { HeaderService } from '../../shared/services/header.service';
 
 @Component({
     selector: 'app-sahos',

@@ -1,7 +1,5 @@
 import { isPlatformBrowser, NgClass, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { MobileService } from 'src/app/shared/services/mobile.service';
-import { UrlService } from 'src/app/shared/services/url.service';
 import { completeQuizz } from '../binary-quizz/animations/complete.animation';
 import { IsAnswerSelectedPipe } from './card-answer-selected.pipe';
 import { progressRatioPipe } from '../pipes/progress-ratio';
@@ -10,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { SwipeDirective } from '../../../shared/directives/swipe.directive';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { MobileService } from '../../../shared/services/mobile.service';
+import { UrlService } from '../../../shared/services/url.service';
 
 @Component({
     selector: 'card-questions',

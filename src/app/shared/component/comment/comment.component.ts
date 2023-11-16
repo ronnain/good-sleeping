@@ -118,7 +118,7 @@ export class CommentComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     // call when the user select another article
-    if (changes.articleId && changes.articleId.currentValue && changes.articleId.currentValue !== 0) {
+    if (changes['articleId'] && changes['articleId'].currentValue && changes['articleId'].currentValue !== 0) {
       this.loadComments();
     }
   }

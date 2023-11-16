@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MailService } from 'src/app/shared/services/mail.service';
 import { Router } from '@angular/router';
 import { ReplaceLineBreaks } from '../pipes/replaceLinesBreaks';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MailService } from '../../shared/services/mail.service';
 
 
 @Component({

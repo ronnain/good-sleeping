@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CategoryNameEnum, CategoryNameKeys } from 'src/app/modeles/category.type';
+import { CategoryNameEnum, CategoryNameKeys } from '../../modeles/category.type';
 
 @Injectable({providedIn: 'root'})
 export class CategoriesService {
