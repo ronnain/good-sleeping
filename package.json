@@ -7,11 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build:dev:ssr": "ng run sleeping:serve-ssr",
-    "serve:ssr": "cd ./dist/sleeping/server/ && node main.js --trace-warnings",
-    "build:prod:ssr": "ng build --configuration production && ng run sleeping:server:production",
-    "prerender": "ng run sleeping:prerender"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -50,10 +46,10 @@
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.2",
     "@angular/language-service": "^17.0.2",
-    "@types/express": "^4.17.0",
+    "@types/express": "^4.17.17",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.20.55",
+    "@types/node": "^18.18.0",
     "codelyzer": "^6.0.0",
     "http-server": "^0.12.3",
     "protractor": "~7.0.0",
@@ -62,6 +58,6 @@
     "typescript": "5.2"
   },
   "engines": {
-    "node": ">14"
+    "node": ">20"
   }
 }

@@ -1,6 +1,3 @@
-
-import 'zone.js/node';
-
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr';
 import express from 'express';
@@ -10,7 +7,7 @@ import { HOST_ID } from './src/app/host';
 import { USER_AGENT } from './src/app/user-agent';
 
 
-console.log('start');
+console.log('startJESUISLA');
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();

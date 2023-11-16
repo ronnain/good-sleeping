@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sleeping/browser",
+            "outputPath": "dist/sleeping",
             "index": "src/index-dev.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -42,7 +42,8 @@
             "server": "src/main.server.ts",
             "ssr": {
               "entry": "server.ts"
-            }
+            },
+            "prerender": false
           },
           "configurations": {
             "production": {
@@ -144,35 +145,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@angular-devkit/build-angular:ssr-dev-server",
-          "options": {
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "sleeping:build:production",
-              "serverTarget": "sleeping:server:production"
-            },
-            "development": {
-              "serverTarget": "sleeping:server:development",
-              "browserTarget": "sleeping:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "browserTarget": "sleeping:build:production",
-            "serverTarget": "sleeping:server:production",
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {}
-          }
         }
       }
     },
