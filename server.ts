@@ -5,6 +5,8 @@ import bootstrap from './src/main.server';
 import { environment } from './src/environments/environment';
 import { HOST_ID } from './src/app/host';
 import { USER_AGENT } from './src/app/user-agent';
+import { dirname, join, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 
 console.log('startJESUISLA');
@@ -12,17 +14,19 @@ console.log('startJESUISLA');
 export function app(): express.Express {
   const server = express();
 
-  const browserFolder = environment.serverRenderingPath.browserFiles;
-  const indexHtml = environment.serverRenderingPath.localIndex;
+  const serverDistFolder = dirname(fileURLToPath(import.meta.url));
+  const browserDistFolder = resolve(serverDistFolder, '../browser');
+  const indexHtml = join(serverDistFolder, 'index.server.html');
+
   const commonEngine = new CommonEngine();
 
   server.set('view engine', 'html');
-  server.set('views', browserFolder);
+  server.set('views', browserDistFolder);
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get('*.*', express.static(browserFolder, {
+  server.get('*.*', express.static(browserDistFolder, {
     maxAge: '1y'
   }));
 
@@ -35,12 +39,11 @@ export function app(): express.Express {
         bootstrap,
         documentFilePath: indexHtml,
         url: `${protocol}://${headers.host}${originalUrl}`,
-        publicPath: browserFolder,
-        providers: [
-          { provide: APP_BASE_HREF, useValue: baseUrl },
-          { provide: HOST_ID, useValue: req.get('host') + req.originalUrl }, // sending host name in provider
-          { provide: USER_AGENT, useValue: req.get('User-Agent') }
-        ],
+        publicPath: browserDistFolder,
+        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl },
+        { provide: HOST_ID, useValue: req.get('host') + req.originalUrl }, // sending host name in provider
+        { provide: USER_AGENT, useValue: req.get('User-Agent') },
+        ]
       })
       .then((html) => res.send(html))
       .catch((err) => next(err));
