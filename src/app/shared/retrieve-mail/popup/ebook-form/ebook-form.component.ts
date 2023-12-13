@@ -1,10 +1,16 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
+import { ProblemFormComponent } from '../../problem-form/problem-form.component';
+import { EmailFormComponent } from '../../email-form/email-form.component';
+import { NgIf } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { GoogleAnalyticsService } from '../../../directives/google-analytics.service';
 
 @Component({
-  selector: 'ebook-form',
-  templateUrl: './ebook-form.component.html',
-  styleUrls: ['./ebook-form.component.css']
+    selector: 'ebook-form',
+    templateUrl: './ebook-form.component.html',
+    styleUrls: ['./ebook-form.component.css'],
+    standalone: true,
+    imports: [MatIconModule, NgIf, EmailFormComponent, ProblemFormComponent]
 })
 export class EbookFormComponent implements OnInit {
 

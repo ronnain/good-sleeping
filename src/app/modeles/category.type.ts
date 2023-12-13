@@ -1,4 +1,4 @@
-export enum CategoryNameEnum { // update categories service.
+export enum CategoryNameEnum { // update categories service. // TODO REFACTO
     all = "all",
     apnee = "apnee",
     insomnie = "insomnie",

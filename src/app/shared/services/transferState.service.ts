@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { from, Observable, throwError } from 'rxjs';
-import { TransferState } from '@angular/platform-browser';
+import { Observable, of } from 'rxjs';
+import { TransferState } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class TransferStateService {
     } else {
       throw new Error()
     }
-    return from(Promise.resolve(resultData))
+    return of(resultData)
   }
 
   private setCache(key, value) {

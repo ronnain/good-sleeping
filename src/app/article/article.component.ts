@@ -2,16 +2,24 @@ import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID, Renderer2  }
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from '../shared/services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { isPlatformBrowser, NgIf, DatePipe } from '@angular/common';
 import { HeaderService } from '../shared/services/header.service';
-import { environment } from 'src/environments/environment';
 import { CategoriesService } from '../shared/services/categories.service';
+import { SafeHtmlPipe } from '../shared/pipes/safeHtmlPipe';
+import { ArticlesComponent } from '../articles/articles.component';
+import { CommentComponent } from '../shared/component/comment/comment.component';
+import { RetrieveMailComponent } from '../shared/retrieve-mail/retrieve-mail.component';
+import { SocialNetworkShareButtonsComponent } from '../social-network-share-buttons/social-network-share-buttons.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.css'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-article',
+    templateUrl: './article.component.html',
+    styleUrls: ['./article.component.css'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [NgIf, MatProgressBarModule, SocialNetworkShareButtonsComponent, RetrieveMailComponent, CommentComponent, ArticlesComponent, DatePipe, SafeHtmlPipe]
 })
 export class ArticleComponent implements OnInit, Page {
   isBrowser: boolean;
@@ -82,8 +90,8 @@ export class ArticleComponent implements OnInit, Page {
   }
 
   setHead() {
-    this.articlesService.getArticleByName(this.articleName).subscribe(
-      data => {
+    this.articlesService.getArticleByName(this.articleName).subscribe({
+      next: data => {
         if (!data) {
           this._router.navigate(['articles']);
           return;
@@ -97,8 +105,8 @@ export class ArticleComponent implements OnInit, Page {
         this.sharedArticleImg = environment.serverConfig.imgPath + this.articleName + 'img1/xm.jpg';
         this.headerService.createOpenGraphMeta(this.article.title, this.article.description, this.sharedArticleImg)
       },
-      error => console.error('Une erreure est survenue à la récupération des articles !', error)
-      );
+      error: error => console.error('Une erreur est survenue à la récupération des articles !', error)
+      });
   }
 
   createStructuredData() {

@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Biorythme } from '../biorythme.type';
 
 @Pipe({
-    name: 'animal'
+    name: 'animal',
+    standalone: true
 })
 
 export class AnnimalPipe implements PipeTransform {

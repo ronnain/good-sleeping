@@ -1,6 +1,6 @@
 import { trigger, transition, style, animate } from "@angular/animations";
 
-export const articleAniamtion =
+export const articleAnimation =
   trigger('articlesAnimation', [
       transition(':enter', [
 

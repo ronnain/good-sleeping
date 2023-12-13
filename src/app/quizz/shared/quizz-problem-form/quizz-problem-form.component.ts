@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
+import { ProblemFormComponent } from '../../../shared/retrieve-mail/problem-form/problem-form.component';
+import { GoogleAnalyticsService } from '../../../shared/directives/google-analytics.service';
 
 @Component({
-  selector: 'quizz-problem-form',
-  templateUrl: './quizz-problem-form.component.html',
-  styleUrls: ['./quizz-problem-form.component.scss']
+    selector: 'quizz-problem-form',
+    templateUrl: './quizz-problem-form.component.html',
+    styleUrls: ['./quizz-problem-form.component.scss'],
+    standalone: true,
+    imports: [ProblemFormComponent]
 })
 export class QuizzProblemFormComponent implements OnInit {
 

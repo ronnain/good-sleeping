@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Page } from '../modeles/interfaces.type';
-import { environment } from 'src/environments/environment';
 import { HeaderService } from '../shared/services/header.service';
+import { RouterLink } from '@angular/router';
+import { RetrieveMailComponent } from '../shared/retrieve-mail/retrieve-mail.component';
+import { AnimateThatDirective } from '../shared/directives/animation.directive';
+import { MatButtonModule } from '@angular/material/button';
+import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: true,
+    imports: [AnimateThatDirective, RetrieveMailComponent, MatButtonModule, RouterLink]
 })
 export class HomeComponent implements OnInit, Page {
 

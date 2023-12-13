@@ -1,20 +1,28 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { userChoice } from './animations/user-choice.animation';
 import { backAction } from './animations/back-action.animation';
-import { isPlatformBrowser } from '@angular/common';
-import { MobileService } from 'src/app/shared/services/mobile.service';
+import { isPlatformBrowser, NgFor, NgIf } from '@angular/common';
 import { binaryQuestionDTO } from './binary-question.dto';
 import { completeQuizz } from './animations/complete.animation';
+import { progressRatioPipe } from '../pipes/progress-ratio';
+import { BinaryActionsComponent } from './binary-actions/binary-actions.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CdkDrag } from '@angular/cdk/drag-drop';
+import { SwipeDirective } from '../../../shared/directives/swipe.directive';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MobileService } from '../../../shared/services/mobile.service';
 
 @Component({
-  selector: 'binary-quizz',
-  templateUrl: './binary-quizz.component.html',
-  styleUrls: ['./binary-quizz.component.scss'],
-  animations: [
-    userChoice,
-    backAction,
-    completeQuizz
-  ]
+    selector: 'binary-quizz',
+    templateUrl: './binary-quizz.component.html',
+    styleUrls: ['./binary-quizz.component.scss'],
+    animations: [
+        userChoice,
+        backAction,
+        completeQuizz
+    ],
+    standalone: true,
+    imports: [NgFor, NgIf, SwipeDirective, CdkDrag, MatProgressBarModule, MatIconModule, BinaryActionsComponent, progressRatioPipe]
 })
 export class BinaryQuizzComponent implements OnInit {
 
@@ -51,7 +59,7 @@ export class BinaryQuizzComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
-    private mobileService: MobileService,
+    protected mobileService: MobileService,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }

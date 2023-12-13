@@ -1,15 +1,22 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { GoogleAnalyticsService } from '../../directives/google-analytics.service';
 import { MailService } from '../../services/mail.service';
 import { UrlService } from '../../services/url.service';
+import { NgIf } from '@angular/common';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
-  selector: 'app-email-form',
-  templateUrl: './email-form.component.html',
-  styleUrls: ['./email-form.component.scss']
+    selector: 'app-email-form',
+    templateUrl: './email-form.component.html',
+    styleUrls: ['./email-form.component.scss'],
+    standalone: true,
+    imports: [FormsModule, MatFormFieldModule, MatInputModule, NgIf, MatCheckboxModule, MatProgressBarModule]
 })
 export class EmailFormComponent implements OnInit {
 

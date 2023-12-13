@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { DriveService } from 'src/app/shared/services/drive.service';
-import { Router } from '@angular/router';
-import { ArticlesService } from 'src/app/shared/services/articles.service';
-import { Article } from 'src/app/modeles/interfaces.type';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NgClass, NgIf, DatePipe } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { Article } from '../../modeles/interfaces.type';
+import { DriveService } from '../../shared/services/drive.service';
 
 @Component({
-  selector: 'app-drive-overview',
-  templateUrl: './drive-overview.component.html',
-  styleUrls: ['./drive-overview.component.css']
+    selector: 'app-drive-overview',
+    templateUrl: './drive-overview.component.html',
+    styleUrls: ['./drive-overview.component.css'],
+    standalone: true,
+    imports: [MatTableModule, RouterLink, NgClass, NgIf, MatProgressBarModule, DatePipe]
 })
 export class DriveOverviewComponent implements OnInit {
   showValidation: boolean = false;

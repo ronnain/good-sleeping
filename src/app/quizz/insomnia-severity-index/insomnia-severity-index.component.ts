@@ -1,17 +1,28 @@
-import { ViewportScroller } from '@angular/common';
+import { ViewportScroller, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { CategoryNameEnum, CategoryNameKeys } from 'src/app/modeles/category.type';
-import { Page } from 'src/app/modeles/interfaces.type';
-import { GoogleAnalyticsService } from 'src/app/shared/directives/google-analytics.service';
-import { CategoriesService } from 'src/app/shared/services/categories.service';
-import { HeaderService } from 'src/app/shared/services/header.service';
-import { environment } from 'src/environments/environment';
+import { CommentComponent } from '../../shared/component/comment/comment.component';
+import { ArticlesComponent } from '../../articles/articles.component';
+import { QuizzProblemFormComponent } from '../shared/quizz-problem-form/quizz-problem-form.component';
+import { SocialNetworkShareButtonsComponent } from '../../social-network-share-buttons/social-network-share-buttons.component';
+import { MailStepperComponent } from '../shared/mail-stepper/mail-stepper.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { environment } from '../../../environments/environment';
+import { CategoryNameKeys, CategoryNameEnum } from '../../modeles/category.type';
+import { Page } from '../../modeles/interfaces.type';
+import { GoogleAnalyticsService } from '../../shared/directives/google-analytics.service';
+import { CategoriesService } from '../../shared/services/categories.service';
+import { HeaderService } from '../../shared/services/header.service';
+
 
 
 @Component({
-  selector: 'app-insomnia-severity-index',
-  templateUrl: './insomnia-severity-index.component.html',
-  styleUrls: ['./insomnia-severity-index.component.css']
+    selector: 'app-insomnia-severity-index',
+    templateUrl: './insomnia-severity-index.component.html',
+    styleUrls: ['./insomnia-severity-index.component.css'],
+    standalone: true,
+    imports: [NgFor, MatFormFieldModule, MatSelectModule, FormsModule, MailStepperComponent, NgIf, SocialNetworkShareButtonsComponent, QuizzProblemFormComponent, ArticlesComponent, CommentComponent]
 })
 export class InsomniaSeverityIndexComponent implements OnInit, Page {
 

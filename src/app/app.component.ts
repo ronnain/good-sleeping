@@ -1,15 +1,25 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { CategoriesService } from './shared/services/categories.service';
-import { ThemeColorService } from './shared/services/theme-color.service';
+import { EbookPopupComponent } from './shared/retrieve-mail/popup/ebook-popup/ebook-popup.component';
+import { FooterComponent } from './footer/footer.component';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
+import { environment } from '../environments/environment';
 
 declare const gtag: Function;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: true,
+    imports: [
+        HeaderComponent,
+        RouterOutlet,
+        FooterComponent,
+        EbookPopupComponent,
+    ],
 })
 export class AppComponent {
   title = 'Sommeil Profond';
@@ -17,7 +27,6 @@ export class AppComponent {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
-    private themeColorService: ThemeColorService,
     private categoriesService: CategoriesService
   ) {
     this.isBrowser = isPlatformBrowser(platformId);

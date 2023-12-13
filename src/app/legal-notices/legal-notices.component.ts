@@ -3,9 +3,10 @@ import { Page } from '../modeles/interfaces.type';
 import { HeaderService } from '../shared/services/header.service';
 
 @Component({
-  selector: 'app-legal-notices',
-  templateUrl: './legal-notices.component.html',
-  styleUrls: ['./legal-notices.component.css']
+    selector: 'app-legal-notices',
+    templateUrl: './legal-notices.component.html',
+    styleUrls: ['./legal-notices.component.css'],
+    standalone: true
 })
 export class LegalNoticesComponent implements OnInit, Page {
 

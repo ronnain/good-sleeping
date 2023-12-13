@@ -15,13 +15,15 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sleeping/browser",
+            "outputPath": "dist/sleeping-front",
             "index": "src/index-dev.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -33,12 +35,15 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "optimization": true,
+            "namedChunks": true,
+            "server": "src/main.server.ts",
+            "ssr": {
+              "entry": "server.ts"
+            },
+            "prerender": false
           },
           "configurations": {
             "production": {
@@ -54,8 +59,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -67,8 +70,7 @@
                   "maximumWarning": "6kb"
                 }
               ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {}
           },
@@ -80,10 +82,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "sleeping:build:production"
+              "buildTarget": "sleeping:build:production"
             },
             "development": {
-              "browserTarget": "sleeping:build:development"
+              "buildTarget": "sleeping:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sleeping:build"
+            "buildTarget": "sleeping:build"
           }
         },
         "test": {
@@ -115,13 +117,17 @@
           }
         },
         "server": {
-          "builder": "@angular-devkit/build-angular:server",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/sleeping/server",
-            "main": "server.ts",
-            "tsConfig": "src/tsconfig.server.json",
+            "server": "src/main.server.ts",
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
             "sourceMap": true,
-            "optimization": false
+            "optimization": false,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -136,39 +142,9 @@
               "optimization": true
             },
             "development": {
-              "vendorChunk": true
             }
           },
           "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "options": {
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "sleeping:build:production",
-              "serverTarget": "sleeping:server:production"
-            },
-            "development": {
-              "serverTarget": "sleeping:server:development",
-              "browserTarget": "sleeping:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "browserTarget": "sleeping:build:production",
-            "serverTarget": "sleeping:server:production",
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {}
-          }
         }
       }
     },

@@ -4,11 +4,19 @@ import { debounceTime } from 'rxjs/operators';
 import { CardQuestionDTO } from '../../shared/card-quizz/card-question.dto';
 import { DOLPHIN_QUESTIONS } from '../biorythme-questions.ressources';
 import { Biorythme, BiorythmeScore } from '../biorythme.type';
+import { MatIconModule } from '@angular/material/icon';
+import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CardQuizzComponent } from '../../shared/card-quizz/card-quizz.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-dolphin-quizz',
-  templateUrl: './dolphin-quizz.component.html',
-  styleUrls: ['./dolphin-quizz.component.scss']
+    selector: 'app-dolphin-quizz',
+    templateUrl: './dolphin-quizz.component.html',
+    styleUrls: ['./dolphin-quizz.component.scss'],
+    standalone: true,
+    imports: [CardQuizzComponent, MatRadioModule, FormsModule, NgFor, MatButtonModule, MatIconModule]
 })
 export class DolphinQuizzComponent implements OnInit {
 

@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, afterRender } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 declare const gtag: Function;
 @Injectable({providedIn: 'root'})
@@ -16,12 +16,15 @@ export class UrlService {
     }
 
     get skipCreation(): boolean {
+        if (!this.isBrowser) {
+            return false;
+        }
         return this._skipCreation || JSON.parse(localStorage.getItem(this.SKIP_SUBSCRIBE_CREATION));
     }
 
 
     skipPopup: boolean = false;
-    isBrowser: boolean = false;
+    isBrowser = isPlatformBrowser(this.platformId);
 
     noPopupPage = [
         "articles/test-severite-insomnie",
@@ -36,25 +39,25 @@ export class UrlService {
     constructor(
         private router: Router,
         private _route: ActivatedRoute,
-        @Inject(PLATFORM_ID) platformId: Object,
+        @Inject(PLATFORM_ID) private platformId: Object,
         ) {
+            afterRender(() => {
+                this.router.events.subscribe(event => {
 
-        this.isBrowser = isPlatformBrowser(platformId);
+                    if (!(event instanceof NavigationEnd)) {
+                        return;
+                    }
+                    if (environment.production && this.isBrowser) {
+                        /** START : Code to Track Page View  */
+                        gtag('event', 'page_view', {
+                            page_path: event.urlAfterRedirects
+                        })
+                    }
+                    this.checkSkipPopup(event);
+                    this.checkSkipCreation();
+                });
+            });
 
-        this.router.events.subscribe(event => {
-
-            if (!(event instanceof NavigationEnd)) {
-                return;
-            }
-            if (environment.production && this.isBrowser) {
-                /** START : Code to Track Page View  */
-                gtag('event', 'page_view', {
-                    page_path: event.urlAfterRedirects
-                })
-            }
-            this.checkSkipPopup(event);
-            this.checkSkipCreation();
-        })
     }
 
     setSkipCreation(value: boolean) {
@@ -67,6 +70,8 @@ export class UrlService {
             this.skipPopup = true;
             return;
         }
+
+
         if (this.noPopupPage.indexOf(window.location.pathname.slice(1)) !== -1) {
             this.skipPopup = true;
             return;

@@ -1,13 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { Article, MyArticle } from 'src/app/modeles/interfaces.type';
-import { ArticlesService } from 'src/app/shared/services/articles.service';
 import { Router } from '@angular/router';
+import { NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { environment } from '../../../environments/environment';
+import { MyArticle } from '../../modeles/interfaces.type';
+import { ArticlesService } from '../../shared/services/articles.service';
 
 @Component({
-  selector: 'app-add-article',
-  templateUrl: './add-article.component.html',
-  styleUrls: ['./add-article.component.css']
+    selector: 'app-add-article',
+    templateUrl: './add-article.component.html',
+    styleUrls: ['./add-article.component.css'],
+    standalone: true,
+    imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, NgFor, NgIf, MatProgressBarModule]
 })
 export class AddArticleComponent implements OnInit {
 

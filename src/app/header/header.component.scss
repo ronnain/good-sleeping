@@ -28,7 +28,7 @@ li > a:hover {
   transform: scale(1.1);
 }
 
-@keyframes enterFromNoWhere {
+@keyframes enterFromNoWhere { // todo test
   from {
     transform: scale(0);
   }
@@ -61,6 +61,6 @@ nav {
 }
 
 .navbar {
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125);
 }
