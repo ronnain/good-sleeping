@@ -6,7 +6,7 @@ import { HOST_ID } from './src/app/host';
 import { USER_AGENT } from './src/app/user-agent';
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import fs from 'fs';
+import { ServerPageCacheHandler } from './server-page-cache-handler';
 
 
 console.log('startJESUISLA');
@@ -20,6 +20,13 @@ export function app(): express.Express {
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   console.log('browserDistFolder', browserDistFolder);
   const indexHtml = join(serverDistFolder, 'index.server.html');
+
+  const exposedBrowserFolder = resolve(serverDistFolder, '../../../public_html');
+  console.log('exposedBrowserFolder', exposedBrowserFolder);
+
+
+  const serverPageCacheHandler = new ServerPageCacheHandler(exposedBrowserFolder); // TODO Trouver celui qui sert ou pas
+  const serverPageCacheHandler2 = new ServerPageCacheHandler(browserDistFolder); // TODO Trouver celui qui sert ou pas
 
   const commonEngine = new CommonEngine();
 
@@ -51,10 +58,12 @@ export function app(): express.Express {
         ]
       })
       .then((html) => {
+        serverPageCacheHandler.save(originalUrl + '.html', html);
+        serverPageCacheHandler2.save(originalUrl + '.html', html);
         res.send(html)
       })
       .catch((err) => {
-        console.log('err', err);
+        console.log('Node App Error', err);
         next(err)
       });
   });
