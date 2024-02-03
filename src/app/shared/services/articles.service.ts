@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../../modeles/interfaces.type';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { TransferStateService } from './transferState.service';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class ArticlesService {
   pseudo: any;
   token: any;
 
-  constructor(private http: HttpClient, private authService: AuthService, private transferStateService: TransferStateService) { }
+  constructor(private http: HttpClient, private authService: AuthService, private transferStateService: TransferStateService, private router: Router) { }
 
 
   getArticleContent(articleName: string) {
@@ -31,7 +32,12 @@ export class ArticlesService {
     return this.transferStateService.getData(url, options, () => {
       return this.http.get(url, {responseType: 'text'})
         .pipe(
-          catchError(this.handleError)
+          catchError((error) => {
+            if(error?.status == 404) {
+              this.router.navigateByUrl('404');
+            }
+            return this.handleError(error);
+          })
         );
     });
   }
@@ -62,9 +68,23 @@ export class ArticlesService {
     return this.transferStateService.getData(url, null, () => {
       return this.http.get<Article>(url)
         .pipe(
-          catchError(this.handleError)
+          catchError((error) => { // When there is an error, we are not passing by this path, the transfer service will return null instead
+            console.log('handleError error', error);
+            if(error?.status == 404) {
+              this.router.navigateByUrl('404');
+            }
+            return this.handleError(error);
+          })
         );
-    });
+    }).pipe(
+      catchError((error) => {
+        console.log('transfer handleError error', error);
+        if(error?.status == 404) {
+          this.router.navigateByUrl('404');
+        }
+        return this.handleError(error);
+      })
+    );;
   }
 
   addNewArticle(article: Article, articleText: string) {

@@ -7,6 +7,7 @@ import { USER_AGENT } from './src/app/user-agent';
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { ServerPageCacheHandler } from './server-page-cache-handler';
+import { RESPONSE } from './src/app/response';
 
 
 console.log('startJESUISLA');
@@ -25,8 +26,7 @@ export function app(): express.Express {
   console.log('exposedBrowserFolder', exposedBrowserFolder);
 
 
-  const serverPageCacheHandler = new ServerPageCacheHandler(exposedBrowserFolder); // TODO Trouver celui qui sert ou pas
-  const serverPageCacheHandler2 = new ServerPageCacheHandler(browserDistFolder); // TODO Trouver celui qui sert ou pas
+  const serverPageCacheHandler = new ServerPageCacheHandler(exposedBrowserFolder);
 
   const commonEngine = new CommonEngine();
 
@@ -55,12 +55,18 @@ export function app(): express.Express {
         providers: [{ provide: APP_BASE_HREF, useValue: baseUrl },
         { provide: HOST_ID, useValue: req.get('host') + req.originalUrl }, // sending host name in provider
         { provide: USER_AGENT, useValue: req.get('User-Agent') },
+        {
+          provide: RESPONSE,
+          useValue: res
+        }
         ]
       })
       .then((html) => {
-        serverPageCacheHandler.save(originalUrl + '.html', html);
-        serverPageCacheHandler2.save(originalUrl + '.html', html);
-        res.send(html)
+        if (res.statusCode !== 404) {
+          serverPageCacheHandler.save(originalUrl + '.html', html);
+        }
+
+        res.send(html);
       })
       .catch((err) => {
         console.log('Node App Error', err);

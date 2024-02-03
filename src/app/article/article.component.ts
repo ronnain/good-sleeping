@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID, Renderer2  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject, PLATFORM_ID  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from '../shared/services/articles.service';
 import { Page, MyArticle, Article } from '../modeles/interfaces.type';
@@ -12,6 +12,7 @@ import { RetrieveMailComponent } from '../shared/retrieve-mail/retrieve-mail.com
 import { SocialNetworkShareButtonsComponent } from '../social-network-share-buttons/social-network-share-buttons.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { environment } from '../../environments/environment';
+import { EMPTY, of, switchMap } from 'rxjs';
 
 @Component({
     selector: 'app-article',
@@ -62,8 +63,8 @@ export class ArticleComponent implements OnInit, Page {
     this.failSave = false;
     this.articleRetrieve = false;
 
-    this.articlesService.getArticleContent(this.articleName).subscribe(
-      data => {
+    this.articlesService.getArticleContent(this.articleName).subscribe({
+      next: data => {
         if (data) {
           this.articleContent = data;
           this.articleRetrieve = true;
@@ -72,15 +73,15 @@ export class ArticleComponent implements OnInit, Page {
         }
         this.loading = false;
       },
-      err => {
+      error: err => {
         this.articleContent = null;
         this.loading = false;
         this.failSave = true;
         this.scrollToTop();
       },
-      () => {
+      complete: () => {
         this.scrollToTop();
-      });
+      }});
   }
 
   scrollToTop() {
@@ -90,12 +91,17 @@ export class ArticleComponent implements OnInit, Page {
   }
 
   setHead() {
-    this.articlesService.getArticleByName(this.articleName).subscribe({
-      next: data => {
-        if (!data) {
-          this._router.navigate(['articles']);
-          return;
+    this.articlesService.getArticleByName(this.articleName).pipe(
+      switchMap(data => {
+        if(!data) {
+          this._router.navigateByUrl('404');
+          return EMPTY;
         }
+
+        return of(data);
+      })
+    ).subscribe({
+      next: data => {
         this.article = new MyArticle (data.id, data.title, data.metaDesc, data.description, data.datePublished, data.dateModified, data.img, data.imgTitle, data.articleName, data.categories, data.author);
         if (!this.articlesService.loadFromArticles) {
           this.categoriesService.setCurrentArticleCategories(this.article.categories);

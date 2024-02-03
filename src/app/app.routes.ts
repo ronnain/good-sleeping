@@ -29,6 +29,6 @@ export const routes: Routes = [
       loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
     },
     {path: '',  component: HomeComponent },
-    {path: '**', redirectTo: 'articles', pathMatch: 'full'},
-    {path: 'not-found', redirectTo: 'articles', pathMatch: 'full'}
+    {path: '404',  loadComponent: () => import('./404/not-found-404.component') },
+    {path: '**', redirectTo: '404', pathMatch: 'full'},
   ];

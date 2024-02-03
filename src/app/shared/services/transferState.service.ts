@@ -30,7 +30,7 @@ export class TransferStateService {
     } else {
       throw new Error()
     }
-    return of(resultData)
+    return of(resultData);
   }
 
   private setCache(key, value) {

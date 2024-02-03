@@ -44,6 +44,9 @@ export class AnimateThatDirective {
     }
 
     ngAfterViewInit() {
+        if (!isPlatformBrowser(this.platformId)) {
+            return;
+        }
         this.playAnimation()
 
     }
