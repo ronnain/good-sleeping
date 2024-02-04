@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RESPONSE } from '../response';
+import { HeaderService } from '../shared/services/header.service';
 
 @Component({
     standalone: true,
@@ -14,8 +15,10 @@ import { RESPONSE } from '../response';
 })
 export default class NotFound404Component {
     private readonly RESPONSE = inject(RESPONSE, {optional: true});
+    private readonly headerService = inject(HeaderService);
 
     constructor() {
+        this.headerService.handleTitleAndMeta('Page introuvable', 'Page introuvable');
         this.RESPONSE?.status(404);
     }
 
