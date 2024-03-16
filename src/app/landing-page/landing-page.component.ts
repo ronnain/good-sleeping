@@ -12,7 +12,7 @@ import { NgClass } from '@angular/common';
     standalone: true,
     imports: [NgClass, RetrieveMailComponent]
 })
-export class LandingPageComponent implements OnInit, Page {
+export default class LandingPageComponent implements OnInit, Page {
 
   bonusTitle = "Guide du Bon Dormeur : Programme pour retrouver un sommeil de qualité";
   metaDesc = 'Récupérer le bonus gratuit : ' + this.bonusTitle;

@@ -15,7 +15,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     standalone: true,
     imports: [FormsModule, MatButtonModule, NgIf, MatProgressBarModule]
 })
-export class UnsubcribeComponent implements OnInit, Page {
+export default class UnsubcribeComponent implements OnInit, Page {
 
   title = "Désabonnement";
   metaDesc = "Page de désabonnement à la newsletter.";

@@ -19,7 +19,7 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
     standalone: true,
     imports: [FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, NgIf, TextFieldModule, MatButtonModule, MatProgressBarModule, MatSnackBarModule]
 })
-export class ContactComponent implements OnInit, Page {
+export default class ContactComponent implements OnInit, Page {
 
   title = "Contact - Adresse mail - Sommeil Profond";
   metaDesc = "Contact Sommeil Profond - Comment me contacter ? Adresse mail pour me contacter.";

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BiorythmeScore } from './biorythme.type';
 import { CommentComponent } from '../../shared/component/comment/comment.component';
-import { ArticlesComponent } from '../../articles/articles.component';
+import ArticlesComponent from '../../articles/articles.component';
 import { BiorythmeQuizzComponent } from './biorythme-quizz/biorythme-quizz.component';
 import { DolphinQuizzComponent } from './dolphin-quizz/dolphin-quizz.component';
 import { NgIf } from '@angular/common';
@@ -19,7 +19,7 @@ import { HeaderService } from '../../shared/services/header.service';
     standalone: true,
     imports: [NgIf, DolphinQuizzComponent, BiorythmeQuizzComponent, ArticlesComponent, CommentComponent]
 })
-export class ChronotypeAnimalComponent implements OnInit, Page {
+export default class ChronotypeAnimalComponent implements OnInit, Page {
 
   title = "Test chronotype animal";
   metaDesc = "Quizz pour connaître son chronotype animal. Es-tu un lion, un ours, un loup ou un dauphin ?";

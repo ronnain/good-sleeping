@@ -25,7 +25,7 @@ import { environment } from '../../environments/environment';
     standalone: true,
     imports: [NgIf, NgFor, NgClass, MatIconModule, RouterLink, MatButtonModule, MatProgressBarModule, DatePipe, ArticlesFromCategoryPipe]
 })
-export class ArticlesComponent implements OnInit, Page {
+export default class ArticlesComponent implements OnInit, Page {
 
   title: string = "Les meilleurs articles et conseils pour retrouver le sommeil.";
   metaDesc = "Liste des meilleurs articles, guides et conseils pour retrouver le sommeil.";

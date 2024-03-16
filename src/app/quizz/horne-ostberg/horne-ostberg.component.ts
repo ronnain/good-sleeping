@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardQuestionDTO } from '../shared/card-quizz/card-question.dto';
 import { CommentComponent } from '../../shared/component/comment/comment.component';
-import { ArticlesComponent } from '../../articles/articles.component';
+import ArticlesComponent from '../../articles/articles.component';
 import { QuizzProblemFormComponent } from '../shared/quizz-problem-form/quizz-problem-form.component';
 import { SocialNetworkShareButtonsComponent } from '../../social-network-share-buttons/social-network-share-buttons.component';
 import { MailStepperComponent } from '../shared/mail-stepper/mail-stepper.component';
@@ -23,7 +23,7 @@ import { HeaderService } from '../../shared/services/header.service';
     standalone: true,
     imports: [CardQuizzComponent, MatRadioModule, FormsModule, NgFor, MailStepperComponent, NgIf, SocialNetworkShareButtonsComponent, QuizzProblemFormComponent, ArticlesComponent, CommentComponent]
 })
-export class HorneOstbergComponent implements OnInit, Page {
+export default class HorneOstbergComponent implements OnInit, Page {
 
   title = "Test chronotype 2024: Découvre ton chronotype gratuitement";
   metaDesc = "5 Questions pour déterminer son chronotype. Connaître les caractéristiques associées à son chronotype. Chronotype du soir, de la journée ou du matin.";

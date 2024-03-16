@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
     standalone: true,
     imports: [AnimateThatDirective, RetrieveMailComponent, MatButtonModule, RouterLink]
 })
-export class HomeComponent implements OnInit, Page {
+export default class HomeComponent implements OnInit, Page {
 
   title = "Le blog pour retrouver un sommeil réparateur et être en pleine forme"
   metaDesc = "Ton guide du sommeil pour être en pleine forme. Dans chaque publication, je t'apprends à bien dormir et je réponds à toutes tes questions.";

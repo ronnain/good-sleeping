@@ -8,7 +8,7 @@ import { HeaderService } from '../shared/services/header.service';
     styleUrls: ['./legal-notices.component.css'],
     standalone: true
 })
-export class LegalNoticesComponent implements OnInit, Page {
+export default class LegalNoticesComponent implements OnInit, Page {
 
   title = "Mentions légales - Hébergeur - Données personnelles";
   metaDesc = "Vous trouverez ici toutes les mentions légales du site Sommeil Profond, l'hébergeur et le traitement des données personnelles.";

@@ -6,7 +6,7 @@ import { isPlatformBrowser, NgIf, DatePipe } from '@angular/common';
 import { HeaderService } from '../shared/services/header.service';
 import { CategoriesService } from '../shared/services/categories.service';
 import { SafeHtmlPipe } from '../shared/pipes/safeHtmlPipe';
-import { ArticlesComponent } from '../articles/articles.component';
+import ArticlesComponent from '../articles/articles.component';
 import { CommentComponent } from '../shared/component/comment/comment.component';
 import { RetrieveMailComponent } from '../shared/retrieve-mail/retrieve-mail.component';
 import { SocialNetworkShareButtonsComponent } from '../social-network-share-buttons/social-network-share-buttons.component';
@@ -22,7 +22,7 @@ import { EMPTY, of, switchMap } from 'rxjs';
     standalone: true,
     imports: [NgIf, MatProgressBarModule, SocialNetworkShareButtonsComponent, RetrieveMailComponent, CommentComponent, ArticlesComponent, DatePipe, SafeHtmlPipe]
 })
-export class ArticleComponent implements OnInit, Page {
+export default  class ArticleComponent implements OnInit, Page {
   isBrowser: boolean;
   article: Article;
 

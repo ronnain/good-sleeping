@@ -1,7 +1,7 @@
 import { ViewportScroller, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CommentComponent } from '../../shared/component/comment/comment.component';
-import { ArticlesComponent } from '../../articles/articles.component';
+import ArticlesComponent from '../../articles/articles.component';
 import { QuizzProblemFormComponent } from '../shared/quizz-problem-form/quizz-problem-form.component';
 import { SocialNetworkShareButtonsComponent } from '../../social-network-share-buttons/social-network-share-buttons.component';
 import { MailStepperComponent } from '../shared/mail-stepper/mail-stepper.component';
@@ -24,7 +24,7 @@ import { HeaderService } from '../../shared/services/header.service';
     standalone: true,
     imports: [NgFor, MatFormFieldModule, MatSelectModule, FormsModule, MailStepperComponent, NgIf, SocialNetworkShareButtonsComponent, QuizzProblemFormComponent, ArticlesComponent, CommentComponent]
 })
-export class InsomniaSeverityIndexComponent implements OnInit, Page {
+export default class InsomniaSeverityIndexComponent implements OnInit, Page {
 
   title = "Test de sévérité des troubles de l’insomnie gratuit en ligne 2024";
   metaDesc = "Découvre si tu es insomniaque grâce à ce test rapide et gratuit, en ligne. Si tu es insomniaque, je te donne les meilleurs conseils pour t'en sortir.";
