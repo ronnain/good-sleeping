@@ -20,8 +20,8 @@
   --div-container-background-color: transparent;
   --mat-form-field-color: var(--accent-color);
 
-  --link-color: #007bff;
-  --link-color-hover: #09519e;
+  --link-color: #18007a;
+  --link-color-hover: #3300ff;
 
   --blockquote-background: #f9f9f9;
   --blockquote-border: #ccc;
@@ -159,14 +159,26 @@ h3 {
 }
 
 .article h2 {
+  font-size: 1.75rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.article h3 {
   font-size: 1.5rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
 .article h3 {
-  font-size: 1.25rem;
-  margin-top: 1rem;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.article h4 {
+  font-size: 1.3rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
